@@ -2,7 +2,7 @@ import { useRole, type Role } from "@/context/RoleContext";
 
 const options: { value: Role; label: string; sub: string }[] = [
   { value: "player", label: "PLAYER", sub: "I run a crew" },
-  { value: "gm", label: "GAME MASTER", sub: "I run the world" },
+  { value: "gm", label: "GAME MASTER", sub: "I AM Nightcity" },
 ];
 
 export function RoleSelector() {

@@ -4,6 +4,7 @@ import { Introduction } from "@/components/sections/Introduction";
 import { DesignPhilosophy } from "@/components/sections/DesignPhilosophy";
 import { NightCity } from "@/components/sections/NightCity";
 import { RoleSelector } from "@/components/RoleSelector";
+import { Channels } from "@/components/sections/Channels";
 import { Mission } from "@/components/sections/Mission";
 import { CrewCreation } from "@/components/sections/CrewCreation";
 import { OpGrid } from "@/components/sections/OpGrid";
@@ -30,6 +31,7 @@ export function App() {
       <Introduction />
       <DesignPhilosophy />
       <NightCity />
+      <Channels />
       <Mission />
       <CrewCreation />
       <OpGrid />

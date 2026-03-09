@@ -38,7 +38,7 @@ export function Nav() {
         className="mr-auto font-head font-black text-[1.1rem] tracking-[0.15em] uppercase text-cp-red-bright no-underline"
         style={{ textShadow: "0 0 20px var(--cp-red-dim)" }}
       >
-        Night City Dispatch
+        CyberPBM
       </a>
 
       <ul className="hidden md:flex list-none gap-0">

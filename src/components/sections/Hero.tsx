@@ -3,8 +3,7 @@ import { GlitchText } from "@/components/ui/glitch-text";
 const stats = [
   { value: "2", label: "Action Slots / Round" },
   { value: "8", label: "Available Actions" },
-  { value: "4×3", label: "Operation Grid" },
-  { value: "7", label: "Outcome Ratings" },
+  { value: "Infinite", label: "Possible Outcomes" },
 ];
 
 export function Hero() {
@@ -36,7 +35,7 @@ export function Hero() {
       {/* Eyebrow */}
       <div className="relative z-10 mb-6 flex items-center gap-4 font-mono text-[0.7rem] tracking-[0.25em] uppercase text-cp-yellow">
         <span className="block h-px w-10 bg-cp-yellow" />
-        <span>Night City Dispatch</span>
+        <span>Cyber</span>
         <span>// Play-By-Email</span>
       </div>
 
@@ -63,9 +62,7 @@ export function Hero() {
 
       {/* Subtitle */}
       <p className="relative z-10 mt-8 max-w-[560px] border-l-[3px] border-cp-red pl-5 text-[1.1rem] font-normal leading-[1.7] text-cp-off">
-        You commit. The city resolves.
-        <br />
-        Every round, two action slots. Every decision matters.
+        Play by mail protocol.
         <br />
         Night City doesn't wait choomba.
       </p>
