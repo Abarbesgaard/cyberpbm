@@ -1,0 +1,7 @@
+[
+  { "id": "overview", "label": "Overview", "file": "overview.md" },
+  { "id": "the-grid", "label": "The Grid", "file": "the-grid.md" },
+  { "id": "actions", "label": "Actions", "file": "actions.md" },
+  { "id": "resolution", "label": "Resolution", "file": "resolution.md" },
+  { "id": "heat", "label": "Heat", "file": "heat.md" }
+]

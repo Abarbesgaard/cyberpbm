@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIGHT CITY DISPATCH // PLAY-BY-EMAIL OPERATIONS MANUAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════════════ */
+:root {
+  --red:       #CC0000;
+  --red-bright:#FF1A1A;
+  --red-dim:   #6B0000;
+  --yellow:    #F0C000;
+  --yellow-dim:#8A6E00;
+  --cyan:      #00D4FF;
+  --cyan-dim:  #006B80;
+  --green:     #00FF88;
+  --white:     #F0EDE8;
+  --off:       #B8B4AE;
+  --mid:       #5A5651;
+  --dark:      #0A0908;
+  --panel:     #111010;
+  --panel2:    #181614;
+  --border:    #2A2624;
+  --border-bright: #3D3835;
+
+  --f-head: 'Barlow Condensed', sans-serif;
+  --f-body: 'Rajdhani', sans-serif;
+  --f-mono: 'Share Tech Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Noise grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════════════════════ */
+.mono { font-family: var(--f-mono); }
+.red  { color: var(--red-bright); }
+.yel  { color: var(--yellow); }
+.cyn  { color: var(--cyan); }
+.grn  { color: var(--green); }
+.dim  { color: var(--off); }
+
+/* Corner bracket decoration */
+.bracketed {
+  position: relative;
+}
+.bracketed::before,
+.bracketed::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--red);
+  border-style: solid;
+}
+.bracketed::before {
+  top: 0; left: 0;
+  border-width: 2px 0 0 2px;
+}
+.bracketed::after {
+  bottom: 0; right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(10,9,8,0.96);
+  border-bottom: 1px solid var(--border-bright);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  height: 52px;
+  gap: 0;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red) 0%, var(--yellow) 50%, transparent 100%);
+}
+
+.nav-logo {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--red-bright);
+  text-transform: uppercase;
+  margin-right: auto;
+  text-shadow: 0 0 20px var(--red-dim);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0;
+}
+
+.nav-links li a {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 1px solid var(--border);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links li a:hover {
+  color: var(--yellow);
+  background: rgba(240,192,0,0.05);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 4rem 4rem;
+  overflow: hidden;
+}
+
+/* Animated grid bg */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(204,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(204,0,0,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridScroll 20s linear infinite;
+}
+
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
+}
+
+/* Diagonal red accent slash */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 45%;
+  height: 120%;
+  background: linear-gradient(135deg, transparent 45%, rgba(204,0,0,0.04) 45%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--yellow);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--yellow);
+}
+
+.hero-title {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: clamp(4rem, 10vw, 8.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  position: relative;
+  max-width: 900px;
+}
+
+.hero-title .line-red {
+  color: var(--red-bright);
+  text-shadow: 0 0 40px rgba(204,0,0,0.5), 0 0 80px rgba(204,0,0,0.2);
+  display: block;
+}
+
+.hero-title .line-yel {
+  color: var(--yellow);
+  text-shadow: 0 0 40px rgba(240,192,0,0.4);
+  display: block;
+}
+
+/* Glitch effect on title */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: var(--cyan);
+  animation: glitch1 4s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  opacity: 0.6;
+}
+
+.glitch::after {
+  color: var(--red-bright);
+  animation: glitch2 4s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  opacity: 0.6;
+}
+
+@keyframes glitch1 {
+  0%, 90%, 100% { transform: translate(0); opacity: 0; }
+  91%           { transform: translate(-4px, 1px); opacity: 0.6; }
+  93%           { transform: translate(3px, -1px); opacity: 0.6; }
+  95%           { transform: translate(-2px, 2px); opacity: 0.6; }
+  97%           { transform: translate(4px, 0); opacity: 0.6; }
+  99%           { transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitch2 {
+  0%, 88%, 100% { transform: translate(0); opacity: 0; }
+  89%           { transform: translate(4px, -2px); opacity: 0.6; }
+  91%           { transform: translate(-3px, 1px); opacity: 0.6; }
+  93%           { transform: translate(2px, -1px); opacity: 0.6; }
+  95%           { transform: translate(-4px, 0); opacity: 0.6; }
+  87%           { transform: translate(0); opacity: 0; }
+}
+
+.hero-sub {
+  font-family: var(--f-body);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--off);
+  max-width: 560px;
+  margin-top: 2rem;
+  line-height: 1.7;
+  border-left: 3px solid var(--red);
+  padding-left: 1.25rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-val {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--yellow);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(240,192,0,0.3);
+}
+
+.stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.btn {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--red-bright);
+  box-shadow: 0 0 30px rgba(204,0,0,0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--yellow);
+  border: 1px solid var(--yellow-dim);
+}
+
+.btn-secondary:hover {
+  background: rgba(240,192,0,0.08);
+  border-color: var(--yellow);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--mid);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--yellow);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  to { left: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION STRUCTURE
+═══════════════════════════════════════════════════════════ */
+section {
+  padding: 6rem 4rem;
+  position: relative;
+}
+
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-bright), transparent);
+}
+
+.section-title {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.section-lead {
+  font-size: 1.05rem;
+  color: var(--off);
+  max-width: 680px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GRID SECTION
+═══════════════════════════════════════════════════════════ */
+#grid-section {
+  background: var(--panel);
+}
+
+.op-grid-wrapper {
+  overflow-x: auto;
+}
+
+.op-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+}
+
+.op-grid th, .op-grid td {
+  border: 1px solid var(--border-bright);
+  padding: 0;
+  text-align: center;
+}
+
+.grid-corner {
+  background: var(--dark);
+  color: var(--yellow);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 0.75rem;
+  width: 120px;
+}
+
+.col-head {
+  padding: 1rem 1.5rem;
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.col-ghost  { background: rgba(0,212,255,0.08); color: var(--cyan); border-bottom: 3px solid var(--cyan) !important; }
+.col-strike { background: rgba(204,0,0,0.08);   color: var(--red-bright); border-bottom: 3px solid var(--red) !important; }
+.col-anchor { background: rgba(0,255,136,0.08); color: var(--green); border-bottom: 3px solid var(--green) !important; }
+
+.col-sub {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 0.2rem;
+  letter-spacing: 0.08em;
+}
+
+.phase-label {
+  background: var(--dark);
+  padding: 1.25rem 0.75rem;
+  vertical-align: middle;
+  text-align: left;
+  width: 120px;
+  border-right: 3px solid var(--yellow) !important;
+}
+
+.phase-num {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  color: var(--yellow);
+  letter-spacing: 0.15em;
+  display: block;
+}
+
+.phase-name {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--white);
+  display: block;
+  letter-spacing: 0.08em;
+}
+
+.phase-desc {
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--mid);
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.grid-cell {
+  padding: 1.25rem;
+  min-height: 80px;
+  vertical-align: middle;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.grid-cell:hover {
+  background: rgba(240,192,0,0.04);
+}
+
+.grid-cell-even { background: rgba(0,0,0,0.2); }
+.grid-cell-odd  { background: rgba(255,255,255,0.01); }
+
+.token {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+.token-ghost  { color: var(--cyan);        border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.06); }
+.token-strike { color: var(--red-bright);  border-color: rgba(204,0,0,0.4);   background: rgba(204,0,0,0.06); }
+.token-anchor { color: var(--green);       border-color: rgba(0,255,136,0.4); background: rgba(0,255,136,0.06); }
+.token-empty  { color: var(--border-bright); border-color: var(--border); font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════
+   COLUMN EXPLAINER
+═══════════════════════════════════════════════════════════ */
+#columns {
+  background: var(--dark);
+}
+
+.col-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.col-card {
+  background: var(--panel);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+
+.col-card:hover { background: var(--panel2); }
+
+.col-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.card-ghost::before  { background: var(--cyan); box-shadow: 0 0 20px rgba(0,212,255,0.5); }
+.card-strike::before { background: var(--red);  box-shadow: 0 0 20px rgba(204,0,0,0.5); }
+.card-anchor::before { background: var(--green);box-shadow: 0 0 20px rgba(0,255,136,0.5); }
+
+.col-card-label {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.card-ghost  .col-card-label { color: var(--cyan); }
+.card-strike .col-card-label { color: var(--red-bright); }
+.card-anchor .col-card-label { color: var(--green); }
+
+.col-card-title {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.col-card-body {
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  color: var(--off);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.col-card-beats {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.col-card-beats strong {
+  color: var(--yellow);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACTIONS SECTION
+═══════════════════════════════════════════════════════════ */
+#actions {
+  background: var(--panel);
+}
+
+.actions-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.slot-counter {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 8rem;
+  color: var(--red-bright);
+  line-height: 1;
+  text-shadow: 0 0 60px rgba(204,0,0,0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.slot-counter::after {
+  content: 'ACTION SLOTS PER ROUND';
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  margin-top: -0.5rem;
+  text-shadow: none;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border-bright);
+}
+
+.action-card {
+  background: var(--dark);
+  padding: 1.75rem 1.25rem;
+  cursor: default;
+  position: relative;
+  transition: background 0.2s;
+  overflow: hidden;
+}
+
+.action-card:hover {
+  background: var(--panel2);
+}
+
+.action-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--border);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.action-card:hover::after {
+  background: var(--yellow);
+  box-shadow: 0 0 10px rgba(240,192,0,0.4);
+}
+
+.action-code {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.action-name {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.action-desc {
+  font-size: 0.82rem;
+  color: var(--off);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.action-tag {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border-bright);
+  color: var(--mid);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.action-tag.risk { border-color: rgba(204,0,0,0.4); color: var(--red-bright); }
+.action-tag.intel { border-color: rgba(0,212,255,0.3); color: var(--cyan); }
+.action-tag.safe { border-color: rgba(0,255,136,0.3); color: var(--green); }
+.action-tag.econ { border-color: rgba(240,192,0,0.3); color: var(--yellow); }
+
+/* ═══════════════════════════════════════════════════════════
+   PROTOCOL / COMMS SECTION
+═══════════════════════════════════════════════════════════ */
+#protocol {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+#protocol::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 60%, rgba(0,212,255,0.03) 60%);
+}
+
+.protocol-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.ice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+}
+
+.ice-table th {
+  background: rgba(0,212,255,0.1);
+  color: var(--cyan);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--cyan-dim);
+}
+
+.ice-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--off);
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.ice-table tr:last-child td { border-bottom: none; }
+
+.ice-table td:first-child {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.ice-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.terminal-box {
+  background: var(--panel);
+  border: 1px solid var(--border-bright);
+  border-left: 3px solid var(--cyan);
+  padding: 1.75rem;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--off);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+}
+
+.terminal-box .t-label {
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.terminal-box .t-line::before {
+  content: '> ';
+  color: var(--yellow);
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--cyan);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESOLUTION TABLE
+═══════════════════════════════════════════════════════════ */
+#resolution {
+  background: var(--panel);
+}
+
+.res-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+}
+
+.res-table th {
+  background: var(--red-dim);
+  color: var(--white);
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--red);
+}
+
+.res-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  color: var(--off);
+  line-height: 1.5;
+}
+
+.res-table tr:last-child td { border-bottom: none; }
+.res-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.res-table td:first-child {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.rating-pill {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.7rem;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+.r-superior { background: rgba(0,255,136,0.12); color: var(--green);       border: 1px solid rgba(0,255,136,0.4); }
+.r-excellent{ background: rgba(100,220,80,0.1);  color: #90dd60;             border: 1px solid rgba(100,220,80,0.3); }
+.r-good     { background: rgba(240,192,0,0.1);   color: var(--yellow);       border: 1px solid rgba(240,192,0,0.3); }
+.r-adequate { background: rgba(200,160,0,0.1);   color: #c89000;             border: 1px solid rgba(200,160,0,0.3); }
+.r-poor     { background: rgba(200,80,0,0.1);    color: #e06020;             border: 1px solid rgba(200,80,0,0.3); }
+.r-none     { background: rgba(200,20,0,0.12);   color: #cc4020;             border: 1px solid rgba(200,20,0,0.4); }
+.r-flat     { background: rgba(180,0,0,0.15);    color: var(--red-bright);   border: 1px solid var(--red-dim); }
+
+/* ═══════════════════════════════════════════════════════════
+   HEAT SECTION
+═══════════════════════════════════════════════════════════ */
+#heat {
+  background: var(--dark);
+}
+
+.heat-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.heat-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--border-bright);
+}
+
+.heat-row {
+  display: flex;
+  align-items: stretch;
+  background: var(--panel);
+  transition: background 0.15s;
+}
+
+.heat-row:hover { background: var(--panel2); }
+
+.heat-level {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-right: 1px solid var(--border-bright);
+  background: var(--dark);
+}
+
+.heat-num {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.heat-word {
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.heat-0 .heat-num { color: var(--mid); }
+.heat-1 .heat-num { color: #c89000; }
+.heat-2 .heat-num { color: #e06020; }
+.heat-3 .heat-num { color: #cc4020; }
+.heat-4 .heat-num { color: var(--red-bright); text-shadow: 0 0 20px rgba(204,0,0,0.6); }
+
+.heat-content {
+  flex: 1;
+  padding: 1rem 1.5rem;
+}
+
+.heat-effect {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  color: var(--mid);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.heat-desc {
+  font-size: 0.85rem;
+  color: var(--off);
+  line-height: 1.5;
+}
+
+.heat-modifier {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.4rem;
+  border-left: 1px solid var(--border-bright);
+  color: var(--red-bright);
+  background: rgba(204,0,0,0.05);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ORDER SHEET
+═══════════════════════════════════════════════════════════ */
+#orders {
+  background: var(--panel);
+  position: relative;
+}
+
+.order-sheet {
+  max-width: 900px;
+  border: 1px solid var(--border-bright);
+  background: var(--dark);
+}
+
+.order-sheet-header {
+  background: var(--red-dim);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--red);
+}
+
+.osh-title {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.osh-round {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  color: var(--yellow);
+  letter-spacing: 0.1em;
+}
+
+.order-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-field {
+  padding: 1rem 1.25rem;
+  border-right: 1px solid var(--border);
+}
+
+.order-field:last-child { border-right: none; }
+
+.of-label {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  color: var(--yellow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.of-value {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--white);
+}
+
+.order-grid-mini {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-grid-mini th, .order-grid-mini td {
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+}
+
+.order-grid-mini th {
+  background: var(--panel);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+}
+
+.order-grid-mini td:first-child {
+  background: var(--panel);
+  color: var(--yellow);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-align: left;
+  border-right: 2px solid var(--yellow-dim);
+}
+
+.order-contingency {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.oc-tag {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0.25rem 0;
+  border-left: 2px solid var(--cyan);
+  padding-left: 0.75rem;
+}
+
+.oc-text {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--off);
+  line-height: 1.6;
+}
+
+.order-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.ob-cell {
+  padding: 1rem 1.25rem;
+  border-right: 1px solid var(--border);
+}
+
+.ob-cell:last-child { border-right: none; }
+
+.ob-label {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  color: var(--mid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.ob-val {
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.order-note {
+  padding: 1.25rem;
+  border-left: 3px solid var(--red);
+}
+
+.on-label {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.on-text {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--mid);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CLOSING / MANIFESTO
+═══════════════════════════════════════════════════════════ */
+#manifesto {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+#manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(204,0,0,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(240,192,0,0.05) 0%, transparent 60%);
+}
+
+.manifesto-inner {
+  position: relative;
+  padding: 6rem 4rem;
+  max-width: 800px;
+}
+
+.manifesto-quote {
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--red);
+  padding-left: 2rem;
+}
+
+.manifesto-sub {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  max-width: 560px;
+  padding-left: 2rem;
+  border-left: 1px solid var(--border-bright);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+footer {
+  background: var(--panel);
+  border-top: 1px solid var(--border-bright);
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.footer-meta {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PHASE EXPLAINER
+═══════════════════════════════════════════════════════════ */
+#phases {
+  background: var(--panel);
+}
+
+.phases-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border-bright);
+  margin-top: 2rem;
+}
+
+.phase-card {
+  background: var(--dark);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.phase-card:hover { background: var(--panel2); }
+
+.phase-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 1.25rem; right: 1.25rem;
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 4rem;
+  color: var(--border-bright);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.phase-card-label {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  color: var(--yellow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.phase-card-title {
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.phase-card-body {
+  font-size: 0.85rem;
+  color: var(--off);
+  line-height: 1.7;
+}
+
+.phase-card-tags {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.phase-tag {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border-bright);
+  color: var(--mid);
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION DIVIDER — diagonal
+═══════════════════════════════════════════════════════════ */
+.sec-div {
+  height: 60px;
+  background: var(--panel);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+  margin-bottom: -1px;
+}
+
+.sec-div-inv {
+  height: 60px;
+  background: var(--dark);
+  clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%);
+  margin-bottom: -1px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  section { padding: 4rem 1.5rem; }
+  #hero { padding: 5rem 1.5rem 3rem; }
+  .col-cards, .actions-grid, .phases-layout { grid-template-columns: 1fr; }
+  .actions-intro, .protocol-layout, .heat-layout { grid-template-columns: 1fr; gap: 2rem; }
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .order-meta, .order-bottom { grid-template-columns: 1fr; }
+  .order-field, .ob-cell { border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ NAV -->
+<nav>
+  <span class="nav-logo">Night City Dispatch</span>
+  <ul class="nav-links">
+    <li><a href="#grid-section">// GRID</a></li>
+    <li><a href="#columns">// COLUMNS</a></li>
+    <li><a href="#phases">// PHASES</a></li>
+    <li><a href="#actions">// ACTIONS</a></li>
+    <li><a href="#protocol">// PROTOCOL</a></li>
+    <li><a href="#resolution">// RESOLUTION</a></li>
+    <li><a href="#orders">// ORDER SHEET</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <span>Night City Dispatch</span>
+    <span>// Play-By-Email</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line-red glitch" data-text="OPERATIONS">OPERATIONS</span>
+    <span>MANUAL</span>
+    <span class="line-yel">v1.0</span>
+  </h1>
+
+  <p class="hero-sub">
+    You do not roll dice. You commit. The city resolves.<br>
+    Every round, two action slots. Every decision hurts.<br>
+    Night City doesn't wait.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-val">2</span>
+      <span class="stat-label">Action Slots / Round</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">8</span>
+      <span class="stat-label">Available Actions</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">4×3</span>
+      <span class="stat-label">Operation Grid</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">7</span>
+      <span class="stat-label">Outcome Ratings</span>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#grid-section">Read the Rules</a>
+    <a class="btn btn-secondary" href="#orders">Get the Order Sheet</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <span class="scroll-line"></span>
+    <span>Scroll to begin</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ OP GRID -->
+<section id="grid-section">
+  <div class="section-eyebrow">Section I // Core Mechanic</div>
+  <h2 class="section-title">The <span class="red">Operation</span> Grid</h2>
+  <p class="section-lead">
+    A 4×3 matrix. Rows are phases of an operation in time. Columns are modes of force.
+    You assign crew to cells before the round resolves. The GM holds the opposition grid in secret.
+    You never see it. You read the world and bet.
+  </p>
+
+  <div class="op-grid-wrapper">
+    <table class="op-grid">
+      <thead>
+        <tr>
+          <th class="grid-corner mono">OP<br>GRID</th>
+          <th class="col-head col-ghost">GHOST <span class="col-sub">Stealth · Intel · Net</span></th>
+          <th class="col-head col-strike">STRIKE <span class="col-sub">Force · Speed · Breach</span></th>
+          <th class="col-head col-anchor">ANCHOR <span class="col-sub">Hold · Presence · Control</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="phase-label">
+            <span class="phase-num">PHASE 1</span>
+            <span class="phase-name">APPROACH</span>
+            <span class="phase-desc">Recon · Disguise<br>Insertion</span>
+          </td>
+          <td class="grid-cell grid-cell-even"><span class="token token-ghost">NR-4 · T-Bug</span></td>
+          <td class="grid-cell grid-cell-even"><span class="token token-strike">FA-3 · Rache</span></td>
+          <td class="grid-cell grid-cell-even"><span class="token token-anchor">CT-2 · Dex</span></td>
+        </tr>
+        <tr>
+          <td class="phase-label">
+            <span class="phase-num">PHASE 2</span>
+            <span class="phase-name">BREACH</span>
+            <span class="phase-desc">Entry · ICE · Suppress</span>
+          </td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-ghost">NR-4 · T-Bug</span></td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-strike">SO-5 · Brick</span></td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-anchor">TE-3 · Padre</span></td>
+        </tr>
+        <tr>
+          <td class="phase-label">
+            <span class="phase-num">PHASE 3</span>
+            <span class="phase-name">EXECUTE</span>
+            <span class="phase-desc">Primary Objective</span>
+          </td>
+          <td class="grid-cell grid-cell-even"><span class="token token-empty">——</span></td>
+          <td class="grid-cell grid-cell-even"><span class="token token-strike">SO-5 · Brick</span></td>
+          <td class="grid-cell grid-cell-even"><span class="token token-anchor">SO-3 · Ghost</span></td>
+        </tr>
+        <tr>
+          <td class="phase-label">
+            <span class="phase-num">PHASE 4</span>
+            <span class="phase-name">EXTRACT</span>
+            <span class="phase-desc">Escape · Cover · Decoy</span>
+          </td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-ghost">NR-4 · T-Bug</span></td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-strike">ED-3k · Bribe</span></td>
+          <td class="grid-cell grid-cell-odd"><span class="token token-anchor">SO-5 · Brick</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:1.5rem; display:flex; gap:2rem; flex-wrap:wrap;">
+    <p class="dim" style="font-family:var(--f-mono); font-size:0.68rem; line-height:1.7; max-width:600px;">
+      <span class="yel">// NOTE:</span> A crew member assigned to a cell is committed to that phase and column.
+      T-Bug in Ghost/Breach is threading ICE during entry — she is not available for Ghost/Extract unless assigned separately.
+      Each crew member appears once per grid unless a Street Cred milestone unlocks split attention.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ COLUMNS -->
+<section id="columns">
+  <div class="section-eyebrow">Section II // Lines of Effort</div>
+  <h2 class="section-title">The Three <span class="yel">Columns</span></h2>
+  <p class="section-lead">
+    Columns are not job classes. They are modes of applying force — ways of bringing capability to bear on a problem.
+    Each beats one, loses to one. Your bet on which column dominates determines the outcome.
+  </p>
+
+  <div class="col-cards">
+    <div class="col-card card-ghost">
+      <div class="col-card-label">Column 01</div>
+      <div class="col-card-title cyn">Ghost</div>
+      <p class="col-card-body">
+        Everything that works by not being seen. Electronic intrusion, social manipulation, surveillance,
+        disguise. A strong Ghost line means the target never fully understood what hit them.
+        Netrunners threading ICE from a van three blocks away. Faces walking into the lobby on false credentials.
+      </p>
+      <div class="col-card-beats">
+        <strong>BEATS:</strong> ANCHOR — you can't hold what you can't see coming<br>
+        <strong>LOSES TO:</strong> STRIKE — overwhelming force flushes concealment
+      </div>
+    </div>
+
+    <div class="col-card card-strike">
+      <div class="col-card-label">Column 02</div>
+      <div class="col-card-title red">Strike</div>
+      <p class="col-card-body">
+        Speed, violence, and the direct application of overwhelming capability. The Solo kicking in the door
+        at exactly the right moment. Strike doesn't win by being subtle — it wins by being faster and harder
+        than the opposition can respond to. Run Strike cold and you turn a noise complaint into a massacre.
+      </p>
+      <div class="col-card-beats">
+        <strong>BEATS:</strong> GHOST — overwhelming force flushes concealment<br>
+        <strong>LOSES TO:</strong> ANCHOR — a prepared position bleeds an assault
+      </div>
+    </div>
+
+    <div class="col-card card-anchor">
+      <div class="col-card-label">Column 03</div>
+      <div class="col-card-title grn">Anchor</div>
+      <p class="col-card-body">
+        Presence, control, and sustained hold. The Tech hardwiring a backdoor that'll work three rounds later.
+        The Medtech keeping the crew operational under suppression. The standing arrangement with the local
+        Valentinos that keeps the block quiet tonight. Anchor compounds. Maelstrom knows this. Arasaka knows it better.
+      </p>
+      <div class="col-card-beats">
+        <strong>BEATS:</strong> STRIKE — a prepared defence bleeds an assault<br>
+        <strong>LOSES TO:</strong> GHOST — you can't hold what you can't see coming
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ PHASES -->
+<section id="phases">
+  <div class="section-eyebrow">Section III // Temporal Architecture</div>
+  <h2 class="section-title">The Four <span class="red">Phases</span></h2>
+  <p class="section-lead">
+    Every operation resolves across four phases in sequence. A failure in Phase 1 doesn't abort Phase 2 —
+    it degrades it. Phase cascade means each outcome modifies the next. A botched Approach is survivable.
+    A botched Breach while carrying a botched Approach is how crews get flatlined.
+  </p>
+
+  <div class="phases-layout">
+    <div class="phase-card" data-num="01">
+      <div class="phase-card-label">Phase 01</div>
+      <div class="phase-card-title">Approach</div>
+      <p class="phase-card-body">
+        Everything before the point of no return. Surveillance, cover identities, bribery of perimeter assets,
+        Netrunner prep. Ghost-dominant — arriving invisible means arriving ready.
+        A Strike-heavy Approach signals an overt operation. Your opposition is already adjusting.
+      </p>
+      <div class="phase-card-tags">
+        <span class="phase-tag">Ghost-dominant</span>
+        <span class="phase-tag">Recon</span>
+        <span class="phase-tag">Insertion</span>
+      </div>
+    </div>
+
+    <div class="phase-card" data-num="02">
+      <div class="phase-card-label">Phase 02</div>
+      <div class="phase-card-title">Breach</div>
+      <p class="phase-card-body">
+        The moment the operation becomes irreversible. Physical entry, ICE penetration, access acquisition.
+        This is the phase most sensitive to PvP collision — if a rival crew is running the same target,
+        Phase 2 is where they collide. Neither player knew.
+      </p>
+      <div class="phase-card-tags">
+        <span class="phase-tag">High risk</span>
+        <span class="phase-tag">PvP collision</span>
+        <span class="phase-tag">ICE</span>
+      </div>
+    </div>
+
+    <div class="phase-card" data-num="03">
+      <div class="phase-card-label">Phase 03</div>
+      <div class="phase-card-title">Execute</div>
+      <p class="phase-card-body">
+        The primary objective. The data pull. The extraction. The deletion. The thing you were paid to do.
+        Execute cashes in all previous phase advantages. A crew that bleeds through Breach arrives here
+        wounded, loud, and running out of time. The opposition is almost always Anchor-dominant here.
+      </p>
+      <div class="phase-card-tags">
+        <span class="phase-tag">Primary objective</span>
+        <span class="phase-tag">Anchor defence</span>
+      </div>
+    </div>
+
+    <div class="phase-card" data-num="04">
+      <div class="phase-card-label">Phase 04</div>
+      <div class="phase-card-title">Extract</div>
+      <p class="phase-card-body">
+        More dangerous than most crews plan for. Night City's factions don't always respond during Breach —
+        sometimes they wait. Road blocks, pursuit drones, burned safehouses. The crews that survive
+        long-term plan Extract with the same rigour as Breach.
+      </p>
+      <div class="phase-card-tags">
+        <span class="phase-tag">Escape</span>
+        <span class="phase-tag">Decoy</span>
+        <span class="phase-tag">Often underplanned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ACTIONS -->
+<section id="actions">
+  <div class="section-eyebrow">Section IV // Action Economy</div>
+  <h2 class="section-title">Two Slots. <span class="red">Eight</span> Options.</h2>
+
+  <div class="actions-intro">
+    <div>
+      <p class="section-lead" style="margin-bottom:0;">
+        Each round you have exactly two Action Slots. Your crew members are your slots — you assign people,
+        not abstract points. A crew member assigned to an action is unavailable for everything else that round.
+        Two slots means every round you're choosing what <em>not</em> to do just as much as what to do.
+      </p>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end;">
+      <div class="slot-counter">2</div>
+    </div>
+  </div>
+
+  <div class="actions-grid">
+
+    <div class="action-card">
+      <div class="action-code">Action_01</div>
+      <div class="action-name">Engage</div>
+      <p class="action-desc">Run an operation. Build a grid. Commit crew to phases. The GM resolves against the target. Earn Eddies and Street Cred based on outcome rating. Crew gone 1–3 rounds.</p>
+      <span class="action-tag risk">Collision risk</span>
+      <span class="action-tag econ">Eddies</span>
+      <span class="action-tag econ">Street Cred</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_02</div>
+      <div class="action-name">Protocol</div>
+      <p class="action-desc">Transmit an encrypted message to another player through Night City's network. ICE strength determines what an interceptor can read. Nothing in Night City is secure — it's only unread.</p>
+      <span class="action-tag risk">Intercept risk</span>
+      <span class="action-tag intel">Intel</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_03</div>
+      <div class="action-name">Transfer</div>
+      <p class="action-desc">Send crew members to another player's roster. Declare terms: permanent gift, loan, or conditional return. Whether they know they're being transferred — or think they're on an independent assignment — changes everything.</p>
+      <span class="action-tag risk">Betrayal vector</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_04</div>
+      <div class="action-name">Ghost</div>
+      <p class="action-desc">Go completely dark. Costs both action slots. No jobs, no comms, no visible activity. Heat drops –1 automatically. You cannot be targeted by Leverage or Surveil. Intercept attempts against you auto-fail.</p>
+      <span class="action-tag safe">Heat –1</span>
+      <span class="action-tag safe">Untargetable</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_05</div>
+      <div class="action-name">Acquire</div>
+      <p class="action-desc">Recruit a new crew member or upgrade an existing one. All new recruits carry a hidden loyalty rating the GM assigns. You learn it through gameplay — how they perform under pressure, what they do when offered alternatives.</p>
+      <span class="action-tag intel">Hidden loyalty</span>
+      <span class="action-tag econ">Eddies cost</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_06</div>
+      <div class="action-name">Leverage</div>
+      <p class="action-desc">Apply pressure to a faction or player. No grid required. Demand withdrawal, force intelligence disclosure, call in a contract. Requires FA or SO rated 3+. Failed leverage hardens the target and reveals your intent.</p>
+      <span class="action-tag risk">Blowback risk</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_07</div>
+      <div class="action-name">Surveil</div>
+      <p class="action-desc">Watch a target or player without committing an operation. Intel feeds next round's decisions. Requires NR or CT. If another player is surveilling you while you surveil them — you both know someone is watching. You don't know who.</p>
+      <span class="action-tag intel">Intel gain</span>
+      <span class="action-tag risk">Counter-surveillance</span>
+    </div>
+
+    <div class="action-card">
+      <div class="action-code">Action_08</div>
+      <div class="action-name">Uplink</div>
+      <p class="action-desc">Dedicate your Netrunner entirely to defence. Doubles your Protocol ICE for the round. Degrades incoming Surveil intel. Reduces Leverage effectiveness. Your NR cannot run any Engage operation this round.</p>
+      <span class="action-tag safe">ICE ×2</span>
+      <span class="action-tag safe">Leverage –1</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ PROTOCOL -->
+<section id="protocol">
+  <div class="section-eyebrow">Section V // Comms &amp; Intercept</div>
+  <h2 class="section-title"><span class="cyn">Protocol</span> — Talking in Night City</h2>
+  <p class="section-lead">
+    Protocol is not a free email. You're transmitting an encrypted data packet through Night City's infrastructure.
+    That infrastructure has owners. Those owners have interests. And other players have Netrunners.
+  </p>
+
+  <div class="protocol-layout">
+    <div>
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--yellow); margin-bottom:1rem; text-transform:uppercase;">ICE Rating Table</h3>
+      <table class="ice-table">
+        <thead>
+          <tr>
+            <th>ICE</th>
+            <th>Cost</th>
+            <th>Protection Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cyn">ICE-1</td>
+            <td>Free</td>
+            <td>Minimal. Any NR-2+ reads the full message.</td>
+          </tr>
+          <tr>
+            <td class="cyn">ICE-2</td>
+            <td>Assign NR-2+</td>
+            <td>Standard. Requires NR-3+ to breach. NR-2 sees metadata only.</td>
+          </tr>
+          <tr>
+            <td class="cyn">ICE-3</td>
+            <td>Assign NR-4+</td>
+            <td>Strong. NR-3 sees that a message was sent, not its content.</td>
+          </tr>
+          <tr>
+            <td class="cyn">ICE-4</td>
+            <td>Assign NR-5</td>
+            <td>Military-grade. Only NR-5 can breach. Others see noise.</td>
+          </tr>
+          <tr>
+            <td class="cyn">ICE-5</td>
+            <td>NR-5 + ED-3k</td>
+            <td>Black ICE. Breach attempt wounds the intercepting Netrunner.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--yellow); margin-top:2rem; margin-bottom:1rem; text-transform:uppercase;">Intercept Results</h3>
+      <table class="ice-table">
+        <thead>
+          <tr>
+            <th>Result</th>
+            <th>What the Interceptor Receives</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>NR beats ICE by 2+</td><td>Full message. Sender ID'd. No trace left.</td></tr>
+          <tr><td>NR beats ICE by 1</td><td>Full message. Partial trace — recipient may notice.</td></tr>
+          <tr><td>Tie</td><td>Metadata only: who, when, message length. No content.</td></tr>
+          <tr><td>ICE beats NR by 1</td><td>Nothing. Intercept fails silently.</td></tr>
+          <tr><td>ICE beats NR by 2+</td><td>Nothing. If ICE-5 active: interceptor's NR takes a wound.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--yellow); margin-bottom:1rem; text-transform:uppercase;">How It Works In Play</h3>
+      <p style="font-size:0.9rem; color:var(--off); line-height:1.75; margin-bottom:1.5rem;">
+        You compose your message and declare an ICE rating. Your NR is committed to Protocol for the round —
+        they cannot run any Engage operation. The GM delivers your message to the recipient in their Private Intel Report.
+      </p>
+      <p style="font-size:0.9rem; color:var(--off); line-height:1.75; margin-bottom:1.5rem;">
+        An intercepting player uses their Engage slot with their Netrunner in Ghost/Approach targeting your channel.
+        The GM compares NR rating vs ICE rating and resolves silently.
+      </p>
+      <p style="font-size:0.9rem; color:var(--off); line-height:1.75; margin-bottom:2rem;">
+        The GM never tells a sender their message was intercepted — unless the intercept left a trace.
+        You find out because someone knew something they shouldn't have known.
+      </p>
+
+      <div class="terminal-box">
+        <span class="t-label">// Sample Protocol Message — Round 7</span>
+        <div class="t-line">ICE: 3 (NR-4 · T-Bug assigned)</div>
+        <div class="t-line">TO: [Player 2 handle]</div>
+        <div class="t-line">——————————————————————</div>
+        <div class="t-line">Corpo Plaza target confirmed.</div>
+        <div class="t-line">Sub-level 3. Schema is there.</div>
+        <div class="t-line">I go in Round 8. You hold Extract.</div>
+        <div class="t-line">I need your Solo on ANCHOR / EXTRACT.</div>
+        <div class="t-line">If you're not there, I don't go.</div>
+        <div class="t-line">— V<span class="cursor-blink"></span></div>
+      </div>
+
+      <p style="font-family:var(--f-mono); font-size:0.65rem; color:var(--mid); margin-top:1rem; line-height:1.6;">
+        <span class="red">// RISK:</span> Player 3 runs a NR-4 Engage/Ghost against this channel this round.
+        NR-4 vs ICE-3 = beats by 1. Full message text delivered. Partial trace left.
+        Player 2 receives a security anomaly notice in their Private Report.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ RESOLUTION -->
+<section id="resolution">
+  <div class="section-eyebrow">Section VI // Outcome Engine</div>
+  <h2 class="section-title">How the City <span class="red">Decides</span></h2>
+  <p class="section-lead">
+    No dice. The GM calculates column scores from your assigned asset ratings, applies modifiers,
+    resolves the matchup against the opposition grid, and returns a Rating.
+    The Rating determines narrative outcome, crew status, and phase cascade into the next phase.
+  </p>
+
+  <table class="res-table">
+    <thead>
+      <tr>
+        <th>Net Score</th>
+        <th>Rating</th>
+        <th>Phase Outcome</th>
+        <th>Crew Status</th>
+        <th>Narrative Signal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cyn">+3 or more</td>
+        <td><span class="rating-pill r-superior">SUPERIOR</span></td>
+        <td>Full objective + bonus intel or asset gained</td>
+        <td>All crew safe; one may advance rating</td>
+        <td>The city didn't notice. It went too smooth.</td>
+      </tr>
+      <tr>
+        <td class="cyn">+2</td>
+        <td><span class="rating-pill r-excellent">EXCELLENT</span></td>
+        <td>Full objective achieved, clean exit</td>
+        <td>All crew safe</td>
+        <td>Clean job. Nobody's looking.</td>
+      </tr>
+      <tr>
+        <td class="cyn">+1</td>
+        <td><span class="rating-pill r-good">GOOD</span></td>
+        <td>Objective achieved with minor complication</td>
+        <td>All crew safe; minor gear loss</td>
+        <td>Word is spreading. Someone's asking questions.</td>
+      </tr>
+      <tr>
+        <td class="cyn">0</td>
+        <td><span class="rating-pill r-adequate">ADEQUATE</span></td>
+        <td>Partial success or Pyrrhic victory</td>
+        <td>One crew member stressed or injured</td>
+        <td>Both sides paid. Neither won.</td>
+      </tr>
+      <tr>
+        <td class="cyn">–1</td>
+        <td><span class="rating-pill r-poor">POOR</span></td>
+        <td>Objective failed; partial intel preserved</td>
+        <td>One crew member captured or wounded</td>
+        <td>They know your face. Not your name. Yet.</td>
+      </tr>
+      <tr>
+        <td class="cyn">–2</td>
+        <td><span class="rating-pill r-none">NONE</span></td>
+        <td>Full failure; consequences activated next round</td>
+        <td>One crew member lost or turned</td>
+        <td>Someone burned you. Figure out who.</td>
+      </tr>
+      <tr>
+        <td class="cyn">–3 or less</td>
+        <td><span class="rating-pill r-flat">FLATLINED</span></td>
+        <td>Catastrophic. Cascading consequences.</td>
+        <td>Multiple losses. Heat +2.</td>
+        <td>Night City just wrote you a message in blood.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:3rem;">
+    <div>
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--yellow); margin-bottom:1rem; text-transform:uppercase;">Phase Cascade</h3>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
+        <li style="font-family:var(--f-mono); font-size:0.72rem; color:var(--off); padding:0.6rem 0.8rem; border-left:2px solid var(--green); background:rgba(0,255,136,0.03);">
+          <strong class="grn">SUPERIOR / EXCELLENT</strong> — +1 to all column scores in next phase
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.72rem; color:var(--off); padding:0.6rem 0.8rem; border-left:2px solid var(--yellow); background:rgba(240,192,0,0.03);">
+          <strong class="yel">GOOD</strong> — No modifier carries forward
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.72rem; color:var(--off); padding:0.6rem 0.8rem; border-left:2px solid #e06020; background:rgba(200,80,0,0.03);">
+          <strong style="color:#e06020;">ADEQUATE</strong> — –1 to all column scores in next phase
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.72rem; color:var(--off); padding:0.6rem 0.8rem; border-left:2px solid var(--red); background:rgba(204,0,0,0.03);">
+          <strong class="red">POOR</strong> — –1 and GM activates one contingency trigger
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.72rem; color:var(--off); padding:0.6rem 0.8rem; border-left:2px solid var(--red-dim); background:rgba(107,0,0,0.05);">
+          <strong style="color:var(--red-bright);">NONE / FLATLINED</strong> — Next phase auto-resolves ADEQUATE against you regardless of grid
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--yellow); margin-bottom:1rem; text-transform:uppercase;">Score Modifiers</h3>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:0.4rem;">
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem; border-bottom:1px solid var(--border);">
+          <span class="grn">+1</span> — Asset in its Phase Affinity (right tool, right moment)
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem; border-bottom:1px solid var(--border);">
+          <span class="grn">+1</span> — Asset rated 4+ in its dominant column
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem; border-bottom:1px solid var(--border);">
+          <span class="grn">+1</span> — Prior round CT intel against this specific target
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem; border-bottom:1px solid var(--border);">
+          <span class="red">–1</span> — Per current Heat level (the city is watching)
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem; border-bottom:1px solid var(--border);">
+          <span class="red">–1</span> — Asset in wrong column for its type (noise, friction)
+        </li>
+        <li style="font-family:var(--f-mono); font-size:0.7rem; color:var(--off); padding:0.5rem 0.8rem;">
+          <span class="red">–1</span> — Per wound carried by assigned crew member
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ HEAT -->
+<section id="heat">
+  <div class="section-eyebrow">Section VII // Visibility Engine</div>
+  <h2 class="section-title"><span class="red">Heat</span> — The City's Memory</h2>
+  <p class="section-lead">
+    Heat is persistent. It represents how visible and targeted you are across Night City's overlapping power structures.
+    It degrades every column score globally. It doesn't reset between rounds. It compounds.
+  </p>
+
+  <div class="heat-layout">
+    <div class="heat-bar-list">
+      <div class="heat-row heat-0">
+        <div class="heat-level">
+          <span class="heat-num">0</span>
+          <span class="heat-word mono">Cold</span>
+        </div>
+        <div class="heat-content">
+          <div class="heat-effect mono">// No modifiers active</div>
+          <div class="heat-desc">No column penalties. Factions are not tracking you. Enjoy it while it lasts.</div>
+        </div>
+        <div class="heat-modifier mono">—</div>
+      </div>
+
+      <div class="heat-row heat-1">
+        <div class="heat-level">
+          <span class="heat-num">1</span>
+          <span class="heat-word mono">Warm</span>
+        </div>
+        <div class="heat-content">
+          <div class="heat-effect mono">// Soft surveillance active</div>
+          <div class="heat-desc">Someone has your description. Not your name. All column scores degraded.</div>
+        </div>
+        <div class="heat-modifier mono">–1</div>
+      </div>
+
+      <div class="heat-row heat-2">
+        <div class="heat-level">
+          <span class="heat-num">2</span>
+          <span class="heat-word mono">Hot</span>
+        </div>
+        <div class="heat-content">
+          <div class="heat-effect mono">// NCPD open file</div>
+          <div class="heat-desc">NCPD has an open file. Corporate intel is comparing notes. Contacts become unreliable.</div>
+        </div>
+        <div class="heat-modifier mono">–2</div>
+      </div>
+
+      <div class="heat-row heat-3">
+        <div class="heat-level">
+          <span class="heat-num">3</span>
+          <span class="heat-word mono">Burning</span>
+        </div>
+        <div class="heat-content">
+          <div class="heat-effect mono">// Public dispatch reference</div>
+          <div class="heat-desc">You appear in the Public Dispatch anonymised as a "person of interest". Contacts go cold.</div>
+        </div>
+        <div class="heat-modifier mono">–3</div>
+      </div>
+
+      <div class="heat-row heat-4">
+        <div class="heat-level">
+          <span class="heat-num">4+</span>
+          <span class="heat-word mono">Flatlined</span>
+        </div>
+        <div class="heat-content">
+          <div class="heat-effect mono">// Active bounty / corporate sanction</div>
+          <div class="heat-desc">Active bounty. Cannot take jobs in affected district without Ghost/Approach rated 4+.</div>
+        </div>
+        <div class="heat-modifier mono">–4</div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--red-bright); margin-bottom:1rem; text-transform:uppercase;">Heat Triggers</h3>
+      <div style="display:flex; flex-direction:column; gap:1px; border:1px solid var(--border-bright); margin-bottom:2rem;">
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="red">▲ +1</span> &nbsp; Any STRIKE column result of POOR or below
+        </div>
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="red">▲ +1</span> &nbsp; Any FLATLINED or NONE phase outcome
+        </div>
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="red">▲ +2</span> &nbsp; Crew member captured or killed
+        </div>
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="red">▲ +1</span> &nbsp; Running Strike-dominant grid (more Strike than Ghost + Anchor combined)
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--f-head); font-weight:700; font-size:1.3rem; letter-spacing:0.05em; color:var(--green); margin-bottom:1rem; text-transform:uppercase;">Cooling Methods</h3>
+      <div style="display:flex; flex-direction:column; gap:1px; border:1px solid var(--border-bright);">
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="grn">▼ –1</span> &nbsp; GHOST action (full dark, both slots committed)
+        </div>
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off); border-bottom:1px solid var(--border);">
+          <span class="grn">▼ –1</span> &nbsp; ED-3k+ spent on dedicated Heat suppression operation
+        </div>
+        <div style="padding:0.75rem 1rem; background:var(--panel); font-family:var(--f-mono); font-size:0.7rem; color:var(--off);">
+          <span class="grn">▼ –1</span> &nbsp; FA-4+ deployed in relationship maintenance action
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ ORDERS -->
+<section id="orders">
+  <div class="section-eyebrow">Section VIII // Submit Your Orders</div>
+  <h2 class="section-title">The <span class="yel">Order Sheet</span></h2>
+  <p class="section-lead">
+    Submit this each round to the GM. The grid is the core. Everything else is context and commitment.
+    Be specific. Vague orders produce vague outcomes — and in Night City, vague outcomes have teeth.
+  </p>
+
+  <div class="order-sheet bracketed">
+    <div class="order-sheet-header">
+      <span class="osh-title">// Night City Dispatch — Order Submission</span>
+      <span class="osh-round mono">ROUND_08 · ACTIVE</span>
+    </div>
+
+    <div class="order-meta">
+      <div class="order-field">
+        <span class="of-label">Operation Name</span>
+        <span class="of-value">GHOST IN THE MACHINE</span>
+      </div>
+      <div class="order-field">
+        <span class="of-label">Target</span>
+        <span class="of-value">Arasaka Sub-Vault · Corpo Plaza LVL-3</span>
+      </div>
+      <div class="order-field">
+        <span class="of-label">Player Handle</span>
+        <span class="of-value">[ ________________________ ]</span>
+      </div>
+    </div>
+
+    <table class="order-grid-mini">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th class="cyn">Ghost</th>
+          <th class="red">Strike</th>
+          <th class="grn">Anchor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>APPROACH</td>
+          <td class="cyn">NR-4 · T-Bug</td>
+          <td style="color:var(--red-bright);">FA-3 · Rache</td>
+          <td class="grn">CT-2 · Dex</td>
+        </tr>
+        <tr>
+          <td>BREACH</td>
+          <td class="cyn">NR-4 · T-Bug</td>
+          <td style="color:var(--red-bright);">SO-5 · Brick</td>
+          <td class="grn">TE-3 · Padre</td>
+        </tr>
+        <tr>
+          <td>EXECUTE</td>
+          <td style="color:var(--border-bright); font-style:italic;">——</td>
+          <td style="color:var(--red-bright);">SO-5 · Brick</td>
+          <td class="grn">SO-3 · Ghost</td>
+        </tr>
+        <tr>
+          <td>EXTRACT</td>
+          <td class="cyn">NR-4 · T-Bug</td>
+          <td style="color:var(--red-bright);">ED-3k</td>
+          <td class="grn">SO-5 · Brick</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="order-contingency">
+      <span class="oc-tag">Contingency 1</span>
+      <span class="oc-text">IF T-Bug's ICE penetration in Phase 2 fails (GM reads POOR or worse), THEN Brick holds at extraction point — do not breach without net cover. PRIORITY: Crew survival over timeline.</span>
+    </div>
+
+    <div class="order-contingency" style="border-bottom:1px solid var(--border);">
+      <span class="oc-tag">Contingency 2</span>
+      <span class="oc-text">IF any crew member is taken in Phase 3 or 4, THEN all remaining assets pivot to extraction regardless of objective status. PRIORITY: Get Brick out.</span>
+    </div>
+
+    <div class="order-bottom">
+      <div class="ob-cell">
+        <span class="ob-label">Loss Acceptance</span>
+        <span class="ob-val">ACCEPTABLE</span>
+      </div>
+      <div class="ob-cell">
+        <span class="ob-label">Heat Budget</span>
+        <span class="ob-val">Max +1</span>
+      </div>
+      <div class="ob-cell">
+        <span class="ob-label">Priority Signal</span>
+        <span class="ob-val">Schema over timeline</span>
+      </div>
+    </div>
+
+    <div class="order-note">
+      <span class="on-label">// Private Note to GM — Eyes Only</span>
+      <p class="on-text">I believe Player 3 is running the same target this round. If T-Bug spots evidence of a prior crew during Approach — access logs, a body, anything — treat that as a POOR result trigger for Contingency 1. I don't want to be in that vault at the same time as someone I don't know. Also: I sent a Protocol Round 8 to Player 2. ICE-3. If they respond by Round 9 I'll brief you on the joint op. If they don't respond — I go alone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-inner">
+    <p class="manifesto-quote">
+      "Night City does not care about your plan.<br>
+      It cares about what you committed to."
+    </p>
+    <p class="manifesto-sub">
+      The grid is not a guarantee. It is a bet.<br>
+      The best bets are specific, pre-contingencied,<br>
+      and honest about loss acceptance.<br><br>
+      Vague bets produce vague outcomes.<br>
+      Greedy bets produce obituaries.<br><br>
+      Fill the grid. Lock the plan. Send the email.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="footer-logo">Night City Dispatch</div>
+  <div class="footer-meta mono">
+    OPERATIONS MANUAL v1.0 // PLAY-BY-EMAIL<br>
+    <span style="color:var(--red);">ALL FIXERS ACCEPT THE RISK</span>
+  </div>
+</footer>
+
+<script>
+// Scroll-activated section reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('section').forEach(s => {
+  if (!s.id || s.id === 'hero') return;
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(24px)';
+  s.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  observer.observe(s);
+});
+
+// Glitch random trigger
+const glitchEl = document.querySelector('.glitch');
+if (glitchEl) {
+  setInterval(() => {
+    glitchEl.style.animation = 'none';
+    void glitchEl.offsetWidth;
+    glitchEl.style.animation = '';
+  }, 6000);
+}
+
+// Nav active state
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
+  });
+});
+</script>
+</body>
+</html>

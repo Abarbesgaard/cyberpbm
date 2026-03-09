@@ -1,0 +1,291 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════
+   CYBERPUNK THEME TOKENS (single source of truth)
+   Mapped to shadcn semantic variables.
+   inspiration.html palette applied to the :root (always dark).
+   ═══════════════════════════════════════════ */
+:root {
+  /* Cyberpunk raw palette */
+  --cp-red: #CC0000;
+  --cp-red-bright: #FF1A1A;
+  --cp-red-dim: #6B0000;
+  --cp-yellow: #F0C000;
+  --cp-yellow-dim: #8A6E00;
+  --cp-cyan: #00D4FF;
+  --cp-cyan-dim: #006B80;
+  --cp-green: #00FF88;
+  --cp-white: #F0EDE8;
+  --cp-off: #B8B4AE;
+  --cp-mid: #5A5651;
+  --cp-dark: #0A0908;
+  --cp-panel: #111010;
+  --cp-panel2: #181614;
+  --cp-border: #2A2624;
+  --cp-border-bright: #3D3835;
+
+  /* shadcn semantic mapping */
+  --background: var(--cp-dark);
+  --foreground: var(--cp-white);
+  --card: var(--cp-panel);
+  --card-foreground: var(--cp-white);
+  --popover: var(--cp-panel);
+  --popover-foreground: var(--cp-white);
+  --primary: var(--cp-red);
+  --primary-foreground: var(--cp-white);
+  --secondary: var(--cp-panel2);
+  --secondary-foreground: var(--cp-white);
+  --muted: var(--cp-panel2);
+  --muted-foreground: var(--cp-mid);
+  --accent: var(--cp-yellow);
+  --accent-foreground: var(--cp-dark);
+  --destructive: var(--cp-red-bright);
+  --border: var(--cp-border);
+  --input: var(--cp-border-bright);
+  --ring: var(--cp-red);
+
+  --radius: 0px;
+
+  /* sidebar (unused but keep for shadcn) */
+  --sidebar: var(--cp-panel);
+  --sidebar-foreground: var(--cp-white);
+  --sidebar-primary: var(--cp-red);
+  --sidebar-primary-foreground: var(--cp-white);
+  --sidebar-accent: var(--cp-panel2);
+  --sidebar-accent-foreground: var(--cp-white);
+  --sidebar-border: var(--cp-border);
+  --sidebar-ring: var(--cp-red);
+
+  /* charts */
+  --chart-1: var(--cp-red-bright);
+  --chart-2: var(--cp-yellow);
+  --chart-3: var(--cp-cyan);
+  --chart-4: var(--cp-green);
+  --chart-5: var(--cp-mid);
+}
+
+@theme inline {
+  --font-sans: "Rajdhani", sans-serif;
+  --font-head: "Barlow Condensed", sans-serif;
+  --font-mono: "Share Tech Mono", monospace;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  /* Extra cyberpunk palette exposed for Tailwind utilities */
+  --color-cp-red: var(--cp-red);
+  --color-cp-red-bright: var(--cp-red-bright);
+  --color-cp-red-dim: var(--cp-red-dim);
+  --color-cp-yellow: var(--cp-yellow);
+  --color-cp-yellow-dim: var(--cp-yellow-dim);
+  --color-cp-cyan: var(--cp-cyan);
+  --color-cp-cyan-dim: var(--cp-cyan-dim);
+  --color-cp-green: var(--cp-green);
+  --color-cp-white: var(--cp-white);
+  --color-cp-off: var(--cp-off);
+  --color-cp-mid: var(--cp-mid);
+  --color-cp-dark: var(--cp-dark);
+  --color-cp-panel: var(--cp-panel);
+  --color-cp-panel2: var(--cp-panel2);
+  --color-cp-border: var(--cp-border);
+  --color-cp-border-bright: var(--cp-border-bright);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL OVERLAYS (scanline + noise)
+   Only place with raw rgba — overlays require transparency.
+   ═══════════════════════════════════════════ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
+
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 60px; }
+}
+
+@keyframes scrollPulse {
+  to { left: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* ═══════════════════════════════════════════
+   PROSE STYLING (for markdown rules content)
+   ═══════════════════════════════════════════ */
+.prose-cyber h1,
+.prose-cyber h2,
+.prose-cyber h3 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--cp-white);
+  letter-spacing: 0.02em;
+}
+
+.prose-cyber h1 { font-size: 2.5rem; line-height: 0.95; margin-bottom: 1rem; }
+.prose-cyber h2 { font-size: 1.8rem; line-height: 1; margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose-cyber h3 { font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+
+.prose-cyber p {
+  color: var(--cp-off);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.prose-cyber ul, .prose-cyber ol {
+  color: var(--cp-off);
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-cyber li { margin-bottom: 0.4rem; }
+
+.prose-cyber blockquote {
+  border-left: 3px solid var(--cp-red);
+  padding-left: 1.25rem;
+  color: var(--cp-off);
+  font-style: italic;
+}
+
+.prose-cyber strong { color: var(--cp-yellow); font-weight: 600; }
+
+.prose-cyber code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--cp-cyan);
+  background: var(--cp-panel2);
+  padding: 0.15em 0.4em;
+}
+
+.prose-cyber table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose-cyber th {
+  background: var(--cp-red-dim);
+  color: var(--cp-white);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--cp-red);
+}
+
+.prose-cyber td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cp-border);
+  color: var(--cp-off);
+}
+
+.prose-cyber tr:hover td {
+  background: var(--cp-panel2);
+}
+
+/* ═══════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links-hide {
+    display: none;
+  }
+}
