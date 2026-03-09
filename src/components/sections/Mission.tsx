@@ -4,14 +4,53 @@ const missionBrief = {
   name: "Operation: Cold Steal",
   client: "Zero Render — Fixer",
   target: "Arasaka Industrial Storage, Watson district",
-  objective: "Extract the Relic prototype before Arasaka moves it off-site at dawn",
-  complications: [
-    "Facility has 3 layers of Arasaka ICE on the internal net",
-    "Two-man roving patrol on a 4-minute cycle",
-    "Vault uses biometric + keycard — need both to open",
-    "Arasaka Quick-Response team staged 6 blocks away — 8 minutes once alarm trips",
-  ],
+  objective:
+    "Extract the Relic prototype before Arasaka moves it off-site at dawn",
   payout: "€$50,000 split + first crack at whatever data is on the chip",
+};
+
+const knownComplications = [
+  "Facility has 3 layers of Arasaka ICE on the internal net",
+  "Two-man roving patrol on a 4-minute cycle",
+  "Vault uses biometric + keycard — need both to open",
+  "Arasaka Quick-Response team staged 6 blocks away — 8 minutes once alarm trips",
+];
+
+const discoverableIntel = [
+  {
+    label: "Patrol shift-change gap",
+    detail:
+      "Between 02:40 and 02:43 there is a 90-second window where the east corridor is unwatched. Discoverable via SURVEIL on the facility or a CT-3+ crew member casing the site.",
+    method: "SURVEIL / CT-3+",
+  },
+  {
+    label: "Insider contact",
+    detail:
+      "A mid-level Arasaka tech named Dex Orlov owes Zero Render a favour. He can provide the biometric template for vault access if approached carefully.",
+    method: "LEVERAGE / FA-3+",
+  },
+  {
+    label: "Sewer access route",
+    detail:
+      "An old maintenance tunnel runs from the Watson canal system into the facility's sub-basement. Flooded, but passable with the right gear.",
+    method: "NR-2+ / Street contact",
+  },
+  {
+    label: "QRT delay exploit",
+    detail:
+      "The Quick-Response team's staging area shares a road with a Militech checkpoint. A staged distraction can double their response time to ~16 minutes.",
+    method: "ENGAGE side-op / FA-4+",
+  },
+];
+
+const gmNotes = {
+  difficulty: "MODERATE — scales to HARD if alarm triggers",
+  oppositionGrid:
+    "2× SO guards (patrol), 1× NR-4 netrunner (remote), 1× CT-3 vault lock, QRT as escalation only",
+  escalation:
+    "If alarm fires: QRT arrives in 8 min (4 rounds). If players exploited QRT delay, 16 min (8 rounds). Every round after alarm, +1 Heat for involved crew.",
+  hiddenTwist:
+    "The Relic prototype is a decoy. The real chip is in a second vault on sub-level 2. Discoverable only by NR-4+ jacked into the internal net, or if the insider (Dex Orlov) is pressed hard enough.",
 };
 
 const intro = {
@@ -22,17 +61,17 @@ const intro = {
       through the public channel — the main feed that every crew is connected
       to. Your aim is to choose the best mission for your crew. But be careful
       not to overcommit yourself; every other player is doing the same, and some
-      may see you as a threat. Here's an example of a mission brief.
+      may see you as a threat. Here's an example of a mission brief as it
+      reaches you.
     </>
   ),
   gm: (
     <>
       Each round you publish missions to the public channel — the shared feed
       every crew monitors. A good mission has a clear objective, meaningful
-      complications, and a payout that tempts players into risk. You control the
-      difficulty by tuning the opposition grid and the complications you seed.
-      Here's an example of how a mission brief looks when it reaches the
-      players.
+      complications, and a payout that tempts players into risk. Below is a
+      complete mission file: what the players see, what they can discover, and
+      the opposition grid you'll run behind the screen.
     </>
   ),
   default: (
@@ -47,16 +86,262 @@ const intro = {
 
 const outro = {
   player:
-    "With the mission briefed and your crew assessed, the next step is filling out the Operation Grid Matrix — deciding who does what, in which phase, and through which mode of force. That's where the game lives.",
+    "That's all you get. Everything else — patrol routes, insider contacts, weak points — has to be earned through legwork, actions, and connections. With the mission briefed and your crew assessed, the next step is filling out the Operation Grid Matrix.",
   gm:
     "Once players receive this brief, they'll build their OGM in secret. Meanwhile, you build the opposition grid — placing Arasaka's defences across the same phases and columns. The collision between the two grids is where the drama happens.",
   default:
     "With the mission briefed and the crew known, the next step is filling out the Operation Grid Matrix — deciding who does what, in which phase, and through which mode of force. That's where the game lives.",
 };
 
+function RedactedLine({ width = "w-full" }: { width?: string }) {
+  return (
+    <div
+      className={`${width} h-[14px] rounded-sm bg-cp-border/30 relative overflow-hidden`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cp-border/20 to-transparent animate-pulse" />
+    </div>
+  );
+}
+
+function LockedSection({ label }: { label: string }) {
+  return (
+    <div className="border border-dashed border-cp-border/50 p-5 flex flex-col items-center justify-center gap-2 text-center min-h-[100px]">
+      <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-mid/60">
+        ◼ {label}
+      </span>
+      <span className="font-mono text-[0.55rem] text-cp-mid/40 tracking-wider">
+        REQUIRES LEGWORK / INTEL ACTIONS
+      </span>
+    </div>
+  );
+}
+
+function MissionCard() {
+  return (
+    <>
+      <div className="flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-yellow">
+        <span>Mission File</span>
+        <span className="h-px flex-1 bg-gradient-to-r from-cp-yellow/40 to-transparent" />
+      </div>
+
+      <h3 className="font-head font-extrabold text-[1.5rem] uppercase tracking-wide text-cp-yellow mb-1">
+        {missionBrief.name}
+      </h3>
+      <p className="font-mono text-[0.8rem] text-cp-mid mb-6">
+        Client: {missionBrief.client}
+      </p>
+
+      <div className="grid gap-4 md:grid-cols-2 mb-6">
+        <div>
+          <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-cyan mb-1">
+            Target
+          </span>
+          <p className="text-[0.95rem] text-cp-off">{missionBrief.target}</p>
+        </div>
+        <div>
+          <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-cyan mb-1">
+            Objective
+          </span>
+          <p className="text-[0.95rem] text-cp-off">
+            {missionBrief.objective}
+          </p>
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-red mb-2">
+          Known Complications
+        </span>
+        <ul className="space-y-1.5">
+          {knownComplications.map((c) => (
+            <li
+              key={c}
+              className="flex items-start gap-2 text-[0.9rem] text-cp-off"
+            >
+              <span className="text-cp-red-bright mt-0.5 shrink-0">▸</span>
+              {c}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="border-t border-cp-border pt-4">
+        <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-green mb-1">
+          Payout
+        </span>
+        <p className="text-[0.95rem] text-cp-off">{missionBrief.payout}</p>
+      </div>
+    </>
+  );
+}
+
+function PlayerMissionBrief() {
+  return (
+    <div className="space-y-6">
+      <div className="border border-cp-border bg-black/40 p-6 md:p-8">
+        <MissionCard />
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <LockedSection label="Hidden Complications" />
+        <LockedSection label="Insider Contacts" />
+        <LockedSection label="Alternate Routes" />
+        <LockedSection label="Opposition Details" />
+      </div>
+
+      <div className="border border-cp-border/30 bg-black/20 p-5">
+        <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-mid/60 mb-3">
+          Intel Summary
+        </span>
+        <div className="space-y-2.5">
+          <RedactedLine width="w-4/5" />
+          <RedactedLine width="w-full" />
+          <RedactedLine width="w-3/5" />
+          <RedactedLine width="w-4/6" />
+        </div>
+        <p className="mt-4 font-mono text-[0.6rem] text-cp-mid/40 tracking-wider">
+          USE SURVEIL, LEVERAGE, OR CREW ABILITIES TO UNLOCK MISSION INTEL
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function GmMissionBrief() {
+  return (
+    <div className="space-y-6">
+      <div className="border border-cp-border bg-black/40 p-6 md:p-8">
+        <div className="flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-yellow">
+          <span>Mission File — Player-Facing</span>
+          <span className="h-px flex-1 bg-gradient-to-r from-cp-yellow/40 to-transparent" />
+        </div>
+        <div className="border-l-2 border-cp-yellow/20 pl-5 opacity-80">
+          <h3 className="font-head font-extrabold text-[1.3rem] uppercase tracking-wide text-cp-yellow mb-1">
+            {missionBrief.name}
+          </h3>
+          <p className="font-mono text-[0.75rem] text-cp-mid mb-4">
+            Client: {missionBrief.client} &nbsp;|&nbsp; Target:{" "}
+            {missionBrief.target}
+          </p>
+          <p className="text-[0.9rem] text-cp-off mb-3">
+            <span className="text-cp-cyan font-mono text-[0.65rem] uppercase mr-2">
+              OBJ
+            </span>
+            {missionBrief.objective}
+          </p>
+          <ul className="space-y-1 mb-3">
+            {knownComplications.map((c) => (
+              <li
+                key={c}
+                className="flex items-start gap-2 text-[0.82rem] text-cp-off"
+              >
+                <span className="text-cp-red-bright mt-0.5 shrink-0">▸</span>
+                {c}
+              </li>
+            ))}
+          </ul>
+          <p className="text-[0.85rem] text-cp-off">
+            <span className="text-cp-green font-mono text-[0.65rem] uppercase mr-2">
+              PAY
+            </span>
+            {missionBrief.payout}
+          </p>
+        </div>
+      </div>
+
+      {/* Discoverable Intel */}
+      <div className="border border-cp-cyan/30 bg-cp-cyan/[0.03] p-6 md:p-8">
+        <div className="flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-cyan">
+          <span>Discoverable Intel</span>
+          <span className="h-px flex-1 bg-gradient-to-r from-cp-cyan/40 to-transparent" />
+        </div>
+        <p className="text-[0.8rem] text-cp-mid mb-5 leading-relaxed">
+          Players don't see any of this unless they earn it through actions.
+          Each entry lists the discovery method.
+        </p>
+        <div className="space-y-4">
+          {discoverableIntel.map((intel) => (
+            <div
+              key={intel.label}
+              className="border-l-2 border-cp-cyan/30 pl-4"
+            >
+              <div className="flex items-baseline gap-3 mb-1">
+                <span className="font-head font-bold text-[0.95rem] uppercase text-cp-cyan">
+                  {intel.label}
+                </span>
+                <span className="font-mono text-[0.55rem] tracking-[0.15em] text-cp-mid border border-cp-cyan/20 px-1.5 py-0.5">
+                  {intel.method}
+                </span>
+              </div>
+              <p className="text-[0.82rem] text-cp-off leading-[1.6]">
+                {intel.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Opposition & GM Notes */}
+      <div className="border border-cp-red/30 bg-cp-red/[0.03] p-6 md:p-8">
+        <div className="flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-red">
+          <span>GM Notes — Opposition Grid</span>
+          <span className="h-px flex-1 bg-gradient-to-r from-cp-red/40 to-transparent" />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <span className="block font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-red-bright mb-1">
+              Difficulty
+            </span>
+            <p className="text-[0.85rem] text-cp-off">{gmNotes.difficulty}</p>
+          </div>
+          <div>
+            <span className="block font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-red-bright mb-1">
+              Opposition Assets
+            </span>
+            <p className="text-[0.85rem] text-cp-off">
+              {gmNotes.oppositionGrid}
+            </p>
+          </div>
+          <div className="md:col-span-2">
+            <span className="block font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-red-bright mb-1">
+              Escalation Rules
+            </span>
+            <p className="text-[0.85rem] text-cp-off">{gmNotes.escalation}</p>
+          </div>
+          <div className="md:col-span-2 border-t border-cp-red/20 pt-4">
+            <span className="block font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-yellow mb-1">
+              Hidden Twist
+            </span>
+            <p className="text-[0.85rem] text-cp-off">
+              {gmNotes.hiddenTwist}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DefaultMissionBrief() {
+  return (
+    <div className="border border-cp-border bg-black/40 p-6 md:p-8">
+      <MissionCard />
+    </div>
+  );
+}
+
 export function Mission() {
   const { role } = useRole();
   const r = role ?? "default";
+
+  const brief =
+    r === "gm" ? (
+      <GmMissionBrief />
+    ) : r === "player" ? (
+      <PlayerMissionBrief />
+    ) : (
+      <DefaultMissionBrief />
+    );
 
   return (
     <section
@@ -77,63 +362,7 @@ export function Mission() {
           {intro[r]}
         </p>
 
-        {/* Mission brief */}
-        <div className="mb-14 border border-cp-border bg-black/40 p-6 md:p-8">
-          <div className="flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-yellow">
-            <span>Mission File</span>
-            <span className="h-px flex-1 bg-gradient-to-r from-cp-yellow/40 to-transparent" />
-          </div>
-
-          <h3 className="font-head font-extrabold text-[1.5rem] uppercase tracking-wide text-cp-yellow mb-1">
-            {missionBrief.name}
-          </h3>
-          <p className="font-mono text-[0.8rem] text-cp-mid mb-6">
-            Client: {missionBrief.client}
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-2 mb-6">
-            <div>
-              <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-cyan mb-1">
-                Target
-              </span>
-              <p className="text-[0.95rem] text-cp-off">
-                {missionBrief.target}
-              </p>
-            </div>
-            <div>
-              <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-cyan mb-1">
-                Objective
-              </span>
-              <p className="text-[0.95rem] text-cp-off">
-                {missionBrief.objective}
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-5">
-            <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-red mb-2">
-              Known Complications
-            </span>
-            <ul className="space-y-1.5">
-              {missionBrief.complications.map((c) => (
-                <li
-                  key={c}
-                  className="flex items-start gap-2 text-[0.9rem] text-cp-off"
-                >
-                  <span className="text-cp-red-bright mt-0.5 shrink-0">▸</span>
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border-t border-cp-border pt-4">
-            <span className="block font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-green mb-1">
-              Payout
-            </span>
-            <p className="text-[0.95rem] text-cp-off">{missionBrief.payout}</p>
-          </div>
-        </div>
+        <div className="mb-14">{brief}</div>
 
         <p className="mt-10 text-cp-mid font-mono text-[0.8rem] border-l-2 border-cp-yellow/40 pl-4 leading-relaxed">
           {outro[r]}

@@ -3,18 +3,16 @@ import { useRole } from "@/context/RoleContext";
 const actionIntro = {
   player: (
     <>
-      Each round you have <strong className="text-cp-white">two action slots</strong>. This is
-      the pulse of Night City. Every slot commits you. Every empty slot is a
-      missed opportunity. The eight available actions are the verbs of your
-      game — choose the ones that serve your crew's goals this round.
+      Each round you have <strong className="text-cp-white">two action slots</strong>. 
+      One Core action and a follow up action.
+      You can use these to engage in the city, negotiate with other players, or just plain hide your silver ass choomba.
     </>
   ),
   gm: (
     <>
       Each player gets <strong className="text-cp-white">two action slots</strong> per round.
       When you receive order sheets, you'll see which actions they picked.
-      Understanding all eight lets you anticipate player behaviour and design
-      opposition that punishes predictability.
+      Understanding all eight lets you make the city more believable, and react to the actions of the players.
     </>
   ),
   default: (
@@ -31,16 +29,16 @@ const actions = [
   {
     code: "ACT-01",
     name: "Engage",
-    desc: "Run a full operation against a target. Fill the Operation Grid, assign crew to cells, declare contingencies. This is the core action — the job.",
+    desc: "Run a full operation against a target. Fill the Operation Grid, assign crew to cells, declare contingencies. This is considered a core action.",
     tags: [
-      { label: "GRID REQUIRED", type: "risk" },
+      { label: "OGM REQUIRED", type: "risk" },
       { label: "PRIMARY", type: "econ" },
     ],
   },
   {
     code: "ACT-02",
     name: "Protocol",
-    desc: "Send an encrypted message to another player. Declare ICE level (1–5). Higher ICE = harder to intercept but costs more. The recipient decrypts next round.",
+    desc: "Send an encrypted message to another player. Declare ICE level (1–5). Higher ICE = harder to intercept but costs more. The recipient decrypts next round. Depending on the type of message this can be a core action or a follow up action.",
     tags: [
       { label: "COMMS", type: "intel" },
       { label: "ICE COST", type: "econ" },
@@ -49,7 +47,7 @@ const actions = [
   {
     code: "ACT-03",
     name: "Transfer",
-    desc: "Move a crew member or resource to another player. The transferred asset becomes theirs. Loyalty is hidden — the GM tracks it. Transfers can be poisoned.",
+    desc: "Move a crew member or resource to another player. The transferred asset becomes theirs. Loyalty is hidden — the GM tracks it. Transfers can be poisoned. This is considered a follow up action.",
     tags: [
       { label: "CREW MOVE", type: "safe" },
       { label: "LOYALTY RISK", type: "risk" },
@@ -58,7 +56,7 @@ const actions = [
   {
     code: "ACT-04",
     name: "Ghost",
-    desc: "Go completely dark. Costs both action slots. Heat drops by 1. You cannot be targeted by LEVERAGE or SURVEIL. Your name vanishes from the Public Dispatch.",
+    desc: "Go completely dark. Costs both action slots. Heat drops by 1. You cannot be targeted by LEVERAGE or SURVEIL. Your name vanishes from the Public Dispatch. This is considered a Core action.",
     tags: [
       { label: "2 SLOTS", type: "risk" },
       { label: "HEAT −1", type: "safe" },
