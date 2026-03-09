@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#introduction", label: "// INTRO" },
-  { href: "#design-philosophy", label: "// PHILOSOPHY" },
-  { href: "#grid-section", label: "// GRID" },
-  { href: "#columns", label: "// COLUMNS" },
-  { href: "#phases", label: "// PHASES" },
+  { href: "#mission", label: "// MISSION" },
+  { href: "#grid-section", label: "// OGM" },
   { href: "#actions", label: "// ACTIONS" },
   { href: "#protocol", label: "// PROTOCOL" },
   { href: "#resolution", label: "// RESOLUTION" },
-  { href: "#orders", label: "// ORDER SHEET" },
+  { href: "#orders", label: "// ORDERS" },
 ];
 
 export function Nav() {

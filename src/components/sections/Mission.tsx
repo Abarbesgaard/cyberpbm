@@ -12,8 +12,6 @@ const missionBrief = {
 const knownComplications = [
   "Facility has 3 layers of Arasaka ICE on the internal net",
   "Two-man roving patrol on a 4-minute cycle",
-  "Vault uses biometric + keycard — need both to open",
-  "Arasaka Quick-Response team staged 6 blocks away — 8 minutes once alarm trips",
 ];
 
 const discoverableIntel = [
