@@ -94,7 +94,7 @@ export function Hero() {
               "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
           }}
         >
-          Read the Rules
+          Read the Rules (soon link to pdf)
         </a>
         <a
           href="#orders"

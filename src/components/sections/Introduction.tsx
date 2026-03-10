@@ -4,7 +4,7 @@ const body = {
   player:
     "Welcome, operator. This manual contains everything you need to build a crew, plan operations, and survive Night City's play-by-mail underworld. Read it carefully — the rules won't repeat themselves, and neither will the city.",
   gm:
-    "Welcome to the game. The following sections will provide you with enough information to get you started. This manual is your operating guide for running CyberPBM — designing missions, building opposition grids, managing heat, and keeping the world alive between rounds.",
+    "Welcome to the game. The following sections will provide youwith a small teaser of how this game will be played. This manual is your operating guide for running CyberPBM — designing missions, building opposition grids, managing heat, and keeping the world alive between rounds.",
   default:
     "This manual covers the core rules of CyberPBM — a play-by-mail tabletop game set in Night City. Whether you're running a crew or running the world, everything you need is in the sections that follow.",
 };
