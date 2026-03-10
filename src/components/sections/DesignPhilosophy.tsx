@@ -5,11 +5,14 @@ const paragraphs = {
     "The game is played via mails or in strictly governed chat fora. This means that this game will be at a quite slow pace. You will never have all the information you need to make the best decision — but if you align with other players, hack into the right servers, or blow up the right building, you just might get ahead of the competition to rule Night City.",
     "This game revolves around the operation grid. You will be submitting this each round to your gamemaster, and then wait to see how the world responds to your actions. The Grid is explained in detail in its dedicated section.",
     "The GM acts as the city — breathing life into it and making it believable. Your job is to read the world, place your bets, and live with the consequences.",
+    "One of the main issues with this game is that you would place a lot of trust in the other players, to make sure they are playing by the rules, and not just making stuff up",
+    "This is why the GM will have a version of your information, so they have absolute information"
   ],
   gm: [
-    "The game is played via mails or in strictly governed chat fora. This means that this game will be at a quite slow pace. Players operate under incomplete information — they see what you choose to reveal, and no more. Your job is to make the scares information feel alive.",
+    "The game is played via mails or in strictly governed chat fora. This means that this game will be at a quite slow pace. Your players operate under incomplete information — they see what you choose to reveal, and no more. Your job is to make the scares information feel alive.",
     "The core mechanic is the Operation Grid Matrix. Players submit theirs each round by submitting I mean that they would be sending you the grid via mail or in the chat forum; you build the opposition grid in secret. The collision between the two produces the story. The Grid is explained in detail in its dedicated section.",
     "You are the city. You design missions, seed complications, manage factions, and track heat. There are tables to roll on, but the real craft is in knowing when to let the dice decide and when the city simply acts.",
+    "You will have a version of the players information, so you have absolute information"
   ],
   default: [
     "The game is played via mails or in strictly governed chat fora. The idea is to make a world where you don't have all the information you need to make the best decision, but if you align yourself with other players, hack into the right servers, or blow up the right building you just might get ahead of the competition to rule Night City!",
