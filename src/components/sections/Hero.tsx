@@ -62,9 +62,9 @@ export function Hero() {
 
       {/* Subtitle */}
       <p className="relative z-10 mt-8 max-w-[560px] border-l-[3px] border-cp-red pl-5 text-[1.1rem] font-normal leading-[1.7] text-cp-off">
-        Play by mail protocol.
+        A Play by Mail game.
         <br />
-        Night City doesn't wait choomba.
+        Set in the universe of Cyberpunk 2077.
       </p>
 
       {/* Stats */}
