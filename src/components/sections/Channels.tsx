@@ -34,7 +34,7 @@ const channels = [
     color: "cp-cyan",
     description: {
       player:
-        "The main feed every crew monitors. This is where your GM posts mission briefs, news, faction movements, and any public declarations. Everyone sees everything here.",
+        "The main feed every Player monitors. This is where your GM posts mission briefs, news, faction movements, and any public declarations. Everyone sees everything here.",
       gm: "Your primary broadcast tool. Post mission briefs, city events, faction activity, and anything you want every player to see. Use it to set the tone for each round and seed information that drives player decision-making. Ypu'll be able to Roll on a table to see what events happens",
       default:
         "The shared feed visible to all players. The GM uses it to post mission briefs, world events, and public information. Everything on this channel is common knowledge.",
@@ -46,8 +46,8 @@ const channels = [
     color: "cp-red-bright",
     description: {
       player:
-        "A secure line between you and the GM — no one else can see it. Use it to ask questions, negotiate side deals, report secret actions, or receive intel meant only for your eyes. What you share here stays between you and the city.",
-      gm: "A one-on-one encrypted line between you and a single player. Use these to deliver private intel, respond to secret actions, reveal consequences only they should know about, or run negotiations that other crews shouldn't hear. Important, you cannot write freely on this channel, you need to use the protocol action to communicate.",
+        "A secure line between you and the GM — no one else can see it. Use it to ask questions, report secret actions, or receive intel meant only for your eyes. What you share here stays between you and the GM.",
+      gm: "A one-on-one encrypted line between you and a single player. Use these to deliver private intel, respond to secret actions, reveal consequences only they should know about. Important, you can write freely on this channel, but when you use the protocol action another channnel will have to be made for this purpose.",
       default:
         "A direct, encrypted line between the GM and a single player. No other crew can see what's said here. It's used for secret actions, private intel, and one-on-one negotiations.",
     },

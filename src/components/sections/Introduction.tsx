@@ -2,7 +2,7 @@ import { useRole } from "@/context/RoleContext";
 
 const body = {
   player:
-    "Welcome, operator. This manual contains everything you need to build a crew, plan operations, and survive Night City's play-by-mail underworld. Read it carefully — the rules won't repeat themselves, and neither will the city.",
+    "Welcome, operator. This manual contains everything you need to get a feel for how this game will be played. Read it carefully — the rules won't repeat themselves, and neither will the city.",
   gm:
     "Welcome to the game. The following sections will provide youwith a small teaser of how this game will be played. This manual is your operating guide for running CyberPBM — designing missions, building opposition grids, managing heat, and keeping the world alive between rounds.",
   default:
