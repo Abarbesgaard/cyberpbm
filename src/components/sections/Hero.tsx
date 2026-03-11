@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { GlitchText } from "@/components/ui/glitch-text";
 
 const stats = [
@@ -86,16 +87,16 @@ export function Hero() {
 
       {/* CTA Buttons */}
       <div className="relative z-10 mt-12 flex gap-4">
-        <a
-          href="#grid-section"
+        <Link
+          to="/rules"
           className="inline-flex items-center justify-center font-mono text-[0.7rem] tracking-[0.15em] uppercase px-8 py-4 bg-cp-red text-cp-white no-underline hover:bg-cp-red-bright hover:shadow-[0_0_30px_rgba(204,0,0,0.5)] transition-all cursor-pointer"
           style={{
             clipPath:
               "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
           }}
         >
-          Read the Rules (soon link to pdf)
-        </a>
+          Read the Rules
+        </Link>
         <a
           href="#orders"
           className="inline-flex items-center justify-center font-mono text-[0.7rem] tracking-[0.15em] uppercase px-8 py-4 bg-transparent text-cp-yellow border border-cp-yellow-dim no-underline hover:bg-cp-yellow/[0.08] hover:border-cp-yellow transition-all cursor-pointer"
