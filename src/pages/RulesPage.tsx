@@ -2,7 +2,15 @@ import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import rulesManifest from "../../content/rules/index.json";
+import _rulesManifest from "../../content/rules/index.json";
+
+interface RuleEntry {
+  id: string;
+  label: string;
+  file: string;
+}
+
+const rulesManifest = _rulesManifest as RuleEntry[];
 
 const mdModules = import.meta.glob("../../content/rules/*.md", {
   query: "?raw",
