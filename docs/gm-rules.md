@@ -2,13 +2,13 @@
 
 ## Night City Control
 
-> *You are Night City. You breathe life into this world and make it believable. There are tables to roll on, but the real craft is in knowing when to let the dice decide and when the city simply acts.*
+> *You are Night City. You breathe life into the city and make it believable. There are tables to roll on, but the real craft is in knowing when to let the dice decide and when the city simply acts. The rule of cool is applied*
 
 ---
 
 ## Role of the GM
 
-You are not the antagonist. You are the environment. You design missions, seed complications, manage factions, and track Heat. Your players operate under **incomplete information** — they see what you choose to reveal, and no more. Your job is to make that scarce information feel alive.
+You are not the antagonist. You are the environment. You design missions, seed complications, manage factions, and track the players Heat. Your players operate under **incomplete information** — they see what you choose to reveal, and no more; the rest is educated guess work.
 
 The core tension of CyberPBM is asymmetric knowledge:
 
@@ -24,11 +24,102 @@ Use that asymmetry to create drama, not to punish. The city is indifferent — b
 
 ---
 
-## Running a Round
+## World Generation
 
-Every round follows a fixed sequence. Master this rhythm and the game runs itself.
+Before the first round begins, you need a Night City to run. World generation is the process of building the initial state of the city — its districts, factions, power dynamics, active conflicts, and the economy — so that when players receive their first briefing, the world already has momentum.
+
+### Districts
+
+Define which districts are in play and what each one feels like. Every district should have:
+
+- **Controlling faction(s)** — who runs it, who's contesting it
+- **Threat profile** — is it Ghost-heavy (surveillance state), Strike-heavy (open warfare), or Anchor-heavy (fortified and locked down)?
+- **Economic tier** — wealth level affects payouts, crew costs, and available assets
+- **Current status** — stable, contested, in decline, booming, locked down
+
+Not every district needs to be active from round 1. Start with 3–4 that matter and let the rest exist as names on a map until the fiction demands them.
+
+### Factions
+
+Establish the major factions operating in your version of Night City. For each faction, define:
+
+- **Name and identity** — who they are, what they want
+- **Territory** — where they operate
+- **Strength** — military, economic, net presence
+- **Disposition toward players** — starting attitude (neutral by default)
+- **Current agenda** — what are they doing right now, independent of the players?
+
+Factions should have goals that advance whether or not the players interact with them. This is what makes the world feel alive — things happen in the background.
+
+### Starting Conflicts
+
+The city needs at least one or two active tensions when the game begins. These provide the backdrop for early missions and give players something to react to.
+
+- **Faction vs faction** — a territorial dispute, a corporate acquisition, a gang war
+- **Systemic pressure** — NCPD crackdowns, economic collapse in a district, a net virus spreading
+- **Opportunity** — a power vacuum, a new market opening, a bounty that nobody's claimed
+
+These conflicts should be visible on the Public Channel from round 1. They give players context for why missions exist and who benefits from their completion.
+
+### Economy
+
+Set the starting economic parameters for the game:
+
+- **Starting eddies per player** — what do they begin with?
+- **Income sources** — how do players earn between missions? Passive income from assets? Payouts only?
+- **Cost baselines** — crew recruitment costs, ICE costs, action costs, upkeep
+- **Payout scale** — what does a low-risk job pay vs a suicide run?
+
+### NPCs & Contacts
+
+Seed the world with a handful of named NPCs that players can interact with through Leverage, Protocol, or mission encounters. Each NPC should have:
+
+- **Role** — fixer, corpo middle-manager, gang lieutenant, street doc, etc.
+- **Faction ties** — who they answer to
+- **What they can offer** — intel, access, gear, introductions
+- **What they want** — everyone has a price or an agenda
+
+You don't need dozens. Start with 4–6 and let more emerge organically from play.
+
+### The First Briefing
+
+World generation culminates in the first Public Channel post. This should establish:
+
+- The state of the city (broad strokes)
+- Which factions are active and what they're doing
+- The first available mission(s)
+- The tone — how dangerous, how political, how desperate
+
+This is your opening salvo. It sets expectations for the entire campaign.
+
+> **FOCUS POINTS**
+> - How much world to build before round 1 vs how much to improvise as needed? Minimum viable world state.
+> - District generation — should this be rolled or hand-crafted? If rolled, what tables determine faction control, threat profile, and economic tier?
+> - Faction count — how many factions is manageable? Minimum to create tension, maximum before it becomes untrackable.
+> - Faction agenda advancement — how do faction goals progress between rounds if players don't interfere? Automatic timeline, or GM discretion?
+> - Starting faction disposition — should any factions start hostile or friendly to players, or all neutral?
+> - Player involvement in world gen — do players pick their starting district? Do they have any say in the world state, or is it entirely GM-authored?
+> - Economy balance — starting eddies and payout ranges will define how fast players can escalate. Needs playtesting guidance.
+> - Scaling world complexity to player count — a 2-player game needs fewer factions and districts than a 6-player game.
+> - Map or no map — does the GM need a visual map of districts, or is text-based sufficient?
+>
+> **ROLLABLE TABLE IDEAS**
+> - *District Controlling Faction* (d8): Corporate (Arasaka, Militech, Kang Tao), Gang (Maelstrom, Valentinos, Tyger Claws, 6th Street, Animals), NCPD-controlled, contested (roll twice), independent/anarchic, corporate alliance, gang coalition, disputed (three-way)
+> - *District Threat Profile* (d6): Ghost-heavy, Strike-heavy, Anchor-heavy, balanced, hollow (weak interior, strong perimeter), shifting (re-roll each round)
+> - *District Economic Tier* (d4): Destitute, Working, Prosperous, Corporate-luxury
+> - *District Status* (d6): Stable, contested, in decline, booming, locked down, quarantined
+> - *Starting Conflict Type* (d6): Faction war, corporate takeover, gang expansion, NCPD sweep, economic collapse, net-based threat
+> - *NPC Archetype* (d10): Fixer, street doc, info broker, gang lieutenant, corpo defector, rogue netrunner, arms dealer, smuggler, dirty cop, AI fragment
+
+---
+
+## Structure of a Round
+
+Every round follows a fixed sequence. Its important to keep the rythem of the round in this game to give the players of the game some sort of structure.
 
 ### Step 1 — Write the Briefing
+
+When starting the game nothing has been made yet. But we will get to this later. Important for now is that this step is where you will make a statement in the public channel. What you will present here will be a rather long one to begin the game.
 
 Design one or more missions and post them to the Public Channel. Include world events, faction movements, and any public consequences from the previous round. Missions will be generated from the tables at your disposal — they provide the structure, you provide the flavour.
 

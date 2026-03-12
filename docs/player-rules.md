@@ -1,6 +1,6 @@
 # CyberPBM — Player Operations Manual
 
-> *"Night City does not care about your plan. It cares about what you committed to."*
+> *"Night City does not care about your plan. It only cares about one thing."*
 
 ---
 
@@ -19,8 +19,8 @@ This manual contains everything you need to play. Read it carefully — the rule
 Every round follows the same rhythm:
 
 1. **Receive the Briefing** — The GM posts missions and city events to the Public Channel.
-2. **Build Your Grid** — Fill the Operation Grid Matrix (OGM) with your crew assignments.
-3. **Choose Two Actions** — Pick one Core action and one Follow-up from your action slots.
+2. **Choose Two Actions** — Pick one Core action and one Follow-up from your action slots.
+3. **Build Your Grid** — Fill the Operation Grid Matrix (OGM) with your crew assignments.
 4. **Submit Your Order Sheet** — Send your completed orders to the GM via email or the designated channel.
 5. **Receive the Dispatch** — The GM resolves all players and publishes the results.
 
