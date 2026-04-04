@@ -67,27 +67,79 @@ Your crew is your instrument. Each member has a **role** that determines their c
 | SO | Solo | Strike | Combat specialists. High damage, breach capability, suppression. Fragile plans, strong fists. |
 | NR | Netrunner | Ghost | Net operators. ICE cracking, camera loops, data extraction. Essential for stealth-heavy grids. |
 | TE | Tech | Anchor | Engineers and medics. Fortify positions, patch crew, rig devices. Slow but durable. |
-| FA | Fixer / Assault | Strike | Wheelman, demo, logistics. Stages vehicles, preps charges, runs interference on the ground. |
+| FA | Fixer / Assault | Strike | Assault operations, demolitions, aggressive logistics. Stages breaches, runs interference, applies pressure. |
 | CT | Contact | Anchor | Social operators. Bribe, distract, manage relationships. Keep external pressure off the crew. |
 
 ### Skill Rating Scale
 
-| Rating | Tier | Cost | Notes |
-|--------|------|------|-------|
-| 1–2 | Green | Low | Cheap but unreliable. Filler slots. |
-| 3 | Competent | Medium | Baseline professional. Can hold a column. |
-| 4 | Elite | High | +1 bonus in dominant column. Worth protecting. |
-| 5 | Legendary | Very High | Game-changing. Draws attention. Everyone wants them. |
+| Rating | Tier | Recruit Cost | Upkeep/Round | Notes |
+|--------|------|-------------|--------------|-------|
+| 1 | Green | ED-500 | ED-100 | Cheap but unreliable. Filler slots. |
+| 2 | Green | ED-1,500 | ED-300 | Cheap but unreliable. Filler slots. |
+| 3 | Competent | ED-4,000 | ED-800 | Baseline professional. Can hold a column. |
+| 4 | Elite | ED-10,000 | ED-2,000 | +1 bonus in dominant column. Worth protecting. |
+| 5 | Legendary | ED-25,000 | ED-5,000 | Game-changing. Draws attention. Everyone wants them. |
+
+Upgrading an existing crew member costs the **difference** between their current recruit cost and the target recruit cost (e.g. upgrading from 3 to 4 costs ED-6,000).
 
 A balanced crew covers all three columns. A specialised crew dominates one but bleeds in the others. There's no right answer — only the answer that matches how you want to play Night City.
 
-> **FOCUS POINTS**
-> - Starting budget — how many eddies, how many crew members, any constraints on composition (max legendaries, minimum crew size)?
-> - Can you start with a Legendary (rating 5) crew member, or is that acquire-only?
-> - What happens when a crew member is killed or captured? Permanently gone? Recovery possible?
-> - Loyalty — mentioned on Transfer and Acquire but never explained to players. Can you discover your own crew's loyalty? Can loyalty shift over time?
-> - Can a crew member be assigned to multiple cells in the same grid? The example OGM shows T-Bug across phases 1, 2, and 4 — but this is never stated as an explicit rule.
-> - Crew assigned to a column that doesn't match their primary — do they contribute at full rating or reduced?
+### Starting Crew
+
+You begin with **4 crew members** and a total **rating budget of 12 points** to distribute among them. You may have at most **one crew member at rating 4** at start. Rating 5 (Legendary) cannot be recruited during crew creation — it must be earned through the Acquire action during play.
+
+### Loyalty
+
+Every crew member carries a hidden **loyalty score** tracked by the GM. You never see the number directly. Loyalty can shift based on how you treat your crew — using them well, paying them, keeping them alive. Neglect them or throw them into meat grinders, and they may become unreliable.
+
+You can spend a Surveil action on your own crew to get a narrative read on their loyalty from the GM. Transferred crew members are inherently less loyal — they didn't choose you.
+
+### Crew Loss
+
+When a crew member is killed, they are **permanently gone**. When captured, recovery may be possible through a future Engage or Leverage action — but the GM determines the circumstances. Captured crew may be turned against you.
+
+---
+
+## Economy
+
+Eddies (ED) are the universal currency of Night City. You earn them from missions and spend them on crew, actions, equipment, and survival.
+
+### Starting Funds
+
+Every player begins with **ED-10,000**. Combined with your starting crew (4 members, 12 rating points), this gives you a reserve for operations, Protocol costs, and early investments.
+
+### Income
+
+There is no passive income. All eddies come from **mission payouts** and **faction work**. Payouts scale with mission difficulty:
+
+| Difficulty | Payout Range |
+|------------|-------------|
+| Easy | ED-2,000 – 4,000 |
+| Moderate | ED-5,000 – 8,000 |
+| Hard | ED-10,000 – 15,000 |
+| Suicide | ED-20,000 – 30,000 |
+
+A result of **Adequate** pays **50%** of the base payout. **Poor or below** pays nothing.
+
+### Crew Upkeep
+
+Each crew member costs upkeep per round (see Skill Rating Scale). Upkeep is deducted automatically at the start of each round. If you cannot pay upkeep, the GM may reduce crew loyalty or force a crew member to leave.
+
+### Action Costs
+
+| Action | Cost |
+|--------|------|
+| Protocol ICE-1 | Free |
+| Protocol ICE-2 | ED-500 |
+| Protocol ICE-3 | ED-1,000 |
+| Protocol ICE-4 | ED-3,000 |
+| Protocol ICE-5 | ED-5,000 |
+| Heat Suppression | ED-3,000 |
+| Uplink | ED-1,000 |
+| Leverage (attempt) | ED-500 |
+| Surveil | ED-500 |
+
+Engage has no flat cost — you spend eddies through resource expenditures placed in OGM cells (bribes, equipment, diversions).
 
 ---
 
@@ -147,11 +199,12 @@ The OGM is a **4×3 matrix**: four phases (rows) by three columns (modes of forc
 
 Assign crew members to cells by writing their **code, rating, and name** (e.g. `NR-4 · T-Bug`). Cells can also contain resource expenditures (e.g. `ED-3k · Bribe`). Empty cells are allowed — but uncontested columns are uncontested.
 
-> **FOCUS POINTS**
-> - Can the same crew member appear in multiple phases? The example shows T-Bug in Ghost across phases 1, 2, and 4 — state this as an explicit rule.
-> - Can you spend eddies (ED) in a cell without a crew member? The example has `ED-3k · Bribe` in Extract/Strike — is this a general mechanic or special case? Define how resource expenditures work in cells.
-> - What happens if you submit an OGM with zero crew in a phase? Auto-failed? Uncontested by the player but opposition still resolves?
-> - Maximum crew per cell — can you stack multiple assets in the same cell?
+### Grid Assignment Rules
+
+- **Crew reuse limit:** A crew member may be assigned to a **maximum of 2 phases** per OGM. You must choose where they matter most.
+- **Cell stacking:** Multiple crew members may be assigned to the **same cell**. Their ratings are summed for that cell's score. Resource expenditures (ED) in a cell also stack.
+- **Empty phases:** If you submit an OGM with zero crew in a phase, that phase is **uncontested** — the opposition's score stands unopposed. This is not an auto-failure; it simply means your phase score is 0.
+- **Resource-only cells:** You may spend eddies in a cell without a crew member (e.g. `ED-3k · Bribe`). The GM interprets the expenditure contextually — bribes, equipment drops, diversions.
 
 ---
 
@@ -177,10 +230,23 @@ Anchor is presence, control, and sustained hold. It is the Tech hardwiring a bac
 
 **Anchor beats Strike.** A prepared position bleeds an assault. Maelstrom knows this. Arasaka knows this better.
 
-> **FOCUS POINTS**
-> - The rock-paper-scissors dynamic is described thematically but not mechanically from the player perspective. Does column advantage give a bonus? Nullify opposition? Players need to understand the weight of their column choices beyond "it's better."
-> - Can a player deliberately mismatch (e.g. put a Solo in Ghost)? What's the penalty or reduced effectiveness?
-> - How does column advantage interact with the score comparison? Even if resolution is GM-side, players should understand what they're betting on.
+### Column Advantage — How It Works
+
+The column dynamic is not just flavour — it's mechanical. When the GM resolves a phase, the column where your crew is strongest (your dominant column) is compared against the opposition's dominant column:
+
+- If your dominant column **beats** the opposition's dominant column → your crew gets a **+1** bonus for that phase.
+- If your dominant column **loses** to the opposition's dominant column → your crew takes a **−1** penalty for that phase.
+- If both sides lead with the same column → no modifier.
+
+This means reading the opposition matters. If intel suggests heavy Anchor defences, loading Ghost gives you an edge. Walking Strike into Anchor is walking into a wall.
+
+### Column Mismatch
+
+A crew member assigned to a column that is **not** their Primary Column operates at **−1 to their effective rating** (minimum 1). A SO-4 placed in Ghost functions as rating 3 in that cell. Build your grid around your crew's strengths — mismatches cost you.
+
+### Phase Score Aggregation
+
+The GM calculates your phase score using weighted dominance: your strongest column in that phase counts at full value, while the other two columns contribute half their score (rounded down). The same applies to the opposition. The difference determines the outcome. Concentrate your strength where it counts — spreading thin dilutes your dominant column.
 
 ---
 
@@ -204,16 +270,38 @@ The primary objective. The data pull. The extraction of the target. The deletion
 
 Getting out. This phase is more dangerous than most crews plan for. Night City's factions do not always respond during Breach — sometimes they wait. Ghost in Extract means you exit without a signature. Anchor in Extract means you had a fallback position prepared before the job started.
 
-> **FOCUS POINTS**
-> - Phase Affinity is referenced in the GM modifiers (+1 per phase for asset in its Phase Affinity) but never defined for players. Which roles have affinity for which phases? This directly affects grid planning.
-> - Phase degradation — failure in an earlier phase "degrades" later phases. Is this narrative-only or does it carry a mechanical penalty (e.g. -1 carry-forward)?
-> - Can a player intentionally skip a phase (leave an entire row empty) to conserve crew for later phases?
+### Phase Affinity
+
+Each role has a phase where they perform at peak effectiveness. Placing an asset in its Phase Affinity phase grants **+1** to its contribution. This stacks with the rating 4+ bonus.
+
+| Role | Phase Affinity |
+|------|---------------|
+| NR (Netrunner) | Approach |
+| SO (Solo) | Breach |
+| FA (Fixer/Assault) | Breach |
+| TE (Tech) | Execute |
+| CT (Contact) | Extract |
+
+Plan around these affinities. A NR-3 in Approach operates effectively as a 4 in that cell. A NR-3 in Extract is just a 3.
+
+### Phase Degradation
+
+Failure carries forward. If a phase resolves poorly, the next phase takes a mechanical penalty:
+
+- **Poor** result → **−1** to the next phase
+- **None** result → **−2** to the next phase
+- **Flatlined** result → **−3** to the next phase
+- **Adequate or better** → no carry-forward penalty
+
+Degradation stacks. A crew that stumbles through Approach and Breach arrives at Execute bleeding momentum. Plan your strongest crew for the phases where failure would cascade hardest.
 
 ---
 
 ## Actions — Two Slots Per Round
 
-Each round you have **two action slots**: one Core action and one Follow-up action. You can use these to engage in the city, negotiate with other players, or disappear entirely.
+Each round you have **two action slots**: one Core action and one Follow-up action. You **must** use at least one Core action per round. If you have no Core action to take, declare **Idle** for your Core slot (no action, no effect, no cost). You cannot take two Follow-up actions.
+
+Both actions resolve **simultaneously** within the same round. Surveil intel gathered this round applies to **next round only** — it does not inform an Engage submitted in the same round.
 
 ### ACT-01 — Engage (Core)
 
@@ -224,13 +312,15 @@ Run a full operation against a target. Fill the Operation Grid, assign crew to c
 
 ### ACT-02 — Protocol (Core or Follow-up)
 
-Send an encrypted message to another player. Declare ICE level (1–5). Higher ICE = harder to intercept but costs more. The recipient decrypts next round. Depending on the type of message this can be a Core action or a Follow-up action.
+Send an encrypted message to another player. Declare ICE level (1–5). Higher ICE = harder to intercept but costs more. The recipient decrypts next round.
 
+- **Core:** Operational coordination — joint ops, target sharing, binding agreements. One recipient only.
+- **Follow-up:** Informational or social — threats, questions, offers, misdirection. Up to 2 recipients.
 - **Tags:** COMMS, ICE COST
 
 ### ACT-03 — Transfer (Follow-up)
 
-Move a crew member or resource to another player. The transferred asset becomes theirs. Loyalty is hidden — the GM tracks it. Transfers can be poisoned.
+Move a crew member or resource to another player. The transferred asset becomes theirs. Loyalty is hidden — the GM tracks it. You may deliberately send a crew member with low loyalty (a "poisoned" transfer) — the recipient has no way to verify loyalty before accepting.
 
 - **Tags:** CREW MOVE, LOYALTY RISK
 
@@ -242,40 +332,30 @@ Go completely dark. Costs **both action slots**. Heat drops by 1. You cannot be 
 
 ### ACT-05 — Acquire (Follow-up)
 
-Recruit a new crew member or upgrade an existing one. Declare type and budget. Higher-rated recruits cost more and take longer. All recruits carry hidden loyalty.
+Recruit a new crew member or upgrade an existing one. Declare type and budget. Pay the recruit cost from the Skill Rating Scale. Recruits at rating 1–3 are available **next round**. Rating 4 takes **2 rounds**. Rating 5 takes **3 rounds**. All recruits carry hidden loyalty (starting at 3).
 
 - **Tags:** INVESTMENT, CREW BUILD
 
 ### ACT-06 — Leverage (Follow-up)
 
-Apply pressure to a faction, contact, or another player without running a full operation. If it fails, the target knows you tried.
+Apply pressure to a faction, contact, or another player without running a full operation. The GM evaluates success based on the rating of the crew member used and the difficulty of the target. If the attempt fails, the target knows you tried. Costs ED-500.
 
 - **Requires:** FA-3+ or SO-3+
 - **Tags:** SOCIAL, BLOWBACK RISK
 
 ### ACT-07 — Surveil (Follow-up)
 
-Watch a target, faction, or player without committing. Intel feeds your next round's decisions. Mutual surveillance is noted but anonymous.
+Watch a target, faction, or player without committing. The GM provides intel proportional to the rating of the crew member used — higher ratings yield more detailed and reliable information. Mutual surveillance is noted but anonymous (you learn someone is watching, but not who). Intel applies to **next round only**. Costs ED-500.
 
 - **Requires:** NR or CT asset
 - **Tags:** RECON, PASSIVE
 
 ### ACT-08 — Uplink (Follow-up)
 
-Harden your defences for the round. Protocol ICE doubled. Surveil attempts return minimal intel. Leverage effectiveness reduced. Signals defensive posture to NR-4+ observers.
+Harden your defences for the round. Protocol ICE doubled. Surveil attempts return minimal intel. Leverage effectiveness reduced. Players with NR-4+ who are actively surveilling you will detect that you are running a defensive posture (but not the details). Costs ED-1,000.
 
 - **Requires:** NR asset
 - **Tags:** DEFENSIVE
-
-> **FOCUS POINTS**
-> - Can you take two Follow-up actions instead of one Core + one Follow-up? Or is a Core action mandatory every round?
-> - Action timing — do both actions resolve simultaneously or sequentially? If you Surveil and Engage in the same round, does the Surveil intel apply to this round's Engage or only next round's?
-> - ACT-02 Protocol says "core or follow-up depending on the type of message." What determines which type? This needs a clear rule.
-> - ACT-03 Transfer — "transfers can be poisoned." What does poisoned mean mechanically? Can you deliberately send a disloyal crew member?
-> - ACT-05 Acquire — "higher-rated recruits take longer." How long? Available next round? Two rounds? Scaling by rating?
-> - ACT-06 Leverage — "if it fails, the target knows you tried." What constitutes failure? Is there a roll, a threshold, or pure GM adjudication?
-> - ACT-07 Surveil — "mutual surveillance is noted but anonymous." What exactly does the surveilling player receive as intel? How detailed?
-> - ACT-08 Uplink — "signals defensive posture to NR-4+ observers." Does this mean other players with NR-4+ automatically know you're running Uplink?
 
 ---
 
@@ -310,9 +390,7 @@ Use Protocol to build alliances, set traps, or just see who bites.
 Remember: the GM sees **every** Protocol message regardless of ICE level. ICE only protects against other players intercepting.
 
 > **FOCUS POINTS**
-> - Can you send a Protocol message to multiple recipients in one action slot, or is it strictly one message per action?
 > - What happens if the recipient doesn't have the required NR to decrypt (NR-2+ for ICE-4, NR-3+ for ICE-5)? Message lost? Delayed? Returned to sender?
-> - Can you send a Protocol to yourself (dead drop / narrative device)?
 > - Protocol says "recipient decrypts next round" — does this mean there's always a one-round delay on all Protocol, or only on higher ICE?
 > - Can a player decline to decrypt a received Protocol message?
 
@@ -334,23 +412,22 @@ Heat is persistent. It represents how visible and targeted you are across Night 
 
 ### Heat Triggers (+1 each unless noted)
 
-- Any Strike column result of Poor or below
+- Any column result of Poor or below (Ghost, Strike, or Anchor — all equally)
 - Any Flatlined or None phase outcome
 - Crew member captured or killed (+2)
-- Running a Strike-dominant grid (more Strike than Ghost + Anchor combined)
+
+Triggers are additive. A single catastrophic round can spike your Heat significantly.
 
 ### Cooling Methods (−1 each)
 
 - **Ghost action** — full dark, both slots committed
 - **ED-3k+** spent on dedicated Heat suppression operation
 - **FA-4+** deployed in relationship maintenance action
+- **Passive decay** — if you earn **zero new Heat** in a round, your Heat decreases by 1 at end of round
 
-> **FOCUS POINTS**
-> - Can Heat go below 0? If you're Cold and earn a Cooling event, does anything happen (banked credit, ignored)?
-> - District-specific Heat vs global Heat — the Flatlined level mentions "affected district." Is Heat tracked per district or globally with district-level consequences?
-> - How does the player learn their current Heat level? Communicated explicitly ("your Heat is 2") or narratively ("contacts are getting harder to reach")?
-> - Can multiple Heat triggers fire in a single round? Can a player jump from 0 to 3+ in one bad operation?
-> - Does Heat ever decay passively over time, or only through active Cooling methods?
+Heat cannot go below 0. Cooling at Cold has no effect and cannot be banked.
+
+Heat is a single global number. The GM communicates your current Heat level explicitly on your Private Channel each round.
 
 ---
 
@@ -374,9 +451,30 @@ Your order sheet should include:
 10. **Priority Signal** — what matters more: the objective or the crew?
 11. **Private Note to GM** — anything else: suspicions, plans, context
 
+### Loss Acceptance
+
+A **binding constraint** that tells the GM how far to push before your crew pulls out. The GM will not sacrifice crew beyond your stated tolerance unless no alternative exists. Choose one:
+
+- **None** — abort the operation if crew survival is at risk. Objective is secondary.
+- **Acceptable** — one crew member is expendable if it means completing the objective.
+- **Mission Priority** — the objective matters more than the crew. Everyone is expendable.
+
+### Heat Budget
+
+**Soft guidance** for the GM. State the maximum Heat you're willing to accept this round (e.g. "Heat Budget: 2"). If the operation would push you above your budget, the GM applies your contingencies to limit exposure. This is not mechanically binding — the world doesn't negotiate — but it tells the GM your risk tolerance.
+
+### Priority Signal
+
+A **tiebreaker** for ambiguous resolution moments. When the GM must choose between achieving the objective or preserving the crew, your Priority Signal determines which way the outcome leans:
+
+- **Objective** — complete the mission, accept crew costs.
+- **Crew** — protect the team, accept mission costs.
+
 ### Writing Good Contingencies
 
-Contingencies are IF/THEN statements that tell the GM how your crew reacts when things deviate from the plan. They are critical. Without them, the GM makes assumptions for you.
+Contingencies are IF/THEN statements that tell the GM how your crew reacts when things deviate from the plan. They are critical. Without them, the GM makes assumptions for you. Maximum **3 contingencies** per order sheet.
+
+Contingencies resolve at **phase boundaries** — between phases, not mid-phase. A triggered contingency can **override grid assignments** for subsequent phases, redirecting or withdrawing crew as specified.
 
 Examples:
 
@@ -384,12 +482,9 @@ Examples:
 
 > **Contingency 2:** IF any crew member is taken in Phase 3 or 4, THEN all remaining assets pivot to extraction regardless of objective status. PRIORITY: Get Brick out.
 
-> **FOCUS POINTS**
-> - Loss Acceptance, Heat Budget, and Priority Signal are listed but never explained mechanically. Are these binding constraints the GM enforces, or soft preferences the GM interprets?
-> - What if a contingency contradicts the grid? (e.g. "if Phase 2 fails, abort" but crew is already assigned to Phase 3/4 — does the contingency override the grid?)
-> - Maximum number of contingencies — is there a limit, or can players write as many as they want?
-> - Private Note to GM — are there limits on what this can contain? Can it include conditional orders that aren't in the grid?
-> - What constitutes a valid order sheet? Can the GM reject a submission and ask for revisions?
+### Private Note to GM
+
+Free-form. Use this for suspicions, long-term plans, questions, or context that doesn't fit the grid. The GM may respond on your Private Channel. This cannot contain additional mechanical orders — all actions must go through the grid and action slots.
 
 ---
 
