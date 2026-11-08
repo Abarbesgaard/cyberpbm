@@ -1,20 +1,16 @@
 import { Hero } from "@/components/sections/Hero";
-import { Introduction } from "@/components/sections/Introduction";
-import { DesignPhilosophy } from "@/components/sections/DesignPhilosophy";
-import { NightCity } from "@/components/sections/NightCity";
 import { RoleSelector } from "@/components/RoleSelector";
-import { Channels } from "@/components/sections/Channels";
-import { Mission } from "@/components/sections/Mission";
-import { CrewCreation } from "@/components/sections/CrewCreation";
-import { OpGrid } from "@/components/sections/OpGrid";
-import { Columns } from "@/components/sections/Columns";
-import { Phases } from "@/components/sections/Phases";
-import { Actions } from "@/components/sections/Actions";
-import { Protocol } from "@/components/sections/Protocol";
-import { Resolution } from "@/components/sections/Resolution";
-import { Heat } from "@/components/sections/Heat";
-import { Orders } from "@/components/sections/Orders";
-import { Manifesto } from "@/components/sections/Manifesto";
+import { Briefing } from "@/components/sections/Briefing";
+import { Victory } from "@/components/sections/Victory";
+import { ShipMap } from "@/components/sections/ShipMap";
+import { WeekCycle } from "@/components/sections/WeekCycle";
+import { Hunt } from "@/components/sections/Hunt";
+import { Information } from "@/components/sections/Information";
+import { Roles } from "@/components/sections/Roles";
+import { Campaign } from "@/components/sections/Campaign";
+import { Balance } from "@/components/sections/Balance";
+import { Example } from "@/components/sections/Example";
+import { DesignNotes } from "@/components/sections/DesignNotes";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function HomePage() {
@@ -24,21 +20,17 @@ export function HomePage() {
     <>
       <Hero />
       <RoleSelector />
-      <Introduction />
-      <DesignPhilosophy />
-      <NightCity />
-      <Channels />
-      <Mission />
-      <CrewCreation />
-      <OpGrid />
-      <Columns />
-      <Phases />
-      <Actions />
-      <Protocol />
-      <Resolution />
-      <Heat />
-      <Orders />
-      <Manifesto />
+      <Briefing />
+      <Victory />
+      <ShipMap />
+      <WeekCycle />
+      <Hunt />
+      <Information />
+      <Roles />
+      <Campaign />
+      <Balance />
+      <Example />
+      <DesignNotes />
     </>
   );
 }

@@ -5,28 +5,29 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════
-   CYBERPUNK THEME TOKENS (single source of truth)
+   USCSS CASSANDRA THEME TOKENS (single source of truth)
+   cp-yellow = phosphor green (crew), cp-red = alarm (synthetics), cp-cyan = amber.
    Mapped to shadcn semantic variables.
    inspiration.html palette applied to the :root (always dark).
    ═══════════════════════════════════════════ */
 :root {
-  /* Cyberpunk raw palette */
-  --cp-red: #CC0000;
-  --cp-red-bright: #FF1A1A;
-  --cp-red-dim: #6B0000;
-  --cp-yellow: #F0C000;
-  --cp-yellow-dim: #8A6E00;
-  --cp-cyan: #00D4FF;
-  --cp-cyan-dim: #006B80;
-  --cp-green: #00FF88;
-  --cp-white: #F0EDE8;
-  --cp-off: #B8B4AE;
-  --cp-mid: #5A5651;
-  --cp-dark: #0A0908;
-  --cp-panel: #111010;
-  --cp-panel2: #181614;
-  --cp-border: #2A2624;
-  --cp-border-bright: #3D3835;
+  /* Terminal raw palette */
+  --cp-red: #C8281E;
+  --cp-red-bright: #FF3B30;
+  --cp-red-dim: #5A120D;
+  --cp-yellow: #7DFFA0;
+  --cp-yellow-dim: #2E6B40;
+  --cp-cyan: #FFB347;
+  --cp-cyan-dim: #7A5420;
+  --cp-green: #7DFFA0;
+  --cp-white: #DDE8E1;
+  --cp-off: #A7B5AD;
+  --cp-mid: #55665C;
+  --cp-dark: #050807;
+  --cp-panel: #0A0F0D;
+  --cp-panel2: #0F1613;
+  --cp-border: #1C2A24;
+  --cp-border-bright: #2B3F35;
 
   /* shadcn semantic mapping */
   --background: var(--cp-dark);
@@ -191,6 +192,19 @@ body::after {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.35) 3px
+  );
 }
 
 
