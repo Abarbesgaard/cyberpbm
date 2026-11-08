@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const sectionLinks = [
-  { href: "#mission", label: "// MISSION" },
-  { href: "#grid-section", label: "// OGM" },
-  { href: "#actions", label: "// ACTIONS" },
-  { href: "#protocol", label: "// PROTOCOL" },
-  { href: "#resolution", label: "// RESOLUTION" },
-  { href: "#orders", label: "// ORDERS" },
+  { href: "#ship", label: "// SKIBET" },
+  { href: "#week", label: "// UGEN" },
+  { href: "#hunt", label: "// JAGTEN" },
+  { href: "#roles", label: "// ROLLER" },
+  { href: "#campaign", label: "// KAMPAGNE" },
 ];
 
 export function Nav() {
@@ -36,10 +35,10 @@ export function Nav() {
 
       <Link
         to="/"
-        className="mr-auto font-head font-black text-[1.1rem] tracking-[0.15em] uppercase text-cp-red-bright no-underline"
-        style={{ textShadow: "0 0 20px var(--cp-red-dim)" }}
+        className="mr-auto font-head font-black text-[1.1rem] tracking-[0.15em] uppercase text-cp-yellow no-underline"
+        style={{ textShadow: "0 0 20px var(--cp-yellow-dim)" }}
       >
-        CyberPBM
+        USCSS Cassandra
       </Link>
 
       <ul className="hidden md:flex list-none gap-0">
@@ -63,7 +62,7 @@ export function Nav() {
               pathname === "/rules" ? "text-cp-red-bright" : "text-cp-mid"
             }`}
           >
-            // RULES
+            // REGLER
           </Link>
         </li>
       </ul>

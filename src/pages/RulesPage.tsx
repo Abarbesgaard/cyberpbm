@@ -7,7 +7,14 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 const ruleFiles = {
   player: () => import("../../docs/player-rules.md?raw"),
   gm: () => import("../../docs/gm-rules.md?raw"),
+  design: () => import("../../docs/design.md?raw"),
 };
+
+const tabs = [
+  { key: "player", label: "// Spillerregler" },
+  { key: "gm", label: "// ORACLE (GM)" },
+  { key: "design", label: "// Design v0.6" },
+] as const;
 
 export function RulesPage() {
   const [content, setContent] = useState<Record<string, string>>({});
@@ -15,13 +22,15 @@ export function RulesPage() {
 
   useEffect(() => {
     async function load() {
-      const [player, gm] = await Promise.all([
+      const [player, gm, design] = await Promise.all([
         ruleFiles.player(),
         ruleFiles.gm(),
+        ruleFiles.design(),
       ]);
       setContent({
         player: player.default,
         gm: gm.default,
+        design: design.default,
       });
     }
     load();
@@ -35,16 +44,15 @@ export function RulesPage() {
             to="/"
             className="text-cp-mid no-underline hover:text-cp-yellow transition-colors"
           >
-            &larr; Back
+            &larr; Tilbage
           </Link>
           <span className="h-px flex-1 bg-gradient-to-r from-cp-border-bright to-transparent" />
         </div>
         <h2 className="font-head text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
-          The <span className="text-cp-red-bright">Rules</span>
+          Regler <span className="text-cp-yellow">&amp; Design</span>
         </h2>
         <p className="mt-4 max-w-[680px] text-[1.05rem] leading-relaxed text-cp-off">
-          Everything you need to run an operation — or run the city. Pick your
-          side.
+          Alt du skal bruge for at overleve ombord — eller for at være ORACLE.
         </p>
       </div>
 
@@ -57,21 +65,18 @@ export function RulesPage() {
           variant="line"
           className="mb-8 flex w-full gap-0 border-b border-cp-border bg-transparent p-0"
         >
-          <TabsTrigger
-            value="player"
-            className="border-l border-cp-border px-6 py-3 font-mono text-[0.65rem] tracking-[0.12em] uppercase text-cp-mid transition-colors data-[state=active]:text-cp-yellow data-active:text-cp-yellow hover:bg-cp-yellow/5 hover:text-cp-yellow first:border-l-0 rounded-none"
-          >
-            // Player Rules
-          </TabsTrigger>
-          <TabsTrigger
-            value="gm"
-            className="border-l border-cp-border px-6 py-3 font-mono text-[0.65rem] tracking-[0.12em] uppercase text-cp-mid transition-colors data-[state=active]:text-cp-yellow data-active:text-cp-yellow hover:bg-cp-yellow/5 hover:text-cp-yellow rounded-none"
-          >
-            // GM Rules
-          </TabsTrigger>
+          {tabs.map((t) => (
+            <TabsTrigger
+              key={t.key}
+              value={t.key}
+              className="border-l border-cp-border px-6 py-3 font-mono text-[0.65rem] tracking-[0.12em] uppercase text-cp-mid transition-colors data-[state=active]:text-cp-yellow data-active:text-cp-yellow hover:bg-cp-yellow/5 hover:text-cp-yellow first:border-l-0 rounded-none"
+            >
+              {t.label}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
-        {(["player", "gm"] as const).map((key) => (
+        {tabs.map(({ key }) => (
           <TabsContent key={key} value={key}>
             <div className="mx-auto max-w-[900px] rounded-none border border-cp-border bg-cp-dark p-8 md:p-12">
               <div className="prose-cyber">
@@ -80,7 +85,7 @@ export function RulesPage() {
                     {content[key]}
                   </ReactMarkdown>
                 ) : (
-                  <p className="text-cp-mid font-mono text-sm">Loading...</p>
+                  <p className="text-cp-mid font-mono text-sm">Indlæser...</p>
                 )}
               </div>
             </div>

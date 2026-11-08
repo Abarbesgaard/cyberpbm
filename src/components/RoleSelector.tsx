@@ -1,8 +1,8 @@
 import { useRole, type Role } from "@/context/RoleContext";
 
 const options: { value: Role; label: string; sub: string }[] = [
-  { value: "player", label: "PLAYER", sub: "I run a crew" },
-  { value: "gm", label: "GAME MASTER", sub: "I AM Nightcity" },
+  { value: "player", label: "BESÆTNING", sub: "Jeg spiller" },
+  { value: "gm", label: "ORACLE", sub: "Jeg er skibets AI (spilleder)" },
 ];
 
 export function RoleSelector() {
@@ -12,16 +12,16 @@ export function RoleSelector() {
     <section className="relative border-t border-cp-border px-8 py-16 md:px-16">
       <div className="mx-auto max-w-4xl text-center">
         <p className="mb-3 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-yellow">
-          // Choose Your Side
+          // Identificér dig
         </p>
         <h2
           className="mb-3 font-head text-[clamp(1.6rem,3.5vw,2.5rem)] font-black leading-[0.95] uppercase text-foreground"
           style={{ textShadow: "0 0 30px rgba(204,0,0,0.3)" }}
         >
-          Wake Up <span className="text-cp-red-bright">Choomba</span>
+          Wake Up <span className="text-cp-yellow">Crew</span>
         </h2>
         <p className="mx-auto mb-10 max-w-md text-[0.95rem] leading-relaxed text-cp-mid">
-          The following sections will adapt to your choice.
+          De følgende sektioner tilpasser sig dit valg.
         </p>
 
         <div className="flex justify-center gap-4">
