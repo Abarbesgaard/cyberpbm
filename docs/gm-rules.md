@@ -39,7 +39,7 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 **Weekend — afgør i denne rækkefølge:**
 
-1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek krisen, fx Strømudfald, Karantænezone eller Skotter låst.
+1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek krisen, fx Strømudfald, Karantænezone, Skotter låst eller Gang kollapset.
 2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne eller arbejde). Mislykkes det, sker intet, og drabet er ikke brugt.
 2b. **Skæbner.** Tildel nye skæbner: Jorden, Spøgelse og Afløser findes én gang hver. Samme valg samme uge: træk lod; taberen får besked og kan vælge igen næste uge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 4 som informationsevner — Hjemsøg bruger positionen efter bevægelse.
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.

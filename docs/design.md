@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.22
+# USCSS CASSANDRA v0.23
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,17 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.21
+## 0. Hvad er ændret fra v0.22
+
+v0.23 lader kriserne ramme **gangene** og **ORACLE's signal**.
+
+| v0.22 | v0.23 | Hvorfor |
+|---|---|---|
+| 15 Mørkelægning | **15 Gang kollapset** *(d6)*: den stiplede gang mellem sektionen og Rygraden lukkes | Skibsplanen betyder mere, når én gang kan forsvinde. På Ringen går man udenom; på Knudepunktet er sektionen afskåret. |
+| 17 Ekkostorm | **17 Støj på linjen**: hvert tredje ord fra ORACLE bliver til *brzzz* i uge 4 | Sande oplysninger bliver halve. Spillerne må gætte og sammenholde, og ekkoer og højttaleren bliver svære at stole på. |
+| Strømudfald og Skotter låst nævner ikke kortet | **Strømudfald lukker de stiplede gange, Skotter låst de fuldt optrukne** | Kortets to slags linjer svarer nu direkte til kriserne. |
+
+### Fra v0.21 til v0.22
 
 v0.22 gør **Langskibet** spilbart.
 
@@ -475,7 +485,7 @@ Scenariet giver besætningen et dilemma hver uge: blive og arbejde, eller rykke 
 
 Hvert scenarie har sit eget **arkiv**, som frigives i uge 5: Sortboks (Nødsignal), Dørlog (Karantæne) eller Arbejdslog (Hjemrejse).
 
-**Krisen** i uge 4 rulles på en d20-tabel mandag i uge 3 og annonceres straks. Den kan lukke zoner eller kanaler, skade eller reparere en sektion, ændre tribunalet eller frigive information. Kriser og arkiver er broadcasts og altid sande.
+**Krisen** i uge 4 rulles på en d20-tabel mandag i uge 3 og annonceres straks. Den kan lukke zoner, gange eller kanaler, lægge støj på ORACLE, skade eller reparere en sektion, ændre tribunalet eller frigive information. Kriser og arkiver er broadcasts og altid sande.
 
 Se *Scenariebogen* (`docs/scenarios.md`) for scenarier, arkiver, krisetabellen og sektionstabellen. `src/content/crises.ts` indeholder tabellen og en rullefunktion.
 
