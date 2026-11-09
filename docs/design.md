@@ -532,7 +532,7 @@ Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forker
 ## 13. Åbne testspørgsmål
 
 1. Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?
-2. Har Skaktløber nok at bruge Skakt til, nu hvor ingen jagter den?
+2. Har Skaktløber nok at bruge Skakt til?
 3. Bliver sabotage syntetikernes eneste strategi?
 4. Er Vagt for stærk mod syntetikere, der kun har ét drab hver?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet?
