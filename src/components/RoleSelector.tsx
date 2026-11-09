@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useRole, type Role } from "@/context/RoleContext";
 
 const options: { value: Role; label: string; sub: string }[] = [
@@ -17,6 +18,32 @@ const boot = [
   "> MENNESKER ....... UKENDT",
   "-------------------------------",
 ];
+
+const confirm: Record<Role, string[]> = {
+  player: ["> IDENTITET ....... BESÆTNING", "> ADGANG .......... BEGRÆNSET", "> TILLID .......... INGEN"],
+  gm: ["> IDENTITET ....... ORACLE", "> ADGANG .......... FULD", "> DIREKTIV ........ NEUTRAL"],
+};
+
+const next: Record<Role, { title: string; links: { label: string; to: string; hash?: boolean }[] }> = {
+  player: {
+    title: "Start her, besætningsmedlem",
+    links: [
+      { label: "Spillerregler", to: "/rules?tab=player" },
+      { label: "Skibssystemer", to: "#systems", hash: true },
+      { label: "Ugens ordre", to: "#week", hash: true },
+      { label: "Jagten", to: "#hunt", hash: true },
+    ],
+  },
+  gm: {
+    title: "Start her, ORACLE",
+    links: [
+      { label: "ORACLE-håndbog", to: "/rules?tab=gm" },
+      { label: "Rollepulje", to: "#balance", hash: true },
+      { label: "Ugecyklus", to: "#week", hash: true },
+      { label: "Skibssystemer", to: "#systems", hash: true },
+    ],
+  },
+};
 
 const keys = ["#C4682C", "#D3D1C9", "#D3D1C9", "#3E3F39", "#D3D1C9", "#A8321E"];
 
@@ -38,8 +65,20 @@ export function RoleSelector() {
               </div>
             ))}
             <div className="boot-line mt-2" style={{ animationDelay: `${boot.length * 0.18}s` }}>
-              &gt; IDENTIFIKATION PÅKRÆVET<span className="blink">█</span>
+              {role ? <>&gt; IDENTIFIKATION MODTAGET</> : <>&gt; IDENTIFIKATION PÅKRÆVET<span className="blink">█</span></>}
             </div>
+            {role && (
+              <div key={role} aria-live="polite">
+                {confirm[role].map((line, i) => (
+                  <div key={line} className="boot-line whitespace-pre" style={{ animationDelay: `${i * 0.18}s` }}>
+                    {line}
+                  </div>
+                ))}
+                <div className="boot-line" style={{ animationDelay: `${confirm[role].length * 0.18}s` }}>
+                  &gt; VELKOMMEN OMBORD<span className="blink">█</span>
+                </div>
+              </div>
+            )}
           </div>
           <div className="mt-4 grid grid-cols-6 gap-2" aria-hidden>
             {keys.map((c, i) => (
@@ -49,12 +88,12 @@ export function RoleSelector() {
         </div>
 
         <div className="flex flex-col justify-center">
-          <span className="plate self-start">Identifikation påkrævet</span>
+          <span className="plate self-start">{role ? "Identifikation modtaget" : "Identifikation påkrævet"}</span>
           <h2 className="glow-amber mt-5 mb-3 font-head text-[clamp(1.2rem,2.5vw,1.7rem)] uppercase tracking-[0.12em] text-cp-white">
             Angiv din funktion
           </h2>
           <p className="mb-8 max-w-md text-[0.95rem] leading-relaxed text-cp-off">
-            De følgende sektioner tilpasser sig dit valg.
+            Vælg, så åbner ORACLE de rigtige protokoller. Jagten, ugecyklussen og rollerne tilpasser sig dit valg.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
@@ -76,6 +115,25 @@ export function RoleSelector() {
               );
             })}
           </div>
+
+          {role && (
+            <div className="mt-6">
+              <div className="mb-3 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// {next[role].title}</div>
+              <div className="flex flex-wrap gap-2">
+                {next[role].links.map((l) =>
+                  l.hash ? (
+                    <a key={l.to} href={l.to} className="key px-4 py-2 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-off no-underline">
+                      {l.label} &rarr;
+                    </a>
+                  ) : (
+                    <Link key={l.to} to={l.to} className="key px-4 py-2 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-yellow no-underline">
+                      {l.label} &rarr;
+                    </Link>
+                  ),
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
