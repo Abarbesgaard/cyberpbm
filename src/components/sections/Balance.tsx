@@ -20,7 +20,7 @@ export function Balance() {
   return (
     <section id="balance" className="hull px-8 py-24 md:px-16">
       <SectionHeader
-        eyebrow="Sektion X // Balance"
+        eyebrow="Sektion IX // Balance"
         intro="Holdfordeling og rollepulje pr. spillerantal. Alle tal er offentlige — hvilke roller der faktisk er om bord, er ikke."
       >
         Role <span className="text-cp-red-bright">Pool</span>

@@ -40,7 +40,7 @@ const questions = [
 export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion XII // Designnoter">
+      <SectionHeader eyebrow="Sektion XI // Designnoter">
         v0.7 → <span className="text-cp-yellow">v0.14</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">

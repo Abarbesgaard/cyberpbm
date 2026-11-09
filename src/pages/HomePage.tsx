@@ -8,7 +8,6 @@ import { WeekCycle } from "@/components/sections/WeekCycle";
 import { Tribunal } from "@/components/sections/Tribunal";
 import { Information } from "@/components/sections/Information";
 import { Roles } from "@/components/sections/Roles";
-import { Campaign } from "@/components/sections/Campaign";
 import { Balance } from "@/components/sections/Balance";
 import { Example } from "@/components/sections/Example";
 import { DesignNotes } from "@/components/sections/DesignNotes";
@@ -39,7 +38,6 @@ export function HomePage() {
       <Bulkhead frame="175" deck="C-07" />
       <Roles />
       <Bulkhead frame="199" deck="D-08" />
-      <Campaign />
       <Bulkhead frame="223" deck="D-09" />
       <Balance />
       <Bulkhead frame="247" deck="E-10" />
