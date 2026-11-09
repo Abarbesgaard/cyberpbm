@@ -24,7 +24,7 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - **Besætning:** rolle, hold og evne.
    - **Syntetiker:** hold, syntetikerrolle og evne, de andre syntetikeres navne og roller, og egne 2 bluff-forslag.
    - Offentliggør aldrig, hvilke roller der er i spil.
-9. **Vælg scenarie** (Nødsignal, Karantæne eller Hjemrejse). Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
+9. **Vælg scenarie** i *Scenariebogen* (Nødsignal, Karantæne eller Hjemrejse), eller rul d6. Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
 10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
 11. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
 12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, drab, vedligehold, stemme — plus systemstatus og brugte drab.
@@ -39,7 +39,7 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 **Weekend — afgør i denne rækkefølge:**
 
-1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek scenariets krise (Strømudfald: ingen ind i eller ud af Rygraden; Smittealarm: ingen ind i Medlab eller Hypersøvn). Krisen gælder også Skakt.
+1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek krisen, fx Strømudfald, Karantænezone eller Skotter låst.
 2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne eller arbejde). Mislykkes det, sker intet, og drabet er ikke brugt.
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
@@ -105,16 +105,11 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 
 ## Hændelser
 
-Krise og arkiv afhænger af scenariet. Annoncér dem sammen med scenariet i uge 1, og igen mandag i ugen.
+Alle scenarier, arkiver, krisetabellen (d20) og sektionstabellen (d6) står i *Scenariebogen*.
 
-| Scenarie | Uge 4 — krise | Uge 5 — arkiv (i mandagsbroadcasten) |
-|---|---|---|
-| Nødsignal | **Strømudfald:** Ingen ind i eller ud af Rygraden. | **Sortboks:** Hele positionsloggen fra uge 1. |
-| Karantæne | **Smittealarm:** Ingen ind i Medlab eller Hypersøvn. Ud er tilladt. | **Dørlog:** De 10 seneste bevægelser fra regnearket, nyeste først: *"Anna: Lastrum → Broen."* Ingen uge. Skakt og *Bliv* tæller ikke. |
-| Hjemrejse | **Kommunikationsnedbrud:** Opret ikke sektorkanaler for uge 4. Kun #shipwide. | **Arbejdslog:** Hvem der stod i en sektion med *Arbejde: ja* i uge 3. Døde i uge 3 er ikke med. |
-
-- **Uge 4, Containment Failure:** Gennemfør scenariets krise.
-- **Uge 5, Last Transmission:** Frigiv scenariets arkiv. Arkiver er broadcasts og altid sande.
+- **Uge 3, mandag:** Rul krisen på d20, og annoncér den i broadcasten: *"KRISE I UGE 4: Brand i Lastrum."*
+- **Uge 4, Containment Failure:** Gennemfør krisen hele ugen: kommunikation, ordrer og afgørelse.
+- **Uge 5, Last Transmission:** Frigiv scenariets arkiv. Kriser og arkiver er broadcasts og altid sande.
 - **Uge 6, Final Protocol:** Afgør det sidste tribunal. Tjek scenariet. Afslør derefter alle roller og hold.
 
 ## Afgørelser i tvivl

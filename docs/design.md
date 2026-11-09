@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.15
+# USCSS CASSANDRA — Hunt Protocol v0.16
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,16 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.14
+## 0. Hvad er ændret fra v0.15
+
+v0.16 flytter scenarierne til en egen *Scenariebog* og gør krisen i uge 4 tilfældig.
+
+| v0.15 | v0.16 | Hvorfor |
+|---|---|---|
+| Hvert scenarie har én fast krise | **Krisen rulles på d20 mandag i uge 3** | Tyve kriser gør hver kampagne forskellig. Et rul en uge før giver tid til at planlægge. |
+| Scenarier beskrevet i designdokumentet | **Scenariebog** med scenarier, arkiver, krisetabel og sektionstabel | ORACLE har ét sted at slå op. |
+
+### Fra v0.14 til v0.15
 
 v0.15 gør uge 4 og 5 afhængige af scenariet.
 
@@ -414,13 +423,11 @@ Scenariet giver besætningen et dilemma hver uge: blive og arbejde, eller rykke 
 
 ### 8.3 Krise og arkiv
 
-Hvert scenarie har sin egen krise i uge 4 og sit eget arkiv i uge 5. Begge offentliggøres med scenariet i uge 1, så spillerne kan planlægge. Arkiver er broadcasts og altid sande.
+Hvert scenarie har sit eget **arkiv**, som frigives i uge 5: Sortboks (Nødsignal), Dørlog (Karantæne) eller Arbejdslog (Hjemrejse).
 
-| Scenarie | Uge 4 — krise | Uge 5 — arkiv |
-|---|---|---|
-| **Nødsignal** | **Strømudfald:** Rygraden forsegles. Ingen ind eller ud, heller ikke via Skakt. Kun ringen er åben. | **Sortboks:** Hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
-| **Karantæne** | **Smittealarm:** Ingen kan rykke ind i Medlab eller Hypersøvn, heller ikke via Skakt. Ud er tilladt. Den, der vil arbejde der i uge 4, skal stå der i forvejen. | **Dørlog:** De 10 seneste bevægelser (navn, fra, til), uden uge. Skakter har ingen døre og logges ikke — en spiller, der dukker op uden spor, har brugt en skakt. |
-| **Hjemrejse** | **Kommunikationsnedbrud:** Sektorkanalerne er lukket hele ugen. Kun #shipwide. Alle alibier må gives offentligt. | **Arbejdslog:** Hvem der arbejdede i hvilken sektion i uge 3. Påstande om arbejde kan tjekkes. |
+**Krisen** i uge 4 rulles på en d20-tabel mandag i uge 3 og annonceres straks. Den kan lukke zoner eller kanaler, skade eller reparere en sektion, ændre tribunalet eller frigive information. Kriser og arkiver er broadcasts og altid sande.
+
+Se *Scenariebogen* (`docs/scenarios.md`) for scenarier, arkiver, krisetabellen og sektionstabellen. `src/content/crises.ts` indeholder tabellen og en rullefunktion.
 
 ---
 
@@ -481,7 +488,7 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | 1 | **Awakening** | Spillerne vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Ingen sabotage, intet tribunal. |
 | 2 | **First Anomaly** | Sabotage, Forfalskning og Støj låses op. Første tribunal fredag. |
 | 3 | **Broken Trust** | Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning. |
-| 4 | **Containment Failure** | Scenariets krise (se 8.3). |
+| 4 | **Containment Failure** | Krisen, rullet på d20 i uge 3 (se 8.3). |
 | 5 | **Last Transmission** | Scenariets arkiv (se 8.3). |
 | 6 | **Final Protocol** | Sidste tribunal. Derefter afsløres alle roller. |
 

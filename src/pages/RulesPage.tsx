@@ -3,18 +3,21 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useSearchParams } from "react-router-dom";
 import { useRole } from "@/context/RoleContext";
+import { CrisisRoller } from "@/components/CrisisRoller";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const ruleFiles = {
   player: () => import("../../docs/player-rules.md?raw"),
   gm: () => import("../../docs/gm-rules.md?raw"),
+  scenarios: () => import("../../docs/scenarios.md?raw"),
   design: () => import("../../docs/design.md?raw"),
 };
 
 const tabs = [
   { key: "player", label: "// Spillerregler" },
   { key: "gm", label: "// ORACLE (GM)" },
-  { key: "design", label: "// Design v0.15" },
+  { key: "scenarios", label: "// Scenariebog" },
+  { key: "design", label: "// Design v0.16" },
 ] as const;
 
 export function RulesPage() {
@@ -28,14 +31,16 @@ export function RulesPage() {
 
   useEffect(() => {
     async function load() {
-      const [player, gm, design] = await Promise.all([
+      const [player, gm, scenarios, design] = await Promise.all([
         ruleFiles.player(),
         ruleFiles.gm(),
+        ruleFiles.scenarios(),
         ruleFiles.design(),
       ]);
       setContent({
         player: player.default,
         gm: gm.default,
+        scenarios: scenarios.default,
         design: design.default,
       });
     }
@@ -83,6 +88,7 @@ export function RulesPage() {
 
         {tabs.map(({ key }) => (
           <TabsContent key={key} value={key}>
+            {key === "scenarios" && <CrisisRoller />}
             <div className="bezel bezel-screws mx-auto max-w-[900px] p-6 sm:p-8 md:p-12 [--chamfer:20px]">
               <div className="prose-cyber">
                 {content[key] ? (
