@@ -12,7 +12,7 @@ export function Footer() {
           </div>
         </div>
         <div className="text-right font-mono text-[0.6rem] leading-relaxed tracking-[0.15em] uppercase text-cp-mid">
-          Hunt Protocol v0.6 // Social deduction i Slack
+          Hunt Protocol v0.7 // Social deduction i Slack
           <br />
           <span className="text-cp-red">Besætningen er sekundær</span>
         </div>

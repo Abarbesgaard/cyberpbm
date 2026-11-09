@@ -1,14 +1,18 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
-  { from: "Tre neutraliseringsmodeller", to: "Fysisk neutralisering + to-mands-reglen", why: "Jagten foregår på skibet. En tavs hånd i rummet bliver et spor." },
-  { from: "Infiltratorer kan gemme sig", to: "Integritetsur", why: "Syntetikere skal handle for at vinde. Handlinger efterlader spor." },
-  { from: "Evner fra uge 2", to: "Informationsevner fra uge 1", why: "Første tribunal skal bygge på data, ikke mavefornemmelse." },
-  { from: "Skjult rolleliste", to: "Offentligt katalog + bluffs", why: "Påstande kan krydstjekkes. Dobbeltpåstande skaber drama." },
-  { from: "AI-ekko", to: "AI-ekko + spøgelsesstemme", why: "Neutraliserede spillere betyder noget til sidste afstemning." },
+  { from: "Samme rolle kunne i princippet deles", to: "Hver rolle findes højst én gang", why: "En dobbeltpåstand betyder altid, at mindst én lyver. Det gør påstande til spillets valuta." },
+  { from: "Fast rolleliste pr. spillerantal", to: "Ingeniør + hemmelig trækning", why: "v0.6 offentliggjorde, hvilke roller der var i spil. Nu er kun kataloget og trækningsreglerne offentlige." },
+  { from: "7 roller i kataloget", to: "11 roller i kataloget", why: "Ved 8 spillere var der kun 1 ubrugt rolle til 4 bluffs. Nu er der mindst 5." },
+  { from: "To bluff-roller", to: "To bluff-forslag fra ubrugte roller", why: "Forslag, ikke roller. Syntetikere kan påstå hvad som helst, men aldrig bruge evnen." },
+  { from: "Ingen grænse for informationsroller", to: "Højst to roller pr. tag", why: "Forhindrer, at tre positionsroller kortlægger hele skibet." },
 ];
 
 const questions = [
+  "Er 11 roller for mange at holde styr på for nye spillere?",
+  "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
+  "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
+  "Afslører fasthold-point Sikkerhedschefen? (2 point med 1 til stede beviser rollen.)",
   "Er to-mands-reglen for svær med 5 spillere?",
   "Er Skakt for stærk til flugt? Alternativ: først fra uge 3.",
   "Bliver integritetsuret syntetikernes eneste strategi?",
@@ -21,7 +25,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="border-t border-cp-border px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.5 → <span className="text-cp-yellow">v0.6</span>
+        v0.6 → <span className="text-cp-yellow">v0.7</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border">
         {changes.map((c) => (

@@ -28,7 +28,7 @@ export function Information() {
       <div className="mt-10 max-w-[760px] border-l-[3px] border-cp-red pl-5 text-[0.95rem] leading-[1.75] text-cp-off">
         <strong className="text-cp-white">Ingen kan bevise sin rolle.</strong> Alle må lyve. Screenshots
         og videresendte ORACLE-beskeder er forbudt — gengiv med egne ord. Og fordi
-        syntetikere kan forfalske resultater og har bluff-roller, beviser en ægte besked
+        syntetikere kan forfalske resultater og har bluff-forslag, beviser en ægte besked
         alligevel ikke loyalitet.
       </div>
     </section>

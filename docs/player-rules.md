@@ -7,7 +7,17 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 - **Besætning:** Find syntetikerne og få dem i kryo inden udgangen af uge 6.
-- **Syntetiker:** Overlev Final Protocol, eller bring skibets integritet til 0. Du kender de andre syntetikere og får to bluff-roller.
+- **Syntetiker:** Overlev Final Protocol, eller bring skibets integritet til 0. Du kender de andre syntetikere og får to bluff-forslag.
+
+## Roller og påstande
+
+- **Hver rolle findes højst én gang.** Ingen to spillere har samme rolle.
+- **Hele rollekataloget er offentligt** (se websitet eller designdokumentet). Hvilke roller der er i spil, er hemmeligt — ikke alle er om bord.
+- **Ingeniør er altid i spil.** Det er den eneste rolle, alle ved er aktiv.
+- **Du må påstå enhver rolle**, også en, en anden har påstået.
+- **Dobbeltpåstand:** Påstår to spillere samme rolle, lyver mindst én af dem. ORACLE bekræfter eller afkræfter aldrig en påstand.
+- **Syntetikere har ingen besætningsrolle.** De kan ikke bruge evnen fra en rolle, de udgiver sig for, og får intet evneresultat.
+- **Bluff-forslag:** Hver syntetiker får to roller, der garanteret *ikke* er i spil. Det er forslag til påstande, ikke roller.
 
 ## Hver uge
 
@@ -28,7 +38,7 @@ TRIBUNAL:   Anna                    (eller: Ingen ændring)
 - **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
 - **Evne:** Din ene evne. Se rollekataloget.
 - **Fasthold:** Hvis du ender i samme zone som målet for kryo-ordren, hjælper du med at pågribe det.
-- **Tribunal:** Stem på en spiller, eller *Ingen ændring*.
+- **Tribunal:** Stem på en spiller, eller *Ingen ændring*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
 
 ## Skibet
 

@@ -36,7 +36,7 @@ export function Hero() {
             </span>
           </h1>
           <div className="mt-4 inline-block border border-cp-red px-3 py-1 font-mono text-[0.7rem] tracking-[0.3em] uppercase text-cp-red-bright">
-            Hunt Protocol v0.6
+            Hunt Protocol v0.7
           </div>
 
           <p className="mt-8 max-w-[560px] text-[1.08rem] leading-relaxed text-cp-off">
