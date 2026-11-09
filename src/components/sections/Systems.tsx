@@ -12,6 +12,7 @@ import {
   zones,
   type SectionId,
 } from "@/content/game";
+import { BREAKDOWN_AT, ROOM_ABILITY_MIN, rooms } from "@/content/rooms";
 
 const example: Record<SectionId, [number, number]> = {
   A: [3, 2],
@@ -33,7 +34,8 @@ const board = [
     return `${zoneName(id).padEnd(11)}${bar(to)} ${to}  ${sign(to - from)}`;
   }),
   "ANOMALI: Uautoriseret adgang i Livsstøtte.",
-  "KRITISK: Motorrum. Én uge til nedbrud.",
+  "KRITISK: Motorrum. Én uge til systemsvigt.",
+  "NEDBRUD: Skakter lukket.",
 ].join("\n");
 
 const rules = [
@@ -72,6 +74,24 @@ export function Systems() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="mt-12 mb-4 flex flex-wrap items-center gap-3">
+        <span className="plate plate-orange">Rum</span>
+        <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-mid">
+          Mandagens status gælder hele ugen. Rumevne ved ≥{ROOM_ABILITY_MIN} i stedet for arbejde. Nedbrud ved ≤{BREAKDOWN_AT} rammer hele skibet.
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {rooms.map((r) => (
+          <div key={r.id} className="bezel bezel-screws p-6">
+            <h3 className="mb-3 font-head tracking-[0.08em] text-[1.05rem] uppercase text-cp-white">{zoneName(r.id)}</h3>
+            <div className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-yellow">≥{ROOM_ABILITY_MIN} // {r.ability.name}</div>
+            <p className="mt-1 text-[0.85rem] leading-[1.6] text-cp-off">{r.ability.text}</p>
+            <div className="mt-4 border-t border-cp-border pt-4 font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-red-bright">≤{BREAKDOWN_AT} // {r.breakdown.name}</div>
+            <p className="mt-1 text-[0.85rem] leading-[1.6] text-cp-off">{r.breakdown.text}</p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-12 mb-4 flex flex-wrap items-center gap-3">
