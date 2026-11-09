@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   NEGLECT_LOSS,
@@ -76,7 +77,7 @@ export function Systems() {
       <div className="mt-12 mb-4 flex flex-wrap items-center gap-3">
         <span className="plate plate-orange">Scenarie</span>
         <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-mid">
-          Ét pr. kampagne. Offentligt fra uge 1 med sin krise og sit arkiv. Tjekkes efter uge 6.
+          Ét pr. kampagne. Offentligt fra uge 1. Krisen i uge 4 rulles på d20.
         </span>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -87,17 +88,19 @@ export function Systems() {
             </div>
             <h3 className="mb-2 font-head tracking-[0.08em] text-[1.05rem] uppercase text-cp-white">{s.name}</h3>
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{s.text}</p>
-            <dl className="mt-4 space-y-3 border-t border-cp-border pt-4">
-              {s.events.map((e) => (
-                <div key={e.week}>
-                  <dt className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-yellow">Uge {e.week} // {e.name}</dt>
-                  <dd className="mt-1 text-[0.8rem] leading-[1.55] text-cp-off">{e.text}</dd>
-                </div>
-              ))}
+            <dl className="mt-4 border-t border-cp-border pt-4">
+              <dt className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-yellow">Uge 5 // {s.archive.name}</dt>
+              <dd className="mt-1 text-[0.8rem] leading-[1.55] text-cp-off">{s.archive.text}</dd>
             </dl>
           </div>
         ))}
       </div>
+      <Link
+        to="/rules?tab=scenarios"
+        className="key mt-6 inline-flex px-5 py-2.5 font-mono text-[0.65rem] tracking-[0.2em] uppercase text-cp-yellow no-underline"
+      >
+        Scenariebog // Krisetabel d20
+      </Link>
     </section>
   );
 }

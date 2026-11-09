@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Fast krise pr. scenarie i uge 4", to: "Krisen rulles på d20", why: "Tyve mulige kriser gør hver kampagne forskellig. Rulles i uge 3, så spillerne kan planlægge." },
   { from: "Uge 4 og 5 er ens i alle kampagner", to: "Hvert scenarie har sin egen krise og sit eget arkiv", why: "Forsegling og logfrigivelse varierer, så hver kampagne spilles forskelligt. Begge kendes fra uge 1." },
   { from: "Besætningen vinder ved kryo eller scenarie", to: "Besætningen vinder kun ved scenariet", why: "Skibet skal hjem. Tribunalet stopper sabotagen, men er ikke et mål i sig selv." },
   { from: "Kryo-ordre, jagt og fasthold", to: "Tribunalet sender direkte i kryo", why: "Ingen kan fysisk holde en anden fast i Slack. Neutralisering er nu kun en fælles beslutning." },
@@ -42,7 +43,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.15</span>
+        v0.7 → <span className="text-cp-yellow">v0.16</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

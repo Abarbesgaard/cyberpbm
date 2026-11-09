@@ -56,13 +56,13 @@ Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Er det opfyldt ef
 | Karantæne | Medlab og Hypersøvn står på 5. |
 | Hjemrejse | Alle seks systemer står på mindst 4. |
 
-Hvert scenarie har sin egen **krise** i uge 4 og sit eget **arkiv** i uge 5. Begge er offentlige fra uge 1, så I kan planlægge.
+Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge 3 ruller ORACLE en **krise** på d20, som gælder hele uge 4. Se *Scenariebogen* for alle scenarier, arkiver og kriser.
 
-| Scenarie | Uge 4 — krise | Uge 5 — arkiv |
-|---|---|---|
-| Nødsignal | **Strømudfald:** Rygraden forsegles. Ingen ind eller ud, heller ikke via Skakt. | **Sortboks:** Hele positionsloggen fra uge 1. |
-| Karantæne | **Smittealarm:** Ingen kan rykke ind i Medlab eller Hypersøvn, heller ikke via Skakt. De, der står der, må blive eller gå. | **Dørlog:** De 10 seneste bevægelser (navn, fra, til), uden uge. Skakt logges ikke. |
-| Hjemrejse | **Kommunikationsnedbrud:** Sektorkanalerne er lukket. Kun #shipwide. | **Arbejdslog:** Hvem der arbejdede i hvilken sektion i uge 3. |
+| Scenarie | Uge 5 — arkiv |
+|---|---|
+| Nødsignal | **Sortboks:** Hele positionsloggen fra uge 1. |
+| Karantæne | **Dørlog:** De 10 seneste bevægelser (navn, fra, til), uden uge. Skakt logges ikke. |
+| Hjemrejse | **Arbejdslog:** Hvem der arbejdede i hvilken sektion i uge 3. |
 
 ## Hver uge
 
@@ -142,6 +142,6 @@ Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evn
 | 1 | Awakening | Informationsevner og Skakt er aktive. Intet tribunal. |
 | 2 | First Anomaly | Sabotage, Forfalskning og Støj. Første tribunal. |
 | 3 | Broken Trust | Syntetikerne kan dræbe. |
-| 4 | Containment Failure | Scenariets krise. |
+| 4 | Containment Failure | Krisen, rullet på d20 i uge 3. |
 | 5 | Last Transmission | Scenariets arkiv frigives. |
 | 6 | Final Protocol | Sidste tribunal. Rollerne afsløres. |
