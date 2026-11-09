@@ -34,14 +34,14 @@ export function Roles() {
         Crew <span className="text-cp-yellow">Manifest</span>
       </SectionHeader>
 
-      <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {crewRoles.map((r) => (
-          <div key={r.id} className="bg-cp-dark p-6">
+          <div key={r.id} className="bezel p-6">
             <div className="mb-3 flex items-center justify-between font-mono text-[0.55rem] tracking-[0.2em] uppercase">
               <span className="text-cp-yellow">{r.ability}</span>
               <span className="border border-cp-border-bright px-1.5 py-0.5 text-cp-mid">{r.tag}</span>
             </div>
-            <h3 className="mb-3 break-words font-head text-[0.8rem] tracking-[0.06em] uppercase leading-snug text-cp-white">{r.name}</h3>
+            <h3 className="mb-3 font-head text-[clamp(0.62rem,1vw,0.8rem)] tracking-[0.02em] [overflow-wrap:anywhere] uppercase leading-snug text-cp-white">{r.name}</h3>
             {(r.core || r.isNew) && (
               <div className="mb-3 flex gap-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase">
                 {r.core && <span className="border border-cp-yellow px-1.5 py-0.5 text-cp-yellow">Altid i spil</span>}
@@ -51,15 +51,15 @@ export function Roles() {
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{r.text}</p>
           </div>
         ))}
-        <div className="flex flex-col justify-center bg-cp-dark p-6 font-mono text-[0.75rem] leading-[1.7] text-cp-mid">
+        <div className="crt m-[10px] flex flex-col justify-center p-6 text-[1.15rem] leading-[1.3] text-cp-cyan">
           <span className="text-cp-red-bright">&gt; MANIFEST UFULDSTÆNDIGT</span>
           <span>{crewRoles.length} roller i kataloget. {minCrew}–{maxCrew} om bord. Hvem lyver?</span>
         </div>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
         {claimRules.map((c) => (
-          <div key={c.title} className="bg-cp-panel p-6">
+          <div key={c.title} className="bezel p-6">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">// Protokol</div>
             <h3 className="mb-2 font-head text-[0.85rem] tracking-[0.08em] uppercase text-cp-white">{c.title}</h3>
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{c.text}</p>
@@ -67,7 +67,7 @@ export function Roles() {
         ))}
       </div>
 
-      <div className="mt-12 border border-cp-red bg-cp-dark p-8">
+      <div className="mt-12 bezel border-t-[6px] border-cp-red p-8">
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
           // Klassificeret — Syntetiker
         </div>
@@ -77,9 +77,9 @@ export function Roles() {
           tale privat, når de står samme sted. Syntetiker er et hold, ikke en katalogrolle —
           ved to syntetikere har begge Særordre. Hver får to bluff-forslag fra de ubrugte roller.
         </p>
-        <div className="grid grid-cols-1 gap-px bg-cp-border md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {synthModes.map((m) => (
-            <div key={m.name} className="bg-cp-panel p-6">
+            <div key={m.name} className="bezel p-6">
               <div className="mb-1 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-mid">Fra uge {m.from}</div>
               <h4 className="mb-2 font-head tracking-[0.08em] text-[0.95rem] uppercase text-cp-red-bright">{m.name}</h4>
               <p className="text-[0.85rem] leading-[1.6] text-cp-off">{m.text}</p>

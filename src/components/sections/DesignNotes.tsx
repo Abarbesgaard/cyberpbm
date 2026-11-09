@@ -27,9 +27,9 @@ export function DesignNotes() {
       <SectionHeader eyebrow="Sektion XI // Designnoter">
         v0.6 → <span className="text-cp-yellow">v0.7</span>
       </SectionHeader>
-      <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border">
+      <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (
-          <div key={c.to} className="grid grid-cols-1 gap-2 bg-cp-dark p-5 md:grid-cols-[1fr_1fr_1.4fr] md:gap-6">
+          <div key={c.to} className="bezel grid grid-cols-1 gap-2 p-5 md:grid-cols-[1fr_1fr_1.4fr] md:gap-6">
             <span className="font-mono text-[0.75rem] text-cp-mid line-through">{c.from}</span>
             <span className="font-head tracking-[0.08em] text-[0.85rem] uppercase text-cp-yellow">{c.to}</span>
             <span className="text-[0.9rem] text-cp-off">{c.why}</span>

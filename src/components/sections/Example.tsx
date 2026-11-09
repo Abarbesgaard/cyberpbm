@@ -34,7 +34,7 @@ PÅGRIBELSE: Forsøgt i Livsstøtte.
           </p>
           <div className="space-y-3">
             {testimony.map((t) => (
-              <div key={t.who} className="border border-cp-border-bright bg-cp-dark p-4">
+              <div key={t.who} className="bezel p-4">
                 <span className="font-mono text-[0.7rem] uppercase text-cp-yellow">{t.who}:</span>{" "}
                 <span className="text-[0.9rem] text-cp-off">"{t.text}"</span>
               </div>

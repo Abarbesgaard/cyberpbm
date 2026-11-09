@@ -31,9 +31,9 @@ export function Briefing() {
       >
         Én af jer er <span className="text-cp-red-bright">ikke</span> menneske
       </SectionHeader>
-      <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {pillars.map((p) => (
-          <div key={p.title} className="bg-cp-dark p-8">
+          <div key={p.title} className="bezel p-8">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
               Inspiration
             </div>
