@@ -35,13 +35,13 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: ja, Tribunal: Ingen*. Manglende ekko-ordre = intet vedligehold. Manglende skæbne = Ekko indtil videre; spilleren kan vælge en ledig skæbne en senere uge.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: ja, Tribunal: Ingen*. Manglende ekko-ordre = intet vedligehold.
 
 **Weekend — afgør i denne rækkefølge:**
 
 1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek krisen, fx Strømudfald, Karantænezone, Skotter låst eller Gang kollapset.
 2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne eller arbejde). Mislykkes det, sker intet, og drabet er ikke brugt.
-2b. **Skæbner.** Tildel nye skæbner: Jorden, Spøgelse og Afløser findes én gang hver. Samme valg samme uge: træk lod; taberen får besked og kan vælge igen næste uge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 4 som informationsevner — Hjemsøg bruger positionen efter bevægelse.
+2b. **Skæbner.** Rul d6 for hvert nyt ekko: 1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Hver findes én gang. Taget, eller Afløser til en frossen = Ekko. Ingen omrul. Flere nye ekkoer samme uge: rul i tilfældig rækkefølge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 4 som informationsevner — Hjemsøg bruger positionen efter bevægelse.
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
 5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. I uge 2, 4 og 6: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der, og sektionen ikke blev saboteret. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Rammer et system 0, er det KRITISK. Var det allerede 0 før afgørelsen, vinder syntetikerne.
@@ -80,7 +80,7 @@ TRIBUNAL: 4 af 6 stemmer mod [Navn]. [Navn] er overført til kryo.
 LIG FUNDET: [Navn], Lastrum.
 ```
 
-Til offeret, privat: *"Du er død. Zone: Lastrum. Du er nu et ekko. Ledige skæbner: Jorden, Spøgelse, Afløser."* Samme liste til en spiller, der sendes i kryo, dog uden Afløser. Afløser broadcastes: *"KAPSEL ÅBNET: [Navn] er vågen i Hypersøvn."* Jorden og Spøgelse broadcastes aldrig. Til drabsmanden ved mislykket drab: *"Drab mislykket."*
+Til offeret, privat: *"Du er død. Zone: Lastrum. Du er nu et ekko. Skæbne (d6: 3): Spøgelse."* Det samme til en spiller, der sendes i kryo. Afløser broadcastes: *"KAPSEL ÅBNET: [Navn] er vågen i Hypersøvn."* Jorden og Spøgelse broadcastes aldrig. Til drabsmanden ved mislykket drab: *"Drab mislykket."*
 
 ## Privat rapport-skabelon
 
@@ -93,7 +93,7 @@ RESULTAT: Pejling → Sara står i Rygraden.
 NÆSTE UGE: Pejling er aktiv.
 ```
 
-Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere om drabet er brugt (*DRAB: ubrugt*). Ekkoer får, om spøgelsesstemmen er brugt, og hvilke skæbner der stadig er ledige. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
+Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere om drabet er brugt (*DRAB: ubrugt*). Ekkoer får, om spøgelsesstemmen er brugt, og deres skæbne. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
 
 *Vagt*, *Åben linje* og *Skakt* er handlinger, ikke information. De kan ikke forfalskes eller forstyrres.
 

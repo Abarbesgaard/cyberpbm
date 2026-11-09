@@ -14,7 +14,7 @@ const log: Entry[] = [
   { time: "Man 09:00", channel: "Privat", actor: "oracle", title: "Din rapport", body: "Din zone, hvem der står der med dig, og svaret på din evne. Sidste linje fortæller, hvad du kan i den kommende uge." },
   { time: "Man 09:00", channel: "Sektorkanal", actor: "oracle", title: "Nye rum", body: "Du flyttes til kanalen for din zone. Dem, du møder dér, er de eneste, du kan tale privat med denne uge." },
   { time: "Man–Fre", channel: "Højttaler + sektor", actor: "crew", title: "Samtale", body: "Skriv privat til ORACLE, og den læser beskeden op i #shipwide via højttaleren — uden afsender. I sektorkanalen taler du med navn til dem i samme zone. Ingen DM'er mellem spillere." },
-  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, evne og mål, arbejde og din tribunal-stemme. Ekkoer sender vedligehold og evt. skæbne. Ingen ordre = bliv og arbejd." },
+  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, evne og mål, arbejde og din tribunal-stemme. Ekkoer sender vedligehold og evt. Rumlog eller Hjemsøg. Ingen ordre = bliv og arbejd." },
   { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge: bevægelse, drab, støj og forfalskning, evner, systemer, tribunal. Ingen spiller gør noget. Mandag begynder det forfra." },
 ];
 

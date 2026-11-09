@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Ekkoet vælger sin skæbne", to: "ORACLE ruller skæbnen på d6", why: "1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Taget eller ugyldig giver Ekko. Mere spænding, ingen taktisk venten." },
   { from: "Kriser rammer zoner og kanaler", to: "Kriser rammer også gange og ORACLE's signal", why: "Gang kollapset lukker én stiplet gang. Støj på linjen gør hvert tredje ord fra ORACLE til brzzz i uge 4." },
   { from: "Langskibet er én lang kæde", to: "Langskibet har to gange med tværgange", why: "Man rykker én zone om ugen. Seks ryk fra ende til ende var hele kampagnen. Nu er der højst tre." },
   { from: "Skibet er altid en ring", to: "Fire skibsplaner på d4", why: "Samme syv zoner, forskellige gange. Ringen, Knudepunktet, Langskibet og Tvillingeskroget giver hver kampagne sin egen geografi." },
@@ -50,7 +51,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.23</span>
+        v0.7 → <span className="text-cp-yellow">v0.24</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (
