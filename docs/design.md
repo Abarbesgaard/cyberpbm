@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.25
+# USCSS CASSANDRA v0.26
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,16 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.24
+## 0. Hvad er ændret fra v0.25
+
+v0.26 giver hvert rum en **rumevne** og et **nedbrud**.
+
+| v0.25 | v0.26 | Hvorfor |
+|---|---|---|
+| Et system betyder kun noget på 0 | **Rumevne ved ≥ 3, nedbrud ved ≤ 1** | Status 2 og 5 føltes ens. Nu giver et sundt system en evne, og et svagt rammer hele skibet. |
+| Arbejde er det eneste, man gør i en sektion | **ARBEJDE: Rum → mål** i stedet for arbejde | Placering får mening hver uge. Prisen er, at systemet ikke stiger. |
+
+### Fra v0.24 til v0.25
 
 v0.25 lader døde og frosne blive en **alien**.
 
@@ -485,12 +494,29 @@ Lastrum    ████░ 4  +1
 Broen      █████ 5  +1
 Motorrum   ░░░░░ 0  −1
 ANOMALI: Uautoriseret adgang i Livsstøtte.
-KRITISK: Motorrum. Én uge til nedbrud.
+KRITISK: Motorrum. Én uge til systemsvigt.
 ```
 
 **Tallene er et spor.** Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Medlab, men Medlab steg kun 1? Én af dem arbejdede ikke. Besætning har ingen grund til at lade være. En syntetiker har.
 
 Sabotage i en tom sektion er sikkert for sabotøren, men kan ikke alene tømme et system fra start: 3 → 1. Sabotage blandt andre er sværere at se i tallene, men alle i rummet ved, at én af dem gjorde det.
+
+### 8.1b Rumevner og nedbrud
+
+Hver sektion har en rumevne og et nedbrud. **Mandagens status gælder hele ugen.** Rumevnen virker ved **≥ 3** for den, der bliver i sektionen, og koster ugens arbejde (*ARBEJDE: Rum → mål*). Nedbruddet rammer hele skibet ved **≤ 1**. Data og logik: `src/content/rooms.ts`.
+
+| Sektion | Rumevne (status ≥ 3) | Nedbrud (status ≤ 1) |
+|---|---|---|
+| **Livsstøtte** | **Iltreserve:** Livsstøtte kan ikke rammes af Uro, og du farer ikke vild. | **Iltmangel:** Arbejde tæller kun i sektioner, hvor mindst to spillere står. |
+| **Medlab** | **Obduktion → lig:** syntetikerdrab eller alienangreb? | **Lukket afdeling:** En Afløser kan ikke vågne. |
+| **Broen** | **Sensorfeje → zone:** hvor mange spillere står der? | **Højttaler død:** ORACLE læser intet op. Ekkoer er tavse. |
+| **Motorrum** | **Omdirigér → sektion:** Motorrum −1, sektionen +1. | **Skakter lukket:** Skakt virker ikke. |
+| **Lastrum** | **Værktøj:** Næste uge giver dit arbejde +2. | **Ingen reservedele:** Reparation giver +1. |
+| **Hypersøvn** | **Kapsel:** Du kan ikke dræbes eller angribes denne uge. | **Kryo svigter:** Tribunalet kan ikke fryse nogen. |
+
+- Rumevner er bevidst svagere end rolleevner. De giver alle en grund til at stå et bestemt sted — og en ny påstand, der ikke kan bevises.
+- Prisen er arbejdet. Bruger alle rumevnerne, falder systemerne, og nedbruddene kommer.
+- Nedbrud giver syntetikerne delmål før 0. Kryo svigter stopper tribunalet; Skakter lukket fanger besætningen; Iltmangel gør det farligt at stå alene.
 
 ### 8.2 Scenarie
 
@@ -533,7 +559,7 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
-- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og nedbrud, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
+- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og systemsvigt, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`. Rumevner, nedbrud, Omdirigér og Værktøj i `tests/rooms.test.ts`.
 - Drabsbetingelserne (uge 3+, alene, kun besætning, én pr. syntetiker, mislykket drab er ikke brugt) er testet i `tests/kills.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet

@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Et system betyder kun noget på 0", to: "Hvert rum har en rumevne (≥3) og et nedbrud (≤1)", why: "Rumevnen koster arbejdet. Nedbrud rammer hele skibet og giver syntetikerne delmål før 0." },
   { from: "Døde hjælper kun besætningen", to: "Døde kan blive en alien, der spiller for syntetikerne", why: "Alienen lever i skakterne, angriber ensomme spillere og skaber uro med falske alibier. To med Bekæmp smider den ud." },
   { from: "Ekkoet vælger sin skæbne", to: "ORACLE ruller skæbnen på d6", why: "1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Taget eller ugyldig giver Ekko. Mere spænding, ingen taktisk venten." },
   { from: "Kriser rammer zoner og kanaler", to: "Kriser rammer også gange og ORACLE's signal", why: "Gang kollapset lukker én stiplet gang. Støj på linjen gør hvert tredje ord fra ORACLE til brzzz i uge 4." },
@@ -15,7 +16,7 @@ const changes = [
   { from: "Kryo-ordre, jagt og fasthold", to: "Tribunalet sender direkte i kryo", why: "Ingen kan fysisk holde en anden fast i Slack. Neutralisering er nu kun en fælles beslutning." },
   { from: "Sikkerhedschef: fasthold tæller 2 point", to: "Sikkerhedschef: Vagt", why: "Vælg en spiller, som ikke kan dræbes denne uge. En evne som de andre: vælg et mål, ORACLE svarer." },
   { from: "Evner beskrevet som regler", to: "Hver evne viser, hvad du vælger, og hvad ORACLE svarer", why: "Spilleren skal kun vælge. ORACLE holder styr på resten og fortæller i mandagsrapporten, hvad du kan." },
-  { from: "System på 0 = syntetikerne vinder straks", to: "0 = KRITISK, én uge til nedbrud", why: "Sabotage i en tom sektion i uge 2 kunne vinde spillet, før nogen kunne reagere." },
+  { from: "System på 0 = syntetikerne vinder straks", to: "0 = KRITISK, én uge til systemsvigt", why: "Sabotage i en tom sektion i uge 2 kunne vinde spillet, før nogen kunne reagere." },
   { from: "Forfald hver uge", to: "Forfald i uge 2, 4 og 6 — aldrig oveni sabotage", why: "Fire besætningsmedlemmer kan ikke dække seks sektioner hver uge, når hver flytning koster arbejde." },
   { from: "Uge 4 forsegler den mest saboterede zone", to: "Uge 4 forsegler Rygraden", why: "At forsegle et svækket system dømte det. Nu presses bevægelsen i stedet." },
   { from: "Ingen drab", to: "Hver syntetiker kan dræbe én gang", why: "Fra uge 3, kun alene med offeret. Liget broadcastes med zone — et nyt spor, ikke et bevis." },
@@ -52,7 +53,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.25</span>
+        v0.7 → <span className="text-cp-yellow">v0.26</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

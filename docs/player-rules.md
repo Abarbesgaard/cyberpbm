@@ -47,6 +47,22 @@ Hver sektion (A–F) har et system fra 0 til 5. Alle starter på 3. Rygraden har
 - **Sabotage:** −2 (intet forfald oveni). **Reparation** (Ingeniør): +2.
 - **Et system på 0 er KRITISK.** Står det stadig på 0 efter næste uge, vinder syntetikerne.
 
+### Rumevner og nedbrud
+
+Hver sektion har en **rumevne** og et **nedbrud**. **Mandagens status gælder hele ugen.**
+
+- **Rumevne:** Står systemet på **3 eller mere**, kan du bruge rummets evne, hvis du bliver i sektionen. Skriv *ARBEJDE: Rum → mål* i stedet for at arbejde. Alle i rummet kan bruge den, også syntetikere. Obduktion og Sensorfeje er informationsevner: de kan forstyrres og forfalskes.
+- **Nedbrud:** Står systemet på **1 eller mindre**, rammer nedbruddet hele skibet, indtil det er oppe igen.
+
+| Sektion | Rumevne (status ≥ 3) | Nedbrud (status ≤ 1) |
+|---|---|---|
+| **Livsstøtte** | **Iltreserve:** Livsstøtte kan ikke rammes af Uro, og du farer ikke vild. | **Iltmangel:** Arbejde tæller kun i sektioner, hvor mindst to spillere står. |
+| **Medlab** | **Obduktion → lig:** syntetikerdrab eller alienangreb? | **Lukket afdeling:** En Afløser kan ikke vågne. |
+| **Broen** | **Sensorfeje → zone:** hvor mange spillere står der? | **Højttaler død:** ORACLE læser intet op. Ekkoer er tavse. |
+| **Motorrum** | **Omdirigér → sektion:** Motorrum −1, sektionen +1. | **Skakter lukket:** Skakt virker ikke. |
+| **Lastrum** | **Værktøj:** Næste uge giver dit arbejde +2. | **Ingen reservedele:** Reparation giver +1. |
+| **Hypersøvn** | **Kapsel:** Du kan ikke dræbes eller angribes denne uge. | **Kryo svigter:** Tribunalet kan ikke fryse nogen. |
+
 ORACLE offentliggør status og ændring for alle systemer hver mandag. Brug tallene: Hvis to blev i Medlab, men Medlab kun steg 1, arbejdede én af dem ikke.
 
 Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Er det opfyldt efter uge 6, vinder besætningen.
@@ -84,13 +100,13 @@ Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge
 UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
 EVNE:       Pejling → Peter         (eller: Ingen)
-ARBEJDE:    Nej                     (kun ved Bliv i en sektion; eller: Bekæmp)
+ARBEJDE:    Nej                     (kun ved Bliv i en sektion; eller: Bekæmp, Rum → mål)
 TRIBUNAL:   Anna                    (eller: Ingen)
 ```
 
 - **Bevægelse:** Bliv, eller ryk til en nabozone på kampagnens skibsplan (se *Skibet*).
 - **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
-- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1. Eller **Bekæmp**: er en alien i din zone efter bevægelse, kæmper du mod den i stedet. To, der bekæmper den samme uge, smider den ud. Er der ingen alien, sker intet.
+- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1. Eller **Bekæmp**: er en alien i din zone efter bevægelse, kæmper du mod den i stedet. To, der bekæmper den samme uge, smider den ud. Er der ingen alien, sker intet. Eller **Rum → mål**: brug sektionens rumevne (se *Rumevner og nedbrud*).
 Som ekko sender du i stedet:
 
 ```
