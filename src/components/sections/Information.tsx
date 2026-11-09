@@ -19,7 +19,7 @@ export function Information() {
         {levels.map((l) => (
           <div key={l.name} className={`border bg-cp-dark p-8 ${l.tone}`}>
             <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase">{l.truth}</div>
-            <h3 className="mb-3 font-head text-[1.8rem] font-extrabold uppercase leading-none text-cp-white">{l.name}</h3>
+            <h3 className="mb-3 font-head tracking-[0.08em] text-[1.1rem] uppercase leading-snug text-cp-white">{l.name}</h3>
             <p className="mb-4 text-[0.9rem] leading-[1.6] text-cp-off">{l.source}</p>
             <p className="font-mono text-[0.75rem] text-cp-mid">{l.ex}</p>
           </div>

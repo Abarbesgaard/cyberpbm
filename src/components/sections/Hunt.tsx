@@ -28,14 +28,14 @@ export function Hunt() {
             <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-red-bright">
               {String(i + 1).padStart(2, "0")} // {s.label}
             </div>
-            <h3 className="mb-4 font-head text-[1.6rem] font-extrabold uppercase leading-none">{s.title}</h3>
+            <h3 className="mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">{s.title}</h3>
             <p className="text-[0.85rem] leading-[1.7] text-cp-off">{s.body}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <pre className="whitespace-pre-wrap border border-cp-red bg-cp-dark p-6 font-mono text-[0.8rem] leading-[1.8] text-cp-off">
+        <pre className="crt crt-red whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
 {`ORACLE // SHIPWIDE // UGE 4
 PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const sectionLinks = [
-  { href: "#ship", label: "// SKIBET" },
-  { href: "#week", label: "// UGEN" },
-  { href: "#hunt", label: "// JAGTEN" },
-  { href: "#roles", label: "// ROLLER" },
-  { href: "#campaign", label: "// KAMPAGNE" },
+  { href: "#ship", label: "Skibet" },
+  { href: "#week", label: "Ugen" },
+  { href: "#hunt", label: "Jagten" },
+  { href: "#roles", label: "Roller" },
+  { href: "#campaign", label: "Kampagne" },
 ];
 
 export function Nav() {
@@ -16,56 +16,57 @@ export function Nav() {
 
   useEffect(() => {
     if (!isHome) return;
+    let frame = 0;
     function onScroll() {
-      let current = "";
-      document.querySelectorAll("section[id]").forEach((s) => {
-        if (window.scrollY >= (s as HTMLElement).offsetTop - 80) {
-          current = s.id;
-        }
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        let current = "";
+        document.querySelectorAll("section[id]").forEach((s) => {
+          if (window.scrollY >= (s as HTMLElement).offsetTop - 80) current = s.id;
+        });
+        setActive(current);
       });
-      setActive(current);
     }
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [isHome]);
 
+  const linkClass = (on: boolean) =>
+    `flex h-[52px] items-center border-l border-cp-border px-4 font-mono text-[0.65rem] tracking-[0.18em] uppercase no-underline transition-colors hover:bg-cp-yellow/5 hover:text-cp-yellow ${
+      on ? "text-cp-yellow" : "text-cp-mid"
+    }`;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[1000] flex h-[52px] items-center bg-cp-dark/[0.96] px-8 border-b border-cp-border-bright">
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cp-red via-cp-yellow to-transparent" />
-
-      <Link
-        to="/"
-        className="mr-auto font-head font-black text-[1.1rem] tracking-[0.15em] uppercase text-cp-yellow no-underline"
-        style={{ textShadow: "0 0 20px var(--cp-yellow-dim)" }}
-      >
-        USCSS Cassandra
-      </Link>
-
-      <ul className="hidden md:flex list-none gap-0">
-        {isHome &&
-          sectionLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`flex h-[52px] items-center border-l border-cp-border px-4 font-mono text-[0.65rem] tracking-[0.1em] uppercase no-underline transition-colors duration-150 hover:bg-cp-yellow/5 hover:text-cp-yellow ${
-                  active === link.href.slice(1) ? "text-cp-yellow" : "text-cp-mid"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        <li>
-          <Link
-            to="/rules"
-            className={`flex h-[52px] items-center border-l border-cp-border px-4 font-mono text-[0.65rem] tracking-[0.1em] uppercase no-underline transition-colors duration-150 hover:bg-cp-red/10 hover:text-cp-red-bright ${
-              pathname === "/rules" ? "text-cp-red-bright" : "text-cp-mid"
-            }`}
-          >
-            // REGLER
-          </Link>
-        </li>
-      </ul>
+    <nav className="fixed top-0 right-0 left-0 z-[1000] bg-cp-panel/[0.97]">
+      <div className="flex h-[52px] items-center px-6">
+        <Link to="/" className="mr-auto flex items-center gap-3 no-underline">
+          <span className="flex h-7 w-7 items-center justify-center border border-cp-yellow font-head text-[0.55rem] text-cp-yellow">
+            KT
+          </span>
+          <span className="font-head text-[0.8rem] tracking-[0.2em] uppercase text-cp-white">
+            USCSS Cassandra
+          </span>
+        </Link>
+        <ul className="hidden list-none md:flex">
+          {isHome &&
+            sectionLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className={linkClass(active === link.href.slice(1))}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          <li>
+            <Link to="/rules" className={linkClass(pathname === "/rules")}>
+              Regler
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="hazard h-[4px] opacity-80" />
     </nav>
   );
 }

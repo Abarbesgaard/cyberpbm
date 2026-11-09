@@ -33,8 +33,13 @@ export function ShipMap() {
         Deck <span className="text-cp-yellow">Layout</span>
       </SectionHeader>
 
-      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_320px]">
-        <svg viewBox="0 0 440 400" className="w-full max-w-[560px]" role="img" aria-label="Skibskort">
+      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,560px)_320px]">
+        <div className="crt p-4 md:p-6">
+          <div className="mb-2 flex justify-between text-[1rem] opacity-80">
+            <span>DEKSKEMA // USCSS CASSANDRA</span>
+            <span>{current ? `ZONE ${current.id}` : "STANDBY"}</span>
+          </div>
+        <svg viewBox="0 0 440 400" className="relative z-10 w-full" role="img" aria-label="Skibskort">
           {edges.map(([a, b]) => {
             const p = pos(a);
             const q = pos(b);
@@ -43,7 +48,7 @@ export function ShipMap() {
               <line
                 key={a + b}
                 x1={p.x} y1={p.y} x2={q.x} y2={q.y}
-                stroke={lit ? "var(--cp-yellow)" : "var(--cp-border-bright)"}
+                stroke={lit ? "var(--cp-yellow)" : "var(--cp-cyan-dim)"}
                 strokeWidth={lit ? 2 : 1}
                 strokeDasharray={a === "R" || b === "R" ? "4 4" : undefined}
               />
@@ -60,30 +65,31 @@ export function ShipMap() {
                 className="cursor-pointer"
               >
                 <rect
-                  x={p.x - 52} y={p.y - 22} width={104} height={44}
-                  fill={isSel ? "#0F2A1A" : "var(--cp-dark)"}
-                  stroke={isSel || isReach ? "var(--cp-yellow)" : "var(--cp-border-bright)"}
+                  x={p.x - 58} y={p.y - 22} width={116} height={44} rx={4}
+                  fill={isSel ? "#2A1C08" : "#08110A"}
+                  stroke={isSel || isReach ? "var(--cp-yellow)" : "var(--cp-cyan-dim)"}
                 />
-                <text x={p.x} y={p.y - 4} textAnchor="middle" className="fill-cp-yellow font-mono text-[10px]">
+                <text x={p.x} y={p.y - 4} textAnchor="middle" className={`font-crt text-[14px] ${isSel || isReach ? "fill-cp-yellow" : "fill-cp-cyan"}`}>
                   [{z.id}]
                 </text>
-                <text x={p.x} y={p.y + 12} textAnchor="middle" className="fill-cp-white font-head text-[13px] font-bold uppercase">
+                <text x={p.x} y={p.y + 14} textAnchor="middle" className={`font-crt text-[18px] uppercase ${isSel || isReach ? "fill-cp-yellow" : "fill-cp-cyan"}`}>
                   {z.name}
                 </text>
               </g>
             );
           })}
         </svg>
+        </div>
 
-        <div className="border border-cp-border-bright bg-cp-panel p-6 font-mono text-[0.75rem] leading-[1.9] text-cp-off">
+        <div className="crt crt-amber p-6 text-[1.2rem] leading-[1.5]">
           {current ? (
             <>
-              <div className="text-cp-yellow">&gt; ZONE {current.id} // {current.name.toUpperCase()}</div>
+              <div>&gt; ZONE {current.id} // {current.name.toUpperCase()}</div>
               <div>&gt; KAN NÅ:</div>
               {current.neighbours.map((n) => (
                 <div key={n}>&nbsp;&nbsp;- {zones.find((z) => z.id === n)?.name}</div>
               ))}
-              <div className="mt-2 text-cp-mid">&gt; Syntetiker m. Skakt: op til to zoner.</div>
+              <div className="mt-2 opacity-60">&gt; Syntetiker m. Skakt: op til to zoner.</div>
             </>
           ) : (
             <div>&gt; VÆLG EN ZONE<span className="blink">_</span></div>
