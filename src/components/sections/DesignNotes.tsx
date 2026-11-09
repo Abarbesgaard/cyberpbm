@@ -23,7 +23,7 @@ const questions = [
 
 export function DesignNotes() {
   return (
-    <section id="notes" className="border-t border-cp-border px-8 py-24 md:px-16">
+    <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
         v0.6 → <span className="text-cp-yellow">v0.7</span>
       </SectionHeader>

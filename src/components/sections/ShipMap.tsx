@@ -25,7 +25,7 @@ export function ShipMap() {
   const reachable = new Set(current?.neighbours ?? []);
 
   return (
-    <section id="ship" className="border-t border-cp-border px-8 py-24 md:px-16">
+    <section id="ship" className="hull px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion III // Skibet"
         intro="Syv zoner. Hver uge: bliv, eller ryk én zone. Rygraden når alle sektioner — hurtig, men eksponeret. Klik en zone for at se, hvor du kan nå hen."
@@ -33,8 +33,10 @@ export function ShipMap() {
         Deck <span className="text-cp-yellow">Layout</span>
       </SectionHeader>
 
-      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,560px)_320px]">
-        <div className="crt p-4 md:p-6">
+      <div className="console max-w-[980px] p-4 sm:p-6 [--chamfer:22px]">
+      <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">Navigation // Deck C</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-green" /><span className="lamp lamp-off" /></span></div>
+      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
+        <div className="crt m-[10px] p-4 md:p-6">
           <div className="mb-2 flex justify-between text-[1rem] opacity-80">
             <span>DEKSKEMA // USCSS CASSANDRA</span>
             <span>{current ? `ZONE ${current.id}` : "STANDBY"}</span>
@@ -81,7 +83,7 @@ export function ShipMap() {
         </svg>
         </div>
 
-        <div className="crt crt-amber p-6 text-[1.2rem] leading-[1.5]">
+        <div className="crt crt-amber m-[10px] min-h-[180px] p-6 text-[1.2rem] leading-[1.5]">
           {current ? (
             <>
               <div>&gt; ZONE {current.id} // {current.name.toUpperCase()}</div>
@@ -95,6 +97,7 @@ export function ShipMap() {
             <div>&gt; VÆLG EN ZONE<span className="blink">_</span></div>
           )}
         </div>
+      </div>
       </div>
     </section>
   );

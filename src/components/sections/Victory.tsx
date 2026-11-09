@@ -2,12 +2,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 export function Victory() {
   return (
-    <section id="victory" className="bg-cp-panel px-8 py-24 md:px-16">
+    <section id="victory" className="hull-alt wainscot px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion II // Sejrsbetingelser">
         To hold. <span className="text-cp-red-bright">Ét skib.</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="bezel border-t-[6px] border-cp-yellow p-8">
+        <div className="bezel bezel-screws border-t-[6px] border-cp-yellow p-8">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">
             Besætningen
           </div>
@@ -19,7 +19,7 @@ export function Victory() {
             koster jer en hånd.
           </p>
         </div>
-        <div className="bezel border-t-[6px] border-cp-red p-8">
+        <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
             Syntetikerne
           </div>

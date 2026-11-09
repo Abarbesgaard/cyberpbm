@@ -8,7 +8,7 @@ const levels = [
 
 export function Information() {
   return (
-    <section id="information" className="bg-cp-panel px-8 py-24 md:px-16">
+    <section id="information" className="hull-alt wainscot px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion VI // Information"
         intro="Ingen evne fanger en syntetiker med ét klik. Information er nyttig, men sjældent hel. Du ved kun gratis, hvem der står i dit eget rum — alt andet er vidneudsagn."
@@ -17,7 +17,7 @@ export function Information() {
       </SectionHeader>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {levels.map((l) => (
-          <div key={l.name} className={`bezel border-t-[6px] p-8 ${l.tone}`}>
+          <div key={l.name} className={`bezel bezel-screws border-t-[6px] p-8 ${l.tone}`}>
             <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase">{l.truth}</div>
             <h3 className="mb-3 font-head tracking-[0.08em] text-[1.1rem] uppercase leading-snug text-cp-white">{l.name}</h3>
             <p className="mb-4 text-[0.9rem] leading-[1.6] text-cp-off">{l.source}</p>

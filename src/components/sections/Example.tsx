@@ -15,13 +15,15 @@ const facts = [
 
 export function Example() {
   return (
-    <section id="example" className="bg-cp-panel px-8 py-24 md:px-16">
+    <section id="example" className="hull-alt wainscot px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion X // Eksempel">
         Uge 04 — <span className="text-cp-red-bright">Containment Failure</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <div>
-          <pre className="crt crt-red mb-6 whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
+          <div className="console mb-6 p-4 sm:p-5 [--chamfer:16px]">
+          <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">#shipwide // Uge 04</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-red blink-slow" /><span className="lamp lamp-off" /></span></div>
+          <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
 {`ORACLE // SHIPWIDE // UGE 4
 INTEGRITET: 2/4
 ANOMALI: Uautoriseret adgang i Livsstøtte.
@@ -29,6 +31,7 @@ PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.
 0 fasthold-point. Mislykket.`}
           </pre>
+          </div>
           <p className="mb-4 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-mid">
             Kryo-ordren fra uge 3 var på Anna.
           </p>
