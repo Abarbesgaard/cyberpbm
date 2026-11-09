@@ -70,7 +70,7 @@ LIG FUNDET: Sara, Lastrum.`}
         <p className="mb-6 max-w-[720px] text-[0.9rem] leading-[1.6] text-cp-off">
           Når du bliver ekko, ruller ORACLE en d6 i hemmelighed. Er skæbnen taget, eller gælder den ikke for dig, bliver du Ekko. Hvem der har hvilken, er hemmeligt — undtagen Afløseren.
         </p>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {fates.map((f) => (
             <div key={f.id} className="bezel bezel-screws p-6">
               <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">

@@ -8,6 +8,7 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 - **Besætning:** Opfyld kampagnens scenarie inden udgangen af uge 6. Tribunalet er et redskab: en syntetiker i kryo kan ikke længere sabotere.
 - **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), eller sørg for, at scenariet ikke er opfyldt efter Final Protocol. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
+- **Alien:** En død eller frossen spiller kan blive en alien (se *Skæbne*). Den spiller for syntetikerne, uanset hvilket hold den kom fra.
 
 ## Roller og påstande
 
@@ -83,19 +84,20 @@ Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge
 UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
 EVNE:       Pejling → Peter         (eller: Ingen)
-ARBEJDE:    Nej                     (kun ved Bliv i en sektion)
+ARBEJDE:    Nej                     (kun ved Bliv i en sektion; eller: Bekæmp)
 TRIBUNAL:   Anna                    (eller: Ingen)
 ```
 
 - **Bevægelse:** Bliv, eller ryk til en nabozone på kampagnens skibsplan (se *Skibet*).
 - **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
-- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
+- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1. Eller **Bekæmp**: er en alien i din zone efter bevægelse, kæmper du mod den i stedet. To, der bekæmper den samme uge, smider den ud. Er der ingen alien, sker intet.
 Som ekko sender du i stedet:
 
 ```
 UGE:        4
 VEDLIGEHOLD: Broen                  (eller: Ingen)
 HJEMSØG:    Peter                   (kun Spøgelse; Jorden: RUMLOG → zone)
+ALIEN:      Ryk → Lastrum, Angreb   (kun Alien; eller: Uro → zone)
 TRIBUNAL:   Ingen                   (eller din spøgelsesstemme)
 ```
 
@@ -129,6 +131,16 @@ Ingen kan bevise noget. I kan kun overbevise hinanden.
 
 At stå alene er farligt. At ingen arbejder, er også farligt.
 
+### Alien
+
+En død eller frossen spiller kan blive en **alien** (se *Skæbne*). Den skifter side til syntetikerne og lever i skakterne. Dens zone er hemmelig.
+
+- **Angreb:** Står præcis én spiller i alienens zone efter bevægelse, ruller ORACLE d6. Besætning dør på 4–6. Syntetikere ignoreres. Sikkerhedschefens vagt beskytter. Et offer broadcastes som ethvert andet lig: *"LIG FUNDET: [Navn], [zone]."*
+- **Uro → zone:** Den, der rykker ind i zonen, farer vild og ender i en tilfældig nabozone. ORACLE fortæller dig privat, hvor du endte. Skakt ind og ud af zonen virker ikke.
+- **Tegn:** Står du i samme zone som alienen efter bevægelse, får du privat: *"Noget bevæger sig i ventilationen."*
+- **Bekæmp:** To spillere med *ARBEJDE: Bekæmp* i alienens zone smider den ud. Den bliver et almindeligt ekko, men spiller stadig for syntetikerne.
+- Alienen kender ikke syntetikerne, og de kender ikke den. Et mislykket angreb kan være en syntetiker — eller bare et dårligt slag.
+
 ## Ekko — død eller i kryo
 
 Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evne, arbejde eller sektorkanal. Men du må stadig:
@@ -139,12 +151,13 @@ Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evn
 
 ### Skæbne
 
-Når du bliver ekko, **ruller ORACLE en d6** i hemmelighed og fortæller dig privat, hvad du bliver: **1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko.** Hver skæbne findes **én gang pr. kampagne**, ligesom rollerne. Er resultatet taget, eller er det Afløser og du er frosset, bliver du Ekko. Du kan ikke vælge eller rulle om. Hvem der har hvilken skæbne, er hemmeligt.
+Når du bliver ekko, **ruller ORACLE en d6** i hemmelighed og fortæller dig privat, hvad du bliver: **1 Jorden, 2 Spøgelse, 3–4 Alien, 5 Afløser, 6 Ekko.** Hver skæbne findes **én gang pr. kampagne**, ligesom rollerne. Er resultatet taget, eller er det Afløser og du er frosset, bliver du Ekko. Du kan ikke vælge eller rulle om. Hvem der har hvilken skæbne, er hemmeligt.
 
 | d6 | Skæbne | Hvem | Hver fredag | ORACLE svarer fx |
 |---|---|---|---|---|
-| 1–2 | **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
-| 3–4 | **Spøgelse** | Døde og frosne | **Hjemsøg → spiller.** ORACLE fortæller, hvor vedkommende står efter bevægelse. | *"Sara står i Lastrum."* |
+| 1 | **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
+| 2 | **Spøgelse** | Døde og frosne | **Hjemsøg → spiller.** ORACLE fortæller, hvor vedkommende står efter bevægelse. | *"Sara står i Lastrum."* |
+| 3–4 | **Alien** | Døde og frosne | Skifter side: du spiller nu for **syntetikerne** og vinder, hvis de vinder. Du lever i skakterne, og din zone er hemmelig. Vælg en startzone; derefter hver fredag: *ALIEN: Ryk → nabozone* (eller Bliv; kriser stopper dig ikke) og én af: **Angreb** — står præcis én spiller i din zone, dør besætning på d6 4–6; syntetikere ignoreres. **Uro → zone** — den, der rykker ind i zonen, farer vild og ender i en tilfældig nabozone; Skakt ind og ud virker ikke. To spillere med *Bekæmp* i din zone smider dig ud, og du bliver Ekko. | *"Angreb: Anna var alene. Intet sker."* |
 | 5 | **Afløser** | Kun dræbte | Du vågner i Hypersøvn som **aktiv spiller uden evne**: bevægelse, arbejde og stemme. Du er ikke længere ekko. | *"KAPSEL ÅBNET: Sara er vågen."* (broadcast) |
 | 6 | **Ekko** | Alle | Ingen ekstra handling. Også resultatet, hvis skæbnen er taget eller ikke gælder for dig. | — |
 

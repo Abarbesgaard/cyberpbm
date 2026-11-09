@@ -21,7 +21,7 @@ export const crises: Crisis[] = [
   { roll: 11, name: "Optælling", text: "ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive." },
   { roll: 12, name: "Tribunal suspenderet", text: "Intet tribunal i uge 4." },
   { roll: 13, name: "Åben afstemning", text: "ORACLE offentliggør, hvem der stemte på hvem i uge 4's tribunal." },
-  { roll: 14, name: "Nødbelysning", text: "Ingen drab kan lykkes i uge 4. Et forsøgt drab er ikke brugt." },
+  { roll: 14, name: "Nødbelysning", text: "Ingen drab kan lykkes i uge 4, heller ikke alienens angreb. Et forsøgt drab er ikke brugt." },
   { roll: 15, name: "Gang kollapset", text: "Den stiplede gang mellem sektionen og Rygraden er lukket. Andre gange og Skakt virker.", section: true },
   { roll: 16, name: "Lækket log", text: "ORACLE frigiver positionsloggen fra uge 2 i mandagsbroadcasten." },
   { roll: 17, name: "Støj på linjen", text: "Alt fra ORACLE i uge 4 har støj: hvert tredje ord bliver til \"brzzz.\" Det gælder broadcasts, informationsresultater og højttaleren." },
