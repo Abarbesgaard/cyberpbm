@@ -31,7 +31,7 @@ export function Hero() {
           <div className="mt-5 inline-flex items-stretch">
             <span className="hazard-red-sm block w-6" aria-hidden />
             <span className="border border-l-0 border-cp-red px-3 py-1 font-mono text-[0.7rem] tracking-[0.3em] uppercase text-cp-red-bright">
-              Damage Control v0.18
+              Social deduction // v0.19
             </span>
           </div>
 
@@ -59,7 +59,7 @@ export function Hero() {
 
         <div className="console p-5 sm:p-6 [--chamfer:22px]">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <span className="plate">Status // Damage Control</span>
+            <span className="plate">Status // ORACLE</span>
             <span className="flex gap-2" aria-hidden><span className="lamp lamp-green" /><span className="lamp lamp-amber blink-slow" /></span>
           </div>
           <div className="grid grid-cols-2 gap-3">

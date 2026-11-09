@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Damage Control v0.18
+# USCSS CASSANDRA v0.19
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -8,11 +8,11 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ## 0. Hvad er ændret fra v0.17
 
-v0.18 omdøber spillet fra *Hunt Protocol* til **Damage Control**.
+v0.19 dropper undertitlen. Spillet hedder bare **USCSS Cassandra**.
 
-| v0.17 | v0.18 | Hvorfor |
+| v0.17 | v0.19 | Hvorfor |
 |---|---|---|
-| Hunt Protocol | **Damage Control** | Der er ingen jagt længere. Spillet handler om at redde skibet — eller smadre det. |
+| USCSS Cassandra — Hunt Protocol | **USCSS Cassandra** | Der er ingen jagt længere. Spillet handler om at redde skibet — eller smadre det. (v0.18 hed kortvarigt *Damage Control*.) |
 
 ### Fra v0.16 til v0.17
 
