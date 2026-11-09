@@ -58,7 +58,7 @@ LIG FUNDET: Sara, Lastrum.`}
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Ekko — døde og frosne</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
             <li>Ingen bevægelse, evne eller sektorkanal. Rollen afsløres først ved spillets afslutning.</li>
-            <li>Frit ord via højttaleren. Alt, et ekko siger, er vidneudsagn.</li>
+            <li>Taler <strong className="text-cp-yellow">kun gennem ORACLE</strong> — via højttaleren, som alle andre. Alt, et ekko siger, er vidneudsagn.</li>
             <li><strong className="text-cp-yellow">Vedligehold:</strong> vælg hver uge én sektion. Den får intet forfald.</li>
             <li>Én <strong className="text-cp-yellow">spøgelsesstemme</strong> til ét tribunal resten af spillet.</li>
           </ul>

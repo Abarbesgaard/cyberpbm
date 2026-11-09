@@ -284,7 +284,7 @@ Den dømtes rolle afsløres ikke. Besætningen ved ikke, om de ramte rigtigt, f�
 Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
 - mister bevægelse, evne, arbejde og sektorkanal.
-- må tale via **højttaleren** som alle andre. Alt, et ekko siger, er vidneudsagn — ORACLE bekræfter aldrig en rolle.
+- taler **kun gennem ORACLE** — via højttaleren, anonymt som alle andre. Ingen sektorkanal eller andre kanaler. Det gælder alle skæbner undtagen Afløseren, der er aktiv igen. Alt, et ekko siger, er vidneudsagn — ORACLE bekræfter aldrig en rolle.
 - sender hver fredag en kort ordre: **Vedligehold → én sektion.** Den sektion får intet forfald den uge. Det giver ikke +1, og ORACLE oplyser aldrig, hvem der vedligeholdt hvad.
 - har **én spøgelsesstemme**, der kan bruges i ét tribunal i resten af spillet.
 
@@ -296,7 +296,7 @@ Et ekko kan vælge én ledig **skæbne** i sin næste ordre (*SKÆBNE: Jorden*).
 
 | Skæbne | Hvem | Effekt |
 |---|---|---|
-| **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. Jorden taler kun gennem ORACLE (højttaleren). |
+| **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. |
 | **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
 | **Afløser** | Kun dræbte | Vågner i Hypersøvn som aktiv spiller uden evne: bevægelse, arbejde, stemme. Kan dræbes og dømmes igen. |
 | **Ekko** | Alle | Standard. Ingen ekstra handling. |
