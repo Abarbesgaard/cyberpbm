@@ -3,18 +3,71 @@ export type ZoneId = "A" | "B" | "C" | "D" | "E" | "F" | "R";
 export interface Zone {
   id: ZoneId;
   name: string;
-  neighbours: ZoneId[];
 }
 
 export const zones: Zone[] = [
-  { id: "A", name: "Hypersøvn", neighbours: ["B", "F", "R"] },
-  { id: "B", name: "Medlab", neighbours: ["A", "C", "R"] },
-  { id: "C", name: "Livsstøtte", neighbours: ["B", "D", "R"] },
-  { id: "D", name: "Lastrum", neighbours: ["C", "E", "R"] },
-  { id: "E", name: "Broen", neighbours: ["D", "F", "R"] },
-  { id: "F", name: "Motorrum", neighbours: ["E", "A", "R"] },
-  { id: "R", name: "Rygraden", neighbours: ["A", "B", "C", "D", "E", "F"] },
+  { id: "A", name: "Hypersøvn" },
+  { id: "B", name: "Medlab" },
+  { id: "C", name: "Livsstøtte" },
+  { id: "D", name: "Lastrum" },
+  { id: "E", name: "Broen" },
+  { id: "F", name: "Motorrum" },
+  { id: "R", name: "Rygraden" },
 ];
+
+/** A ship plan: same seven zones, different corridors. Chosen or rolled (d4) at setup. */
+export interface Layout {
+  id: string;
+  roll: number;
+  name: string;
+  text: string;
+  edges: [ZoneId, ZoneId][];
+  /** Map coordinates in a 440×400 viewBox. */
+  pos: Record<ZoneId, { x: number; y: number }>;
+}
+
+const ringPos = (() => {
+  const angles: Record<Exclude<ZoneId, "R">, number> = { A: -120, B: -60, C: 0, D: 60, E: 120, F: 180 };
+  const out = { R: { x: 220, y: 200 } } as Record<ZoneId, { x: number; y: number }>;
+  for (const [id, deg] of Object.entries(angles)) {
+    const a = (deg * Math.PI) / 180;
+    out[id as ZoneId] = { x: Math.round(220 + 150 * Math.cos(a)), y: Math.round(200 + 150 * Math.sin(a)) };
+  }
+  return out;
+})();
+
+const spokes: [ZoneId, ZoneId][] = (["A", "B", "C", "D", "E", "F"] as const).map((z) => [z, "R"]);
+
+export const layouts: Layout[] = [
+  {
+    id: "ring", roll: 1, name: "Ringen",
+    text: "Seks sektioner i en ring om Rygraden. Rygraden når alle. Intet er mere end to uger væk.",
+    edges: [["A", "B"], ["B", "C"], ["C", "D"], ["D", "E"], ["E", "F"], ["F", "A"], ...spokes],
+    pos: ringPos,
+  },
+  {
+    id: "hub", roll: 2, name: "Knudepunktet",
+    text: "Sektionerne har kun dør til Rygraden. Al trafik går gennem midten, så man ser hinanden dér — og en forseglet Rygrad lammer skibet.",
+    edges: spokes,
+    pos: ringPos,
+  },
+  {
+    id: "long", roll: 3, name: "Langskibet",
+    text: "Én lang korridor fra Broen til Motorrum. Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt.",
+    edges: [["E", "B"], ["B", "A"], ["A", "R"], ["R", "C"], ["C", "D"], ["D", "F"]],
+    pos: { E: { x: 110, y: 30 }, B: { x: 330, y: 86 }, A: { x: 110, y: 142 }, R: { x: 330, y: 198 }, C: { x: 110, y: 254 }, D: { x: 330, y: 310 }, F: { x: 110, y: 366 } },
+  },
+  {
+    id: "twin", roll: 4, name: "Tvillingeskroget",
+    text: "To skrog med tre sektioner hver, forbundet af Rygraden. Inden for et skrog når alle hinanden. Mellem skrogene er Rygraden eneste vej.",
+    edges: [["E", "B"], ["B", "A"], ["A", "E"], ["A", "R"], ["R", "C"], ["C", "D"], ["D", "F"], ["F", "C"]],
+    pos: { E: { x: 100, y: 50 }, B: { x: 340, y: 50 }, A: { x: 220, y: 125 }, R: { x: 220, y: 200 }, C: { x: 220, y: 275 }, D: { x: 100, y: 350 }, F: { x: 340, y: 350 } },
+  },
+];
+
+export function neighbours(layout: Layout, id: ZoneId): ZoneId[] {
+  return layout.edges.flatMap(([a, b]) => (a === id ? [b] : b === id ? [a] : []));
+}
 
 export type RoleTag = "OBSERVATION" | "ANALYSE" | "SIKKERHED" | "URET" | "SOCIAL";
 

@@ -1,48 +1,49 @@
 import { useState } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
-import { zones, type ZoneId } from "@/content/game";
-
-const CX = 220;
-const CY = 200;
-const RADIUS = 150;
-const ringAngles: Record<Exclude<ZoneId, "R">, number> = {
-  A: -120, B: -60, C: 0, D: 60, E: 120, F: 180,
-};
-
-function pos(id: ZoneId) {
-  if (id === "R") return { x: CX, y: CY };
-  const a = (ringAngles[id] * Math.PI) / 180;
-  return { x: CX + RADIUS * Math.cos(a), y: CY + RADIUS * Math.sin(a) };
-}
-
-const edges: [ZoneId, ZoneId][] = zones.flatMap((z) =>
-  z.neighbours.filter((n) => z.id < n).map((n) => [z.id, n] as [ZoneId, ZoneId])
-);
+import { layouts, neighbours, zones, type ZoneId } from "@/content/game";
 
 export function ShipMap() {
+  const [layoutId, setLayoutId] = useState(layouts[0].id);
   const [selected, setSelected] = useState<ZoneId | null>(null);
+  const layout = layouts.find((l) => l.id === layoutId) ?? layouts[0];
+  const pos = (id: ZoneId) => layout.pos[id];
   const current = zones.find((z) => z.id === selected);
-  const reachable = new Set(current?.neighbours ?? []);
+  const reach = current ? neighbours(layout, current.id) : [];
+  const reachable = new Set(reach);
 
   return (
     <section id="ship" className="hull px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion IV // Skibet"
-        intro="Syv zoner. Hver uge: bliv, eller ryk én zone. Rygraden når alle sektioner — hurtig, men eksponeret. Klik en zone for at se, hvor du kan nå hen."
+        intro="Syv zoner, fire mulige skibsplaner. GM vælger eller ruller planen på d4 før uge 1. Hver uge: bliv, eller ryk til en nabozone. Klik en zone for at se, hvor du kan nå hen."
       >
         Deck <span className="text-cp-yellow">Layout</span>
       </SectionHeader>
+
+      <div className="mb-6 flex max-w-[980px] flex-wrap gap-3" role="tablist" aria-label="Skibsplan">
+        {layouts.map((l) => (
+          <button
+            key={l.id}
+            role="tab"
+            aria-selected={l.id === layout.id}
+            onClick={() => { setLayoutId(l.id); setSelected(null); }}
+            className={`key cursor-pointer px-4 py-2.5 font-mono text-[0.68rem] tracking-[0.18em] uppercase [--chamfer:6px] ${l.id === layout.id ? "text-cp-yellow" : "text-cp-off"}`}
+          >
+            d4: {l.roll} // {l.name}
+          </button>
+        ))}
+      </div>
 
       <div className="console max-w-[980px] p-4 sm:p-6 [--chamfer:22px]">
       <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">Navigation // Deck C</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-green" /><span className="lamp lamp-off" /></span></div>
       <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
         <div className="crt m-[10px] p-4 md:p-6">
           <div className="mb-2 flex justify-between text-[1rem] opacity-80">
-            <span>DEKSKEMA // USCSS CASSANDRA</span>
+            <span>DEKSKEMA // {layout.name.toUpperCase()}</span>
             <span>{current ? `ZONE ${current.id}` : "STANDBY"}</span>
           </div>
         <svg viewBox="0 0 440 400" className="relative z-10 w-full" role="img" aria-label="Skibskort">
-          {edges.map(([a, b]) => {
+          {layout.edges.map(([a, b]) => {
             const p = pos(a);
             const q = pos(b);
             const lit = selected !== null && (a === selected || b === selected);
@@ -88,13 +89,17 @@ export function ShipMap() {
             <>
               <div>&gt; ZONE {current.id} // {current.name.toUpperCase()}</div>
               <div>&gt; KAN NÅ:</div>
-              {current.neighbours.map((n) => (
+              {reach.map((n) => (
                 <div key={n}>&nbsp;&nbsp;- {zones.find((z) => z.id === n)?.name}</div>
               ))}
               <div className="mt-2 opacity-60">&gt; Skaktløber: vilkårlig zone.</div>
             </>
           ) : (
-            <div>&gt; VÆLG EN ZONE<span className="blink">_</span></div>
+            <>
+              <div>&gt; {layout.name.toUpperCase()}</div>
+              <div className="mt-2 opacity-80">{layout.text}</div>
+              <div className="mt-3">&gt; VÆLG EN ZONE<span className="blink">_</span></div>
+            </>
           )}
         </div>
       </div>

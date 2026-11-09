@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.20
+# USCSS CASSANDRA v0.21
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,15 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.19
+## 0. Hvad er ændret fra v0.20
+
+v0.21 giver skibet **fire skibsplaner**.
+
+| v0.20 | v0.21 | Hvorfor |
+|---|---|---|
+| Skibet er altid en ring om Rygraden | **Fire planer på d4: Ringen, Knudepunktet, Langskibet, Tvillingeskroget** | Samme zoner, andre gange. Hver kampagne får sin egen geografi: hvor man mødes, og hvor langt der er mellem målene. |
+
+### Fra v0.19 til v0.20
 
 v0.20 giver døde og frosne spillere en **skæbne**.
 
@@ -181,23 +189,16 @@ En fejlagtig neutralisering fjerner en uskyldig fra spillets aktive handlinger. 
 
 ## 3. Skibet
 
-Syv zoner. En ring af seks sektioner rundt om **Rygraden**, skibets centrale korridor.
+Syv zoner: seks sektioner med hvert sit system og **Rygraden**, skibets centrale korridor uden system. Kampagnen bruger én af fire **skibsplaner**, valgt eller rullet på d4 ved opsætning og offentlig fra uge 1. Zonerne og deres navne er de samme i alle planer, så scenarier og kriser virker overalt.
 
-```
-        [A] HYPERSØVN ──── [B] MEDLAB
-           /                    \
-  [F] MOTORRUM ── [R] RYGRADEN ── [C] LIVSSTØTTE
-           \                    /
-        [E] BROEN ─────── [D] LASTRUM
+| d4 | Skibsplan | Forbindelser | Karakter |
+|---|---|---|---|
+| 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
+| 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
+| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
 
-  Rygraden har også forbindelse til A, B, D og E.
-```
-
-- Hver sektion grænser op til sine to nabosektioner og til Rygraden.
-- Rygraden grænser op til alle sektioner.
-- Ringen: A – B – C – D – E – F – A.
-
-Rygraden er hurtig, men eksponeret. Alle kan nå den på én uge.
+Planerne ændrer, hvor man mødes, og hvor langt der er mellem målene. Data og kort ligger i `src/content/game.ts` (`layouts`).
 
 ---
 
@@ -374,7 +375,7 @@ Ingen af de nye evner afslører en spillers hold, ingen kræver ressourcer, og a
 **Nye evner — detaljer:**
 
 - *Adgangslog* tæller spillere, der stod i en anden zone ved sidste rapport og nu står i den valgte zone. Skakt tæller som at gå ind.
-- *Afstand*: 0 = samme zone, 1 = nabozone (alle sektioner er naboer til Rygraden), 2 = ellers.
+- *Afstand*: 0 = samme zone, 1 = nabozone på skibsplanen, 2 = ellers.
 - *Afhøring* bruger målets zone ved sidste rapport. Uge 1 er der ingen "ugen før": ORACLE svarer *"Ingen data."*
 - *Stemmerevision*: Uge 1 er der intet tribunal: *"Ingen afstemning."* Spøgelsesstemmer kan ikke revideres, fordi spillere i kryo ikke kan vælges.
 

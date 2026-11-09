@@ -15,7 +15,7 @@ export const crises: Crisis[] = [
   { roll: 5, name: "Sensorblackout", text: "Alle informationsevner giver \"Signal forstyrret.\"" },
   { roll: 6, name: "Trykfald", text: "Sektionen mister 1 ekstra ved afgørelsen.", section: true },
   { roll: 7, name: "Brand", text: "Arbejde i sektionen tæller ikke. Reparation og vedligehold virker.", section: true },
-  { roll: 8, name: "Skotter låst", text: "Ringen er lukket. Man kan kun rykke mellem en sektion og Rygraden. Skakt virker." },
+  { roll: 8, name: "Skotter låst", text: "Dørene mellem sektioner er låst. Man kan kun rykke til og fra Rygraden. Skakt virker." },
   { roll: 9, name: "Skakter oversvømmet", text: "Skakt virker ikke. Skaktløberen rykker som alle andre." },
   { roll: 10, name: "Overbelastning", text: "Arbejde giver +2 i stedet for +1. Sabotage giver −3 i stedet for −2." },
   { roll: 11, name: "Optælling", text: "ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive." },

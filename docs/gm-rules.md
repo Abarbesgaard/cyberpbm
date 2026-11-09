@@ -24,7 +24,7 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - **Besætning:** rolle, hold og evne.
    - **Syntetiker:** hold, syntetikerrolle og evne, de andre syntetikeres navne og roller, og egne 2 bluff-forslag.
    - Offentliggør aldrig, hvilke roller der er i spil.
-9. **Vælg scenarie** i *Scenariebogen* (Nødsignal, Karantæne eller Hjemrejse), eller rul d6. Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
+9. **Vælg scenarie og skibsplan** i *Scenariebogen*: scenarie på d6, skibsplan (Ringen, Knudepunktet, Langskibet eller Tvillingeskroget) på d4. Sæt alle seks systemer til 3. Annoncér begge i den første broadcast.
 10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
 11. **Opret Slack-kanaler:** **#shipwide**, hvor kun ORACLE må skrive (Slack: *Posting permissions*), og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
 12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, drab, vedligehold, stemme — plus systemstatus og brugte drab.
