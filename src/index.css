@@ -407,7 +407,7 @@ body::after {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -3px 0 rgba(0, 0, 0, 0.22), 0 1px 0 #8E8C84, 0 3px 4px rgba(0, 0, 0, 0.18);
   transition: transform 0.08s, box-shadow 0.08s, color 0.15s;
 }
-.key:hover { color: var(--cp-yellow); }
+@media (hover: hover) { .key:hover { color: var(--cp-yellow); } }
 .key:active { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.22), 0 1px 0 #8E8C84; }
 
 /* Beige console housing around wall terminals */

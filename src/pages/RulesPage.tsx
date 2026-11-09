@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useRole } from "@/context/RoleContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const ruleFiles = {
@@ -18,7 +19,12 @@ const tabs = [
 
 export function RulesPage() {
   const [content, setContent] = useState<Record<string, string>>({});
-  const [activeTab, setActiveTab] = useState("player");
+  const [params] = useSearchParams();
+  const { role } = useRole();
+  const requested = params.get("tab");
+  const [activeTab, setActiveTab] = useState(
+    tabs.some((t) => t.key === requested) ? requested! : role === "gm" ? "gm" : "player",
+  );
 
   useEffect(() => {
     async function load() {
