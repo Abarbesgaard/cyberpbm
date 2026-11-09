@@ -48,10 +48,10 @@ Alle planer har de samme syv zoner og systemer. Kun gangene imellem er forskelli
 |---|---|---|---|
 | 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
 | 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
-| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 3 | **Langskibet** | To gange langs skibet. Bagbord: Broen – Hypersøvn – Livsstøtte – Motorrum. Styrbord: Medlab – Rygraden – Lastrum. Tværgange i zigzag: Broen–Medlab–Hypersøvn–Rygraden–Livsstøtte–Lastrum–Motorrum. | Op til tre uger fra ende til ende. Langt, men aldrig én eneste vej. |
 | 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
 
-Nogle kombinationer er ekstra hårde: *Nødsignal* på *Langskibet* kræver, at Broen og Motorrum — skibets to ender — begge står på 5.
+Nogle kombinationer er ekstra hårde: *Nødsignal* på *Tvillingeskroget* kræver, at Broen og Motorrum — fire uger fra hinanden, i hvert sit skrog — begge står på 5.
 
 ## Krisetabel (d20)
 

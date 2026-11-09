@@ -20,8 +20,21 @@ test("skibsplanerne dækker d4 og har ingen dobbelte gange", () => {
   }
 });
 
+test("ingen zone er mere end fire ryk fra en anden", () => {
+  for (const l of layouts)
+    for (const start of zones) {
+      const dist = new Map<ZoneId, number>([[start.id, 0]]);
+      const queue: ZoneId[] = [start.id];
+      while (queue.length) {
+        const z = queue.shift()!;
+        for (const n of neighbours(l, z)) if (!dist.has(n)) { dist.set(n, dist.get(z)! + 1); queue.push(n); }
+      }
+      assert.ok(Math.max(...dist.values()) <= 4, `${l.name} fra ${start.id}`);
+    }
+});
+
 test("naboer er symmetriske", () => {
   const ring = layouts[0];
   assert.deepEqual(neighbours(ring, "R").sort(), ["A", "B", "C", "D", "E", "F"]);
-  assert.deepEqual(neighbours(layouts[2], "E"), ["B"]);
+  assert.deepEqual(neighbours(layouts[2], "E").sort(), ["A", "B"]);
 });

@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.21
+# USCSS CASSANDRA v0.22
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,15 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.20
+## 0. Hvad er ændret fra v0.21
+
+v0.22 gør **Langskibet** spilbart.
+
+| v0.21 | v0.22 | Hvorfor |
+|---|---|---|
+| Langskibet er én kæde: seks ryk fra ende til ende | **To parallelle gange med tværgange: højst tre ryk** | Man rykker én zone om ugen. En kæde på seks ryk betød, at man aldrig nåede den anden ende i en seksugers kampagne. |
+
+### Fra v0.20 til v0.21
 
 v0.21 giver skibet **fire skibsplaner**.
 
@@ -195,7 +203,7 @@ Syv zoner: seks sektioner med hvert sit system og **Rygraden**, skibets centrale
 |---|---|---|---|
 | 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
 | 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
-| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 3 | **Langskibet** | To gange langs skibet. Bagbord: Broen – Hypersøvn – Livsstøtte – Motorrum. Styrbord: Medlab – Rygraden – Lastrum. Tværgange i zigzag: Broen–Medlab–Hypersøvn–Rygraden–Livsstøtte–Lastrum–Motorrum. | Op til tre uger fra ende til ende. Langt, men aldrig én eneste vej. |
 | 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
 
 Planerne ændrer, hvor man mødes, og hvor langt der er mellem målene. Data og kort ligger i `src/content/game.ts` (`layouts`).
