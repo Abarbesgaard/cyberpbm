@@ -21,6 +21,8 @@ export interface SystemWeek {
   repairs?: SectionId[];
   /** Sections where Særordre sabotaged. */
   sabotage?: SectionId[];
+  /** Sections an Ekko maintained. Stops neglect, adds nothing. */
+  maintained?: SectionId[];
 }
 
 export interface SystemResult {
@@ -42,7 +44,7 @@ export function resolveSystems(before: SystemStatus, week: SystemWeek): SystemRe
     const workers = week.workers?.[id] ?? 0;
     const repaired = week.repairs?.filter((r) => r === id).length ?? 0;
     const sabotaged = week.sabotage?.filter((r) => r === id).length ?? 0;
-    const tended = workers > 0 || repaired > 0;
+    const tended = workers > 0 || repaired > 0 || (week.maintained?.includes(id) ?? false);
     const neglect = !tended && week.week >= NEGLECT_FROM_WEEK ? NEGLECT_LOSS : 0;
     const next = before[id] + workers * WORK_GAIN + repaired * REPAIR_GAIN - sabotaged * SABOTAGE_LOSS - neglect;
     status[id] = Math.max(0, Math.min(SYSTEM_MAX, next));

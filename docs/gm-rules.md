@@ -27,7 +27,7 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
 9. **Vælg scenarie** (Nødsignal, Karantæne eller Hjemrejse). Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
 10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
 11. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
-12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, fasthold, stemme — plus systemstatus.
+12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, fasthold, drab, vedligehold, stemme — plus systemstatus og brugte drab.
 
 ### Påstande er frie
 
@@ -35,17 +35,18 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: nej, Fasthold: nej, Ingen ændring*.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: nej, Fasthold: nej, Ingen ændring*. Manglende ekko-ordre = intet vedligehold.
 
 **Weekend — afgør i denne rækkefølge:**
 
 1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: ingen ind eller ud af den forseglede zone, heller ikke via Skakt.
-2. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
-3. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 6. Erstat forfalskede med et troværdigt, forkert svar.
-4. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. Fra uge 2: −1, hvis ingen arbejdede eller reparerede der. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Står et system på 0, vinder syntetikerne.
-5. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.
-6. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Flertal af *aktive* spillere udsteder ny kryo-ordre. Notér målets zone til pejling. Offentliggør aldrig, hvem der stemte hvad.
-7. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern spillere i kryo.
+2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen. Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne, arbejde eller fasthold). Mislykkes det, sker intet, og drabet er ikke brugt.
+3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
+4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
+5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. Fra uge 2: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Står et system på 0, vinder syntetikerne.
+6. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.
+7. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Flertal af *aktive* spillere udsteder ny kryo-ordre. Notér målets zone til pejling. Offentliggør aldrig, hvem der stemte hvad.
+8. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
 
 **Mandag 09:00 — rapport.**
 
@@ -69,7 +70,11 @@ PÅGRIBELSE: Forsøgt i Broen. 2 til stede ud over målet.
 3 fasthold-point. Lykkedes. [Navn] er overført til kryo.
 
 KRYO-ORDRE: Udstedt mod [Navn]. Senest pejlet: Medlab.
+
+LIG FUNDET: [Navn], Lastrum.
 ```
+
+Til offeret, privat: *"Du er død. Zone: Lastrum. Du er nu et ekko."* Til drabsmanden ved mislykket drab: *"Drab mislykket."*
 
 ## Privat rapport-skabelon
 
@@ -109,7 +114,9 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 - Et system når 0: afslut ugen, og annoncér syntetikernes sejr i rapporten.
 - Arbejde i Rygraden eller efter *Ryk*/Skakt: tæller ikke.
 - Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder, uanset hvem der er i kryo.
-- Spillere i kryo kan ikke pågribes eller vælges som mål for evner. ORACLE svarer: *"Signal ikke fundet."*
+- Døde og spillere i kryo kan ikke pågribes, dræbes eller vælges som mål for evner.
+- Drab på kryo-ordrens mål: ordren bortfalder. Tribunalet kan udstede en ny fredag.
+- Afslør aldrig et offers rolle før spillets afslutning. ORACLE svarer: *"Signal ikke fundet."*
 - Afhøring i uge 1: *"Ingen data."* Stemmerevision i uge 1: *"Ingen afstemning."*
 
 ## Tone

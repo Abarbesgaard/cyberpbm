@@ -7,7 +7,7 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 - **Besætning:** Få alle syntetikere i kryo inden udgangen af uge 6, **eller** opfyld kampagnens scenarie.
-- **Syntetiker:** Bring ét skibssystem til 0 (så vinder I med det samme), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag.
+- **Syntetiker:** Bring ét skibssystem til 0 (så vinder I med det samme), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
 
 ## Roller og påstande
 
@@ -91,11 +91,21 @@ TRIBUNAL:   Anna                    (eller: Ingen ændring)
 
 Én aktiv kryo-ordre ad gangen. Den gælder, indtil målet er pågrebet eller tribunalet vælger et nyt mål.
 
-## Kryo
+## Drab
 
-Bliver du sendt i kryo, er du ude af de aktive handlinger. Du må stadig:
+- Hver syntetiker kan dræbe **én gang** i kampagnen, fra uge 3. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge.
+- Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse. Ellers sker intet, og drabet kan bruges igen.
+- Offeret får kun at vide, at det er dødt, og hvor. Ikke hvem.
+- ORACLE broadcaster: *"LIG FUNDET: [Navn], [zone]."* Aldrig rollen.
 
-- skrive én besked om dagen i **#shipwide** som AI-ekko — uden at afsløre din rolle eller dit hold.
+At stå alene er farligt. At ingen arbejder, er også farligt.
+
+## Ekko — død eller i kryo
+
+Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evne, arbejde eller sektorkanal. Men du må stadig:
+
+- skrive frit i **#shipwide**. Alt, hvad du siger, er vidneudsagn.
+- sende **Vedligehold → [sektion]** hver fredag. Den sektion får intet forfald den uge.
 - bruge **én spøgelsesstemme** i ét tribunal resten af spillet.
 
 ## Information
@@ -110,7 +120,6 @@ Bliver du sendt i kryo, er du ude af de aktive handlinger. Du må stadig:
 - Du må lyve om alt i spillet.
 - Du må ikke indsætte screenshots eller videresende ORACLEs beskeder. Gengiv med egne ord.
 - Du må ikke tale om spillet uden for Slack-kanalerne.
-- I kryo må du ikke afsløre din rolle eller dit hold.
 
 ## Uge for uge
 

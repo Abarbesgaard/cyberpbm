@@ -34,23 +34,33 @@ export function Hunt() {
         ))}
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="console p-4 sm:p-5 [--chamfer:16px]">
         <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">#shipwide // Broadcast</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-red blink-slow" /><span className="lamp lamp-off" /></span></div>
-        <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
+        <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-4 text-[1.1rem] leading-[1.4] sm:p-6 sm:text-[1.25rem]">
 {`ORACLE // SHIPWIDE // UGE 4
 PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.
-0 fasthold-point. Mislykket.`}
+0 fasthold-point. Mislykket.
+
+LIG FUNDET: Sara, Lastrum.`}
         </pre>
         </div>
         <div className="bezel bezel-screws p-6">
-          <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Kryo</div>
+          <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">// Drab</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
-            <li>Ingen ordre, ingen evne, ingen sektorkanal.</li>
-            <li>Én besked om dagen i #shipwide som <strong className="text-cp-yellow">AI-ekko</strong> — uden at afsløre rolle eller hold.</li>
+            <li>Hver syntetiker kan dræbe <strong className="text-cp-red-bright">én gang</strong> pr. kampagne, fra uge 3 — i stedet for sin evne den uge.</li>
+            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse. Ellers sker intet, og drabet er ikke brugt.</li>
+            <li>Offeret dør på vej ind og ser aldrig, hvem der kom. ORACLE broadcaster navn og zone — aldrig rolle.</li>
+          </ul>
+        </div>
+        <div className="bezel bezel-screws p-6">
+          <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Ekko — døde og frosne</div>
+          <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
+            <li>Ingen bevægelse, evne eller sektorkanal. Rollen afsløres først ved spillets afslutning.</li>
+            <li>Frit ord i #shipwide. Alt, et ekko siger, er vidneudsagn.</li>
+            <li><strong className="text-cp-yellow">Vedligehold:</strong> vælg hver uge én sektion. Den får intet forfald.</li>
             <li>Én <strong className="text-cp-yellow">spøgelsesstemme</strong> til ét tribunal resten af spillet.</li>
-            <li>Rollen afsløres først ved spillets afslutning.</li>
           </ul>
         </div>
       </div>

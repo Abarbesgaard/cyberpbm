@@ -1,6 +1,8 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Ingen drab", to: "Hver syntetiker kan dræbe én gang", why: "Fra uge 3, kun alene med offeret. Liget broadcastes med zone — et nyt spor, ikke et bevis." },
+  { from: "AI-ekko: én besked om dagen", to: "Ekko: frit ord + vedligehold", why: "Døde og frosne spillere har en ugentlig beslutning og en grund til at blive ved skærmen." },
   { from: "Ét fælles integritetsur", to: "Seks skibssystemer, ét pr. sektion", why: "Status offentliggøres hver uge. Arbejde, forfald og sabotage gør hvert rum til et spor." },
   { from: "Besætningen kan kun vinde ved jagt", to: "Ét scenarie pr. kampagne", why: "Besætningen har et mål ud over jagten. At blive og arbejde konkurrerer med at rykke og jage." },
   { from: "Alle syntetikere har Særordre med tre tilstande", to: "Én unik syntetikerrolle pr. syntetiker", why: "Samme princip som besætningen: én evne pr. spiller, hver rolle højst én gang." },
@@ -11,6 +13,9 @@ const changes = [
 ];
 
 const questions = [
+  "Er ét drab pr. syntetiker for meget ved 5 spillere, hvor besætningen kun er fire?",
+  "Bliver spillere bange for at stå alene — og er det godt for jagten eller dårligt for arbejdet?",
+  "Gør ekko-vedligehold forfald for let, når flere er døde?",
   "Er Særordre alene for svag ved 5–6 spillere, hvor der kun er én syntetiker?",
   "Afslører \"Signal forstyrret\", at Støjsender er i spil, og er det et problem?",
   "Er 11 roller for mange at holde styr på for nye spillere?",
@@ -31,7 +36,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XII // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.9</span>
+        v0.7 → <span className="text-cp-yellow">v0.10</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (
