@@ -72,7 +72,7 @@ Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen. P
 | 11 | **Optælling** | ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive. |
 | 12 | **Tribunal suspenderet** | Intet tribunal i uge 4. |
 | 13 | **Åben afstemning** | ORACLE offentliggør, hvem der stemte på hvem i uge 4's tribunal. |
-| 14 | **Nødbelysning** | Ingen drab kan lykkes i uge 4. Et forsøgt drab er ikke brugt. |
+| 14 | **Nødbelysning** | Ingen drab kan lykkes i uge 4, heller ikke alienens angreb. Et forsøgt drab er ikke brugt. |
 | 15 | **Gang kollapset** *(d6)* | Den stiplede gang mellem sektionen og Rygraden er lukket. Andre gange og Skakt virker. |
 | 16 | **Lækket log** | ORACLE frigiver positionsloggen fra uge 2 i mandagsbroadcasten. |
 | 17 | **Støj på linjen** | Alt fra ORACLE i uge 4 har støj: hvert tredje ord bliver til *brzzz*. Det gælder broadcasts, informationsresultater og højttaleren. |

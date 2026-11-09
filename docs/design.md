@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.24
+# USCSS CASSANDRA v0.25
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,18 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.23
+## 0. Hvad er ændret fra v0.24
+
+v0.25 lader døde og frosne blive en **alien**.
+
+| v0.24 | v0.25 | Hvorfor |
+|---|---|---|
+| d6: 1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko | **d6: 1 Jorden, 2 Spøgelse, 3–4 Alien, 5 Afløser, 6 Ekko** | Døde spillere kan nu skifte side. Alienen lever i skakterne og spiller for syntetikerne. |
+| Kun syntetikere dræber | **Alienen kan angribe en ensom spiller (d6 4–6)** | At stå alene bliver farligere. Syntetikere ignoreres, så en overlevende er mistænkelig — men slaget kan også bare fejle. |
+| Bevægelse er altid som skrevet | **Uro → zone: den, der rykker ind, farer vild** | Forvirring og falske alibier hjælper syntetikerne. |
+| Ingen kan kæmpe | **ARBEJDE: Bekæmp** — to i alienens zone smider den ud | Besætningen har et modtræk, men det koster arbejde. |
+
+### Fra v0.23 til v0.24
 
 v0.24 lader **terningen** bestemme skæbnen.
 
@@ -254,8 +265,9 @@ Hver aktiv spiller sender én ordre pr. uge med fire felter:
 
 ### Afgørelsesrækkefølge
 
-1. Bevægelse (samtidig for alle).
+1. Bevægelse (samtidig for alle), inkl. alienens bevægelse og Uro.
 2. Drab.
+2b. Alien: Bekæmp, derefter Angreb.
 3. Støj og forfalskning.
 4. Informationsevner.
 5. Systemer: arbejde, reparation, sabotage, forfald og vedligehold (samtidigt).
@@ -319,16 +331,19 @@ Et ekko fra syntetikerholdet må også sende vedligehold — eller lade være. I
 
 #### Skæbner
 
-Når en spiller bliver ekko, ruller ORACLE hemmeligt en d6 for **skæbnen**: 1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Hver skæbne findes én gang pr. kampagne. Er den taget, eller er det Afløser til en frossen, bliver spilleren Ekko. Ingen omrul. Hvem der har hvilken, er hemmeligt — undtagen Afløseren, som broadcastes.
+Når en spiller bliver ekko, ruller ORACLE hemmeligt en d6 for **skæbnen**: 1 Jorden, 2 Spøgelse, 3–4 Alien, 5 Afløser, 6 Ekko. Hver skæbne findes én gang pr. kampagne. Er den taget, eller er det Afløser til en frossen, bliver spilleren Ekko. Ingen omrul. Hvem der har hvilken, er hemmeligt — undtagen Afløseren, som broadcastes.
 
 | d6 | Skæbne | Hvem | Effekt |
 |---|---|---|---|
-| 1–2 | **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. |
-| 3–4 | **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
+| 1 | **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. |
+| 2 | **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
+| 3–4 | **Alien** | Døde og frosne | Skifter side: du spiller nu for **syntetikerne** og vinder, hvis de vinder. Du lever i skakterne, og din zone er hemmelig. Vælg en startzone; derefter hver fredag: *ALIEN: Ryk → nabozone* (eller Bliv; kriser stopper dig ikke) og én af: **Angreb** — står præcis én spiller i din zone, dør besætning på d6 4–6; syntetikere ignoreres. **Uro → zone** — den, der rykker ind i zonen, farer vild og ender i en tilfældig nabozone; Skakt ind og ud virker ikke. To spillere med *Bekæmp* i din zone smider dig ud, og du bliver Ekko. |
 | 5 | **Afløser** | Kun dræbte | Vågner i Hypersøvn som aktiv spiller uden evne: bevægelse, arbejde, stemme. Kan dræbes og dømmes igen. |
 | 6 | **Ekko** | Alle | Ingen ekstra handling. Også når skæbnen er taget eller ikke gælder. |
 
 - Rumlog og Hjemsøg er informationsevner. De kan forfalskes og forstyrres.
+- Alienen er den eneste skæbne, der hjælper syntetikerne. Den har to pladser på terningen, fordi de tre andre skæbner mest hjælper besætningen. Den skaber uro i skakterne og falske alibier: *"Jeg skulle til Medlab, men endte i Lastrum"* er sandt — eller en løgn.
+- Alienens angreb ignorerer syntetikere. En overlevende er derfor mistænkelig, men slaget fejler også på 1–3.
 - Et frosset syntetikerekko ruller også, kan blive Jorden eller Spøgelse og lyve om svaret. Derfor beviser en skæbne ingenting.
 - Afløseren er bevist besætning (kun dræbte kan få den) — men uden evne. Det er prisen for at komme tilbage.
 - Afløser kun for dræbte: en syntetiker i kryo må ikke kunne vende tilbage.
