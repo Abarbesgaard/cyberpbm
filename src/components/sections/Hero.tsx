@@ -4,7 +4,7 @@ const readouts = [
   { value: "06", label: "Uger" },
   { value: "07", label: "Zoner" },
   { value: "01", label: "Evne pr. spiller" },
-  { value: "02", label: "Hænder pr. pågribelse" },
+  { value: "06", label: "Skibssystemer" },
 ];
 
 
