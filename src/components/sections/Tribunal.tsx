@@ -2,24 +2,24 @@ import { useRole } from "@/context/RoleContext";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const intro = {
-  player: "Det er ikke nok at vide, hvem det er. Tribunalet udsteder en kryo-ordre. Derefter skal mindst to af jer stå i samme rum som målet — og begge skal holde fast.",
-  gm: "Se, hvem der står i målets zone efter bevægelse. Har mindst to af dem skrevet Fasthold: ja, eller har Sikkerhedschefen brugt Pågrib på målet, går målet i kryo. Mislykkes det, skriver du i broadcasten, hvor mange der stod der, og hvor mange der holdt fast — aldrig hvem.",
-  default: "Neutralisering kræver både en beslutning og fysisk tilstedeværelse. Man kan være sikker på, hvem syntetikeren er, og stadig ikke nå frem.",
+  player: "Hver fredag stemmer I. Får én et flertal af de aktive spillere, sendes vedkommende i kryo. Vælger I forkert, mister I en af jeres egne.",
+  gm: "Tæl stemmerne fra ordrerne, plus brugte spøgelsesstemmer. Har ét navn flertal af de aktive spillere, sendes vedkommende i kryo. Broadcast navn og antal stemmer — aldrig hvem der stemte.",
+  default: "Neutralisering er en fælles beslutning. Ingen kan bevise noget. I kan kun overbevise hinanden.",
 };
 
 const steps = [
-  { label: "Tribunal", title: "Kryo-ordre", body: "Hver fredag stemmer alle aktive spillere. Flertal af aktive udsteder en kryo-ordre. Kun én ad gangen; en ny erstatter den gamle. ORACLE pejler målets zone én gang." },
-  { label: "Jagt", title: "Find målet", body: "Målet ved, at jagten er gået ind. Det kan blive, flygte eller vente på at blive hentet. Ordren gælder, indtil målet er pågrebet eller erstattet." },
-  { label: "To-mands-reglen", title: "Pågribelse", body: "Står mindst to andre i målets zone med Fasthold: ja, sendes målet i kryo. Sikkerhedschefen kan i stedet bruge Pågrib alene." },
-  { label: "Spor", title: "Den tavse hånd", body: "Mislykkes det, oplyser ORACLE, hvor mange der var til stede, og hvor mange der holdt fast. En manglende hånd er mistanke — aldrig bevis." },
+  { label: "Man–Fre", title: "Debat", body: "Fremlæg mistanke i #shipwide. Sammenhold påstande, alibier og systemtal. Ingen kan bevise sin rolle." },
+  { label: "Fre 18:00", title: "Stemme", body: "Din stemme står i ordren: et navn eller Ingen. Stemmerne er hemmelige. Du må sige, hvad du stemte — og lyve om det." },
+  { label: "Weekend", title: "Dom", body: "Får ét navn flertal af de aktive spillere, sendes vedkommende i kryo. Stemmelighed eller intet flertal: ingen dom." },
+  { label: "Man 09:00", title: "Udfald", body: "ORACLE broadcaster navn og antal stemmer. Aldrig rollen og aldrig hvem der stemte. Den frosne bliver et ekko." },
 ];
 
-export function Hunt() {
+export function Tribunal() {
   const { role } = useRole();
   return (
-    <section id="hunt" className="hull px-8 py-24 md:px-16">
+    <section id="tribunal" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion VI // Neutralisering" intro={intro[role ?? "default"]}>
-        The <span className="text-cp-red-bright">Hunt</span>
+        The <span className="text-cp-red-bright">Tribunal</span>
       </SectionHeader>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -39,9 +39,8 @@ export function Hunt() {
         <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">#shipwide // Broadcast</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-red blink-slow" /><span className="lamp lamp-off" /></span></div>
         <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-4 text-[1.1rem] leading-[1.4] sm:p-6 sm:text-[1.25rem]">
 {`ORACLE // SHIPWIDE // UGE 4
-PÅGRIBELSE: Forsøgt i Livsstøtte.
-1 til stede ud over målet.
-0 holdt fast. Mislykket.
+TRIBUNAL: 4 af 6 stemmer mod Anna.
+Anna er overført til kryo.
 
 LIG FUNDET: Sara, Lastrum.`}
         </pre>
@@ -50,7 +49,7 @@ LIG FUNDET: Sara, Lastrum.`}
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">// Drab</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
             <li>Hver syntetiker kan dræbe <strong className="text-cp-red-bright">én gang</strong> pr. kampagne, fra uge 3 — i stedet for sin evne den uge.</li>
-            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse. Ellers sker intet, og drabet er ikke brugt.</li>
+            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse, og målet ikke er under vagt. Ellers sker intet, og drabet er ikke brugt.</li>
             <li>Offeret dør på vej ind og ser aldrig, hvem der kom. ORACLE broadcaster navn og zone — aldrig rolle.</li>
           </ul>
         </div>

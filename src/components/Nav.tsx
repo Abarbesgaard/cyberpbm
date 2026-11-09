@@ -5,7 +5,7 @@ const sectionLinks = [
   { href: "#systems", label: "Systemer" },
   { href: "#ship", label: "Skibet" },
   { href: "#week", label: "Ugen" },
-  { href: "#hunt", label: "Jagten" },
+  { href: "#tribunal", label: "Tribunal" },
   { href: "#roles", label: "Roller" },
   { href: "#campaign", label: "Kampagne" },
 ];

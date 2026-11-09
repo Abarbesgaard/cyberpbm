@@ -16,7 +16,7 @@ export const zones: Zone[] = [
   { id: "R", name: "Rygraden", neighbours: ["A", "B", "C", "D", "E", "F"] },
 ];
 
-export type RoleTag = "OBSERVATION" | "ANALYSE" | "JAGT" | "URET" | "SOCIAL";
+export type RoleTag = "OBSERVATION" | "ANALYSE" | "SIKKERHED" | "URET" | "SOCIAL";
 
 export type CrewRoleId =
   | "security_chief"
@@ -48,8 +48,8 @@ export interface RoleDef {
 }
 
 export const crewRoles: RoleDef[] = [
-  { id: "security_chief", name: "Sikkerhedschef", ability: "Pågrib", text: "Vælg en spiller i din zone. Har vedkommende en kryo-ordre, sender du dem i kryo alene. Fra uge 3.", pick: "En spiller", reply: "Peter er pågrebet.", tag: "JAGT" },
-  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. ORACLE fortæller, hvor vedkommende står efter bevægelse.", pick: "En spiller", reply: "Peter står i Lastrum.", tag: "JAGT" },
+  { id: "security_chief", name: "Sikkerhedschef", ability: "Vagt", text: "Vælg en anden spiller. Vedkommende kan ikke dræbes denne uge.", pick: "En spiller", reply: "Du vogter Anna denne uge.", tag: "SIKKERHED" },
+  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. ORACLE fortæller, hvor vedkommende står efter bevægelse.", pick: "En spiller", reply: "Peter står i Lastrum.", tag: "SIKKERHED" },
   { id: "sensor_tech", name: "Sensortekniker", ability: "Scan", text: "Vælg en zone. ORACLE fortæller, hvor mange der står der. Ingen navne.", pick: "En zone", reply: "Medlab: 3 personer.", tag: "OBSERVATION" },
   { id: "quartermaster", name: "Kvartermester", ability: "Adgangslog", text: "Vælg en zone. ORACLE fortæller, hvor mange der gik ind i den denne uge. Ingen navne.", pick: "En zone", reply: "Broen: 2 gik ind.", tag: "OBSERVATION", isNew: true },
   { id: "radar_operator", name: "Radaroperatør", ability: "Afstand", text: "Vælg en spiller. ORACLE fortæller, hvor tæt på vedkommende står: samme zone, nabozone eller langt væk.", pick: "En spiller", reply: "Anna: nabozone.", tag: "OBSERVATION", isNew: true },
@@ -93,11 +93,11 @@ export type RoleId = CrewRoleId | SynthRoleId;
 
 export const weeks = [
   { n: 1, name: "Awakening", text: "I vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Intet tribunal." },
-  { n: 2, name: "First Anomaly", text: "Sabotage og de øvrige syntetiker-evner låses op. Første tribunal fredag." },
-  { n: 3, name: "Broken Trust", text: "Første pågribelse er mulig. Syntetikerne kan dræbe." },
+  { n: 2, name: "First Anomaly", text: "Sabotage og de øvrige syntetiker-evner låses op. Første tribunal fredag: flertal sender én i kryo." },
+  { n: 3, name: "Broken Trust", text: "Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning." },
   { n: 4, name: "Containment Failure", text: "ORACLE forsegler Rygraden hele ugen. Kun ringen rundt er åben." },
   { n: 5, name: "Last Transmission", text: "Positionsloggen fra uge 1 frigives. Gamle alibier kan tjekkes." },
-  { n: 6, name: "Final Protocol", text: "Tribunalet sender direkte i kryo. Derefter afsløres alle roller." },
+  { n: 6, name: "Final Protocol", text: "Sidste tribunal. Derefter afsløres alle roller." },
 ];
 
 export interface BalanceRow {

@@ -1,8 +1,8 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
-  { from: "Sikkerhedschef: fasthold tæller 2 point", to: "Sikkerhedschef: Pågrib — vælg målet", why: "Ingen point at huske. Alle evner virker ens: vælg et mål, ORACLE svarer." },
-  { from: "Pågribelse kræver 2 fasthold-point", to: "Pågribelse kræver to, der holder fast", why: "Samme regel uden point. En lykket pågribelse broadcastes uden tal, så den ikke afslører Sikkerhedschefen." },
+  { from: "Kryo-ordre, jagt og fasthold", to: "Tribunalet sender direkte i kryo", why: "Ingen kan fysisk holde en anden fast i Slack. Neutralisering er nu kun en fælles beslutning." },
+  { from: "Sikkerhedschef: fasthold tæller 2 point", to: "Sikkerhedschef: Vagt", why: "Vælg en spiller, som ikke kan dræbes denne uge. En evne som de andre: vælg et mål, ORACLE svarer." },
   { from: "Evner beskrevet som regler", to: "Hver evne viser, hvad du vælger, og hvad ORACLE svarer", why: "Spilleren skal kun vælge. ORACLE holder styr på resten og fortæller i mandagsrapporten, hvad du kan." },
   { from: "System på 0 = syntetikerne vinder straks", to: "0 = KRITISK, én uge til nedbrud", why: "Sabotage i en tom sektion i uge 2 kunne vinde spillet, før nogen kunne reagere." },
   { from: "Forfald hver uge", to: "Forfald i uge 2, 4 og 6 — aldrig oveni sabotage", why: "Fire besætningsmedlemmer kan ikke dække seks sektioner hver uge, når hver flytning koster arbejde." },
@@ -20,28 +20,27 @@ const changes = [
 
 const questions = [
   "Er ét drab pr. syntetiker for meget ved 5 spillere, hvor besætningen kun er fire?",
-  "Bliver spillere bange for at stå alene — og er det godt for jagten eller dårligt for arbejdet?",
+  "Bliver spillere bange for at stå alene — og er det dårligt for arbejdet?",
   "Gør ekko-vedligehold forfald for let, når flere er døde?",
   "Er Særordre alene for svag ved 5–6 spillere, hvor der kun er én syntetiker?",
   "Afslører \"Signal forstyrret\", at Støjsender er i spil, og er det et problem?",
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
-  "Er to-mands-reglen for svær med 5 spillere?",
-  "Er Skaktløber for stærk til flugt? Alternativ: først fra uge 3.",
+  "Har Skaktløber nok at bruge Skakt til, nu hvor ingen jagter den?",
   "Er forfald for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer?",
   "Er scenarierne lige svære? Hjemrejse kræver alle seks systemer.",
   "Bliver sabotage syntetikernes eneste strategi?",
-  "Er én pejling ved udstedelse nok til at starte en jagt?",
+  "Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
-  "Er Final Protocol en nødvendig ventil — eller tager den luften ud af jagten?",
+  "Er Vagt for stærk mod syntetikere, der kun har ét drab hver?",
 ];
 
 export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XII // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.12</span>
+        v0.7 → <span className="text-cp-yellow">v0.13</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

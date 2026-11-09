@@ -10,19 +10,18 @@ const intro = {
 type Entry = { time: string; channel: string; title: string; body: string; actor: "oracle" | "crew" };
 
 const log: Entry[] = [
-  { time: "Man 09:00", channel: "#shipwide", actor: "oracle", title: "Broadcast", body: "ORACLE poster status for alle seks systemer, anomalier og sabotage, fundne lig, pågribelser og den aktive kryo-ordre med målets sidst kendte zone." },
+  { time: "Man 09:00", channel: "#shipwide", actor: "oracle", title: "Broadcast", body: "ORACLE poster status for alle seks systemer, anomalier og sabotage, fundne lig og tribunalets dom." },
   { time: "Man 09:00", channel: "Privat", actor: "oracle", title: "Din rapport", body: "Din zone, hvem der står der med dig, og svaret på din evne. Sidste linje fortæller, hvad du kan i den kommende uge." },
   { time: "Man 09:00", channel: "Sektorkanal", actor: "oracle", title: "Nye rum", body: "Du flyttes til kanalen for din zone. Dem, du møder dér, er de eneste, du kan tale privat med denne uge." },
   { time: "Man–Fre", channel: "#shipwide + sektor", actor: "crew", title: "Samtale", body: "Påstande, alibier og beskyldninger. Offentligt i #shipwide, privat i sektorkanalen. Ingen DM'er. Ekkoer taler kun i #shipwide." },
-  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, evne og mål, arbejde, fasthold og din tribunal-stemme. Ekkoer sender vedligehold. Ingen ordre = bliv og arbejd." },
-  { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge: bevægelse, drab, støj og forfalskning, evner, systemer, pågribelse, tribunal. Ingen spiller gør noget. Mandag begynder det forfra." },
+  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, evne og mål, arbejde og din tribunal-stemme. Ekkoer sender vedligehold. Ingen ordre = bliv og arbejd." },
+  { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge: bevægelse, drab, støj og forfalskning, evner, systemer, tribunal. Ingen spiller gør noget. Mandag begynder det forfra." },
 ];
 
 const orderSheet = `UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte
 EVNE:       Pejling → Peter
 ARBEJDE:    Nej (kun ved Bliv)
-FASTHOLD:   Ja
 TRIBUNAL:   Anna`;
 
 export function WeekCycle() {

@@ -69,15 +69,13 @@ UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
 EVNE:       Pejling → Peter         (eller: Ingen)
 ARBEJDE:    Nej                     (kun ved Bliv i en sektion)
-FASTHOLD:   Ja                      (eller: Nej)
-TRIBUNAL:   Anna                    (eller: Ingen ændring)
+TRIBUNAL:   Anna                    (eller: Ingen)
 ```
 
 - **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
 - **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
 - **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
-- **Fasthold:** Hvis du ender i samme zone som målet for kryo-ordren, hjælper du med at pågribe det.
-- **Tribunal:** Stem på en spiller, eller *Ingen ændring*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
+- **Tribunal:** Stem på en spiller, eller *Ingen*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
 
 ## Skibet
 
@@ -91,18 +89,18 @@ TRIBUNAL:   Anna                    (eller: Ingen ændring)
 | F Motorrum | E, A, Rygraden |
 | R Rygraden | Alle |
 
-## Jagten
+## Tribunalet
 
-1. **Tribunal:** Flertal af aktive spillere udsteder en kryo-ordre. ORACLE pejler målets zone én gang.
-2. **Pågribelse:** Står mindst **to andre** i målets zone med *Fasthold: ja*, sendes målet i kryo. Sikkerhedschefen kan i stedet bruge *Pågrib* på målet alene.
-3. **Rapport:** Lykkes det, siger ORACLE kun det. Mislykkes det, oplyser ORACLE, hvor mange der var til stede, og hvor mange der holdt fast. Aldrig hvem.
+1. **Stemme:** Fra uge 2 stemmer du hver fredag i ordren på en spiller eller *Ingen*. Stemmerne er hemmelige.
+2. **Dom:** Får ét navn flertal af de **aktive** spillere, sendes vedkommende direkte i kryo. Stemmelighed eller intet flertal: ingen dom.
+3. **Broadcast:** ORACLE oplyser navn og antal stemmer. Aldrig hvem der stemte, og aldrig rollen.
 
-Én aktiv kryo-ordre ad gangen. Den gælder, indtil målet er pågrebet eller tribunalet vælger et nyt mål.
+Ingen kan bevise noget. I kan kun overbevise hinanden.
 
 ## Drab
 
 - Hver syntetiker kan dræbe **én gang** i kampagnen, fra uge 3. ORACLE fortæller dig hver mandag, om drabet er brugt. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge.
-- Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse. Ellers sker intet, og drabet kan bruges igen.
+- Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse, og offeret ikke er under Sikkerhedschefens **vagt**. Ellers sker intet, og drabet kan bruges igen.
 - Offeret får kun at vide, at det er dødt, og hvor. Ikke hvem.
 - ORACLE broadcaster: *"LIG FUNDET: [Navn], [zone]."* Aldrig rollen.
 
@@ -135,7 +133,7 @@ Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evn
 |---|---|---|
 | 1 | Awakening | Informationsevner og Skakt er aktive. Intet tribunal. |
 | 2 | First Anomaly | Sabotage, Forfalskning og Støj. Første tribunal. |
-| 3 | Broken Trust | Første pågribelse. |
+| 3 | Broken Trust | Syntetikerne kan dræbe. |
 | 4 | Containment Failure | Rygraden forsegles hele ugen. |
 | 5 | Last Transmission | Positionsloggen fra uge 1 frigives. |
-| 6 | Final Protocol | Tribunalet sender direkte i kryo. Rollerne afsløres. |
+| 6 | Final Protocol | Sidste tribunal. Rollerne afsløres. |

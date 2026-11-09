@@ -31,7 +31,7 @@ const next: Record<Role, { title: string; links: { label: string; to: string; ha
       { label: "Spillerregler", to: "/rules?tab=player" },
       { label: "Skibssystemer", to: "#systems", hash: true },
       { label: "Ugens ordre", to: "#week", hash: true },
-      { label: "Jagten", to: "#hunt", hash: true },
+      { label: "Tribunalet", to: "#tribunal", hash: true },
     ],
   },
   gm: {
@@ -93,7 +93,7 @@ export function RoleSelector() {
             Angiv din funktion
           </h2>
           <p className="mb-8 max-w-md text-[0.95rem] leading-relaxed text-cp-off">
-            Vælg, så åbner ORACLE de rigtige protokoller. Jagten, ugecyklussen og rollerne tilpasser sig dit valg.
+            Vælg, så åbner ORACLE de rigtige protokoller. Tribunalet, ugen og rollerne tilpasser sig dit valg.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">

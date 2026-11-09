@@ -31,7 +31,7 @@ export function Hero() {
           <div className="mt-5 inline-flex items-stretch">
             <span className="hazard-red-sm block w-6" aria-hidden />
             <span className="border border-l-0 border-cp-red px-3 py-1 font-mono text-[0.7rem] tracking-[0.3em] uppercase text-cp-red-bright">
-              Hunt Protocol v0.12
+              Hunt Protocol v0.13
             </span>
           </div>
 
@@ -49,10 +49,10 @@ export function Hero() {
               Læs reglerne
             </Link>
             <a
-              href="#hunt"
+              href="#tribunal"
               className="key inline-flex items-center px-7 py-3.5 font-mono text-[0.72rem] tracking-[0.2em] uppercase text-cp-off no-underline [--chamfer:8px]"
             >
-              Jagten
+              Tribunalet
             </a>
           </div>
         </div>
