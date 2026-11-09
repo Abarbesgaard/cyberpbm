@@ -1,22 +1,22 @@
 export function Footer() {
   return (
-    <footer className="bg-cp-panel">
-      <div className="hazard h-[6px] opacity-80" />
-      <div className="flex flex-wrap items-center justify-between gap-4 px-8 py-8">
-        <div>
-          <div className="font-head text-[0.85rem] tracking-[0.25em] uppercase text-cp-white">
-            USCSS Cassandra
-          </div>
-          <div className="mt-1 font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cp-mid">
-            Kessler-Tanaka Corp. // Reg. 247-319-55
-          </div>
+    <footer className="relative">
+      <div className="bulkhead" aria-hidden>
+        <span className="lamp lamp-red blink-slow" />
+        <span className="plate">Aft bulkhead</span>
+        <span className="lamp lamp-red blink-slow" />
+      </div>
+      <div className="quilt relative flex flex-wrap items-center justify-between gap-6 px-8 py-12">
+        <div className="relative flex flex-col gap-2">
+          <span className="plate !text-[0.75rem]">USCSS Cassandra</span>
+          <span className="plate">Kessler-Tanaka Corp. // Reg. 247-319-55</span>
         </div>
-        <div className="text-right font-mono text-[0.6rem] leading-relaxed tracking-[0.15em] uppercase text-cp-mid">
-          Hunt Protocol v0.7 // Social deduction i Slack
-          <br />
-          <span className="text-cp-red">Besætningen er sekundær</span>
+        <div className="relative flex flex-col items-end gap-2">
+          <span className="plate">Hunt Protocol v0.7 // Social deduction i Slack</span>
+          <span className="plate !text-[#FF8A6E]">Besætningen er sekundær</span>
         </div>
       </div>
+      <div className="hazard h-[8px]" />
     </footer>
   );
 }

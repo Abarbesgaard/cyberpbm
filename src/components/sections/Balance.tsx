@@ -17,7 +17,7 @@ const setupSteps = [
 
 export function Balance() {
   return (
-    <section id="balance" className="border-t border-cp-border px-8 py-24 md:px-16">
+    <section id="balance" className="hull px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion IX // Balance"
         intro="Integritet er syntetikernes ur. Hver sabotage trækker én; Ingeniøren kan reparere op til startværdien. Når uret når 0, vinder syntetikerne. Det tvinger dem til at handle — og handlinger efterlader spor."

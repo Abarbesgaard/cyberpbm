@@ -17,7 +17,7 @@ const pillars = [
 
 export function Briefing() {
   return (
-    <section id="briefing" className="border-t border-cp-border px-8 py-24 md:px-16">
+    <section id="briefing" className="hull px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion I // Briefing"
         intro={
@@ -33,7 +33,7 @@ export function Briefing() {
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {pillars.map((p) => (
-          <div key={p.title} className="bezel p-8">
+          <div key={p.title} className="bezel bezel-screws p-8">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
               Inspiration
             </div>

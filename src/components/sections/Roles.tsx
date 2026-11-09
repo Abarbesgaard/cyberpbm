@@ -29,14 +29,14 @@ const claimRules = [
 export function Roles() {
   const { role } = useRole();
   return (
-    <section id="roles" className="border-t border-cp-border px-8 py-24 md:px-16">
+    <section id="roles" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion VII // Manifest" intro={intro[role ?? "default"]}>
         Crew <span className="text-cp-yellow">Manifest</span>
       </SectionHeader>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {crewRoles.map((r) => (
-          <div key={r.id} className="bezel p-6">
+          <div key={r.id} className="bezel bezel-screws p-6">
             <div className="mb-3 flex items-center justify-between font-mono text-[0.55rem] tracking-[0.2em] uppercase">
               <span className="text-cp-yellow">{r.ability}</span>
               <span className="border border-cp-border-bright px-1.5 py-0.5 text-cp-mid">{r.tag}</span>
@@ -59,7 +59,7 @@ export function Roles() {
 
       <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
         {claimRules.map((c) => (
-          <div key={c.title} className="bezel p-6">
+          <div key={c.title} className="bezel bezel-screws p-6">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">// Protokol</div>
             <h3 className="mb-2 font-head text-[0.85rem] tracking-[0.08em] uppercase text-cp-white">{c.title}</h3>
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{c.text}</p>
@@ -67,7 +67,7 @@ export function Roles() {
         ))}
       </div>
 
-      <div className="mt-12 bezel border-t-[6px] border-cp-red p-8">
+      <div className="mt-12 bezel bezel-screws border-t-[6px] border-cp-red p-8">
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
           // Klassificeret — Syntetiker
         </div>
@@ -79,7 +79,7 @@ export function Roles() {
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {synthModes.map((m) => (
-            <div key={m.name} className="bezel p-6">
+            <div key={m.name} className="bezel bezel-screws p-6">
               <div className="mb-1 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-mid">Fra uge {m.from}</div>
               <h4 className="mb-2 font-head tracking-[0.08em] text-[0.95rem] uppercase text-cp-red-bright">{m.name}</h4>
               <p className="text-[0.85rem] leading-[1.6] text-cp-off">{m.text}</p>

@@ -23,13 +23,13 @@ TRIBUNAL:   Anna`;
 export function WeekCycle() {
   const { role } = useRole();
   return (
-    <section id="week" className="bg-cp-panel px-8 py-24 md:px-16">
+    <section id="week" className="hull-alt wainscot px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion IV // Ugen" intro={intro[role ?? "default"]}>
         The <span className="text-cp-yellow">Cycle</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         {steps.map((s) => (
-          <div key={s.num} className="bezel relative p-8">
+          <div key={s.num} className="bezel bezel-screws relative p-8">
             <div className="pointer-events-none absolute top-5 right-5 font-crt text-[3.5rem] leading-none text-cp-border-bright">
               {s.num}
             </div>
@@ -39,9 +39,9 @@ export function WeekCycle() {
           </div>
         ))}
       </div>
-      <div className="mt-10 max-w-[480px]">
-        <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-mid">// Ordreark</div>
-        <pre className="crt crt-amber p-6 text-[1.25rem] leading-[1.4]">{orderSheet}</pre>
+      <div className="console mt-10 max-w-[520px] p-4 sm:p-5 [--chamfer:16px]">
+        <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">Ordreark // Privat DM</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-amber" /><span className="lamp lamp-off" /></span></div>
+        <pre className="crt crt-amber m-[10px] p-6 text-[1.25rem] leading-[1.4]">{orderSheet}</pre>
       </div>
     </section>
   );

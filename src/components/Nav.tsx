@@ -43,12 +43,11 @@ export function Nav() {
     <nav className="fixed top-0 right-0 left-0 z-[1000] bg-[linear-gradient(to_bottom,#EEECE6,#DCDAD3)] shadow-[0_2px_0_#B5B3AB]">
       <div className="flex h-[52px] items-center px-6">
         <Link to="/" className="mr-auto flex items-center gap-3 no-underline">
-          <span className="flex h-7 w-7 items-center justify-center border border-cp-yellow font-head text-[0.55rem] text-cp-yellow">
-            KT
-          </span>
+          <span className="plate-orange plate !px-2 !py-1 !pl-3 font-head !text-[0.55rem] !tracking-[0.1em]">KT</span>
           <span className="font-head text-[0.8rem] tracking-[0.2em] uppercase text-cp-white">
             USCSS Cassandra
           </span>
+          <span className="lamp lamp-green ml-1 hidden sm:inline-block" aria-hidden />
         </Link>
         <ul className="hidden list-none md:flex">
           {isHome &&
@@ -67,6 +66,7 @@ export function Nav() {
         </ul>
       </div>
       <div className="hazard h-[5px]" />
+      <div className="lightstrip mx-auto mt-[3px] h-[3px] w-1/3 opacity-90" aria-hidden />
     </nav>
   );
 }

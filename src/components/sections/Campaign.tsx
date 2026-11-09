@@ -3,7 +3,7 @@ import { weeks } from "@/content/game";
 
 export function Campaign() {
   return (
-    <section id="campaign" className="bg-cp-panel px-8 py-24 md:px-16">
+    <section id="campaign" className="hull-alt wainscot px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion VIII // Kampagne"
         intro="Seks uger. Hver uge tilføjer data eller pres — ikke nye regler."
