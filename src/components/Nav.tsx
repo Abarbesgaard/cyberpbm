@@ -40,7 +40,7 @@ export function Nav() {
     }`;
 
   return (
-    <nav className="fixed top-0 right-0 left-0 z-[1000] bg-cp-panel/[0.97]">
+    <nav className="fixed top-0 right-0 left-0 z-[1000] bg-[linear-gradient(to_bottom,#EEECE6,#DCDAD3)] shadow-[0_2px_0_#B5B3AB]">
       <div className="flex h-[52px] items-center px-6">
         <Link to="/" className="mr-auto flex items-center gap-3 no-underline">
           <span className="flex h-7 w-7 items-center justify-center border border-cp-yellow font-head text-[0.55rem] text-cp-yellow">
@@ -66,7 +66,7 @@ export function Nav() {
           </li>
         </ul>
       </div>
-      <div className="hazard h-[4px] opacity-80" />
+      <div className="hazard h-[5px]" />
     </nav>
   );
 }

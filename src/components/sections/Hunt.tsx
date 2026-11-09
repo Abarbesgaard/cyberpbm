@@ -22,9 +22,9 @@ export function Hunt() {
         The <span className="text-cp-red-bright">Hunt</span>
       </SectionHeader>
 
-      <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
-          <div key={s.title} className="bg-cp-dark p-8">
+          <div key={s.title} className="bezel p-8">
             <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-red-bright">
               {String(i + 1).padStart(2, "0")} // {s.label}
             </div>
@@ -41,7 +41,7 @@ PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.
 0 fasthold-point. Mislykket.`}
         </pre>
-        <div className="border border-cp-border-bright bg-cp-panel p-6">
+        <div className="bezel p-6">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Kryo</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
             <li>Ingen ordre, ingen evne, ingen sektorkanal.</li>

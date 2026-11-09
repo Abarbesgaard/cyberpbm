@@ -27,9 +27,9 @@ export function WeekCycle() {
       <SectionHeader eyebrow="Sektion IV // Ugen" intro={intro[role ?? "default"]}>
         The <span className="text-cp-yellow">Cycle</span>
       </SectionHeader>
-      <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         {steps.map((s) => (
-          <div key={s.num} className="relative bg-cp-dark p-8">
+          <div key={s.num} className="bezel relative p-8">
             <div className="pointer-events-none absolute top-5 right-5 font-crt text-[3.5rem] leading-none text-cp-border-bright">
               {s.num}
             </div>

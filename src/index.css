@@ -12,23 +12,30 @@
    inspiration.html palette applied to the :root (always dark).
    ═══════════════════════════════════════════ */
 :root {
-  /* Terminal raw palette */
-  --cp-red: #D9472B;
-  --cp-red-bright: #FF5A3C;
-  --cp-red-dim: #4A1A12;
-  --cp-yellow: #F2A93B;
-  --cp-yellow-dim: #6E4A16;
-  --cp-cyan: #7CF29A;
-  --cp-cyan-dim: #2C5A38;
-  --cp-green: #7CF29A;
-  --cp-white: #E9E4D4;
-  --cp-off: #B9B29E;
-  --cp-mid: #6B6656;
-  --cp-dark: #0B0C09;
-  --cp-panel: #11120E;
-  --cp-panel2: #181A14;
-  --cp-border: #2A2B22;
-  --cp-border-bright: #3D3E31;
+  /* Nostromo interior: putty-grey moulded panels, fluorescent light,
+     burnt-orange quilted padding. Terminals override these inside .crt. */
+  --cp-red: #A8321E;
+  --cp-red-bright: #B3301B;
+  --cp-red-dim: #EBD3CB;
+  --cp-yellow: #A84B16;
+  --cp-yellow-dim: #E3C2A4;
+  --cp-cyan: #2E6B48;
+  --cp-cyan-dim: #BFD3C4;
+  --cp-green: #2E6B48;
+  --cp-white: #1E1F1B;
+  --cp-off: #3A3B35;
+  --cp-mid: #6C6B64;
+  --cp-dark: #D2D1CB;
+  --cp-panel: #E6E4DD;
+  --cp-panel2: #DCDAD3;
+  --cp-border: #B5B3AB;
+  --cp-border-bright: #9A988F;
+
+  --hull-shadow: #8E8C84;
+  --hull-light: #F4F3EE;
+  --padding-orange: #C9672A;
+  --padding-orange-dark: #8F4115;
+  --chamfer: 12px;
 
   /* shadcn semantic mapping */
   --background: var(--cp-dark);
@@ -44,7 +51,7 @@
   --muted: var(--cp-panel2);
   --muted-foreground: var(--cp-mid);
   --accent: var(--cp-yellow);
-  --accent-foreground: var(--cp-dark);
+  --accent-foreground: var(--hull-light);
   --destructive: var(--cp-red-bright);
   --border: var(--cp-border);
   --input: var(--cp-border-bright);
@@ -157,31 +164,26 @@
    GLOBAL OVERLAYS (scanline + noise)
    Only place with raw rgba — overlays require transparency.
    ═══════════════════════════════════════════ */
+/* Fluorescent ceiling wash + faint grime. No scanlines on the walls. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.12) 2px,
-    rgba(0, 0, 0, 0.12) 4px
-  );
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, transparent 18%),
+    radial-gradient(ellipse at 50% 40%, transparent 60%, rgba(40, 40, 34, 0.28) 100%);
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9998;
-  animation: flicker 6s infinite;
+  z-index: 9999;
+  mix-blend-mode: multiply;
 }
 
 @keyframes flicker {
@@ -213,19 +215,38 @@ body::after {
    RETRO-FUTURIST PRIMITIVES
    ═══════════════════════════════════════════ */
 
-/* CRT monitor: rounded bezel, phosphor glow, scanlines */
+/* CRT monitor set into a moulded wall housing. Restores the dark
+   phosphor palette locally so any cp-* utility inside reads as terminal. */
 .crt {
+  --cp-red: #D9472B;
+  --cp-red-bright: #FF5A3C;
+  --cp-yellow: #F2A93B;
+  --cp-yellow-dim: #6E4A16;
+  --cp-cyan: #7CF29A;
+  --cp-cyan-dim: #2C5A38;
+  --cp-green: #7CF29A;
+  --cp-white: #E9E4D4;
+  --cp-off: #B9B29E;
+  --cp-mid: #6B7A6E;
+  --cp-dark: #0B0C09;
+  --cp-panel: #11120E;
+  --cp-panel2: #181A14;
+  --cp-border: #2A2B22;
+  --cp-border-bright: #3D3E31;
+
   position: relative;
   font-family: var(--font-crt);
   color: var(--cp-cyan);
   background: radial-gradient(ellipse at center, #0E1A11 0%, #060A07 100%);
-  border: 2px solid var(--cp-border-bright);
-  border-radius: 18px;
+  border: 2px solid #23241F;
+  border-radius: 14px;
   box-shadow:
     inset 0 0 40px rgba(124, 242, 154, 0.08),
     inset 0 0 4px rgba(0, 0, 0, 0.9),
-    0 0 0 6px var(--cp-panel2),
-    0 0 0 7px var(--cp-border);
+    0 0 0 8px #C9C7BF,
+    0 0 0 9px var(--hull-shadow),
+    0 0 0 10px var(--hull-light),
+    0 6px 18px 8px rgba(30, 30, 25, 0.25);
   text-shadow: 0 0 6px rgba(124, 242, 154, 0.55);
   overflow: hidden;
 }
@@ -234,12 +255,9 @@ body::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 2px,
-    rgba(0, 0, 0, 0.3) 3px
-  );
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0, 0, 0, 0.3) 3px),
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.06), transparent 50%);
   pointer-events: none;
 }
 
@@ -249,8 +267,10 @@ body::after {
   box-shadow:
     inset 0 0 40px rgba(242, 169, 59, 0.08),
     inset 0 0 4px rgba(0, 0, 0, 0.9),
-    0 0 0 6px var(--cp-panel2),
-    0 0 0 7px var(--cp-border);
+    0 0 0 8px #C9C7BF,
+    0 0 0 9px var(--hull-shadow),
+    0 0 0 10px var(--hull-light),
+    0 6px 18px 8px rgba(30, 30, 25, 0.25);
   text-shadow: 0 0 6px rgba(242, 169, 59, 0.55);
 }
 
@@ -260,31 +280,64 @@ body::after {
   box-shadow:
     inset 0 0 40px rgba(255, 90, 60, 0.08),
     inset 0 0 4px rgba(0, 0, 0, 0.9),
-    0 0 0 6px var(--cp-panel2),
-    0 0 0 7px var(--cp-border);
+    0 0 0 8px #C9C7BF,
+    0 0 0 9px var(--hull-shadow),
+    0 0 0 10px var(--hull-light),
+    0 6px 18px 8px rgba(30, 30, 25, 0.25);
   text-shadow: 0 0 6px rgba(255, 90, 60, 0.55);
 }
 
-/* Industrial panel with inset rule, like a moulded console */
+/* Moulded wall panel: chamfered corners, inset groove, top highlight. */
 .bezel {
-  background: var(--cp-panel);
-  border: 1px solid var(--cp-border-bright);
-  box-shadow: inset 0 0 0 4px var(--cp-panel), inset 0 0 0 5px var(--cp-border);
+  background: linear-gradient(to bottom, #ECEAE4, #DEDCD5);
+  clip-path: polygon(
+    var(--chamfer) 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer),
+    100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%,
+    var(--chamfer) 100%, 0 calc(100% - var(--chamfer)), 0 var(--chamfer)
+  );
+  box-shadow:
+    inset 0 1px 0 var(--hull-light),
+    inset 0 0 0 5px transparent,
+    inset 0 0 0 6px rgba(120, 118, 110, 0.35),
+    inset 0 -2px 0 rgba(120, 118, 110, 0.35);
+}
+
+.chamfer {
+  clip-path: polygon(
+    var(--chamfer) 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer),
+    100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%,
+    var(--chamfer) 100%, 0 calc(100% - var(--chamfer)), 0 var(--chamfer)
+  );
+}
+
+/* Burnt-orange quilted padding, like the corridor walls. */
+.padding-orange {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18) 1px, transparent 1px) 0 0 / 22px 100%,
+    linear-gradient(to bottom, #D9773A, var(--padding-orange) 45%, var(--padding-orange-dark));
+  box-shadow: inset 0 1px 0 rgba(255, 220, 190, 0.5), inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Fluorescent strip light */
+.lightstrip {
+  height: 6px;
+  background: linear-gradient(to bottom, #FFFFFF, #E9F1F0);
+  box-shadow: 0 0 14px 3px rgba(235, 245, 245, 0.9), 0 0 0 1px #B5B3AB;
 }
 
 .hazard {
   background: repeating-linear-gradient(
     -45deg,
-    var(--cp-yellow) 0 14px,
-    #0B0C09 14px 28px
+    #D9A21E 0 14px,
+    #23241F 14px 28px
   );
 }
 
 .hazard-sm {
   background: repeating-linear-gradient(
     -45deg,
-    var(--cp-yellow) 0 4px,
-    #0B0C09 4px 8px
+    #D9A21E 0 4px,
+    #23241F 4px 8px
   );
 }
 
@@ -292,12 +345,14 @@ body::after {
   background: repeating-linear-gradient(
     -45deg,
     var(--cp-red) 0 14px,
-    #0B0C09 14px 28px
+    #23241F 14px 28px
   );
 }
 
-.glow-amber { text-shadow: 0 0 18px rgba(242, 169, 59, 0.45); }
-.glow-red { text-shadow: 0 0 18px rgba(255, 90, 60, 0.45); }
+/* Embossed lettering on the hull; glows only inside a terminal. */
+.glow-amber, .glow-red { text-shadow: 0 1px 0 var(--hull-light), 0 -1px 0 rgba(0, 0, 0, 0.12); }
+.crt .glow-amber { text-shadow: 0 0 18px rgba(242, 169, 59, 0.45); }
+.crt .glow-red { text-shadow: 0 0 18px rgba(255, 90, 60, 0.45); }
 
 
 /* ═══════════════════════════════════════════
@@ -321,12 +376,13 @@ body::after {
   font-family: var(--font-crt);
   font-size: 1.15rem;
   line-height: 1.35;
-  color: var(--cp-cyan);
+  color: #7CF29A;
   background: #060A07;
-  border: 1px solid var(--cp-border-bright);
+  border: 2px solid #23241F;
   border-radius: 12px;
+  box-shadow: 0 0 0 6px #C9C7BF, 0 0 0 7px var(--hull-shadow);
   padding: 1rem 1.25rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem 7px 1.25rem;
   overflow-x: auto;
   text-shadow: 0 0 6px rgba(124, 242, 154, 0.45);
 }

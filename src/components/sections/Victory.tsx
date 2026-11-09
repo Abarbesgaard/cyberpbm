@@ -7,7 +7,7 @@ export function Victory() {
         To hold. <span className="text-cp-red-bright">Ét skib.</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="border border-cp-yellow-dim bg-cp-dark p-8">
+        <div className="bezel border-t-[6px] border-cp-yellow p-8">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">
             Besætningen
           </div>
@@ -19,7 +19,7 @@ export function Victory() {
             koster jer en hånd.
           </p>
         </div>
-        <div className="border border-cp-red bg-cp-dark p-8">
+        <div className="bezel border-t-[6px] border-cp-red p-8">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
             Syntetikerne
           </div>

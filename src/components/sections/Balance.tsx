@@ -55,7 +55,7 @@ export function Balance() {
         </p>
       </div>
 
-      <div className="mt-12 max-w-[960px] border border-cp-border-bright bg-cp-panel p-6 md:p-8">
+      <div className="mt-12 max-w-[960px] bezel p-6 md:p-8">
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// ORACLE — rollepulje</div>
         <h3 className="mb-4 font-head text-[1rem] tracking-[0.08em] uppercase text-cp-white">Sådan trækkes rollerne</h3>
         <ol className="list-decimal space-y-2 pl-6 text-[0.9rem] leading-[1.6] text-cp-off">
