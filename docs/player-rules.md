@@ -20,14 +20,22 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 - Syntetikere kan ikke bruge evnen fra en besætningsrolle, de udgiver sig for, og får intet evneresultat.
 - **Bluff-forslag:** Hver syntetiker får to roller, der garanteret *ikke* er i spil. Det er forslag til påstande, ikke roller.
 
+## Sådan virker din evne
+
+1. **Vælg.** Skriv evnens mål i fredagens ordre: *EVNE: Pejling → Peter*. Nogle evner har intet mål.
+2. **ORACLE afgør.** Du regner intet ud og holder ikke regnskab.
+3. **Læs svaret.** Mandag står resultatet i din private rapport — fx *"Peter står i Lastrum."* Rapporten fortæller også, om din evne er aktiv i den kommende uge.
+
+Ingen evne har point, ladninger eller tilstande, du skal huske. Hver rolle på websitet viser, hvad du vælger, og et eksempel på ORACLEs svar.
+
 ## Syntetikerroller
 
-| Rolle | Fra uge | Evne |
-|---|---|---|
-| Særordre *(altid i spil)* | 2 | **Sabotage:** Systemet i din sektion −2. ORACLE broadcaster sektionen. |
-| Forfalsker | 2 | **Forfalskning:** En spillers private resultat denne uge er falsk, men troværdigt. |
-| Skaktløber | 1 | **Skakt:** Ryk til en vilkårlig zone. |
-| Støjsender | 2 | **Støj:** Informationsevner i eller på en zone giver *"Signal forstyrret."* |
+| Rolle | Fra uge | Evne | Du vælger | ORACLE svarer fx |
+|---|---|---|---|---|
+| Særordre *(altid i spil)* | 2 | **Sabotage:** Systemet i din sektion −2. ORACLE broadcaster sektionen. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
+| Forfalsker | 2 | **Forfalskning:** En spillers private resultat denne uge er falsk, men troværdigt. | En spiller | *"Sendt til Sara: 'Medlab: 1 person.'"* |
+| Skaktløber | 1 | **Skakt:** Ryk til en vilkårlig zone. | En zone | *"Du står i Lastrum."* |
+| Støjsender | 2 | **Støj:** Informationsevner i eller på en zone giver *"Signal forstyrret."* | En zone | *"Støj aktiv i Broen."* |
 
 ## Skibssystemer og scenarie
 
@@ -66,7 +74,7 @@ TRIBUNAL:   Anna                    (eller: Ingen ændring)
 ```
 
 - **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
-- **Evne:** Din ene evne. Se rollekataloget.
+- **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
 - **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
 - **Fasthold:** Hvis du ender i samme zone som målet for kryo-ordren, hjælper du med at pågribe det.
 - **Tribunal:** Stem på en spiller, eller *Ingen ændring*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
@@ -86,14 +94,14 @@ TRIBUNAL:   Anna                    (eller: Ingen ændring)
 ## Jagten
 
 1. **Tribunal:** Flertal af aktive spillere udsteder en kryo-ordre. ORACLE pejler målets zone én gang.
-2. **Pågribelse:** Står der spillere med *Fasthold: ja* i målets zone, og giver de mindst **2 point**, sendes målet i kryo. Sikkerhedschefen giver 2 point alene.
-3. **Rapport:** ORACLE oplyser, hvor mange der var til stede, og hvor mange point de gav. Aldrig hvem.
+2. **Pågribelse:** Står mindst **to andre** i målets zone med *Fasthold: ja*, sendes målet i kryo. Sikkerhedschefen kan i stedet bruge *Pågrib* på målet alene.
+3. **Rapport:** Lykkes det, siger ORACLE kun det. Mislykkes det, oplyser ORACLE, hvor mange der var til stede, og hvor mange der holdt fast. Aldrig hvem.
 
 Én aktiv kryo-ordre ad gangen. Den gælder, indtil målet er pågrebet eller tribunalet vælger et nyt mål.
 
 ## Drab
 
-- Hver syntetiker kan dræbe **én gang** i kampagnen, fra uge 3. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge.
+- Hver syntetiker kan dræbe **én gang** i kampagnen, fra uge 3. ORACLE fortæller dig hver mandag, om drabet er brugt. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge.
 - Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse. Ellers sker intet, og drabet kan bruges igen.
 - Offeret får kun at vide, at det er dødt, og hvor. Ikke hvem.
 - ORACLE broadcaster: *"LIG FUNDET: [Navn], [zone]."* Aldrig rollen.

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useRole } from "@/context/RoleContext";
 import { SectionHeader } from "@/components/SectionHeader";
 import { balance, crewRoles, synthRoles } from "@/content/game";
@@ -8,8 +9,27 @@ const maxCrew = Math.max(...balance.map((b) => b.crew));
 const intro = {
   player: "Hver rolle findes højst én gang. Kataloget er offentligt, men hvilke roller der er i spil, er hemmeligt. To spillere, der påstår samme rolle? Mindst én af dem lyver.",
   gm: "Træk rollerne uden tilbagelægning: Ingeniør plus et tilfældigt udvalg, højst to pr. tag. Kun ubrugte roller må blive bluff-forslag.",
-  default: "Én evne pr. spiller, og hver rolle findes højst én gang. Hele kataloget er offentligt — hvilke roller der faktisk er om bord, er ikke.",
+  default: "Én evne pr. spiller. Vælg et mål, og ORACLE svarer. Hver rolle findes højst én gang, og hele kataloget er offentligt — hvilke roller der faktisk er om bord, er ikke.",
 };
+
+const AbilityIO = memo(function AbilityIO({ pick, reply, red }: { pick: string; reply: string; red?: boolean }) {
+  return (
+    <div className="mt-4 space-y-1.5 font-mono text-[0.68rem] leading-[1.5]">
+      <div className="text-cp-mid">
+        <span className="tracking-[0.2em] uppercase">Vælg</span> <span className="text-cp-off">{pick}</span>
+      </div>
+      <div className={`border-l-2 pl-2 ${red ? "border-cp-red text-cp-red-bright" : "border-cp-cyan text-cp-cyan"}`}>
+        &gt; ORACLE: {reply}
+      </div>
+    </div>
+  );
+});
+
+const howItWorks = [
+  { n: "01", title: "Skriv målet", text: "Fredag skriver du én linje i ordren: EVNE → Peter. Eller: EVNE → Medlab. Eller: Ingen." },
+  { n: "02", title: "ORACLE afgør", text: "ORACLE regner alt ud i weekenden. Du skal aldrig tælle point, holde styr på brugte evner eller huske, hvilken uge noget låses op." },
+  { n: "03", title: "Læs svaret", text: "Mandag får du resultatet i din private rapport. Den fortæller også, hvad du kan i den kommende uge." },
+];
 
 const claimRules = [
   {
@@ -49,6 +69,7 @@ export function Roles() {
               </div>
             )}
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{r.text}</p>
+            <AbilityIO pick={r.pick} reply={r.reply} />
           </div>
         ))}
         <div className="crt m-[10px] flex flex-col justify-center p-6 text-[1.15rem] leading-[1.3] text-cp-cyan">
@@ -58,6 +79,16 @@ export function Roles() {
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {howItWorks.map((h) => (
+          <div key={h.n} className="bezel bezel-screws p-6">
+            <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-cyan">// Evne {h.n}</div>
+            <h3 className="mb-2 font-head text-[0.85rem] tracking-[0.08em] uppercase text-cp-white">{h.title}</h3>
+            <p className="text-[0.85rem] leading-[1.6] text-cp-off">{h.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
         {claimRules.map((c) => (
           <div key={c.title} className="bezel bezel-screws p-6">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">// Protokol</div>
@@ -87,6 +118,7 @@ export function Roles() {
               </div>
               <h4 className="mb-2 font-head tracking-[0.08em] text-[0.95rem] uppercase text-cp-red-bright">{m.name}</h4>
               <p className="text-[0.85rem] leading-[1.6] text-cp-off">{m.text}</p>
+              <AbilityIO pick={m.pick} reply={m.reply} red />
             </div>
           ))}
         </div>
