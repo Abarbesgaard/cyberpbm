@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const levels = [
-  { name: "Observation", source: "ORACLE-broadcast og din sektor-manifest", truth: "Altid sandt", ex: "\"Uautoriseret adgang i Lastrum.\"", tone: "text-cp-yellow border-cp-yellow" },
+  { name: "Observation", source: "ORACLE-broadcast og din sektor-manifest", truth: "Altid sandt", ex: "\"Livsstøtte 2  −1.\"", tone: "text-cp-yellow border-cp-yellow" },
   { name: "Analyse", source: "Dit private evneresultat", truth: "Sandt — medmindre forfalsket", ex: "\"Scan: 2 personer i Medlab.\"", tone: "text-cp-cyan border-cp-cyan" },
   { name: "Vidneudsagn", source: "Alt, hvad andre spillere siger", truth: "Ukontrolleret", ex: "\"Jeg var i Broen hele ugen.\"", tone: "text-cp-red-bright border-cp-red" },
 ];

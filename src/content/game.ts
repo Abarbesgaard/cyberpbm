@@ -109,7 +109,7 @@ export const crewRoles: RoleDef[] = [
   { id: "medic", name: "Læge", ability: "Biometri", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor vedkommende stod ugen før.", pick: "En spiller", reply: "Peter stod i Motorrum.", tag: "ANALYSE" },
   { id: "archivist", name: "Arkivar", ability: "Krydsreference", text: "Vælg to spillere. ORACLE fortæller, om de nogensinde har stået i samme zone.", pick: "To spillere", reply: "Anna og Peter: ja.", tag: "ANALYSE" },
   { id: "psychologist", name: "Psykolog", ability: "Afhøring", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor mange andre der stod sammen med vedkommende ugen før.", pick: "En spiller", reply: "Sara stod med 2 andre.", tag: "ANALYSE", isNew: true },
-  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion får +2. ORACLE fortæller også, om sektionen blev saboteret sidste uge, og om sabotøren stadig står der.", pick: "Ingen — din sektion", reply: "Livsstøtte 1 → 3. Saboteret: ja. Sabotøren her: nej.", tag: "URET", core: true },
+  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion får +2. ORACLE fortæller også, om sektionen blev saboteret sidste uge.", pick: "Ingen — din sektion", reply: "Livsstøtte 1 → 3. Saboteret: ja.", tag: "URET", core: true },
   { id: "comms_officer", name: "Kommunikationsofficer", ability: "Åben linje", text: "Vælg en spiller. ORACLE åbner en privat kanal mellem jer i en uge, uanset placering.", pick: "En spiller", reply: "Kanal åben: #linje-sara.", tag: "SOCIAL" },
   { id: "auditor", name: "Revisor", ability: "Stemmerevision", text: "Vælg en spiller. ORACLE fortæller, hvem vedkommende stemte på ved denne uges tribunal.", pick: "En spiller", reply: "Peter stemte på Anna.", tag: "SOCIAL", isNew: true },
 ];
@@ -136,7 +136,7 @@ export interface SynthRoleDef {
 
 /** One ability per synthetic. Drawn without replacement, like crew roles. */
 export const synthRoles: SynthRoleDef[] = [
-  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion får −2. ORACLE broadcaster sektionen — aldrig navnet.", pick: "Ingen — din sektion", reply: "Sabotage udført. Livsstøtte 3 → 1." },
+  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion får −2. Ingen broadcast: alle ser kun ændringen i systemstatus.", pick: "Ingen — din sektion", reply: "Sabotage udført. Livsstøtte 3 → 1." },
   { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. ORACLE sender vedkommende et falsk, men troværdigt resultat og viser dig, hvad der blev sendt.", pick: "En spiller", reply: "Sendt til Sara: \"Medlab: 1 person.\"" },
   { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Vælg en zone. Du kravler derhen gennem vedligeholdelsesskakterne i stedet for at gå.", pick: "En zone", reply: "Du står i Lastrum." },
   { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner i eller på zonen giver: \"Signal forstyrret.\"", pick: "En zone", reply: "Støj aktiv i Broen." },

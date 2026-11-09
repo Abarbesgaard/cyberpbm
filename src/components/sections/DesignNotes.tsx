@@ -1,6 +1,9 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "ORACLE broadcaster sabotage", to: "Sabotage skjules i regnestykket", why: "Kun status og ændring broadcastes. Blev to i et rum og siger begge, at de arbejdede, men systemet faldt? Så lyver én af dem." },
+  { from: "Uge 6: sidste tribunal", to: "Uge 6: protokolvalg", why: "Tribunalet i uge 6 ændrede intet. Nu vælger flertallet, hvem der udfører protokollen — er det en syntetiker, vinder syntetikerne." },
+  { from: "Ingeniør: \"Sabotøren her: ja/nej\"", to: "Ingeniør: \"Saboteret: ja/nej\"", why: "Med skjult sabotage pegede svaret direkte på syntetikeren." },
   { from: "Et system betyder kun noget på 0", to: "Hvert rum har en rumevne (≥3) og et nedbrud (≤1)", why: "Rumevnen koster arbejdet. Nedbrud rammer hele skibet og giver syntetikerne delmål før 0." },
   { from: "Døde hjælper kun besætningen", to: "Døde kan blive en alien, der spiller for syntetikerne", why: "Alienen lever i skakterne, angriber ensomme spillere og skaber uro med falske alibier. To med Bekæmp smider den ud." },
   { from: "Ekkoet vælger sin skæbne", to: "ORACLE ruller skæbnen på d6", why: "1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Taget eller ugyldig giver Ekko. Mere spænding, ingen taktisk venten." },
@@ -53,7 +56,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.26</span>
+        v0.7 → <span className="text-cp-yellow">v0.27</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

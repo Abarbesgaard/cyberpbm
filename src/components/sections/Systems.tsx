@@ -33,7 +33,6 @@ const board = [
     const [from, to] = example[id];
     return `${zoneName(id).padEnd(11)}${bar(to)} ${to}  ${sign(to - from)}`;
   }),
-  "ANOMALI: Uautoriseret adgang i Livsstøtte.",
   "KRITISK: Motorrum. Én uge til systemsvigt.",
   "NEDBRUD: Skakter lukket.",
 ].join("\n");
@@ -41,7 +40,7 @@ const board = [
 const rules = [
   { label: "Arbejde", body: `Bliver du i en sektion, kan du arbejde: systemet +${WORK_GAIN}. Syntetikere kan lade være — i hemmelighed.` },
   { label: "Forfald", body: `I uge 2, 4 og 6 mister et system ${NEGLECT_LOSS}, hvis ingen arbejdede, reparerede eller vedligeholdt der.` },
-  { label: "Sabotage", body: `Særordre: systemet i sektionen −${SABOTAGE_LOSS}, men intet forfald oveni. ORACLE oplyser sektionen, aldrig navnet.` },
+  { label: "Sabotage", body: `Særordre: systemet i sektionen −${SABOTAGE_LOSS}, men intet forfald oveni. Ingen broadcast — kun tallet.` },
   { label: "Reparation", body: `Ingeniøren: systemet i sektionen +${REPAIR_GAIN}. Rygraden har intet system.` },
 ];
 
@@ -63,7 +62,7 @@ export function Systems() {
           </div>
           <pre className="crt m-[10px] overflow-x-auto whitespace-pre-wrap p-4 sm:p-6 text-[1.1rem] leading-[1.45] text-cp-cyan sm:text-[1.25rem]">{board}</pre>
           <p className="px-3 pb-1 font-mono text-[0.6rem] tracking-[0.12em] uppercase text-cp-mid">
-            To blev i Medlab, men Medlab steg kun 1. Hvem arbejdede ikke?
+            To blev i Livsstøtte og siger, de arbejdede. Livsstøtte faldt 1. Hvem saboterede?
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -6,8 +6,8 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
-- **Besætning:** Opfyld kampagnens scenarie inden udgangen af uge 6. Tribunalet er et redskab: en syntetiker i kryo kan ikke længere sabotere.
-- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), eller sørg for, at scenariet ikke er opfyldt efter Final Protocol. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
+- **Besætning:** Opfyld kampagnens scenarie inden udgangen af uge 6, og giv ikke protokollen til en syntetiker (se *Tribunalet*). En syntetiker i kryo kan ikke længere sabotere.
+- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), bliv valgt til protokollen i uge 6, eller sørg for, at scenariet ikke er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
 - **Alien:** En død eller frossen spiller kan blive en alien (se *Skæbne*). Den spiller for syntetikerne, uanset hvilket hold den kom fra.
 
 ## Roller og påstande
@@ -33,7 +33,7 @@ Ingen evne har point, ladninger eller tilstande, du skal huske. Hver rolle på w
 
 | Rolle | Fra uge | Evne | Du vælger | ORACLE svarer fx |
 |---|---|---|---|---|
-| Særordre *(altid i spil)* | 2 | **Sabotage:** Systemet i din sektion −2. ORACLE broadcaster sektionen. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
+| Særordre *(altid i spil)* | 2 | **Sabotage:** Systemet i din sektion −2. Ingen broadcast: alle ser kun tallet. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
 | Forfalsker | 2 | **Forfalskning:** En spillers private resultat denne uge er falsk, men troværdigt. | En spiller | *"Sendt til Sara: 'Medlab: 1 person.'"* |
 | Skaktløber | 1 | **Skakt:** Ryk til en vilkårlig zone. | En zone | *"Du står i Lastrum."* |
 | Støjsender | 2 | **Støj:** Informationsevner i eller på en zone giver *"Signal forstyrret."* | En zone | *"Støj aktiv i Broen."* |
@@ -44,7 +44,7 @@ Hver sektion (A–F) har et system fra 0 til 5. Alle starter på 3. Rygraden har
 
 - **Arbejde:** Bliver du i en sektion og skriver *Arbejde: ja*, får systemet +1.
 - **Forfald:** I uge 2, 4 og 6 mister et system 1, hvis ingen arbejdede der.
-- **Sabotage:** −2 (intet forfald oveni). **Reparation** (Ingeniør): +2.
+- **Sabotage:** −2 (intet forfald oveni). Sabotage broadcastes aldrig. Alle ser kun systemets ændring. **Reparation** (Ingeniør): +2.
 - **Et system på 0 er KRITISK.** Står det stadig på 0 efter næste uge, vinder syntetikerne.
 
 ### Rumevner og nedbrud
@@ -63,7 +63,7 @@ Hver sektion har en **rumevne** og et **nedbrud**. **Mandagens status gælder he
 | **Lastrum** | **Værktøj:** Næste uge giver dit arbejde +2. | **Ingen reservedele:** Reparation giver +1. |
 | **Hypersøvn** | **Kapsel:** Du kan ikke dræbes eller angribes denne uge. | **Kryo svigter:** Tribunalet kan ikke fryse nogen. |
 
-ORACLE offentliggør status og ændring for alle systemer hver mandag. Brug tallene: Hvis to blev i Medlab, men Medlab kun steg 1, arbejdede én af dem ikke.
+ORACLE offentliggør status og ændring for alle systemer hver mandag. **Tallene er jeres spor.** Blev to i Livsstøtte, og siger begge, at de arbejdede, men Livsstøtte faldt 1, så saboterede én af dem. Forfald, reparation, vedligehold og rumevner gør regnestykket uklart — og giver alibier.
 
 Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Er det opfyldt efter uge 6, vinder besætningen.
 
@@ -101,7 +101,7 @@ UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
 EVNE:       Pejling → Peter         (eller: Ingen)
 ARBEJDE:    Nej                     (kun ved Bliv i en sektion; eller: Bekæmp, Rum → mål)
-TRIBUNAL:   Anna                    (eller: Ingen)
+TRIBUNAL:   Anna                    (eller: Ingen; uge 6: PROTOKOL → navn)
 ```
 
 - **Bevægelse:** Bliv, eller ryk til en nabozone på kampagnens skibsplan (se *Skibet*).
@@ -132,9 +132,10 @@ Skibet har syv zoner: seks sektioner (A Hypersøvn, B Medlab, C Livsstøtte, D L
 
 ## Tribunalet
 
-1. **Stemme:** Fra uge 2 stemmer du hver fredag i ordren på en spiller eller *Ingen*. Stemmerne er hemmelige.
+1. **Stemme:** Fra uge 2 til 5 stemmer du hver fredag i ordren på en spiller eller *Ingen*. Stemmerne er hemmelige.
 2. **Dom:** Får ét navn flertal af de **aktive** spillere, sendes vedkommende direkte i kryo. Stemmelighed eller intet flertal: ingen dom.
 3. **Broadcast:** ORACLE oplyser navn og antal stemmer. Aldrig hvem der stemte, og aldrig rollen.
+4. **Uge 6 — protokolvalg:** I stedet for tribunalet stemmer du om, hvem der skal udføre Final Protocol. Får ét navn flertal af de aktive spillere, får vedkommende protokollen. Er det en syntetiker, vinder syntetikerne — uanset systemerne. Er det besætning, eller er der intet flertal, afgør scenariet.
 
 Ingen kan bevise noget. I kan kun overbevise hinanden.
 
@@ -201,4 +202,4 @@ Rumlog og Hjemsøg er informationsevner: de kan forfalskes og forstyrres. Et fro
 | 3 | Broken Trust | Syntetikerne kan dræbe. |
 | 4 | Containment Failure | Krisen, rullet på d20 i uge 3. |
 | 5 | Last Transmission | Scenariets arkiv frigives. |
-| 6 | Final Protocol | Sidste tribunal. Rollerne afsløres. |
+| 6 | Final Protocol | Protokolvalg i stedet for tribunal. Rollerne afsløres. |

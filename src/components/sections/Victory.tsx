@@ -15,9 +15,9 @@ export function Victory() {
             Fuldfør scenariet
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Efter uge 6 vinder I, hvis kampagnens scenarie er opfyldt. Tribunalet er et
-            redskab, ikke målet: en syntetiker i kryo kan ikke længere sabotere. En fejl sender
-            en uskyldig i kryo, og I mister en, der kunne arbejde og bruge en evne.
+            Efter uge 6 vinder I, hvis kampagnens scenarie er opfyldt — og protokollen ikke
+            er givet til en syntetiker. En syntetiker i kryo kan ikke længere sabotere. En fejl
+            sender en uskyldig i kryo, og I mister en, der kunne arbejde og bruge en evne.
           </p>
         </div>
         <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">
@@ -28,8 +28,9 @@ export function Victory() {
             Overlev — eller sluk lyset
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Et system står på 0 to uger i træk — så vinder I. Ellers vinder I, hvis scenariet
-            ikke er opfyldt efter Final Protocol. Jeres våben er
+            Et system står på 0 to uger i træk — så vinder I. Bliver én af jer valgt til at
+            udføre Final Protocol i uge 6, vinder I. Ellers vinder I, hvis scenariet ikke er
+            opfyldt. Jeres våben er
             løgn, mistillid og et vel­placeret hul i livsstøtten.
           </p>
         </div>

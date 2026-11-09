@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.26
+# USCSS CASSANDRA v0.27
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,17 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.25
+## 0. Hvad er ændret fra v0.26
+
+v0.27 binder deduktion og systemer sammen. Før var det to spil: besætningen vandt kun på systempoint, og sabotage blev broadcastet, så tallene sagde *hvor*, men aldrig gav et spor til *hvem*.
+
+| v0.26 | v0.27 | Hvorfor |
+|---|---|---|
+| ORACLE broadcaster sabotage: *"Uautoriseret adgang i Livsstøtte."* | **Sabotage skjules i regnestykket.** Kun status og ændring broadcastes. | Hvert tal bliver et spor. Man skal arbejde sammen for at nå målet, men gruppen kan skjule syntetikeren. |
+| Uge 6: sidste tribunal (afgøres efter systemerne og ændrer intet) | **Protokolvalg:** flertallet vælger, hvem der udfører Final Protocol. En syntetiker vinder straks. | Besætningen skal både reparere skibet og vide, hvem den stoler på. |
+| Ingeniør: *"Saboteret: ja. Sabotøren her: nej."* | **Kun "Saboteret: ja/nej."** | Med skjult sabotage pegede svaret direkte på syntetikeren. |
+
+### Fra v0.25 til v0.26
 
 v0.26 giver hvert rum en **rumevne** og et **nedbrud**.
 
@@ -225,7 +235,7 @@ Men det er ikke kun slid. Nogen om bord hjælper det på vej.
 
 **Syntetikerne vinder**, hvis et skibssystem står på 0 to afgørelser i træk, eller står på 0 efter Final Protocol (se afsnit 8).
 
-Ellers afgøres spillet efter Final Protocol i uge 6. **Besætningen vinder**, hvis kampagnens scenarie er opfyldt. **Syntetikerne vinder**, hvis det ikke er.
+Ellers afgøres spillet efter Final Protocol i uge 6. I stedet for et tribunal vælger flertallet, hvem der udfører protokollen (se 6.1b). **Syntetikerne vinder**, hvis en syntetiker får den. Ellers **vinder besætningen**, hvis kampagnens scenarie er opfyldt, og **syntetikerne**, hvis det ikke er.
 
 Kryo er ikke en sejrsbetingelse. Tribunalet er besætningens redskab: en syntetiker i kryo kan ikke længere sabotere eller dræbe. Men skibet skal stadig repareres.
 
@@ -280,7 +290,7 @@ Hver aktiv spiller sender én ordre pr. uge med fire felter:
 3. Støj og forfalskning.
 4. Informationsevner.
 5. Systemer: arbejde, reparation, sabotage, forfald og vedligehold (samtidigt).
-6. Tribunal — kryo.
+6. Tribunal — kryo (uge 6: protokolvalg).
 7. Sektorkanaler opdateres.
 
 ---
@@ -297,7 +307,7 @@ Information skal være nyttig, men sjældent fuldstændig.
 
 **Sektor-manifest:** Hver mandag får du en liste over, hvem der står i din zone. Det er al den positionsinformation, du får gratis. Hvem der står andre steder, ved du kun fra vidneudsagn og evner.
 
-**Broadcasts er altid sande.** Forfalskning rammer kun private resultater. Det betyder, at sabotage altid afslører, *hvor* det skete — men aldrig *hvem*.
+**Broadcasts er altid sande.** Forfalskning rammer kun private resultater. Sabotage broadcastes aldrig. Den står kun i regnestykket: hvem stod i sektionen, hvem påstår at have arbejdet, og hvad blev ændringen?
 
 ---
 
@@ -307,7 +317,7 @@ Neutralisering er en **fælles beslutning**. Ingen kan bevise noget; man kan kun
 
 ### 6.1 Tribunalet
 
-- Fra uge 2 stemmer alle aktive spillere hver fredag på én spiller eller *Ingen*. Stemmen står i ordren.
+- Fra uge 2 til 5 stemmer alle aktive spillere hver fredag på én spiller eller *Ingen*. Stemmen står i ordren.
 - Stemmerne er hemmelige. Spillerne må selv fortælle (eller lyve om), hvad de stemte.
 - Får ét navn **simpelt flertal af de aktive spillere**, sendes vedkommende **direkte i kryo**. Brugte spøgelsesstemmer tæller med.
 - Stemmelighed eller intet flertal: ingen dom.
@@ -322,6 +332,18 @@ eller
 > *"TRIBUNAL: 3 af 6 stemmer mod Anna. Intet flertal. Ingen dom."*
 
 Antallet er offentligt, men aldrig hvem der stemte. En dom, der manglede én stemme, rejser spørgsmålet: Hvem stemte ikke på vedkommende, og hvorfor?
+
+### 6.1b Final Protocol — protokolvalg
+
+I uge 6 erstattes tribunalet af et **protokolvalg**. Alle stemmer på én aktiv spiller (*PROTOKOL → navn*) eller *Ingen*, med samme flertalsregel og spøgelsesstemmer som tribunalet.
+
+- **Flertal for en syntetiker:** Syntetikerne vinder, uanset systemerne. Protokollen overdrages til ORACLE og selskabet.
+- **Flertal for besætning, eller intet flertal:** Scenariet afgør.
+- Et system, der svigter (0 to afgørelser i træk), afgør stadig først.
+
+Logik: `finalOutcome` i `src/content/protocol.ts`, testet i `tests/protocol.test.ts`.
+
+Broadcast: *"PROTOKOL: 4 af 6 stemmer. Anna udfører Final Protocol."*
 
 ### 6.2 Den dømtes rolle
 
@@ -409,7 +431,7 @@ Ingen evne har ladninger, point eller tilstande, spilleren skal huske. Er en evn
 | **Læge** | `medic` | ANALYSE | *Biometri:* Hvor en spiller i din zone stod ugen før. | En spiller | *"Peter stod i Motorrum."* |
 | **Arkivar** | `archivist` | ANALYSE | *Krydsreference:* Om to spillere nogensinde har stået i samme zone ved en rapport. | To spillere | *"Anna og Peter: ja."* |
 | **Psykolog** *(ny)* | `psychologist` | ANALYSE | *Afhøring:* Hvor mange andre der stod med en spiller i din zone ugen før. | En spiller | *"Sara stod med 2 andre."* |
-| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Systemet i din sektion +2. Svaret siger også, om sektionen blev saboteret sidste uge, og om sabotøren stadig står der. | Intet | *"Livsstøtte 1 → 3. Saboteret: ja. Sabotøren her: nej."* |
+| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Systemet i din sektion +2. Svaret siger også, om sektionen blev saboteret sidste uge. | Intet | *"Livsstøtte 1 → 3. Saboteret: ja."* |
 | **Kommunikationsofficer** | `comms_officer` | SOCIAL | *Åben linje:* En privat kanal mellem jer i en uge, uanset placering. | En spiller | *"Kanal åben: #linje-sara."* |
 | **Revisor** *(ny)* | `auditor` | SOCIAL | *Stemmerevision:* Hvem spilleren stemte på ved denne uges tribunal. | En spiller | *"Peter stemte på Anna."* |
 
@@ -437,7 +459,7 @@ Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 
 | Rolle | Id | Evne | Fra uge | Effekt | Du vælger | ORACLE svarer fx |
 |---|---|---|---|---|---|---|
-| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
+| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Systemet i din sektion −2. Ingen broadcast — kun ændringen i systemstatus. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
 | **Forfalsker** | `forger` | Forfalskning | 2 | Spillerens private resultat denne uge er falsk, men troværdigt. Du får at vide, hvad der blev sendt. | En spiller | *"Sendt til Sara: 'Medlab: 1 person.'"* |
 | **Skaktløber** | `crawler` | Skakt | 1 | Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne. | En zone | *"Du står i Lastrum."* |
 | **Støjsender** *(ny)* | `jammer` | Støj | 2 | Alle informationsevner brugt i eller på zonen giver *"Signal forstyrret."* | En zone | *"Støj aktiv i Broen."* |
@@ -493,13 +515,14 @@ Livsstøtte ██░░░ 2  −1
 Lastrum    ████░ 4  +1
 Broen      █████ 5  +1
 Motorrum   ░░░░░ 0  −1
-ANOMALI: Uautoriseret adgang i Livsstøtte.
 KRITISK: Motorrum. Én uge til systemsvigt.
 ```
 
-**Tallene er et spor.** Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Medlab, men Medlab steg kun 1? Én af dem arbejdede ikke. Besætning har ingen grund til at lade være. En syntetiker har.
+**Tallene er sporet.** Sabotage broadcastes aldrig. Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Livsstøtte og siger begge, at de arbejdede, men Livsstøtte faldt 1? Så er det sabotage −2 og arbejde +1: Én af dem lyver.
 
-Sabotage i en tom sektion er sikkert for sabotøren, men kan ikke alene tømme et system fra start: 3 → 1. Sabotage blandt andre er sværere at se i tallene, men alle i rummet ved, at én af dem gjorde det.
+Det er her, de to halvdele af spillet mødes. Systemerne kræver, at man arbejder sammen, og drab gør det farligt at stå alene. Men jo flere der står i et rum, jo bedre kan en syntetiker gemme sig. Forfald, reparation, vedligehold, Omdirigér og rumevner gør regnestykket uklart og giver alibier: *"Jeg brugte Sensorfeje og arbejdede ikke."*
+
+Sabotage i en tom sektion er sikkert for sabotøren, men −2 i en sektion, ingen påstår at have stået i, kan kun være sabotage.
 
 ### 8.1b Rumevner og nedbrud
 
@@ -559,7 +582,7 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
-- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og systemsvigt, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`. Rumevner, nedbrud, Omdirigér og Værktøj i `tests/rooms.test.ts`.
+- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og systemsvigt, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`. Rumevner, nedbrud, Omdirigér og Værktøj i `tests/rooms.test.ts`. Protokolvalget (flertal, syntetiker vinder, intet flertal = scenariet) i `tests/protocol.test.ts`.
 - Drabsbetingelserne (uge 3+, alene, kun besætning, én pr. syntetiker, mislykket drab er ikke brugt) er testet i `tests/kills.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet
@@ -599,7 +622,7 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | 3 | **Broken Trust** | Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning. |
 | 4 | **Containment Failure** | Krisen, rullet på d20 i uge 3 (se 8.3). |
 | 5 | **Last Transmission** | Scenariets arkiv (se 8.3). |
-| 6 | **Final Protocol** | Sidste tribunal. Derefter afsløres alle roller. |
+| 6 | **Final Protocol** | Protokolvalg i stedet for tribunal (se 6.1b). Derefter afsløres alle roller. |
 
 Hver uge tilføjer data eller pres, ikke nye regler.
 
@@ -608,7 +631,7 @@ Hver uge tilføjer data eller pres, ikke nye regler.
 ## 12. Eksempel — uge 4, Containment Failure
 
 > **ORACLE // SHIPWIDE**
-> *Advarsel. Uautoriseret adgang i Livsstøtte. Livsstøtte 2/5 (−1).*
+> *Livsstøtte 2/5 (−1).*
 > *Tribunal: 3 af 6 stemmer mod Anna. Intet flertal. Ingen dom.*
 
 Fredagens tribunal stemte om **Anna**.
@@ -619,11 +642,11 @@ Fredagens tribunal stemte om **Anna**.
 
 Hvad ved besætningen?
 
-- Broadcasten er sand: Der blev saboteret i Livsstøtte, og der var præcis to personer — Anna og Peter.
-- Én af de to er altså syntetikeren. Syntetikeren tog en risiko ved at sabotere i et rum med et vidne.
+- Broadcasten er sand: Livsstøtte faldt 1. Den siger intet om sabotage.
+- Er Saras scan ægte, stod der præcis to — Anna og Peter.
 - Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig eller sig selv?
-- Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter påstår begge, at de arbejdede. Én af dem lyver.
-- Saras scan bekræfter blot det, alle allerede ved. Er hun ægte, eller bygger hun troværdighed?
+- Anna og Peter påstår begge, at de arbejdede. Så skulle Livsstøtte være steget 2. Et fald på 1 passer kun med sabotage −2 og arbejde +1: Én af dem lyver.
+- Hele regnestykket hviler på Saras scan. Er den ægte — eller stod der en tredje, der saboterede?
 
 Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forkert, mister de en arbejder — og syntetikeren får en uge mere.
 
@@ -637,7 +660,7 @@ Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forker
 4. Er Vagt for stærk mod syntetikere, der kun har ét drab hver?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet? Og er skæbnerne nok til at holde døde spillere engagerede?
 6. Gør Afløseren drab for svage? Den vender kun tilbage uden evne, men tribunalet får en bevist besætning mere.
-7. Giver Final Protocol nok pres, når den kun er det sidste tribunal?
+7. Bruger besætningen protokolvalget, eller stemmer alle *Ingen* for at undgå risikoen? Intet flertal lader scenariet afgøre alene.
 8. Er 11 roller for mange at holde styr på for nye spillere?
 9. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
 10. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
