@@ -2,16 +2,20 @@ import { useRole } from "@/context/RoleContext";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const intro = {
-  player: "Én ordre om ugen. Resten af tiden taler du — men kun med dem, der står i samme rum som dig, og alle på #shipwide.",
-  gm: "Du åbner ugen med en rapport mandag, lukker ordrer fredag 18:00 og afgør i en fast rækkefølge over weekenden.",
-  default: "Spillet kører asynkront i Slack. Én ordre om ugen, fire dage til at tale, lyve og planlægge.",
+  player: "Samme ritual hver uge. Mandag læser du, hele ugen taler du, fredag sender du én ordre. Resten klarer ORACLE.",
+  gm: "Samme ritual hver uge. Du sender rapporter mandag, lukker ordrer fredag 18:00 og afgør alt i fast rækkefølge i weekenden.",
+  default: "Spillet kører asynkront i Slack. Hver uge følger det samme ritual: rapport, samtale, ordre, afgørelse.",
 };
 
-const steps = [
-  { num: "01", when: "Mandag 09:00", title: "Rapport", body: "ORACLE broadcaster systemstatus, anomalier, pågribelser og kryo-ordrer. Privat får du din sektor-manifest og dit evneresultat." },
-  { num: "02", when: "Man–Fre", title: "Tal", body: "#shipwide er offentlig. Sektorkanalen er kun for dem i din zone. Ingen DM'er — privat tale kræver, at I står samme sted." },
-  { num: "03", when: "Fredag 18:00", title: "Ordre", body: "Bevægelse (bliv/ryk), evne, arbejde (ja/nej), fasthold (ja/nej) og en tribunal-stemme." },
-  { num: "04", when: "Weekend", title: "Afgørelse", body: "Bevægelse → drab → støj/forfalskning → evner → systemer → pågribelse → tribunal → nye kanaler." },
+type Entry = { time: string; channel: string; title: string; body: string; actor: "oracle" | "crew" };
+
+const log: Entry[] = [
+  { time: "Man 09:00", channel: "#shipwide", actor: "oracle", title: "Broadcast", body: "ORACLE poster status for alle seks systemer, anomalier og sabotage, fundne lig, pågribelser og den aktive kryo-ordre med målets sidst kendte zone." },
+  { time: "Man 09:00", channel: "Privat", actor: "oracle", title: "Din rapport", body: "Din zone, hvem der står der med dig, og svaret på din evne. Sidste linje fortæller, hvad du kan i den kommende uge." },
+  { time: "Man 09:00", channel: "Sektorkanal", actor: "oracle", title: "Nye rum", body: "Du flyttes til kanalen for din zone. Dem, du møder dér, er de eneste, du kan tale privat med denne uge." },
+  { time: "Man–Fre", channel: "#shipwide + sektor", actor: "crew", title: "Samtale", body: "Påstande, alibier og beskyldninger. Offentligt i #shipwide, privat i sektorkanalen. Ingen DM'er. Ekkoer taler kun i #shipwide." },
+  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, evne og mål, arbejde, fasthold og din tribunal-stemme. Ekkoer sender vedligehold. Ingen ordre = bliv og arbejd." },
+  { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge: bevægelse, drab, støj og forfalskning, evner, systemer, pågribelse, tribunal. Ingen spiller gør noget. Mandag begynder det forfra." },
 ];
 
 const orderSheet = `UGE:        3
@@ -26,23 +30,35 @@ export function WeekCycle() {
   return (
     <section id="week" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion V // Ugen" intro={intro[role ?? "default"]}>
-        The <span className="text-cp-yellow">Cycle</span>
+        Flight <span className="text-cp-yellow">Log</span>
       </SectionHeader>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        {steps.map((s) => (
-          <div key={s.num} className="bezel bezel-screws relative p-8">
-            <div className="pointer-events-none absolute top-5 right-5 font-crt text-[3.5rem] leading-none text-cp-border-bright">
-              {s.num}
-            </div>
-            <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">{s.when}</div>
-            <h3 className="mb-4 font-head tracking-[0.08em] text-[1.1rem] uppercase leading-snug">{s.title}</h3>
-            <p className="text-[0.85rem] leading-[1.7] text-cp-off">{s.body}</p>
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+        <ol className="relative border-l border-cp-border-bright">
+          {log.map((e) => (
+            <li key={e.title} className="relative mb-8 pl-8 last:mb-0">
+              <span
+                className={`absolute top-1 -left-[7px] block h-3 w-3 border ${
+                  e.actor === "oracle" ? "border-cp-cyan bg-cp-dark" : "border-cp-yellow bg-cp-yellow"
+                }`}
+              />
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.6rem] tracking-[0.2em] uppercase">
+                <span className="text-cp-yellow">{e.time}</span>
+                <span className="border border-cp-border-bright px-1.5 py-0.5 text-cp-mid">{e.channel}</span>
+                <span className={e.actor === "oracle" ? "text-cp-cyan" : "text-cp-off"}>
+                  {e.actor === "oracle" ? "ORACLE" : "Spillerne"}
+                </span>
+              </div>
+              <h3 className="mt-1.5 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-tight">{e.title}</h3>
+              <p className="mt-1 max-w-[640px] text-[0.95rem] leading-[1.6] text-cp-off">{e.body}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="self-start lg:sticky lg:top-28">
+          <div className="console p-4 sm:p-5 [--chamfer:16px]">
+            <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">Ordreark // Fredag</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-amber" /><span className="lamp lamp-off" /></span></div>
+            <pre className="crt crt-amber m-[10px] overflow-x-auto p-5 text-[1.1rem] leading-[1.4] sm:p-6 sm:text-[1.25rem]">{orderSheet}</pre>
           </div>
-        ))}
-      </div>
-      <div className="console mt-10 max-w-[520px] p-4 sm:p-5 [--chamfer:16px]">
-        <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">Ordreark // Privat DM</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-amber" /><span className="lamp lamp-off" /></span></div>
-        <pre className="crt crt-amber m-[10px] p-6 text-[1.25rem] leading-[1.4]">{orderSheet}</pre>
+        </div>
       </div>
     </section>
   );
