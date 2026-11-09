@@ -17,7 +17,7 @@ const tabs = [
   { key: "player", label: "// Spillerregler" },
   { key: "gm", label: "// ORACLE (GM)" },
   { key: "scenarios", label: "// Scenariebog" },
-  { key: "design", label: "// Design v0.17" },
+  { key: "design", label: "// Design v0.18" },
 ] as const;
 
 export function RulesPage() {
