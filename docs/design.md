@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.6
+# USCSS CASSANDRA — Hunt Protocol v0.7
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,21 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack. Inspireret af
 
 ---
 
-## 0. Hvad er ændret fra v0.5
+## 0. Hvad er ændret fra v0.6
+
+v0.7 indfører én grundregel: **hver faktisk rolle er unik i en kampagne.** Ingen to spillere kan have samme rolle.
+
+| v0.6 | v0.7 | Hvorfor |
+|---|---|---|
+| Uudtalt, om to spillere kan have samme rolle | **Hver faktisk rolle findes højst én gang** | En dobbeltpåstand betyder altid, at mindst én lyver. |
+| Balancetabellen nævnte præcis, hvilke roller der var i spil | **Ingeniør + hemmelig trækning** | v0.6 modsagde sig selv: Rollerne i spil skulle være hemmelige, men tabellen var offentlig. |
+| 7 roller i kataloget | **11 roller** (4 nye) | Ved 7–8 spillere var der 2 og 1 ubrugte roller, men 2 syntetikere skulle bruge 4 bluffs. |
+| To bluff-roller | **To bluff-forslag fra de ubrugte roller** | Det er forslag til påstande, ikke roller. Overlap mellem syntetikere er tilladt. |
+| Ingen grænse for sammensætning | **Højst 2 aktive roller pr. tag** | Forhindrer, at informationsevner stables, til skibet er kortlagt. |
+| Rolle-navne i data | **Stabile rolle-id'er** | Opsætning og validering bruger id'er, ikke visningsnavne. |
+| Tribunalstemmer: uafklaret, om de offentliggøres | **Stemmer er hemmelige** | Præcisering. ORACLE har altid kun broadcastet resultatet. Revisor bygger på det. |
+
+### Fra v0.5 til v0.6
 
 | v0.5 | v0.6 | Hvorfor |
 |---|---|---|
@@ -119,6 +133,7 @@ Neutralisering kræver både **beslutning** og **fysisk tilstedeværelse**.
 ### 6.1 Tribunal → kryo-ordre
 
 - Hver fredag stemmer alle aktive spillere på én spiller eller *Ingen ændring*.
+- Stemmerne er hemmelige. ORACLE broadcaster kun resultatet. Spillerne må selv fortælle (eller lyve om), hvad de stemte.
 - **Simpelt flertal af aktive spillere** udsteder en **kryo-ordre** mod den valgte.
 - Der kan kun være én aktiv kryo-ordre. En ny ordre erstatter den gamle.
 - Ordren gælder, indtil målet er pågrebet eller ordren erstattes.
@@ -157,21 +172,49 @@ En spiller i kryo:
 
 ## 7. Roller — én evne pr. spiller
 
-Hele rollekataloget er offentligt. Hvilke roller der er i spil, er hemmeligt.
+### 7.1 Grundreglen: unikke roller
 
-### Besætningen
+- **Hver faktisk rolle findes højst én gang i en kampagne.** ORACLE trækker roller uden tilbagelægning.
+- **Hele kataloget er offentligt.** Hvilke roller der er i spil, er hemmeligt. Ikke alle roller i kataloget er om bord.
+- **Undtagelse:** Ingeniør er altid i spil (se 7.4). Det er den eneste rolle, alle ved er aktiv.
+- **Påstande er frie.** Alle må påstå enhver rolle — også en rolle, en anden spiller har.
+- **Dobbeltpåstand:** Påstår to spillere samme rolle, lyver mindst én af dem. Det kan være en syntetiker, men også besætning, der skjuler sig. ORACLE bekræfter eller afkræfter aldrig en påstand.
+- **Syntetikere kan ikke bruge evnen** fra en rolle, de udgiver sig for. De får intet evneresultat og må opfinde det.
+- **Syntetiker er et hold, ikke en katalogrolle.** Syntetikere har ingen besætningsrolle. Ved to syntetikere har begge Særordre. Unikhedsreglen gælder besætningsrollerne.
 
-| Rolle | Evne |
-|---|---|
-| **Sikkerhedschef** | *Autoritet (passiv):* Dit fasthold tæller 2 point. Du kan pågribe alene. |
-| **Navigatør** | *Pejling:* Vælg en spiller. Lær vedkommendes zone efter bevægelse. |
-| **Sensortekniker** | *Scan:* Vælg en zone. Lær hvor mange der står der efter bevægelse. Ingen navne. |
-| **Læge** | *Biometri:* Vælg en spiller i din zone. Lær hvilken zone vedkommende stod i ugen før. |
-| **Ingeniør** | *Reparér:* Står du i zonen fra sidste uges sabotage, får skibet +1 integritet, og du lærer, om sabotøren stadig står i zonen (ja/nej). |
-| **Arkivar** | *Krydsreference:* Vælg to spillere. Lær om de nogensinde har stået i samme zone ved en rapport (ja/nej). |
-| **Kommunikationsofficer** | *Åben linje:* Vælg en spiller. I får en privat kanal i den kommende uge, uanset placering. |
+### 7.2 Besætningen — rollekataloget
 
-### Syntetikerne
+| Rolle | Id | Tag | Evne |
+|---|---|---|---|
+| **Sikkerhedschef** | `security_chief` | JAGT | *Autoritet (passiv):* Dit fasthold tæller 2 point. Du kan pågribe alene. |
+| **Navigatør** | `navigator` | JAGT | *Pejling:* Vælg en spiller. Lær vedkommendes zone efter bevægelse. |
+| **Sensortekniker** | `sensor_tech` | OBSERVATION | *Scan:* Vælg en zone. Lær hvor mange der står der efter bevægelse. Ingen navne. |
+| **Kvartermester** *(ny)* | `quartermaster` | OBSERVATION | *Adgangslog:* Vælg en zone. Lær hvor mange der gik ind i zonen denne uge. Ingen navne. |
+| **Radaroperatør** *(ny)* | `radar_operator` | OBSERVATION | *Afstand:* Vælg en spiller. Lær hvor mange zoner der er mellem jer efter bevægelse: 0, 1 eller 2. |
+| **Læge** | `medic` | ANALYSE | *Biometri:* Vælg en spiller i din zone. Lær hvilken zone vedkommende stod i ugen før. |
+| **Arkivar** | `archivist` | ANALYSE | *Krydsreference:* Vælg to spillere. Lær om de nogensinde har stået i samme zone ved en rapport (ja/nej). |
+| **Psykolog** *(ny)* | `psychologist` | ANALYSE | *Afhøring:* Vælg en spiller i din zone. Lær hvor mange andre der stod sammen med vedkommende ugen før. |
+| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Står du i zonen fra sidste uges sabotage, får skibet +1 integritet, og du lærer, om sabotøren stadig står i zonen (ja/nej). |
+| **Kommunikationsofficer** | `comms_officer` | SOCIAL | *Åben linje:* Vælg en spiller. I får en privat kanal i den kommende uge, uanset placering. |
+| **Revisor** *(ny)* | `auditor` | SOCIAL | *Stemmerevision:* Vælg en spiller. Lær hvem vedkommende stemte på ved denne uges tribunal. |
+
+**Hvorfor de fire nye roller:**
+
+- **Kvartermester** tæller *bevægelse*, ikke tilstedeværelse. Den kan afsløre et alibi som "jeg blev i Lastrum hele ugen" uden at nævne navne.
+- **Radaroperatør** er en grov Pejling: Den siger kun, om nogen er tæt på. Nyttig til at vurdere, om en jagt kan nå frem.
+- **Psykolog** tjekker påstande som "jeg var alene" uden at afsløre, hvor eller med hvem.
+- **Revisor** gør tribunalet til information. Syntetikere, der koordinerer stemmer, risikerer at blive opdaget — men kun af én spiller, der selv kan lyve om resultatet.
+
+Ingen af de nye evner afslører en spillers hold, ingen kræver ressourcer, og alle resultater er private og kan forfalskes.
+
+**Nye evner — detaljer:**
+
+- *Adgangslog* tæller spillere, der stod i en anden zone ved sidste rapport og nu står i den valgte zone. Skakt tæller som at gå ind.
+- *Afstand*: 0 = samme zone, 1 = nabozone (alle sektioner er naboer til Rygraden), 2 = ellers.
+- *Afhøring* bruger målets zone ved sidste rapport. Uge 1 er der ingen "ugen før": ORACLE svarer *"Ingen data."*
+- *Stemmerevision*: Uge 1 er der intet tribunal: *"Ingen afstemning."* Spøgelsesstemmer kan ikke revideres, fordi spillere i kryo ikke kan vælges.
+
+### 7.3 Syntetikerne
 
 Syntetikere kender hinanden, men har ingen privat kanal, medmindre de står samme sted.
 
@@ -183,9 +226,20 @@ Hver syntetiker har én evne, **Særordre**, og vælger én af tre tilstande om 
 | **Forfalskning** | 3 | Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt. |
 | **Skakt** | 1 | Ryk op til to zoner denne uge gennem vedligeholdelsesskakterne. |
 
-Hver syntetiker får udleveret **to bluff-roller**: besætningsroller, der ikke er i spil.
+### 7.4 Rollepulje og bluff-forslag
 
----
+**Sammensætning:**
+
+1. **Ingeniør er altid i spil.** Integritetsuret er afstemt efter, at skaden kan repareres. Uden Ingeniør kan én syntetiker vinde på fire sabotager i uge 2–5, og det er ikke testet.
+2. Resten af besætningsrollerne trækkes tilfældigt fra kataloget **uden tilbagelægning**.
+3. **Højst 2 aktive roller med samme tag.** Det forhindrer, at fx Sensortekniker, Kvartermester og Radaroperatør tilsammen kortlægger hele skibet hver uge.
+
+**Bluff-forslag:**
+
+- Hver syntetiker får **2 forskellige bluff-forslag**.
+- Forslag vælges **kun fra de ubrugte roller**. En syntetiker, der påstår et forslag, kan derfor aldrig blive modsagt af den ægte rolleindehaver.
+- Forslag **må overlappe** mellem syntetikere. De kender hinanden og kan koordinere. ORACLE giver adskilte forslag, når der er nok ubrugte roller — og det er der altid ved 5–8 spillere med det nuværende katalog.
+- Forslag er forslag til påstande, ikke roller. En syntetiker må påstå hvad som helst, også en rolle, der er i spil. Så risikerer den en dobbeltpåstand.
 
 ## 8. Integritet
 
@@ -197,18 +251,30 @@ Hver sabotage er et spor. Sabotage i en tom zone er sikkert, men lægger et møn
 
 ## 9. Balance
 
-| Spillere | Besætning | Syntetikere | Start-integritet | Roller i spil |
-|---|---|---|---|---|
-| 5 | 4 | 1 | 4 | Sikkerhed, Navigatør, Læge, Ingeniør |
-| 6 | 5 | 1 | 4 | + Sensortekniker |
-| 7 | 5 | 2 | 7 | Sikkerhed, Navigatør, Læge, Ingeniør, Sensortekniker |
-| 8 | 6 | 2 | 7 | + Arkivar |
+| Spillere | Besætning | Syntetikere | Start-integritet | Roller i spil | Ubrugte roller | Bluff-forslag |
+|---|---|---|---|---|---|---|
+| 5 | 4 | 1 | 4 | Ingeniør + 3 | 7 | 1 × 2 = 2 |
+| 6 | 5 | 1 | 4 | Ingeniør + 4 | 6 | 1 × 2 = 2 |
+| 7 | 5 | 2 | 7 | Ingeniør + 4 | 6 | 2 × 2 = 4 |
+| 8 | 6 | 2 | 7 | Ingeniør + 5 | 5 | 2 × 2 = 4 |
 
-Kommunikationsofficer kan byttes ind for Arkivar eller Sensortekniker. Integritet kan ikke repareres over startværdien.
+Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — hvilke roller der er i spil, offentliggøres aldrig.
 
-**Dette er testværdier, ikke dokumenteret balance.** Første test: 6 spillere, 1 syntetiker.
+### 9.1 Bevist (testet i `tests/roleSetup.test.ts`)
 
----
+- Ved 5–8 spillere er holdfordelingen korrekt, og ingen besætningsrolle optræder to gange.
+- Alle sammensætninger, der overholder tag-grænsen, er mulige for 5–8 spillere (udtømmende gennemgang).
+- Der er altid mindst 2 × antal syntetikere ubrugte roller, så bluff-forslag kan være adskilte.
+- Bluff-forslag peger aldrig på en rolle i spil.
+- Ugyldige opsætninger giver forståelige fejl.
+
+### 9.2 Antagelser, der ikke er testet
+
+- Spillerfordeling og start-integritet er stadig testværdier. Første test: 6 spillere, 1 syntetiker.
+- At højst 2 pr. tag er nok til at undgå for stærke informationskombinationer.
+- At 11 roller giver nok rum til bluffs uden at blive uoverskueligt.
+- At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
+- At det er acceptabelt, at Ingeniør er offentligt kendt som aktiv. En syntetiker, der påstår Ingeniør, laver altid en dobbeltpåstand.
 
 ## 10. Ingen kan bevise sin rolle direkte
 
@@ -217,7 +283,9 @@ Kommunikationsofficer kan byttes ind for Arkivar eller Sensortekniker. Integrite
 - Spillere gengiver deres information med egne ord.
 - ORACLE afslører ikke en neutraliseret spillers rolle før spillets afslutning.
 
-Screenshots kan ikke forhindres i Slack. Derfor er designet sådan, at en ægte besked ikke beviser loyalitet: syntetikere kan have fået et resultat forfalsket mod *sig* og have fået tildelt rigtige-lignende bluffs.
+- Rolletildelingen er unik, men det beviser ingenting i sig selv: ORACLE bekræfter aldrig en påstand, og en dobbeltpåstand afgøres kun af spillerne.
+
+Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse forbudt. Se afsnit 14 om, hvor meget den regel bærer.
 
 ---
 
@@ -267,3 +335,19 @@ Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begg
 4. Er én pejling ved udstedelse nok til at starte en jagt?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet?
 6. Er Final Protocol en nødvendig sikkerhedsventil, eller tager den luften ud af jagten?
+7. Er 11 roller for mange at holde styr på for nye spillere?
+8. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
+9. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
+
+---
+
+## 14. Kendte uoverensstemmelser
+
+Fundet under arbejdet med v0.7. Punkt 1–2 er rettet, fordi unikke roller kræver det. Resten er **dokumenteret, ikke ændret**.
+
+1. **Rettet:** v0.6's balancetabel nævnte præcis, hvilke roller der var i spil, men samtidig var "hvilke roller der er i spil" hemmeligt.
+2. **Rettet:** Ved 7 og 8 spillere gav v0.6 kun 2 og 1 ubrugte roller, men 2 syntetikere skulle have 2 bluffs hver.
+3. **Fasthold-point kan bevise Sikkerhedschefen.** Broadcasten nævner antal til stede og antal point. "1 til stede, 2 point" beviser, at den ene var Sikkerhedschef. Det strider mod afsnit 10. Mulig rettelse: Broadcast kun *lykkedes/mislykket* og antal til stede.
+4. **Åben linje beviser Kommunikationsofficeren over for målet.** Målet ser kanalen blive oprettet. Det er et bevis over for én spiller, ikke offentligt.
+5. **Reparation er synlig.** Integritet +1 i broadcasten viser, at Ingeniøren stod i sabotagezonen. Det kan afgøre en dobbeltpåstand om Ingeniør.
+6. **Afsnit 10 i v0.6 overvurderede forfalskning.** Teksten sagde, at syntetikere kan "have fået et resultat forfalsket mod sig". Syntetikere har ingen informationsevne og får ingen resultater. Et ægte evneresultat beviser altså, at afsenderen er besætning. Det eneste værn er forbuddet mod screenshots og videresendelse.
