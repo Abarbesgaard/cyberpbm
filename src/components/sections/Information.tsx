@@ -10,7 +10,7 @@ export function Information() {
   return (
     <section id="information" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader
-        eyebrow="Sektion VI // Information"
+        eyebrow="Sektion VII // Information"
         intro="Ingen evne fanger en syntetiker med ét klik. Information er nyttig, men sjældent hel. Du ved kun gratis, hvem der står i dit eget rum — alt andet er vidneudsagn."
       >
         Signal / <span className="text-cp-red-bright">Noise</span>

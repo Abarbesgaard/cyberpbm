@@ -12,11 +12,11 @@ export function Victory() {
             Besætningen
           </div>
           <h3 className="mb-4 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">
-            Alle syntetikere i kryo
+            Kryo — eller fuldfør scenariet
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Når Final Protocol i uge 6 er afgjort. En fejl sender en uskyldig i kryo og
-            koster jer en hånd.
+            Efter uge 6 vinder I, hvis alle syntetikere er i kryo, <strong>eller</strong> hvis
+            kampagnens scenarie er opfyldt. En fejl sender en uskyldig i kryo og koster jer en hånd.
           </p>
         </div>
         <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">
@@ -27,9 +27,9 @@ export function Victory() {
             Overlev — eller sluk lyset
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Mindst én syntetiker er aktiv efter Final Protocol, <strong>eller</strong>{" "}
-            skibets integritet når 0. Jeres våben er løgn, mistillid og et vel­placeret
-            hul i livsstøtten.
+            Ét system når 0 — så vinder I med det samme. Ellers skal mindst én af jer
+            være aktiv efter Final Protocol, og scenariet må ikke være opfyldt. Jeres våben er
+            løgn, mistillid og et vel­placeret hul i livsstøtten.
           </p>
         </div>
       </div>

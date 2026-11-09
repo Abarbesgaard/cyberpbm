@@ -52,7 +52,7 @@ export const crewRoles: RoleDef[] = [
   { id: "medic", name: "Læge", ability: "Biometri", text: "Vælg en spiller i din zone. Lær hvor vedkommende stod ugen før.", tag: "ANALYSE" },
   { id: "archivist", name: "Arkivar", ability: "Krydsreference", text: "Vælg to spillere. Lær om de nogensinde har stået i samme zone.", tag: "ANALYSE" },
   { id: "psychologist", name: "Psykolog", ability: "Afhøring", text: "Vælg en spiller i din zone. Lær hvor mange andre der stod sammen med vedkommende ugen før.", tag: "ANALYSE", isNew: true },
-  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Står du i sidste uges sabotagezone: +1 integritet, og du lærer, om sabotøren stadig er der.", tag: "URET", core: true },
+  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion +2. Blev sektionen saboteret sidste uge, lærer du også, om sabotøren stadig står der.", tag: "URET", core: true },
   { id: "comms_officer", name: "Kommunikationsofficer", ability: "Åben linje", text: "Vælg en spiller. I får en privat kanal i en uge, uanset placering.", tag: "SOCIAL" },
   { id: "auditor", name: "Revisor", ability: "Stemmerevision", text: "Vælg en spiller. Lær hvem vedkommende stemte på ved denne uges tribunal.", tag: "SOCIAL", isNew: true },
 ];
@@ -77,7 +77,7 @@ export interface SynthRoleDef {
 
 /** One ability per synthetic. Drawn without replacement, like crew roles. */
 export const synthRoles: SynthRoleDef[] = [
-  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Integritet −1 i din zone. ORACLE broadcaster zonen — aldrig navnet." },
+  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet." },
   { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt." },
   { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne." },
   { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner brugt i eller på zonen giver: \"Signal forstyrret.\"" },
@@ -98,12 +98,38 @@ export interface BalanceRow {
   players: number;
   crew: number;
   synths: number;
-  integrity: number;
 }
 
 export const balance: BalanceRow[] = [
-  { players: 5, crew: 4, synths: 1, integrity: 4 },
-  { players: 6, crew: 5, synths: 1, integrity: 4 },
-  { players: 7, crew: 5, synths: 2, integrity: 7 },
-  { players: 8, crew: 6, synths: 2, integrity: 7 },
+  { players: 5, crew: 4, synths: 1 },
+  { players: 6, crew: 5, synths: 1 },
+  { players: 7, crew: 5, synths: 2 },
+  { players: 8, crew: 6, synths: 2 },
+];
+
+export type SectionId = Exclude<ZoneId, "R">;
+export const sectionIds: SectionId[] = ["A", "B", "C", "D", "E", "F"];
+
+/** Ship systems: one per section, public status 0–SYSTEM_MAX. */
+export const SYSTEM_MAX = 5;
+export const SYSTEM_START = 3;
+export const WORK_GAIN = 1;
+export const REPAIR_GAIN = 2;
+export const SABOTAGE_LOSS = 2;
+export const NEGLECT_LOSS = 1;
+export const NEGLECT_FROM_WEEK = 2;
+
+export interface Scenario {
+  id: string;
+  name: string;
+  text: string;
+  /** Minimum status per system after week 6. */
+  targets: Partial<Record<SectionId, number>>;
+}
+
+/** One scenario per campaign. Public from week 1. */
+export const scenarios: Scenario[] = [
+  { id: "distress", name: "Nødsignal", text: "Send et nødsignal hjem. Broen og Motorrum skal stå på 5.", targets: { E: 5, F: 5 } },
+  { id: "quarantine", name: "Karantæne", text: "Hold besætningen i live til redningen. Medlab og Hypersøvn skal stå på 5.", targets: { B: 5, A: 5 } },
+  { id: "homeward", name: "Hjemrejse", text: "Få skibet hjem i ét stykke. Alle seks systemer skal stå på mindst 4.", targets: { A: 4, B: 4, C: 4, D: 4, E: 4, F: 4 } },
 ];

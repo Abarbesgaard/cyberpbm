@@ -9,7 +9,7 @@ const th = "border-b border-cp-border-bright px-4 py-3";
 const td = "border-b border-cp-border px-4 py-3";
 
 const setupSteps = [
-  `${core} er altid i spil (integritetsuret afhænger af reparation).`,
+  `${core} er altid i spil (systemerne skal kunne repareres).`,
   `Resten trækkes uden tilbagelægning fra kataloget — højst ${ROLE_TAG_CAP} roller med samme tag.`,
   "Rollerne fordeles hemmeligt. Ingen rolle må optræde to gange.",
   "Syntetikere: Særordre er altid i spil. En eventuel anden syntetiker trækker én af de øvrige syntetikerroller.",
@@ -20,16 +20,16 @@ export function Balance() {
   return (
     <section id="balance" className="hull px-8 py-24 md:px-16">
       <SectionHeader
-        eyebrow="Sektion IX // Balance"
-        intro="Integritet er syntetikernes ur. Hver sabotage trækker én; Ingeniøren kan reparere op til startværdien. Når uret når 0, vinder syntetikerne. Det tvinger dem til at handle — og handlinger efterlader spor."
+        eyebrow="Sektion X // Balance"
+        intro="Holdfordeling og rollepulje pr. spillerantal. Alle tal er offentlige — hvilke roller der faktisk er om bord, er ikke."
       >
-        Integrity <span className="text-cp-red-bright">Clock</span>
+        Role <span className="text-cp-red-bright">Pool</span>
       </SectionHeader>
       <div className="max-w-[960px] overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse font-mono text-[0.8rem]">
           <thead>
             <tr className="text-left text-[0.6rem] tracking-[0.15em] uppercase text-cp-yellow">
-              {["Spillere", "Besætning", "Syntetikere", "Integritet", `Roller i spil / ${crewRoles.length}`, "Ubrugte roller", "Bluff-forslag"].map((h) => (
+              {["Spillere", "Besætning", "Syntetikere", `Roller i spil / ${crewRoles.length}`, "Ubrugte roller", "Bluff-forslag"].map((h) => (
                 <th key={h} className={th}>{h}</th>
               ))}
             </tr>
@@ -40,7 +40,6 @@ export function Balance() {
                 <td className={td}>{b.players}</td>
                 <td className={td}>{b.crew}</td>
                 <td className={`${td} text-cp-red-bright`}>{b.synths}</td>
-                <td className={td}>{b.integrity}</td>
                 <td className={td}>{b.crew}</td>
                 <td className={`${td} text-cp-cyan`}>{b.unused}</td>
                 <td className={td}>

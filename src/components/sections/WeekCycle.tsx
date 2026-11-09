@@ -8,15 +8,16 @@ const intro = {
 };
 
 const steps = [
-  { num: "01", when: "Mandag 09:00", title: "Rapport", body: "ORACLE broadcaster anomalier, pågribelser og kryo-ordrer. Privat får du din sektor-manifest og dit evneresultat." },
+  { num: "01", when: "Mandag 09:00", title: "Rapport", body: "ORACLE broadcaster systemstatus, anomalier, pågribelser og kryo-ordrer. Privat får du din sektor-manifest og dit evneresultat." },
   { num: "02", when: "Man–Fre", title: "Tal", body: "#shipwide er offentlig. Sektorkanalen er kun for dem i din zone. Ingen DM'er — privat tale kræver, at I står samme sted." },
-  { num: "03", when: "Fredag 18:00", title: "Ordre", body: "Bevægelse (bliv/ryk), evne, fasthold (ja/nej) og en tribunal-stemme." },
-  { num: "04", when: "Weekend", title: "Afgørelse", body: "Bevægelse → forfalskning → evner → sabotage/reparation → pågribelse → tribunal → nye kanaler." },
+  { num: "03", when: "Fredag 18:00", title: "Ordre", body: "Bevægelse (bliv/ryk), evne, arbejde (ja/nej), fasthold (ja/nej) og en tribunal-stemme." },
+  { num: "04", when: "Weekend", title: "Afgørelse", body: "Bevægelse → støj/forfalskning → evner → systemer → pågribelse → tribunal → nye kanaler." },
 ];
 
 const orderSheet = `UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte
 EVNE:       Pejling → Peter
+ARBEJDE:    Nej (kun ved Bliv)
 FASTHOLD:   Ja
 TRIBUNAL:   Anna`;
 
@@ -24,7 +25,7 @@ export function WeekCycle() {
   const { role } = useRole();
   return (
     <section id="week" className="hull-alt px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion IV // Ugen" intro={intro[role ?? "default"]}>
+      <SectionHeader eyebrow="Sektion V // Ugen" intro={intro[role ?? "default"]}>
         The <span className="text-cp-yellow">Cycle</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">

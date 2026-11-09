@@ -12,7 +12,7 @@ export function Footer() {
           <span className="plate">Kessler-Tanaka Corp. // Reg. 247-319-55</span>
         </div>
         <div className="relative flex flex-col items-end gap-2">
-          <span className="plate">Hunt Protocol v0.8 // Social deduction i Slack</span>
+          <span className="plate">Hunt Protocol v0.9 // Social deduction i Slack</span>
           <span className="plate !text-[#FF8A6E]">Besætningen er sekundær</span>
         </div>
       </div>

@@ -18,7 +18,7 @@ export function Hunt() {
   const { role } = useRole();
   return (
     <section id="hunt" className="hull px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion V // Neutralisering" intro={intro[role ?? "default"]}>
+      <SectionHeader eyebrow="Sektion VI // Neutralisering" intro={intro[role ?? "default"]}>
         The <span className="text-cp-red-bright">Hunt</span>
       </SectionHeader>
 

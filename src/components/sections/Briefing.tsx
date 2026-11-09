@@ -2,15 +2,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const pillars = [
   {
-    title: "Among Us",
-    body: "Et skib. Sabotage, der skal repareres. Skakter. Alibier, der kun holder, hvis nogen så dig.",
+    title: "Skibet",
+    body: "Seks systemer, der skal holdes i live. Sabotage, der skal repareres. Skakter. Alibier, der kun holder, hvis nogen så dig.",
   },
   {
-    title: "Blood on the Clocktower",
-    body: "Hemmelige roller med én evne. Bluffs. Information, der sjældent er hel. De døde taler stadig.",
+    title: "Rollerne",
+    body: "Hemmelige roller med én evne. Bluffs. Information, der sjældent er hel. De, der er lagt i kryo, taler stadig.",
   },
   {
-    title: "Cassandra",
+    title: "Jagten",
     body: "Fysisk neutralisering. Man kan være sikker på, hvem det er, og stadig ikke nå frem i tide.",
   },
 ];
@@ -35,7 +35,7 @@ export function Briefing() {
         {pillars.map((p) => (
           <div key={p.title} className="bezel bezel-screws p-8">
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
-              Inspiration
+              Protokol
             </div>
             <h3 className="mb-3 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">
               {p.title}

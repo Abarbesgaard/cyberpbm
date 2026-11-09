@@ -6,8 +6,8 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
-- **Besætning:** Find syntetikerne og få dem i kryo inden udgangen af uge 6.
-- **Syntetiker:** Overlev Final Protocol, eller bring skibets integritet til 0. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag.
+- **Besætning:** Få alle syntetikere i kryo inden udgangen af uge 6, **eller** opfyld kampagnens scenarie.
+- **Syntetiker:** Bring ét skibssystem til 0 (så vinder I med det samme), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag.
 
 ## Roller og påstande
 
@@ -24,10 +24,29 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 | Rolle | Fra uge | Evne |
 |---|---|---|
-| Særordre *(altid i spil)* | 2 | **Sabotage:** Integritet −1 i din zone. ORACLE broadcaster zonen. |
+| Særordre *(altid i spil)* | 2 | **Sabotage:** Systemet i din sektion −2. ORACLE broadcaster sektionen. |
 | Forfalsker | 2 | **Forfalskning:** En spillers private resultat denne uge er falsk, men troværdigt. |
 | Skaktløber | 1 | **Skakt:** Ryk til en vilkårlig zone. |
 | Støjsender | 2 | **Støj:** Informationsevner i eller på en zone giver *"Signal forstyrret."* |
+
+## Skibssystemer og scenarie
+
+Hver sektion (A–F) har et system fra 0 til 5. Alle starter på 3. Rygraden har intet system.
+
+- **Arbejde:** Bliver du i en sektion og skriver *Arbejde: ja*, får systemet +1.
+- **Forfald:** Fra uge 2 mister et system 1, hvis ingen arbejdede der.
+- **Sabotage:** −2. **Reparation** (Ingeniør): +2.
+- **Når ét system når 0, vinder syntetikerne.**
+
+ORACLE offentliggør status og ændring for alle systemer hver mandag. Brug tallene: Hvis to blev i Medlab, men Medlab kun steg 1, arbejdede én af dem ikke.
+
+Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Er det opfyldt efter uge 6, vinder besætningen.
+
+| Scenarie | Krav efter uge 6 |
+|---|---|
+| Nødsignal | Broen og Motorrum står på 5. |
+| Karantæne | Medlab og Hypersøvn står på 5. |
+| Hjemrejse | Alle seks systemer står på mindst 4. |
 
 ## Hver uge
 
@@ -41,12 +60,14 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
 EVNE:       Pejling → Peter         (eller: Ingen)
+ARBEJDE:    Nej                     (kun ved Bliv i en sektion)
 FASTHOLD:   Ja                      (eller: Nej)
 TRIBUNAL:   Anna                    (eller: Ingen ændring)
 ```
 
 - **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
 - **Evne:** Din ene evne. Se rollekataloget.
+- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
 - **Fasthold:** Hvis du ender i samme zone som målet for kryo-ordren, hjælper du med at pågribe det.
 - **Tribunal:** Stem på en spiller, eller *Ingen ændring*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
 

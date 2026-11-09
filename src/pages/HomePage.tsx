@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { RoleSelector } from "@/components/RoleSelector";
 import { Briefing } from "@/components/sections/Briefing";
 import { Victory } from "@/components/sections/Victory";
+import { Systems } from "@/components/sections/Systems";
 import { ShipMap } from "@/components/sections/ShipMap";
 import { WeekCycle } from "@/components/sections/WeekCycle";
 import { Hunt } from "@/components/sections/Hunt";
@@ -25,6 +26,8 @@ export function HomePage() {
       <Briefing />
       <Bulkhead frame="055" deck="A-02" />
       <Victory />
+      <Bulkhead frame="067" deck="A-03" />
+      <Systems />
       <Bulkhead frame="079" deck="B-03" />
       <ShipMap />
       <Bulkhead frame="103" deck="B-04" />
