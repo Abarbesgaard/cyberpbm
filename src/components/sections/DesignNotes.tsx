@@ -31,7 +31,7 @@ const questions = [
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
-  "Har Skaktløber nok at bruge Skakt til, nu hvor ingen jagter den?",
+  "Har Skaktløber nok at bruge Skakt til?",
   "Er forfald for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer?",
   "Er scenarierne lige svære? Hjemrejse kræver alle seks systemer.",
   "Bliver sabotage syntetikernes eneste strategi?",
