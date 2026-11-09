@@ -53,8 +53,8 @@ export const layouts: Layout[] = [
   },
   {
     id: "long", roll: 3, name: "Langskibet",
-    text: "Én lang korridor fra Broen til Motorrum. Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt.",
-    edges: [["E", "B"], ["B", "A"], ["A", "R"], ["R", "C"], ["C", "D"], ["D", "F"]],
+    text: "To parallelle gange langs skibet, bagbord og styrbord, med tværgange imellem. Op til tre uger fra ende til ende, men der er altid mere end én vej.",
+    edges: [["E", "B"], ["B", "A"], ["A", "R"], ["R", "C"], ["C", "D"], ["D", "F"], ["E", "A"], ["A", "C"], ["C", "F"], ["B", "R"], ["R", "D"]],
     pos: { E: { x: 110, y: 30 }, B: { x: 330, y: 86 }, A: { x: 110, y: 142 }, R: { x: 330, y: 198 }, C: { x: 110, y: 254 }, D: { x: 330, y: 310 }, F: { x: 110, y: 366 } },
   },
   {

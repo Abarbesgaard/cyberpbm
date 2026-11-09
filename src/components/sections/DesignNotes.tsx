@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Langskibet er én lang kæde", to: "Langskibet har to gange med tværgange", why: "Man rykker én zone om ugen. Seks ryk fra ende til ende var hele kampagnen. Nu er der højst tre." },
   { from: "Skibet er altid en ring", to: "Fire skibsplaner på d4", why: "Samme syv zoner, forskellige gange. Ringen, Knudepunktet, Langskibet og Tvillingeskroget giver hver kampagne sin egen geografi." },
   { from: "Alle ekkoer er ens", to: "Ekkoer får en skæbne: Jorden, Spøgelse eller Afløser", why: "Hver skæbne findes én gang pr. kampagne. Flere døde bliver til forskellige ting, og ingen sidder passivt i fire uger." },
   { from: "Hunt Protocol", to: "USCSS Cassandra", why: "Der er ingen jagt længere. Spillet hedder bare skibets navn." },
@@ -48,7 +49,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.21</span>
+        v0.7 → <span className="text-cp-yellow">v0.22</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

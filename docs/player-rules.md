@@ -110,7 +110,7 @@ Skibet har syv zoner: seks sektioner (A Hypersøvn, B Medlab, C Livsstøtte, D L
 |---|---|---|---|
 | 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
 | 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
-| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 3 | **Langskibet** | To gange langs skibet. Bagbord: Broen – Hypersøvn – Livsstøtte – Motorrum. Styrbord: Medlab – Rygraden – Lastrum. Tværgange i zigzag: Broen–Medlab–Hypersøvn–Rygraden–Livsstøtte–Lastrum–Motorrum. | Op til tre uger fra ende til ende. Langt, men aldrig én eneste vej. |
 | 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
 
 ## Tribunalet
