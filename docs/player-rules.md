@@ -87,7 +87,7 @@ ARBEJDE:    Nej                     (kun ved Bliv i en sektion)
 TRIBUNAL:   Anna                    (eller: Ingen)
 ```
 
-- **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
+- **Bevægelse:** Bliv, eller ryk til en nabozone på kampagnens skibsplan (se *Skibet*).
 - **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
 - **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
 Som ekko sender du i stedet:
@@ -104,15 +104,14 @@ TRIBUNAL:   Ingen                   (eller din spøgelsesstemme)
 
 ## Skibet
 
-| Zone | Grænser op til |
-|---|---|
-| A Hypersøvn | B, F, Rygraden |
-| B Medlab | A, C, Rygraden |
-| C Livsstøtte | B, D, Rygraden |
-| D Lastrum | C, E, Rygraden |
-| E Broen | D, F, Rygraden |
-| F Motorrum | E, A, Rygraden |
-| R Rygraden | Alle |
+Skibet har syv zoner: seks sektioner (A Hypersøvn, B Medlab, C Livsstøtte, D Lastrum, E Broen, F Motorrum) og **Rygraden** (R). Hvordan de hænger sammen, afhænger af kampagnens **skibsplan**, som ORACLE annoncerer i uge 1. Websitet viser alle fire planer.
+
+| d4 | Skibsplan | Forbindelser | Karakter |
+|---|---|---|---|
+| 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
+| 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
+| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
 
 ## Tribunalet
 

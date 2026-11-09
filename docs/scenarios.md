@@ -4,8 +4,8 @@ Hver kampagne har **ét scenarie**. Det bestemmer, hvad besætningen skal nå, o
 
 ## Sådan bruges bogen
 
-1. **Opsætning:** Vælg et scenarie, eller rul d6: 1–2 Nødsignal, 3–4 Karantæne, 5–6 Hjemrejse. Sæt alle systemer til 3.
-2. **Uge 1, mandag:** Annoncér scenariets mål og arkiv i den første broadcast.
+1. **Opsætning:** Vælg et scenarie, eller rul d6: 1–2 Nødsignal, 3–4 Karantæne, 5–6 Hjemrejse. Vælg en skibsplan, eller rul d4. Sæt alle systemer til 3.
+2. **Uge 1, mandag:** Annoncér scenariets mål, arkiv og skibsplan i den første broadcast.
 3. **Uge 3, mandag:** Rul d20 på krisetabellen. Skal krisen ramme en sektion, så rul d6 på sektionstabellen. Annoncér krisen, så spillerne har en uge til at planlægge.
 4. **Uge 4:** Krisen gælder hele ugen: kommunikation mandag–fredag, ordrerne og afgørelsen.
 5. **Uge 5, mandag:** Frigiv scenariets arkiv i broadcasten.
@@ -40,6 +40,19 @@ Kriser og arkiver er broadcasts. De er altid sande og kan ikke forfalskes.
 
 ---
 
+## Skibsplaner (d4)
+
+Alle planer har de samme syv zoner og systemer. Kun gangene imellem er forskellige. Planen gælder hele kampagnen og er offentlig fra uge 1. Skaktløberen når stadig enhver zone.
+
+| d4 | Skibsplan | Forbindelser | Karakter |
+|---|---|---|---|
+| 1 | **Ringen** | A–B–C–D–E–F–A i en ring. Rygraden når alle sektioner. | Intet er mere end to uger væk. Rygraden er hurtig, men eksponeret. |
+| 2 | **Knudepunktet** | Hver sektion har kun dør til Rygraden. | Al trafik går gennem midten. Man ser hinanden dér, og en forseglet Rygrad lammer skibet. |
+| 3 | **Langskibet** | Broen – Medlab – Hypersøvn – Rygraden – Livsstøtte – Lastrum – Motorrum. | Seks uger fra ende til ende. Kun Skaktløberen krydser skibet hurtigt. |
+| 4 | **Tvillingeskroget** | Broen, Medlab og Hypersøvn når hinanden. Livsstøtte, Lastrum og Motorrum når hinanden. Rygraden forbinder Hypersøvn og Livsstøtte. | To skrog. Rygraden er eneste vej imellem. |
+
+Nogle kombinationer er ekstra hårde: *Nødsignal* på *Langskibet* kræver, at Broen og Motorrum — skibets to ender — begge står på 5.
+
 ## Krisetabel (d20)
 
 Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen.
@@ -53,7 +66,7 @@ Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen.
 | 5 | **Sensorblackout** | Alle informationsevner giver *"Signal forstyrret."* |
 | 6 | **Trykfald** *(d6)* | Sektionen mister 1 ekstra ved afgørelsen. |
 | 7 | **Brand** *(d6)* | Arbejde i sektionen tæller ikke. Reparation og vedligehold virker. |
-| 8 | **Skotter låst** | Ringen er lukket. Man kan kun rykke mellem en sektion og Rygraden. Skakt virker. |
+| 8 | **Skotter låst** | Dørene mellem sektioner er låst. Man kan kun rykke til og fra Rygraden. Skakt virker. |
 | 9 | **Skakter oversvømmet** | Skakt virker ikke. Skaktløberen rykker som alle andre. |
 | 10 | **Overbelastning** | Arbejde giver +2 i stedet for +1. Sabotage giver −3 i stedet for −2. |
 | 11 | **Optælling** | ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive. |

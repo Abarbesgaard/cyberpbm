@@ -11,7 +11,8 @@ const d20 = (n: number) => (n - 1) / 20;
 const d6 = (n: number) => (n - 1) / 6;
 
 test("the scenario book lists the same d20 crises as the data", () => {
-  const book = readFileSync(new URL("../docs/scenarios.md", import.meta.url), "utf8");
+  const full = readFileSync(new URL("../docs/scenarios.md", import.meta.url), "utf8");
+  const book = full.slice(full.indexOf("## Krisetabel"), full.indexOf("## Sektionstabel"));
   const rows = [...book.matchAll(/^\| (\d+) \| \*\*(.+?)\*\*( \*\(d6\)\*)? \|/gm)].map((m) => [Number(m[1]), m[2], Boolean(m[3])]);
   assert.deepEqual(rows, crises.map((c) => [c.roll, c.name, Boolean(c.section)]));
 });
