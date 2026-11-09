@@ -55,30 +55,36 @@ Nogle kombinationer er ekstra hårde: *Nødsignal* på *Tvillingeskroget* kræve
 
 ## Krisetabel (d20)
 
-Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen.
+Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen. På skibskortet er de stiplede gange dem, der går ind til Rygraden. De fuldt optrukne går mellem sektioner.
 
 | d20 | Krise | Effekt |
 |---|---|---|
-| 1 | **Strømudfald** | Rygraden forsegles. Ingen kan rykke ind eller ud, heller ikke via Skakt. |
+| 1 | **Strømudfald** | Rygraden forsegles. Alle stiplede gange er lukket. Ingen kan rykke ind eller ud, heller ikke via Skakt. |
 | 2 | **Karantænezone** *(d6)* | Ingen kan rykke ind i sektionen, heller ikke via Skakt. Ud er tilladt. |
 | 3 | **Kommunikationsnedbrud** | Sektorkanalerne er lukket. Kun højttaleren i #shipwide virker. |
 | 4 | **Radiotavshed** | Højttaleren er slukket. ORACLE læser ingen beskeder op. Kun sektorkanalerne virker. Ekkoer er tavse. |
 | 5 | **Sensorblackout** | Alle informationsevner giver *"Signal forstyrret."* |
 | 6 | **Trykfald** *(d6)* | Sektionen mister 1 ekstra ved afgørelsen. |
 | 7 | **Brand** *(d6)* | Arbejde i sektionen tæller ikke. Reparation og vedligehold virker. |
-| 8 | **Skotter låst** | Dørene mellem sektioner er låst. Man kan kun rykke til og fra Rygraden. Skakt virker. |
+| 8 | **Skotter låst** | Alle fuldt optrukne gange er låst. Man kan kun rykke ad de stiplede gange til og fra Rygraden. Skakt virker. |
 | 9 | **Skakter oversvømmet** | Skakt virker ikke. Skaktløberen rykker som alle andre. |
 | 10 | **Overbelastning** | Arbejde giver +2 i stedet for +1. Sabotage giver −3 i stedet for −2. |
 | 11 | **Optælling** | ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive. |
 | 12 | **Tribunal suspenderet** | Intet tribunal i uge 4. |
 | 13 | **Åben afstemning** | ORACLE offentliggør, hvem der stemte på hvem i uge 4's tribunal. |
 | 14 | **Nødbelysning** | Ingen drab kan lykkes i uge 4. Et forsøgt drab er ikke brugt. |
-| 15 | **Mørkelægning** | Lig broadcastes kun med navn, uden zone. |
+| 15 | **Gang kollapset** *(d6)* | Den stiplede gang mellem sektionen og Rygraden er lukket. Andre gange og Skakt virker. |
 | 16 | **Lækket log** | ORACLE frigiver positionsloggen fra uge 2 i mandagsbroadcasten. |
-| 17 | **Ekkostorm** | Alle ekkoer får en ny spøgelsesstemme. |
+| 17 | **Støj på linjen** | Alt fra ORACLE i uge 4 har støj: hvert tredje ord bliver til *brzzz*. Det gælder broadcasts, informationsresultater og højttaleren. |
 | 18 | **Selvreparation** *(d6)* | Sektionen får +2 ved afgørelsen. |
 | 19 | **Kaskadefejl** | Det laveste system mister 1 ekstra. Ved lighed: rul d6, indtil det rammer et af de laveste. |
 | 20 | **Dobbeltkrise** | Rul to gange mere, og brug begge. Ignorér nye 20'ere. |
+
+**Støj på linjen i praksis.** Tæl ordene i hver besked fra ORACLE, og erstat hvert tredje med *brzzz*. Navne og zoner er ikke fredet.
+
+```
+ORACLE: To personer brzzz gennem Medlab. Én af brzzz arbejdede. Livsstøtte brzzz 2.
+```
 
 ## Sektionstabel (d6)
 
