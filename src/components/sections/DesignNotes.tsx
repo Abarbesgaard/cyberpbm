@@ -1,6 +1,9 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Sikkerhedschef: fasthold tæller 2 point", to: "Sikkerhedschef: Pågrib — vælg målet", why: "Ingen point at huske. Alle evner virker ens: vælg et mål, ORACLE svarer." },
+  { from: "Pågribelse kræver 2 fasthold-point", to: "Pågribelse kræver to, der holder fast", why: "Samme regel uden point. En lykket pågribelse broadcastes uden tal, så den ikke afslører Sikkerhedschefen." },
+  { from: "Evner beskrevet som regler", to: "Hver evne viser, hvad du vælger, og hvad ORACLE svarer", why: "Spilleren skal kun vælge. ORACLE holder styr på resten og fortæller i mandagsrapporten, hvad du kan." },
   { from: "System på 0 = syntetikerne vinder straks", to: "0 = KRITISK, én uge til nedbrud", why: "Sabotage i en tom sektion i uge 2 kunne vinde spillet, før nogen kunne reagere." },
   { from: "Forfald hver uge", to: "Forfald i uge 2, 4 og 6 — aldrig oveni sabotage", why: "Fire besætningsmedlemmer kan ikke dække seks sektioner hver uge, når hver flytning koster arbejde." },
   { from: "Uge 4 forsegler den mest saboterede zone", to: "Uge 4 forsegler Rygraden", why: "At forsegle et svækket system dømte det. Nu presses bevægelsen i stedet." },
@@ -24,7 +27,6 @@ const questions = [
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
-  "Afslører fasthold-point Sikkerhedschefen? (2 point med 1 til stede beviser rollen.)",
   "Er to-mands-reglen for svær med 5 spillere?",
   "Er Skaktløber for stærk til flugt? Alternativ: først fra uge 3.",
   "Er forfald for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer?",
@@ -39,7 +41,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XII // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.11</span>
+        v0.7 → <span className="text-cp-yellow">v0.12</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

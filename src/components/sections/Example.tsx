@@ -2,14 +2,14 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const testimony = [
   { who: "Anna", text: "Jeg var i Livsstøtte med Peter. Han sagde, han ville tjekke terminalen." },
-  { who: "Peter", text: "Jeg er Sikkerhedschef. Jeg holdt ikke fast, fordi jeg ikke tror, Anna er syntetiker." },
+  { who: "Peter", text: "Jeg er Sikkerhedschef. Jeg brugte ikke Pågrib, fordi jeg ikke tror, Anna er syntetiker." },
   { who: "Sara", text: "Jeg er Sensortekniker. Min scan viste 2 personer i Livsstøtte." },
 ];
 
 const facts = [
   "Broadcasten er sand: sabotagen skete i Livsstøtte, og der stod præcis to — Anna og Peter.",
   "Én af de to er altså syntetikeren. Den, der saboterede, tog en risiko.",
-  "Peter kunne have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig — eller sig selv?",
+  "Hvis Peter er Sikkerhedschef, kunne han have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig — eller sig selv?",
   "Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter siger begge, at de arbejdede. Én af dem lyver.",
   "Saras scan bekræfter kun, hvad alle ved. Er hun ægte, eller bygger hun troværdighed?",
 ];
@@ -30,7 +30,7 @@ LIVSSTØTTE: ██░░░ 2  −1
 ANOMALI: Uautoriseret adgang i Livsstøtte.
 PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.
-0 fasthold-point. Mislykket.`}
+0 holdt fast. Mislykket.`}
           </pre>
           </div>
           <p className="mb-4 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-mid">

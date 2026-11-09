@@ -36,6 +36,10 @@ export interface RoleDef {
   name: string;
   ability: string;
   text: string;
+  /** What the player writes after EVNE in the order. */
+  pick: string;
+  /** Example of ORACLE's private reply on Monday. */
+  reply: string;
   tag: RoleTag;
   /** Always in play. Publicly known to be active. */
   core?: boolean;
@@ -44,17 +48,17 @@ export interface RoleDef {
 }
 
 export const crewRoles: RoleDef[] = [
-  { id: "security_chief", name: "Sikkerhedschef", ability: "Autoritet (passiv)", text: "Dit fasthold tæller 2 point. Du kan pågribe alene.", tag: "JAGT" },
-  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. Lær vedkommendes zone efter bevægelse.", tag: "JAGT" },
-  { id: "sensor_tech", name: "Sensortekniker", ability: "Scan", text: "Vælg en zone. Lær hvor mange der står der. Ingen navne.", tag: "OBSERVATION" },
-  { id: "quartermaster", name: "Kvartermester", ability: "Adgangslog", text: "Vælg en zone. Lær hvor mange der gik ind i zonen denne uge. Ingen navne.", tag: "OBSERVATION", isNew: true },
-  { id: "radar_operator", name: "Radaroperatør", ability: "Afstand", text: "Vælg en spiller. Lær hvor mange zoner der er mellem jer efter bevægelse: 0, 1 eller 2.", tag: "OBSERVATION", isNew: true },
-  { id: "medic", name: "Læge", ability: "Biometri", text: "Vælg en spiller i din zone. Lær hvor vedkommende stod ugen før.", tag: "ANALYSE" },
-  { id: "archivist", name: "Arkivar", ability: "Krydsreference", text: "Vælg to spillere. Lær om de nogensinde har stået i samme zone.", tag: "ANALYSE" },
-  { id: "psychologist", name: "Psykolog", ability: "Afhøring", text: "Vælg en spiller i din zone. Lær hvor mange andre der stod sammen med vedkommende ugen før.", tag: "ANALYSE", isNew: true },
-  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion +2. Blev sektionen saboteret sidste uge, lærer du også, om sabotøren stadig står der.", tag: "URET", core: true },
-  { id: "comms_officer", name: "Kommunikationsofficer", ability: "Åben linje", text: "Vælg en spiller. I får en privat kanal i en uge, uanset placering.", tag: "SOCIAL" },
-  { id: "auditor", name: "Revisor", ability: "Stemmerevision", text: "Vælg en spiller. Lær hvem vedkommende stemte på ved denne uges tribunal.", tag: "SOCIAL", isNew: true },
+  { id: "security_chief", name: "Sikkerhedschef", ability: "Pågrib", text: "Vælg en spiller i din zone. Har vedkommende en kryo-ordre, sender du dem i kryo alene. Fra uge 3.", pick: "En spiller", reply: "Peter er pågrebet.", tag: "JAGT" },
+  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. ORACLE fortæller, hvor vedkommende står efter bevægelse.", pick: "En spiller", reply: "Peter står i Lastrum.", tag: "JAGT" },
+  { id: "sensor_tech", name: "Sensortekniker", ability: "Scan", text: "Vælg en zone. ORACLE fortæller, hvor mange der står der. Ingen navne.", pick: "En zone", reply: "Medlab: 3 personer.", tag: "OBSERVATION" },
+  { id: "quartermaster", name: "Kvartermester", ability: "Adgangslog", text: "Vælg en zone. ORACLE fortæller, hvor mange der gik ind i den denne uge. Ingen navne.", pick: "En zone", reply: "Broen: 2 gik ind.", tag: "OBSERVATION", isNew: true },
+  { id: "radar_operator", name: "Radaroperatør", ability: "Afstand", text: "Vælg en spiller. ORACLE fortæller, hvor tæt på vedkommende står: samme zone, nabozone eller langt væk.", pick: "En spiller", reply: "Anna: nabozone.", tag: "OBSERVATION", isNew: true },
+  { id: "medic", name: "Læge", ability: "Biometri", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor vedkommende stod ugen før.", pick: "En spiller", reply: "Peter stod i Motorrum.", tag: "ANALYSE" },
+  { id: "archivist", name: "Arkivar", ability: "Krydsreference", text: "Vælg to spillere. ORACLE fortæller, om de nogensinde har stået i samme zone.", pick: "To spillere", reply: "Anna og Peter: ja.", tag: "ANALYSE" },
+  { id: "psychologist", name: "Psykolog", ability: "Afhøring", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor mange andre der stod sammen med vedkommende ugen før.", pick: "En spiller", reply: "Sara stod med 2 andre.", tag: "ANALYSE", isNew: true },
+  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion får +2. ORACLE fortæller også, om sektionen blev saboteret sidste uge, og om sabotøren stadig står der.", pick: "Ingen — din sektion", reply: "Livsstøtte 1 → 3. Saboteret: ja. Sabotøren her: nej.", tag: "URET", core: true },
+  { id: "comms_officer", name: "Kommunikationsofficer", ability: "Åben linje", text: "Vælg en spiller. ORACLE åbner en privat kanal mellem jer i en uge, uanset placering.", pick: "En spiller", reply: "Kanal åben: #linje-sara.", tag: "SOCIAL" },
+  { id: "auditor", name: "Revisor", ability: "Stemmerevision", text: "Vælg en spiller. ORACLE fortæller, hvem vedkommende stemte på ved denne uges tribunal.", pick: "En spiller", reply: "Peter stemte på Anna.", tag: "SOCIAL", isNew: true },
 ];
 
 /** Max active crew roles that share a tag. Stops information stacking. */
@@ -71,16 +75,18 @@ export interface SynthRoleDef {
   ability: string;
   from: number;
   text: string;
+  pick: string;
+  reply: string;
   /** Always in play: the lead synthetic. */
   core?: boolean;
 }
 
 /** One ability per synthetic. Drawn without replacement, like crew roles. */
 export const synthRoles: SynthRoleDef[] = [
-  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet." },
-  { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt." },
-  { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne." },
-  { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner brugt i eller på zonen giver: \"Signal forstyrret.\"" },
+  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion får −2. ORACLE broadcaster sektionen — aldrig navnet.", pick: "Ingen — din sektion", reply: "Sabotage udført. Livsstøtte 3 → 1." },
+  { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. ORACLE sender vedkommende et falsk, men troværdigt resultat og viser dig, hvad der blev sendt.", pick: "En spiller", reply: "Sendt til Sara: \"Medlab: 1 person.\"" },
+  { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Vælg en zone. Du kravler derhen gennem vedligeholdelsesskakterne i stedet for at gå.", pick: "En zone", reply: "Du står i Lastrum." },
+  { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner i eller på zonen giver: \"Signal forstyrret.\"", pick: "En zone", reply: "Støj aktiv i Broen." },
 ];
 
 export type RoleId = CrewRoleId | SynthRoleId;

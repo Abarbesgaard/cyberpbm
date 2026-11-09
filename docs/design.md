@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.11
+# USCSS CASSANDRA — Hunt Protocol v0.12
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,19 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.10
+## 0. Hvad er ændret fra v0.11
+
+v0.12 gør alle evner ens at bruge: Vælg et mål, og ORACLE svarer. Ingen spiller skal tælle point eller huske, hvad der er brugt.
+
+| v0.11 | v0.12 | Hvorfor |
+|---|---|---|
+| Sikkerhedschef: *Autoritet (passiv)*, fasthold tæller 2 point | **Sikkerhedschef: Pågrib.** Vælg en spiller i din zone. Har vedkommende kryo-ordre, sendes de i kryo | En passiv pointværdi skulle huskes og regnes med. Nu er det en evne som de andre. |
+| Pågribelse kræver 2 fasthold-point | **Pågribelse kræver mindst to andre med Fasthold: ja** | Samme regel uden point. |
+| Broadcast: antal til stede og antal point | **Lykket pågribelse broadcastes uden tal.** Mislykket: antal til stede og antal, der holdt fast | "1 til stede, 2 point" beviste Sikkerhedschefen (afsnit 14, punkt 3). |
+| Evner beskrevet som regler | **Hver evne har et mål og et eksempel på ORACLEs svar** | Spilleren skal kun vælge. |
+| Spilleren holder selv styr på oplåsning, drab og spøgelsesstemme | **ORACLEs mandagsrapport fortæller, hvad du kan i den kommende uge** | Ingen regnskab hos spillerne. |
+
+### Fra v0.10 til v0.11
 
 v0.11 lukker huller i systemerne, som kunne afgøre spillet før jagten begyndte.
 
@@ -139,7 +151,7 @@ Rygraden er hurtig, men eksponeret. Alle kan nå den på én uge.
 Hver aktiv spiller sender én ordre pr. uge med fire felter:
 
 1. **Bevægelse** — *Bliv* eller *Ryk* til en tilstødende zone.
-2. **Evne** — brug din ene evne (eller lad være).
+2. **Evne** — skriv evnens mål (en spiller, en zone eller *Ingen*). ORACLE svarer i mandagsrapporten. Se afsnit 7.0.
 3. **Arbejde** — *ja/nej*. Tæller kun, hvis du blev i en sektion (ikke Rygraden). Systemet i sektionen +1.
 4. **Fasthold** — *ja/nej*. Kun relevant, hvis du ender i samme zone som den person, der har en aktiv kryo-ordre.
 
@@ -189,15 +201,16 @@ Neutralisering kræver både **beslutning** og **fysisk tilstedeværelse**.
 
 ### 6.2 Pågribelse — to-mands-reglen
 
-Efter bevægelse tæller ORACLE **fasthold-point** fra spillere i målets zone:
+Efter bevægelse og evner ser ORACLE på målets zone. Målet sendes i kryo, hvis
 
-- Hver spiller med *Fasthold: ja* giver 1 point.
-- Sikkerhedschefen giver 2 point.
-- **2 point = pågrebet.** Målet sendes i kryo.
+- mindst **to andre spillere** i zonen har *Fasthold: ja*, **eller**
+- Sikkerhedschefen står i zonen og har brugt **Pågrib** på målet.
 
-Hvis mindst én spiller i zonen har valgt *Fasthold: ja*, offentliggør ORACLE:
+Lykkes det, broadcaster ORACLE kun: *"Pågribelse lykkedes i Livsstøtte. [Navn] er overført til kryo."* Ingen tal, så resultatet ikke afslører Sikkerhedschefen.
 
-> *"Pågribelse forsøgt i Livsstøtte. 2 til stede ud over målet. 1 fasthold-point. Mislykket."*
+Mislykkes det, og har mindst én i zonen valgt *Fasthold: ja*, offentliggør ORACLE:
+
+> *"Pågribelse forsøgt i Livsstøtte. 2 til stede ud over målet. 1 holdt fast. Mislykket."*
 
 Ingen navne. Antallet afslører, at nogen i rummet **valgte ikke at holde fast**. Var det tvivl, eller en syntetiker, der beskytter sin egen?
 
@@ -238,6 +251,16 @@ Drab gør det farligt at stå alene. Men arbejde i en tom sektion holder systeme
 
 ## 7. Roller — én evne pr. spiller
 
+### 7.0 Sådan virker en evne
+
+Alle evner virker på samme måde:
+
+1. **Vælg.** I fredagens ordre skriver du evnens mål: *EVNE: Pejling → Peter*. Nogle evner har intet mål (*EVNE: Reparér*).
+2. **ORACLE afgør.** Spilleren regner intet ud og holder ikke regnskab.
+3. **Læs svaret.** Mandag står resultatet i din private rapport. Rapporten fortæller også, om din evne er aktiv i den kommende uge, og — for syntetikere — om drabet er brugt.
+
+Ingen evne har ladninger, point eller tilstande, spilleren skal huske. Er en evne låst eller ugyldig, svarer ORACLE *"Ingen effekt."*
+
 ### 7.1 Grundreglen: unikke roller
 
 - **Hver faktisk rolle findes højst én gang i en kampagne.** ORACLE trækker roller uden tilbagelægning.
@@ -250,19 +273,19 @@ Drab gør det farligt at stå alene. Men arbejde i en tom sektion holder systeme
 
 ### 7.2 Besætningen — rollekataloget
 
-| Rolle | Id | Tag | Evne |
-|---|---|---|---|
-| **Sikkerhedschef** | `security_chief` | JAGT | *Autoritet (passiv):* Dit fasthold tæller 2 point. Du kan pågribe alene. |
-| **Navigatør** | `navigator` | JAGT | *Pejling:* Vælg en spiller. Lær vedkommendes zone efter bevægelse. |
-| **Sensortekniker** | `sensor_tech` | OBSERVATION | *Scan:* Vælg en zone. Lær hvor mange der står der efter bevægelse. Ingen navne. |
-| **Kvartermester** *(ny)* | `quartermaster` | OBSERVATION | *Adgangslog:* Vælg en zone. Lær hvor mange der gik ind i zonen denne uge. Ingen navne. |
-| **Radaroperatør** *(ny)* | `radar_operator` | OBSERVATION | *Afstand:* Vælg en spiller. Lær hvor mange zoner der er mellem jer efter bevægelse: 0, 1 eller 2. |
-| **Læge** | `medic` | ANALYSE | *Biometri:* Vælg en spiller i din zone. Lær hvilken zone vedkommende stod i ugen før. |
-| **Arkivar** | `archivist` | ANALYSE | *Krydsreference:* Vælg to spillere. Lær om de nogensinde har stået i samme zone ved en rapport (ja/nej). |
-| **Psykolog** *(ny)* | `psychologist` | ANALYSE | *Afhøring:* Vælg en spiller i din zone. Lær hvor mange andre der stod sammen med vedkommende ugen før. |
-| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Systemet i din sektion +2. Blev sektionen saboteret sidste uge, lærer du også, om sabotøren stadig står der (ja/nej). |
-| **Kommunikationsofficer** | `comms_officer` | SOCIAL | *Åben linje:* Vælg en spiller. I får en privat kanal i den kommende uge, uanset placering. |
-| **Revisor** *(ny)* | `auditor` | SOCIAL | *Stemmerevision:* Vælg en spiller. Lær hvem vedkommende stemte på ved denne uges tribunal. |
+| Rolle | Id | Tag | Evne | Du vælger | ORACLE svarer fx |
+|---|---|---|---|---|---|
+| **Sikkerhedschef** | `security_chief` | JAGT | *Pågrib:* Har spilleren en kryo-ordre og står i din zone, sendes vedkommende i kryo. Fra uge 3. | En spiller | *"Peter er pågrebet."* |
+| **Navigatør** | `navigator` | JAGT | *Pejling:* Spillerens zone efter bevægelse. | En spiller | *"Peter står i Lastrum."* |
+| **Sensortekniker** | `sensor_tech` | OBSERVATION | *Scan:* Antal i zonen efter bevægelse. Ingen navne. | En zone | *"Medlab: 3 personer."* |
+| **Kvartermester** *(ny)* | `quartermaster` | OBSERVATION | *Adgangslog:* Antal, der gik ind i zonen denne uge. Ingen navne. | En zone | *"Broen: 2 gik ind."* |
+| **Radaroperatør** *(ny)* | `radar_operator` | OBSERVATION | *Afstand:* Samme zone, nabozone eller langt væk efter bevægelse. | En spiller | *"Anna: nabozone."* |
+| **Læge** | `medic` | ANALYSE | *Biometri:* Hvor en spiller i din zone stod ugen før. | En spiller | *"Peter stod i Motorrum."* |
+| **Arkivar** | `archivist` | ANALYSE | *Krydsreference:* Om to spillere nogensinde har stået i samme zone ved en rapport. | To spillere | *"Anna og Peter: ja."* |
+| **Psykolog** *(ny)* | `psychologist` | ANALYSE | *Afhøring:* Hvor mange andre der stod med en spiller i din zone ugen før. | En spiller | *"Sara stod med 2 andre."* |
+| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Systemet i din sektion +2. Svaret siger også, om sektionen blev saboteret sidste uge, og om sabotøren stadig står der. | Intet | *"Livsstøtte 1 → 3. Saboteret: ja. Sabotøren her: nej."* |
+| **Kommunikationsofficer** | `comms_officer` | SOCIAL | *Åben linje:* En privat kanal mellem jer i en uge, uanset placering. | En spiller | *"Kanal åben: #linje-sara."* |
+| **Revisor** *(ny)* | `auditor` | SOCIAL | *Stemmerevision:* Hvem spilleren stemte på ved denne uges tribunal. | En spiller | *"Peter stemte på Anna."* |
 
 **Hvorfor de fire nye roller:**
 
@@ -286,12 +309,12 @@ Syntetikere kender hinanden og hinandens roller, men har ingen privat kanal, med
 
 Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 
-| Rolle | Id | Evne | Fra uge | Effekt |
-|---|---|---|---|---|
-| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet. |
-| **Forfalsker** | `forger` | Forfalskning | 2 | Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt. |
-| **Skaktløber** | `crawler` | Skakt | 1 | Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne. |
-| **Støjsender** *(ny)* | `jammer` | Støj | 2 | Vælg en zone. Alle informationsevner brugt i eller på zonen giver *"Signal forstyrret."* |
+| Rolle | Id | Evne | Fra uge | Effekt | Du vælger | ORACLE svarer fx |
+|---|---|---|---|---|---|---|
+| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet. | Intet | *"Sabotage udført. Livsstøtte 3 → 1."* |
+| **Forfalsker** | `forger` | Forfalskning | 2 | Spillerens private resultat denne uge er falsk, men troværdigt. Du får at vide, hvad der blev sendt. | En spiller | *"Sendt til Sara: 'Medlab: 1 person.'"* |
+| **Skaktløber** | `crawler` | Skakt | 1 | Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne. | En zone | *"Du står i Lastrum."* |
+| **Støjsender** *(ny)* | `jammer` | Støj | 2 | Alle informationsevner brugt i eller på zonen giver *"Signal forstyrret."* | En zone | *"Støj aktiv i Broen."* |
 
 - **Særordre er altid i spil.** Ved én syntetiker er det den eneste syntetikerrolle. Uden den kan systemerne kun falde gennem forfald.
 - **Ved to syntetikere** trækkes den anden rolle tilfældigt blandt Forfalsker, Skaktløber og Støjsender.
@@ -435,19 +458,19 @@ Hver uge tilføjer data eller pres, ikke nye regler.
 
 > **ORACLE // SHIPWIDE**
 > *Advarsel. Uautoriseret adgang i Livsstøtte. Livsstøtte 2/5 (−1).*
-> *Pågribelse forsøgt i Livsstøtte. 1 til stede ud over målet. 0 fasthold-point. Mislykket.*
+> *Pågribelse forsøgt i Livsstøtte. 1 til stede ud over målet. 0 holdt fast. Mislykket.*
 
 Kryo-ordren fra uge 3 var på **Anna**.
 
 - **Anna:** "Jeg var i Livsstøtte med Peter. Han sagde, han ville tjekke terminalen."
-- **Peter:** "Jeg er Sikkerhedschef. Jeg holdt ikke fast, fordi jeg ikke tror, Anna er syntetiker."
+- **Peter:** "Jeg er Sikkerhedschef. Jeg brugte ikke Pågrib, fordi jeg ikke tror, Anna er syntetiker."
 - **Sara:** "Jeg er Sensortekniker. Min scan viste 2 personer i Livsstøtte."
 
 Hvad ved besætningen?
 
 - Broadcasten er sand: Der blev saboteret i Livsstøtte, og der var præcis to personer — Anna og Peter.
 - Én af de to er altså syntetikeren. Syntetikeren tog en risiko ved at sabotere i et rum med et vidne.
-- Peter kunne have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig eller sig selv?
+- Hvis Peter er Sikkerhedschef, kunne han have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig eller sig selv?
 - Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter påstår begge, at de arbejdede. Én af dem lyver.
 - Saras scan bekræfter blot det, alle allerede ved. Er hun ægte, eller bygger hun troværdighed?
 
@@ -480,7 +503,7 @@ Fundet under arbejdet med v0.7. Punkt 1–2 er rettet, fordi unikke roller kræv
 
 1. **Rettet:** v0.6's balancetabel nævnte præcis, hvilke roller der var i spil, men samtidig var "hvilke roller der er i spil" hemmeligt.
 2. **Rettet:** Ved 7 og 8 spillere gav v0.6 kun 2 og 1 ubrugte roller, men 2 syntetikere skulle have 2 bluffs hver.
-3. **Fasthold-point kan bevise Sikkerhedschefen.** Broadcasten nævner antal til stede og antal point. "1 til stede, 2 point" beviser, at den ene var Sikkerhedschef. Det strider mod afsnit 10. Mulig rettelse: Broadcast kun *lykkedes/mislykket* og antal til stede.
+3. **Rettet i v0.12:** Fasthold-point kunne bevise Sikkerhedschefen ("1 til stede, 2 point"). Nu er der ingen point, og en lykket pågribelse broadcastes uden tal.
 4. **Åben linje beviser Kommunikationsofficeren over for målet.** Målet ser kanalen blive oprettet. Det er et bevis over for én spiller, ikke offentligt.
 5. **Reparation er synlig.** En stigning på 2 eller mere i systemstatus peger på, at Ingeniøren stod i sektionen. Det kan afgøre en dobbeltpåstand om Ingeniør.
 6. **Afsnit 10 i v0.6 overvurderede forfalskning.** Teksten sagde, at syntetikere kan "have fået et resultat forfalsket mod sig". Syntetikere har ingen informationsevne og får ingen resultater. Et ægte evneresultat beviser altså, at afsenderen er besætning. Det eneste værn er forbuddet mod screenshots og videresendelse.

@@ -14,7 +14,7 @@ const ruleFiles = {
 const tabs = [
   { key: "player", label: "// Spillerregler" },
   { key: "gm", label: "// ORACLE (GM)" },
-  { key: "design", label: "// Design v0.11" },
+  { key: "design", label: "// Design v0.12" },
 ] as const;
 
 export function RulesPage() {

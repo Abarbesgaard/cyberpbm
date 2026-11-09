@@ -3,15 +3,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 const intro = {
   player: "Det er ikke nok at vide, hvem det er. Tribunalet udsteder en kryo-ordre. Derefter skal mindst to af jer stå i samme rum som målet — og begge skal holde fast.",
-  gm: "Pågribelse afgøres efter bevægelse og evner. Tæl fasthold-point blandt andre spillere i målets zone. Offentliggør antal, aldrig navne.",
+  gm: "Se, hvem der står i målets zone efter bevægelse. Har mindst to af dem skrevet Fasthold: ja, eller har Sikkerhedschefen brugt Pågrib på målet, går målet i kryo. Mislykkes det, skriver du i broadcasten, hvor mange der stod der, og hvor mange der holdt fast — aldrig hvem.",
   default: "Neutralisering kræver både en beslutning og fysisk tilstedeværelse. Man kan være sikker på, hvem syntetikeren er, og stadig ikke nå frem.",
 };
 
 const steps = [
   { label: "Tribunal", title: "Kryo-ordre", body: "Hver fredag stemmer alle aktive spillere. Flertal af aktive udsteder en kryo-ordre. Kun én ad gangen; en ny erstatter den gamle. ORACLE pejler målets zone én gang." },
   { label: "Jagt", title: "Find målet", body: "Målet ved, at jagten er gået ind. Det kan blive, flygte eller vente på at blive hentet. Ordren gælder, indtil målet er pågrebet eller erstattet." },
-  { label: "To-mands-reglen", title: "Pågribelse", body: "Hver spiller i målets zone med Fasthold: ja giver 1 point. Sikkerhedschefen giver 2. To point = kryo." },
-  { label: "Spor", title: "Den tavse hånd", body: "ORACLE oplyser, hvor mange der var til stede, og hvor mange point de gav. En manglende hånd er mistanke — aldrig bevis." },
+  { label: "To-mands-reglen", title: "Pågribelse", body: "Står mindst to andre i målets zone med Fasthold: ja, sendes målet i kryo. Sikkerhedschefen kan i stedet bruge Pågrib alene." },
+  { label: "Spor", title: "Den tavse hånd", body: "Mislykkes det, oplyser ORACLE, hvor mange der var til stede, og hvor mange der holdt fast. En manglende hånd er mistanke — aldrig bevis." },
 ];
 
 export function Hunt() {
@@ -41,7 +41,7 @@ export function Hunt() {
 {`ORACLE // SHIPWIDE // UGE 4
 PÅGRIBELSE: Forsøgt i Livsstøtte.
 1 til stede ud over målet.
-0 fasthold-point. Mislykket.
+0 holdt fast. Mislykket.
 
 LIG FUNDET: Sara, Lastrum.`}
         </pre>

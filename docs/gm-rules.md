@@ -44,7 +44,7 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
 5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. I uge 2, 4 og 6: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der, og sektionen ikke blev saboteret. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Rammer et system 0, er det KRITISK. Var det allerede 0 før afgørelsen, vinder syntetikerne.
-6. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.
+6. **Pågribelse.** Find målets zone. Kryo, hvis mindst to andre dér har *Fasthold: ja*, eller Sikkerhedschefen står dér og har brugt *Pågrib* på målet. Lykket: broadcast uden tal. Mislykket: antal til stede og antal, der holdt fast.
 7. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Flertal af *aktive* spillere udsteder ny kryo-ordre. Notér målets zone til pejling. Offentliggør aldrig, hvem der stemte hvad.
 8. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
 
@@ -67,8 +67,7 @@ SCENARIE: Nødsignal (Broen 5, Motorrum 5)
 
 ANOMALI: Uautoriseret adgang i Lastrum.
 
-PÅGRIBELSE: Forsøgt i Broen. 2 til stede ud over målet.
-3 fasthold-point. Lykkedes. [Navn] er overført til kryo.
+PÅGRIBELSE: Lykkedes i Broen. [Navn] er overført til kryo.
 
 KRYO-ORDRE: Udstedt mod [Navn]. Senest pejlet: Medlab.
 
@@ -85,7 +84,12 @@ ORACLE // [NAVN] // UGE 3
 ZONE: Livsstøtte
 MANIFEST: Anna, Peter
 RESULTAT: Pejling → Sara står i Rygraden.
+NÆSTE UGE: Pejling er aktiv.
 ```
+
+Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere om drabet er brugt (*DRAB: ubrugt*). Ekkoer får, om spøgelsesstemmen er brugt. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
+
+*Pågrib*, *Åben linje* og *Skakt* er handlinger, ikke information. De kan ikke forfalskes eller forstyrres.
 
 ## Forfalskning
 
