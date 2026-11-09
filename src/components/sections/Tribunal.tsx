@@ -68,13 +68,13 @@ LIG FUNDET: Sara, Lastrum.`}
       <div className="mt-12">
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Skæbne — hver findes én gang pr. kampagne</div>
         <p className="mb-6 max-w-[720px] text-[0.9rem] leading-[1.6] text-cp-off">
-          Et ekko vælger en ledig skæbne i sin næste ordre. Hvem der har hvilken, er hemmeligt — undtagen Afløseren.
+          Når du bliver ekko, ruller ORACLE en d6 i hemmelighed. Er skæbnen taget, eller gælder den ikke for dig, bliver du Ekko. Hvem der har hvilken, er hemmeligt — undtagen Afløseren.
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {fates.map((f) => (
             <div key={f.id} className="bezel bezel-screws p-6">
               <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
-                {f.unique ? "Én gang" : "Ubegrænset"} // {f.who}
+                d6: {f.roll} // {f.unique ? "Én gang" : "Ubegrænset"} // {f.who}
               </div>
               <h3 className="mb-3 font-head tracking-[0.08em] text-[1.05rem] uppercase">{f.name}</h3>
               <p className="text-[0.85rem] leading-[1.7] text-cp-off">{f.text}</p>

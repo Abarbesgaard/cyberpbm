@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.23
+# USCSS CASSANDRA v0.24
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,15 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.22
+## 0. Hvad er ændret fra v0.23
+
+v0.24 lader **terningen** bestemme skæbnen.
+
+| v0.23 | v0.24 | Hvorfor |
+|---|---|---|
+| Ekkoet vælger en ledig skæbne | **ORACLE ruller d6: 1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko** | Det er mere spændende ikke at vide, hvad man bliver. Ingen venter strategisk på den bedste skæbne. |
+
+### Fra v0.22 til v0.23
 
 v0.23 lader kriserne ramme **gangene** og **ORACLE's signal**.
 
@@ -311,18 +319,18 @@ Et ekko fra syntetikerholdet må også sende vedligehold — eller lade være. I
 
 #### Skæbner
 
-Et ekko kan vælge én ledig **skæbne** i sin næste ordre (*SKÆBNE: Jorden*). Hver skæbne findes én gang pr. kampagne. Hvem der har hvilken, er hemmeligt — undtagen Afløseren, som broadcastes.
+Når en spiller bliver ekko, ruller ORACLE hemmeligt en d6 for **skæbnen**: 1–2 Jorden, 3–4 Spøgelse, 5 Afløser, 6 Ekko. Hver skæbne findes én gang pr. kampagne. Er den taget, eller er det Afløser til en frossen, bliver spilleren Ekko. Ingen omrul. Hvem der har hvilken, er hemmeligt — undtagen Afløseren, som broadcastes.
 
-| Skæbne | Hvem | Effekt |
-|---|---|---|
-| **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. |
-| **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
-| **Afløser** | Kun dræbte | Vågner i Hypersøvn som aktiv spiller uden evne: bevægelse, arbejde, stemme. Kan dræbes og dømmes igen. |
-| **Ekko** | Alle | Standard. Ingen ekstra handling. |
+| d6 | Skæbne | Hvem | Effekt |
+|---|---|---|---|
+| 1–2 | **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. |
+| 3–4 | **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
+| 5 | **Afløser** | Kun dræbte | Vågner i Hypersøvn som aktiv spiller uden evne: bevægelse, arbejde, stemme. Kan dræbes og dømmes igen. |
+| 6 | **Ekko** | Alle | Ingen ekstra handling. Også når skæbnen er taget eller ikke gælder. |
 
 - Rumlog og Hjemsøg er informationsevner. De kan forfalskes og forstyrres.
-- Et frosset syntetikerekko må vælge Jorden eller Spøgelse og lyve om svaret. Derfor beviser en skæbne ingenting.
-- Afløseren er bevist besætning (kun dræbte kan vælge den) — men uden evne. Det er prisen for at komme tilbage.
+- Et frosset syntetikerekko ruller også, kan blive Jorden eller Spøgelse og lyve om svaret. Derfor beviser en skæbne ingenting.
+- Afløseren er bevist besætning (kun dræbte kan få den) — men uden evne. Det er prisen for at komme tilbage.
 - Afløser kun for dræbte: en syntetiker i kryo må ikke kunne vende tilbage.
 
 ### 6.4 Drab
