@@ -90,6 +90,16 @@ TRIBUNAL:   Anna                    (eller: Ingen)
 - **Bevægelse:** Bliv, eller ryk én zone. Fra en sektion kan du nå nabosektionerne og Rygraden. Fra Rygraden kan du nå alle sektioner.
 - **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
 - **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1.
+Som ekko sender du i stedet:
+
+```
+UGE:        4
+VEDLIGEHOLD: Broen                  (eller: Ingen)
+SKÆBNE:     Spøgelse                (kun én gang, hvis ledig)
+HJEMSØG:    Peter                   (kun Spøgelse; Jorden: RUMLOG → zone)
+TRIBUNAL:   Ingen                   (eller din spøgelsesstemme)
+```
+
 - **Tribunal:** Stem på en spiller, eller *Ingen*. Stemmerne er hemmelige; ORACLE broadcaster kun resultatet.
 
 ## Skibet
@@ -128,6 +138,19 @@ Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evn
 - tale via **højttaleren** som alle andre. Alt, hvad du siger, er vidneudsagn.
 - sende **Vedligehold → [sektion]** hver fredag. Den sektion får intet forfald den uge.
 - bruge **én spøgelsesstemme** i ét tribunal resten af spillet.
+
+### Skæbne
+
+Ekkoer kan også få en **skæbne**. Hver skæbne findes **én gang pr. kampagne**, ligesom rollerne. ORACLE skriver privat, hvilke der er ledige. Skriv dit valg i næste ordre: *SKÆBNE: Spøgelse*. Vælger to den samme i samme uge, trækker ORACLE lod. Hvem der har hvilken skæbne, er hemmeligt.
+
+| Skæbne | Hvem | Hver fredag | ORACLE svarer fx |
+|---|---|---|---|
+| **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. Du taler kun gennem ORACLE. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
+| **Spøgelse** | Døde og frosne | **Hjemsøg → spiller.** ORACLE fortæller, hvor vedkommende står efter bevægelse. | *"Sara står i Lastrum."* |
+| **Afløser** | Kun dræbte | Du vågner i Hypersøvn som **aktiv spiller uden evne**: bevægelse, arbejde og stemme. Du er ikke længere ekko. | *"KAPSEL ÅBNET: Sara er vågen."* (broadcast) |
+| **Ekko** | Alle | Ingen ekstra handling. Standard, hvis du ikke vælger, eller de andre er taget. | — |
+
+Rumlog og Hjemsøg er informationsevner: de kan forfalskes og forstyrres. Et frosset ekko fra syntetikerholdet må også vælge Jorden eller Spøgelse — og lyve om svaret.
 
 ## Information
 

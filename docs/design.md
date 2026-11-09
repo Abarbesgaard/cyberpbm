@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.19
+# USCSS CASSANDRA v0.20
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,15 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.17
+## 0. Hvad er ændret fra v0.19
+
+v0.20 giver døde og frosne spillere en **skæbne**.
+
+| v0.19 | v0.20 | Hvorfor |
+|---|---|---|
+| Alle ekkoer er ens: højttaler, vedligehold, én spøgelsesstemme | **+ Skæbne: Jorden, Spøgelse eller Afløser — hver én gang pr. kampagne** | En spiller, der ryger ud i uge 2, skal have noget at gøre i fire uger. Flere døde bliver til forskellige ting. |
+
+### Fra v0.17 til v0.19
 
 v0.19 dropper undertitlen. Spillet hedder bare **USCSS Cassandra**.
 
@@ -282,6 +290,22 @@ Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
 Et ekko fra syntetikerholdet må også sende vedligehold — eller lade være. Ingen kan se forskel.
 
+#### Skæbner
+
+Et ekko kan vælge én ledig **skæbne** i sin næste ordre (*SKÆBNE: Jorden*). Hver skæbne findes én gang pr. kampagne. Hvem der har hvilken, er hemmeligt — undtagen Afløseren, som broadcastes.
+
+| Skæbne | Hvem | Effekt |
+|---|---|---|
+| **Jorden** | Døde og frosne | Hver fredag: *Rumlog → zone.* ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. Jorden taler kun gennem ORACLE (højttaleren). |
+| **Spøgelse** | Døde og frosne | Hver fredag: *Hjemsøg → spiller.* ORACLE fortæller målets zone efter bevægelse. |
+| **Afløser** | Kun dræbte | Vågner i Hypersøvn som aktiv spiller uden evne: bevægelse, arbejde, stemme. Kan dræbes og dømmes igen. |
+| **Ekko** | Alle | Standard. Ingen ekstra handling. |
+
+- Rumlog og Hjemsøg er informationsevner. De kan forfalskes og forstyrres.
+- Et frosset syntetikerekko må vælge Jorden eller Spøgelse og lyve om svaret. Derfor beviser en skæbne ingenting.
+- Afløseren er bevist besætning (kun dræbte kan vælge den) — men uden evne. Det er prisen for at komme tilbage.
+- Afløser kun for dræbte: en syntetiker i kryo må ikke kunne vende tilbage.
+
 ### 6.4 Drab
 
 Drab er en fælles syntetikerhandling, ikke en rolleevne. Hver syntetiker beholder sin ene evne.
@@ -543,16 +567,17 @@ Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forker
 2. Har Skaktløber nok at bruge Skakt til?
 3. Bliver sabotage syntetikernes eneste strategi?
 4. Er Vagt for stærk mod syntetikere, der kun har ét drab hver?
-5. Er spøgelsesstemmen sjov, eller bare en formalitet?
-6. Giver Final Protocol nok pres, når den kun er det sidste tribunal?
-7. Er 11 roller for mange at holde styr på for nye spillere?
-8. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
-9. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
-10. Er én syntetiker med kun Særordre for svag ved 5–6 spillere?
-11. Afslører *"Signal forstyrret"* for meget, nemlig at Støjsender er i spil?
-12. Er ét drab pr. syntetiker for meget ved 5 spillere?
-13. Bliver spillere så bange for at stå alene, at ingen arbejder i tomme sektioner?
-14. Afslører et ekkos frie ord for meget? Et dødt offer *er* besætning — men ved ikke, hvem der dræbte.
+5. Er spøgelsesstemmen sjov, eller bare en formalitet? Og er skæbnerne nok til at holde døde spillere engagerede?
+6. Gør Afløseren drab for svage? Den vender kun tilbage uden evne, men tribunalet får en bevist besætning mere.
+7. Giver Final Protocol nok pres, når den kun er det sidste tribunal?
+8. Er 11 roller for mange at holde styr på for nye spillere?
+9. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
+10. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
+11. Er én syntetiker med kun Særordre for svag ved 5–6 spillere?
+12. Afslører *"Signal forstyrret"* for meget, nemlig at Støjsender er i spil?
+13. Er ét drab pr. syntetiker for meget ved 5 spillere?
+14. Bliver spillere så bange for at stå alene, at ingen arbejder i tomme sektioner?
+15. Afslører et ekkos frie ord for meget? Et dødt offer *er* besætning — men ved ikke, hvem der dræbte.
 
 ---
 

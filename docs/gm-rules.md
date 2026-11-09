@@ -35,12 +35,13 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: ja, Tribunal: Ingen*. Manglende ekko-ordre = intet vedligehold.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: ja, Tribunal: Ingen*. Manglende ekko-ordre = intet vedligehold. Manglende skæbne = Ekko indtil videre; spilleren kan vælge en ledig skæbne en senere uge.
 
 **Weekend — afgør i denne rækkefølge:**
 
 1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: tjek krisen, fx Strømudfald, Karantænezone eller Skotter låst.
 2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne eller arbejde). Mislykkes det, sker intet, og drabet er ikke brugt.
+2b. **Skæbner.** Tildel nye skæbner: Jorden, Spøgelse og Afløser findes én gang hver. Samme valg samme uge: træk lod; taberen får besked og kan vælge igen næste uge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 4 som informationsevner — Hjemsøg bruger positionen efter bevægelse.
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
 5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. I uge 2, 4 og 6: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der, og sektionen ikke blev saboteret. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Rammer et system 0, er det KRITISK. Var det allerede 0 før afgørelsen, vinder syntetikerne.
@@ -79,7 +80,7 @@ TRIBUNAL: 4 af 6 stemmer mod [Navn]. [Navn] er overført til kryo.
 LIG FUNDET: [Navn], Lastrum.
 ```
 
-Til offeret, privat: *"Du er død. Zone: Lastrum. Du er nu et ekko."* Til drabsmanden ved mislykket drab: *"Drab mislykket."*
+Til offeret, privat: *"Du er død. Zone: Lastrum. Du er nu et ekko. Ledige skæbner: Jorden, Spøgelse, Afløser."* Samme liste til en spiller, der sendes i kryo, dog uden Afløser. Afløser broadcastes: *"KAPSEL ÅBNET: [Navn] er vågen i Hypersøvn."* Jorden og Spøgelse broadcastes aldrig. Til drabsmanden ved mislykket drab: *"Drab mislykket."*
 
 ## Privat rapport-skabelon
 
@@ -92,7 +93,7 @@ RESULTAT: Pejling → Sara står i Rygraden.
 NÆSTE UGE: Pejling er aktiv.
 ```
 
-Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere om drabet er brugt (*DRAB: ubrugt*). Ekkoer får, om spøgelsesstemmen er brugt. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
+Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere om drabet er brugt (*DRAB: ubrugt*). Ekkoer får, om spøgelsesstemmen er brugt, og hvilke skæbner der stadig er ledige. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
 
 *Vagt*, *Åben linje* og *Skakt* er handlinger, ikke information. De kan ikke forfalskes eller forstyrres.
 
@@ -107,6 +108,8 @@ Et falsk resultat skal være **troværdigt**. Det må gerne være forkert på en
 - Adgangslog: et antal fra 0 til antal aktive spillere.
 - Afstand: en anden værdi af 0, 1 eller 2.
 - Afhøring: et antal fra 0 til antal aktive spillere minus 1.
+- Rumlog: flyt én person ind eller ud, eller ændr, hvem der arbejdede. Systemændringen er offentlig og må ikke ændres.
+- Hjemsøg: en zone, spilleren kunne have nået.
 - Stemmerevision: en anden stemme, spilleren kunne have afgivet.
 
 Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutning, medmindre gruppen ønsker en gennemgang.
@@ -127,7 +130,7 @@ Alle scenarier, arkiver, krisetabellen (d20) og sektionstabellen (d6) står i *S
 - Et system rammer 0: broadcast *"KRITISK: [sektion]. Én uge til nedbrud."* Står det stadig på 0 efter næste afgørelse: annoncér syntetikernes sejr. KRITISK i uge 6: tjek efter Final Protocol — er det stadig 0, vinder syntetikerne.
 - Arbejde i Rygraden eller efter *Ryk*/Skakt: tæller ikke.
 - Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder. Ikke opfyldt = syntetikerne vinder. Hvem der er i kryo, er ligegyldigt.
-- Døde og spillere i kryo kan ikke dræbes, dømmes eller vælges som mål for evner.
+- Døde og spillere i kryo kan ikke dræbes, dømmes eller vælges som mål for evner. En Afløser er aktiv igen og kan dræbes, dømmes og vælges.
 - Stemmer på en spiller, der dør samme weekend, tæller ikke.
 - Afslør aldrig et offers rolle før spillets afslutning. ORACLE svarer: *"Signal ikke fundet."*
 - Afhøring i uge 1: *"Ingen data."* Stemmerevision i uge 1: *"Ingen afstemning."*

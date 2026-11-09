@@ -1,5 +1,6 @@
 import { useRole } from "@/context/RoleContext";
 import { SectionHeader } from "@/components/SectionHeader";
+import { fates } from "@/content/fates";
 
 const intro = {
   player: "Hver fredag stemmer I. Får én et flertal af de aktive spillere, sendes vedkommende i kryo. Vælger I forkert, mister I en af jeres egne.",
@@ -61,6 +62,27 @@ LIG FUNDET: Sara, Lastrum.`}
             <li><strong className="text-cp-yellow">Vedligehold:</strong> vælg hver uge én sektion. Den får intet forfald.</li>
             <li>Én <strong className="text-cp-yellow">spøgelsesstemme</strong> til ét tribunal resten af spillet.</li>
           </ul>
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">// Skæbne — hver findes én gang pr. kampagne</div>
+        <p className="mb-6 max-w-[720px] text-[0.9rem] leading-[1.6] text-cp-off">
+          Et ekko vælger en ledig skæbne i sin næste ordre. Hvem der har hvilken, er hemmeligt — undtagen Afløseren.
+        </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {fates.map((f) => (
+            <div key={f.id} className="bezel bezel-screws p-6">
+              <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
+                {f.unique ? "Én gang" : "Ubegrænset"} // {f.who}
+              </div>
+              <h3 className="mb-3 font-head tracking-[0.08em] text-[1.05rem] uppercase">{f.name}</h3>
+              <p className="text-[0.85rem] leading-[1.7] text-cp-off">{f.text}</p>
+              {f.reply !== "—" && (
+                <p className="mt-3 font-mono text-[0.75rem] text-cp-mid">ORACLE: “{f.reply}”</p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
