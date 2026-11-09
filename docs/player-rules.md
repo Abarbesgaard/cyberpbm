@@ -67,8 +67,15 @@ Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge
 ## Hver uge
 
 1. **Mandag 09:00** — Læs ORACLE-rapporten i **#shipwide** og din private rapport.
-2. **Mandag–fredag** — Tal. Offentligt i **#shipwide**, privat i din **sektorkanal** med dem, der står samme sted. Ingen DM'er.
+2. **Mandag–fredag** — Tal via **højttaleren** eller i din **sektorkanal**. Se *Kommunikation*.
 3. **Fredag 18:00** — Send din ordre til ORACLE, og afgiv din tribunal-stemme.
+
+## Kommunikation
+
+- **Højttaleren (#shipwide):** Du kan ikke skrive i #shipwide selv. Send beskeden privat til ORACLE, startende med *HØJTTALER:*. ORACLE læser den op i #shipwide ordret og **uden afsender**. Du kan underskrive med et navn, men alle kan skrive "Anna her".
+- ORACLE læser op to gange dagligt, kl. 12 og 20, i tilfældig rækkefølge. Højst 3 beskeder pr. spiller pr. dag.
+- **Sektorkanalen:** Her taler du med navn til dem, der står i samme zone.
+- **Ingen DM'er mellem spillere.** Din private tråd med ORACLE er kun til ordrer og højttalerbeskeder.
 
 ## Ordren
 
@@ -118,7 +125,7 @@ At stå alene er farligt. At ingen arbejder, er også farligt.
 
 Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evne, arbejde eller sektorkanal. Men du må stadig:
 
-- skrive frit i **#shipwide**. Alt, hvad du siger, er vidneudsagn.
+- tale via **højttaleren** som alle andre. Alt, hvad du siger, er vidneudsagn.
 - sende **Vedligehold → [sektion]** hver fredag. Den sektion får intet forfald den uge.
 - bruge **én spøgelsesstemme** i ét tribunal resten af spillet.
 

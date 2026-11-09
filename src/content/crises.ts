@@ -10,8 +10,8 @@ export interface Crisis {
 export const crises: Crisis[] = [
   { roll: 1, name: "Strømudfald", text: "Rygraden forsegles. Ingen kan rykke ind eller ud, heller ikke via Skakt." },
   { roll: 2, name: "Karantænezone", text: "Ingen kan rykke ind i sektionen, heller ikke via Skakt. Ud er tilladt.", section: true },
-  { roll: 3, name: "Kommunikationsnedbrud", text: "Sektorkanalerne er lukket. Kun #shipwide virker." },
-  { roll: 4, name: "Radiotavshed", text: "#shipwide er lukket. Kun sektorkanalerne virker. Ekkoer er tavse." },
+  { roll: 3, name: "Kommunikationsnedbrud", text: "Sektorkanalerne er lukket. Kun højttaleren i #shipwide virker." },
+  { roll: 4, name: "Radiotavshed", text: "Højttaleren er slukket. ORACLE læser ingen beskeder op. Kun sektorkanalerne virker. Ekkoer er tavse." },
   { roll: 5, name: "Sensorblackout", text: "Alle informationsevner giver \"Signal forstyrret.\"" },
   { roll: 6, name: "Trykfald", text: "Sektionen mister 1 ekstra ved afgørelsen.", section: true },
   { roll: 7, name: "Brand", text: "Arbejde i sektionen tæller ikke. Reparation og vedligehold virker.", section: true },
