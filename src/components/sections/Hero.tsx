@@ -36,8 +36,9 @@ export function Hero() {
           </div>
 
           <p className="mt-7 max-w-[560px] text-[1.05rem] leading-relaxed text-cp-off">
-            I er vækket før tid, 19 måneder fra Jorden. ORACLE melder uregelmæssigheder.
-            Én af jer bløder hvidt. At vide hvem er ikke nok — I skal finde dem på skibet.
+            Kapslen åbner for tidligt. Skibsuret viser 19 måneder fra Jorden.
+            Lyset i korridoren blinker, og kapslen ved siden af din står allerede tom.
+            ORACLE svarer ikke på hvorfor.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
