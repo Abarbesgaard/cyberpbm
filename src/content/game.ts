@@ -88,7 +88,7 @@ export type RoleId = CrewRoleId | SynthRoleId;
 export const weeks = [
   { n: 1, name: "Awakening", text: "I vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Intet tribunal." },
   { n: 2, name: "First Anomaly", text: "Sabotage og de øvrige syntetiker-evner låses op. Første tribunal fredag." },
-  { n: 3, name: "Broken Trust", text: "Første pågribelse er mulig." },
+  { n: 3, name: "Broken Trust", text: "Første pågribelse er mulig. Syntetikerne kan dræbe." },
   { n: 4, name: "Containment Failure", text: "ORACLE forsegler én zone hele ugen. Ingen ind, ingen ud." },
   { n: 5, name: "Last Transmission", text: "Positionsloggen fra uge 1 frigives. Gamle alibier kan tjekkes." },
   { n: 6, name: "Final Protocol", text: "Tribunalet sender direkte i kryo. Derefter afsløres alle roller." },
@@ -118,6 +118,10 @@ export const REPAIR_GAIN = 2;
 export const SABOTAGE_LOSS = 2;
 export const NEGLECT_LOSS = 1;
 export const NEGLECT_FROM_WEEK = 2;
+
+/** Kills: a shared synthetic action, not a role ability. */
+export const KILL_FROM_WEEK = 3;
+export const KILLS_PER_SYNTH = 1;
 
 export interface Scenario {
   id: string;

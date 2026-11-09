@@ -11,7 +11,7 @@ const steps = [
   { num: "01", when: "Mandag 09:00", title: "Rapport", body: "ORACLE broadcaster systemstatus, anomalier, pågribelser og kryo-ordrer. Privat får du din sektor-manifest og dit evneresultat." },
   { num: "02", when: "Man–Fre", title: "Tal", body: "#shipwide er offentlig. Sektorkanalen er kun for dem i din zone. Ingen DM'er — privat tale kræver, at I står samme sted." },
   { num: "03", when: "Fredag 18:00", title: "Ordre", body: "Bevægelse (bliv/ryk), evne, arbejde (ja/nej), fasthold (ja/nej) og en tribunal-stemme." },
-  { num: "04", when: "Weekend", title: "Afgørelse", body: "Bevægelse → støj/forfalskning → evner → systemer → pågribelse → tribunal → nye kanaler." },
+  { num: "04", when: "Weekend", title: "Afgørelse", body: "Bevægelse → drab → støj/forfalskning → evner → systemer → pågribelse → tribunal → nye kanaler." },
 ];
 
 const orderSheet = `UGE:        3

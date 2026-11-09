@@ -7,7 +7,7 @@ const pillars = [
   },
   {
     title: "Rollerne",
-    body: "Hemmelige roller med én evne. Bluffs. Information, der sjældent er hel. De, der er lagt i kryo, taler stadig.",
+    body: "Hemmelige roller med én evne. Bluffs. Information, der sjældent er hel. De døde og de frosne taler stadig.",
   },
   {
     title: "Jagten",

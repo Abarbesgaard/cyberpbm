@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.9
+# USCSS CASSANDRA — Hunt Protocol v0.10
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,9 +6,19 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.8
+## 0. Hvad er ændret fra v0.9
 
-v0.9 giver besætningen et mål ud over jagten: **skibssystemer og ét scenarie pr. kampagne.**
+v0.10 giver syntetikerne et drab og giver døde spillere en grund til at blive.
+
+| v0.9 | v0.10 | Hvorfor |
+|---|---|---|
+| Ingen drab | **Hver syntetiker kan dræbe én gang**, fra uge 3, kun alene med offeret | Truslen gør det farligt at stå alene. Liget broadcastes med zone. |
+| AI-ekko: én besked om dagen, må ikke afsløre rolle | **Ekko: frit ord i #shipwide** | Døde besætningsmedlemmer har noget at sige. Ord er stadig kun vidneudsagn. |
+| Ekko har kun spøgelsesstemmen | **+ Vedligehold:** én sektion pr. uge får intet forfald | En ugentlig beslutning, der hjælper scenariet. |
+
+### Fra v0.8 til v0.9
+
+v0.9 gav besætningen et mål ud over jagten: **skibssystemer og ét scenarie pr. kampagne.**
 
 | v0.8 | v0.9 | Hvorfor |
 |---|---|---|
@@ -126,12 +136,13 @@ Plus en separat **tribunal-stemme** (se afsnit 6).
 ### Afgørelsesrækkefølge
 
 1. Bevægelse (samtidig for alle).
-2. Støj og forfalskning.
-3. Informationsevner.
-4. Systemer: arbejde, reparation, sabotage og forfald (samtidigt).
-5. Pågribelse.
-6. Tribunal — ny kryo-ordre.
-7. Sektorkanaler opdateres.
+2. Drab.
+3. Støj og forfalskning.
+4. Informationsevner.
+5. Systemer: arbejde, reparation, sabotage, forfald og vedligehold (samtidigt).
+6. Pågribelse.
+7. Tribunal — ny kryo-ordre.
+8. Sektorkanaler opdateres.
 
 ---
 
@@ -184,14 +195,32 @@ Hvis ingen forsøger, siger ORACLE kun: *"Målet er ikke pågrebet."*
 
 Målet ved, at jagten er gået ind. Det kan blive, flygte eller overgive sig ved at blive stående og bede om at blive hentet. En uskyldig, der bliver stående, sender et stærkt signal. En syntetiker kan gøre det samme.
 
-### 6.4 Kryo
+### 6.4 Ekko — kryo og døde
 
-En spiller i kryo:
+Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
-- mister sin ordre og sin evne.
-- forlader sektorkanalerne.
-- må skrive i **#shipwide** som et **AI-ekko**: højst én besked om dagen. Må ikke afsløre rolle eller hold.
+- mister bevægelse, evne, arbejde og sektorkanal.
+- må skrive frit i **#shipwide**. Alt, et ekko siger, er vidneudsagn — ORACLE bekræfter aldrig en rolle.
+- sender hver fredag en kort ordre: **Vedligehold → én sektion.** Den sektion får intet forfald den uge. Det giver ikke +1, og ORACLE oplyser aldrig, hvem der vedligeholdt hvad.
 - har **én spøgelsesstemme**, der kan bruges i ét tribunal i resten af spillet.
+
+Et ekko fra syntetikerholdet må også sende vedligehold — eller lade være. Ingen kan se forskel.
+
+### 6.5 Drab
+
+Drab er en fælles syntetikerhandling, ikke en rolleevne. Hver syntetiker beholder sin ene evne.
+
+- Hver syntetiker kan dræbe **én gang pr. kampagne**, fra **uge 3**.
+- Drabet skrives i ordren: *Drab → [Navn]*. Den uge bruger syntetikeren ikke sin evne.
+- Drabet lykkes kun, hvis drabsmand og mål er de **eneste aktive spillere i zonen** efter bevægelse. Målet skal være besætning.
+- Mislykkes det (vidner, forkert zone), sker intet, og drabet er ikke brugt. Syntetikeren får kun: *"Drab mislykket."*
+- Drab afgøres lige efter bevægelse. Offeret når ikke at bruge evne, arbejde eller fasthold.
+- Offeret får privat: *"Du er død. Zone: Lastrum."* — ikke hvem. Bevægelse er samtidig, så offeret så aldrig, hvem der kom ind.
+- Mandagens broadcast: *"LIG FUNDET: Sara, Lastrum."* Navn og zone, aldrig rolle.
+
+**Liget er et spor, ikke et bevis.** Hvem kunne nå Lastrum? Hvem påstår at have stået et andet sted? Adgangslog, Biometri og Pejling kan alle pege på drabsmanden — hvis de ikke bliver forfalsket eller forstyrret.
+
+Drab gør det farligt at stå alene. Men arbejde i en tom sektion holder systemerne i live. Det er dilemmaet.
 
 ---
 
@@ -343,7 +372,8 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
-- Systemregnskabet (arbejde, reparation, sabotage, forfald, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
+- Systemregnskabet (arbejde, reparation, sabotage, forfald, vedligehold, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
+- Drabsbetingelserne (uge 3+, alene, kun besætning, én pr. syntetiker, mislykket drab er ikke brugt) er testet i `tests/kills.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet
 
@@ -353,6 +383,8 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
 - At forfald ikke er for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer.
 - At de tre scenarier er nogenlunde lige svære.
+- At ét drab pr. syntetiker ikke knækker besætningen ved 5 spillere (4 → 3 besætning).
+- At ekko-vedligehold ikke gør forfald for let, når flere spillere er døde eller i kryo.
 - At Særordre alene giver én syntetiker nok at arbejde med ved 5–6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
 - At det er acceptabelt, at Ingeniør er offentligt kendt som aktiv. En syntetiker, der påstår Ingeniør, laver altid en dobbeltpåstand.
 
@@ -421,6 +453,9 @@ Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begg
 9. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
 10. Er én syntetiker med kun Særordre for svag ved 5–6 spillere?
 11. Afslører *"Signal forstyrret"* for meget, nemlig at Støjsender er i spil?
+12. Er ét drab pr. syntetiker for meget ved 5 spillere?
+13. Bliver spillere så bange for at stå alene, at ingen arbejder i tomme sektioner?
+14. Afslører et ekkos frie ord for meget? Et dødt offer *er* besætning — men ved ikke, hvem der dræbte.
 
 ---
 
