@@ -135,7 +135,7 @@ At stå alene er farligt. At ingen arbejder, er også farligt.
 
 Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evne, arbejde eller sektorkanal. Men du må stadig:
 
-- tale via **højttaleren** som alle andre. Alt, hvad du siger, er vidneudsagn.
+- tale **kun gennem ORACLE**: via højttaleren, anonymt som alle andre. Ingen sektorkanal, ingen andre kanaler. Alt, hvad du siger, er vidneudsagn.
 - sende **Vedligehold → [sektion]** hver fredag. Den sektion får intet forfald den uge.
 - bruge **én spøgelsesstemme** i ét tribunal resten af spillet.
 
@@ -145,7 +145,7 @@ Ekkoer kan også få en **skæbne**. Hver skæbne findes **én gang pr. kampagne
 
 | Skæbne | Hvem | Hver fredag | ORACLE svarer fx |
 |---|---|---|---|
-| **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. Du taler kun gennem ORACLE. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
+| **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
 | **Spøgelse** | Døde og frosne | **Hjemsøg → spiller.** ORACLE fortæller, hvor vedkommende står efter bevægelse. | *"Sara står i Lastrum."* |
 | **Afløser** | Kun dræbte | Du vågner i Hypersøvn som **aktiv spiller uden evne**: bevægelse, arbejde og stemme. Du er ikke længere ekko. | *"KAPSEL ÅBNET: Sara er vågen."* (broadcast) |
 | **Ekko** | Alle | Ingen ekstra handling. Standard, hvis du ikke vælger, eller de andre er taget. | — |

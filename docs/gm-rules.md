@@ -56,7 +56,7 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 HØJTTALER: "Anna her. Jeg var i Livsstøtte med Peter."
 ```
 
-Højst 3 pr. spiller pr. dag. Afvis kun beskeder, der citerer eller indsætter dine private beskeder. Ekkoer bruger højttaleren som alle andre. Ingen oplæsning i weekenden.
+Højst 3 pr. spiller pr. dag. Afvis kun beskeder, der citerer eller indsætter dine private beskeder. Ekkoer kan kun tale gennem dig — via højttaleren som alle andre. Fjern dem fra alle sektorkanaler. Ingen oplæsning i weekenden.
 
 ## Broadcast-skabelon
 
