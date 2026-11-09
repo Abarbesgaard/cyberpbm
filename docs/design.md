@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.14
+# USCSS CASSANDRA — Hunt Protocol v0.15
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,16 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.13
+## 0. Hvad er ændret fra v0.14
+
+v0.15 gør uge 4 og 5 afhængige af scenariet.
+
+| v0.14 | v0.15 | Hvorfor |
+|---|---|---|
+| Uge 4 forsegler altid Rygraden | **Hvert scenarie har sin egen krise** | Kampagnerne spilles forskelligt. Krisen rammer det, scenariet kræver. |
+| Uge 5 frigiver altid positionsloggen fra uge 1 | **Hvert scenarie har sit eget arkiv** | Sortboks, Dørlog eller Arbejdslog giver forskellige spor. |
+
+### Fra v0.13 til v0.14
 
 v0.14 gør scenariet til besætningens eneste vej til sejr.
 
@@ -401,7 +410,17 @@ Hver kampagne har **ét scenarie**. ORACLE vælger det ved opsætning og offentl
 | **Karantæne** | `quarantine` | Medlab og Hypersøvn står på 5. |
 | **Hjemrejse** | `homeward` | Alle seks systemer står på mindst 4. |
 
-Scenariet giver besætningen to veje til sejr — og et dilemma hver uge: blive og arbejde, eller rykke og efterforske.
+Scenariet giver besætningen et dilemma hver uge: blive og arbejde, eller rykke og efterforske.
+
+### 8.3 Krise og arkiv
+
+Hvert scenarie har sin egen krise i uge 4 og sit eget arkiv i uge 5. Begge offentliggøres med scenariet i uge 1, så spillerne kan planlægge. Arkiver er broadcasts og altid sande.
+
+| Scenarie | Uge 4 — krise | Uge 5 — arkiv |
+|---|---|---|
+| **Nødsignal** | **Strømudfald:** Rygraden forsegles. Ingen ind eller ud, heller ikke via Skakt. Kun ringen er åben. | **Sortboks:** Hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
+| **Karantæne** | **Smittealarm:** Ingen kan rykke ind i Medlab eller Hypersøvn, heller ikke via Skakt. Ud er tilladt. Den, der vil arbejde der i uge 4, skal stå der i forvejen. | **Dørlog:** De 10 seneste bevægelser (navn, fra, til), uden uge. Skakter har ingen døre og logges ikke — en spiller, der dukker op uden spor, har brugt en skakt. |
+| **Hjemrejse** | **Kommunikationsnedbrud:** Sektorkanalerne er lukket hele ugen. Kun #shipwide. Alle alibier må gives offentligt. | **Arbejdslog:** Hvem der arbejdede i hvilken sektion i uge 3. Påstande om arbejde kan tjekkes. |
 
 ---
 
@@ -462,8 +481,8 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | 1 | **Awakening** | Spillerne vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Ingen sabotage, intet tribunal. |
 | 2 | **First Anomaly** | Sabotage, Forfalskning og Støj låses op. Første tribunal fredag. |
 | 3 | **Broken Trust** | Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning. |
-| 4 | **Containment Failure** | ORACLE forsegler Rygraden hele ugen. Kun ringen rundt mellem sektionerne er åben. |
-| 5 | **Last Transmission** | ORACLE frigiver hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
+| 4 | **Containment Failure** | Scenariets krise (se 8.3). |
+| 5 | **Last Transmission** | Scenariets arkiv (se 8.3). |
 | 6 | **Final Protocol** | Sidste tribunal. Derefter afsløres alle roller. |
 
 Hver uge tilføjer data eller pres, ikke nye regler.
@@ -486,7 +505,7 @@ Hvad ved besætningen?
 
 - Broadcasten er sand: Der blev saboteret i Livsstøtte, og der var præcis to personer — Anna og Peter.
 - Én af de to er altså syntetikeren. Syntetikeren tog en risiko ved at sabotere i et rum med et vidne.
-- Anna manglede én stemme. Peter siger, han stemte nej. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig eller sig selv?
+- Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig eller sig selv?
 - Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter påstår begge, at de arbejdede. Én af dem lyver.
 - Saras scan bekræfter blot det, alle allerede ved. Er hun ægte, eller bygger hun troværdighed?
 

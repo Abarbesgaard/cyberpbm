@@ -2,7 +2,7 @@
 
 Et seksugers social deduction-spil, der spilles asynkront i Slack. Besætningen skal holde skibets seks systemer i live og fuldføre kampagnens scenarie — mens skjulte syntetikere saboterer indefra. Tribunalet kan sende dem i kryo, men kun skibet afgør sejren.
 
-- `docs/design.md` — fuldt design (v0.14)
+- `docs/design.md` — fuldt design (v0.15)
 - `docs/player-rules.md` — spillerregler
 - `docs/gm-rules.md` — ORACLE-håndbog for spillederen
 - `src/content/game.ts` — zoner, rollekatalog (stabile rolle-id'er), uger og balance, der bruges af websitet

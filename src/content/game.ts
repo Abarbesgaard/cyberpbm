@@ -127,11 +127,22 @@ export interface Scenario {
   text: string;
   /** Minimum status per system after week 6. */
   targets: Partial<Record<SectionId, number>>;
+  /** Week 4 crisis and week 5 archive release. Public with the scenario. */
+  events: { week: 4 | 5; name: string; text: string }[];
 }
 
 /** One scenario per campaign. Public from week 1. */
 export const scenarios: Scenario[] = [
-  { id: "distress", name: "Nødsignal", text: "Send et nødsignal hjem. Broen og Motorrum skal stå på 5.", targets: { E: 5, F: 5 } },
-  { id: "quarantine", name: "Karantæne", text: "Hold besætningen i live til redningen. Medlab og Hypersøvn skal stå på 5.", targets: { B: 5, A: 5 } },
-  { id: "homeward", name: "Hjemrejse", text: "Få skibet hjem i ét stykke. Alle seks systemer skal stå på mindst 4.", targets: { A: 4, B: 4, C: 4, D: 4, E: 4, F: 4 } },
+  { id: "distress", name: "Nødsignal", text: "Send et nødsignal hjem. Broen og Motorrum skal stå på 5.", targets: { E: 5, F: 5 }, events: [
+    { week: 4, name: "Strømudfald", text: "Rygraden forsegles hele ugen. Ingen kan rykke ind eller ud, heller ikke via Skakt." },
+    { week: 5, name: "Sortboks", text: "ORACLE frigiver hele positionsloggen fra uge 1." },
+  ] },
+  { id: "quarantine", name: "Karantæne", text: "Hold besætningen i live til redningen. Medlab og Hypersøvn skal stå på 5.", targets: { B: 5, A: 5 }, events: [
+    { week: 4, name: "Smittealarm", text: "Medlab og Hypersøvn lukkes udefra. Ingen kan rykke ind, heller ikke via Skakt. De, der står der, må blive eller gå." },
+    { week: 5, name: "Dørlog", text: "ORACLE frigiver de 10 seneste bevægelser: navn, fra og til, uden uge. Skakter har ingen døre og logges ikke." },
+  ] },
+  { id: "homeward", name: "Hjemrejse", text: "Få skibet hjem i ét stykke. Alle seks systemer skal stå på mindst 4.", targets: { A: 4, B: 4, C: 4, D: 4, E: 4, F: 4 }, events: [
+    { week: 4, name: "Kommunikationsnedbrud", text: "Sektorkanalerne er lukket hele ugen. Kun #shipwide virker." },
+    { week: 5, name: "Arbejdslog", text: "ORACLE frigiver, hvem der arbejdede i hvilken sektion i uge 3." },
+  ] },
 ];
