@@ -1,12 +1,24 @@
-# USCSS CASSANDRA — Hunt Protocol v0.8
+# USCSS CASSANDRA — Hunt Protocol v0.9
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
-Et seksugers social deduction-spil, der spilles asynkront i Slack. Inspireret af **Among Us** (sabotage, skakter, alibier i rummet) og **Blood on the Clocktower** (hemmelige roller, bluffs, spøgelsesstemmen). Inspiration, ikke skabelon.
+Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.7
+## 0. Hvad er ændret fra v0.8
+
+v0.9 giver besætningen et mål ud over jagten: **skibssystemer og ét scenarie pr. kampagne.**
+
+| v0.8 | v0.9 | Hvorfor |
+|---|---|---|
+| Ét fælles integritetsur | **Seks skibssystemer**, ét pr. sektion, 0–5 | Status offentliggøres hver uge. Hvert rum bliver et spor. |
+| Besætningen vinder kun ved jagt | **Eller ved at opfylde kampagnens scenarie** | At blive og arbejde konkurrerer med at rykke og jage. |
+| — | **Arbejde** som felt i ordren | Syntetikere kan lade være i hemmelighed. Tallene afslører det. |
+| — | **Forfald** fra uge 2 | Besætningen skal sprede sig. Ingen kan stå stille i ét rum. |
+| Sabotage −1 integritet, reparation +1 | **Sabotage −2, reparation +2** på systemet i sektionen | Skal kunne mærkes på en skala fra 0 til 5. |
+
+### Fra v0.7 til v0.8
 
 v0.8 giver syntetikerne roller efter samme princip som besætningen: **én evne pr. spiller, hver rolle højst én gang.**
 
@@ -55,9 +67,9 @@ USCSS *Cassandra* er en kommerciel slæber på vej hjem med 20 millioner tons ma
 
 ## 2. Sejrsbetingelser
 
-**Besætningen vinder**, hvis alle syntetikere er i kryo efter Final Protocol i uge 6.
+**Syntetikerne vinder med det samme**, hvis ét skibssystem når 0 (se afsnit 8).
 
-**Syntetikerne vinder**, hvis mindst én syntetiker stadig er aktiv efter Final Protocol, **eller** hvis skibets integritet når 0.
+Ellers afgøres spillet efter Final Protocol i uge 6. **Besætningen vinder**, hvis alle syntetikere er i kryo, **eller** hvis kampagnens scenarie er opfyldt. **Syntetikerne vinder**, hvis mindst én syntetiker stadig er aktiv, og scenariet ikke er opfyldt.
 
 En fejlagtig neutralisering fjerner en uskyldig fra spillets aktive handlinger. Roller afsløres først ved spillets afslutning.
 
@@ -102,11 +114,12 @@ Rygraden er hurtig, men eksponeret. Alle kan nå den på én uge.
 
 ### Ordren
 
-Hver aktiv spiller sender én ordre pr. uge med tre felter:
+Hver aktiv spiller sender én ordre pr. uge med fire felter:
 
 1. **Bevægelse** — *Bliv* eller *Ryk* til en tilstødende zone.
 2. **Evne** — brug din ene evne (eller lad være).
-3. **Fasthold** — *ja/nej*. Kun relevant, hvis du ender i samme zone som den person, der har en aktiv kryo-ordre.
+3. **Arbejde** — *ja/nej*. Tæller kun, hvis du blev i en sektion (ikke Rygraden). Systemet i sektionen +1.
+4. **Fasthold** — *ja/nej*. Kun relevant, hvis du ender i samme zone som den person, der har en aktiv kryo-ordre.
 
 Plus en separat **tribunal-stemme** (se afsnit 6).
 
@@ -115,7 +128,7 @@ Plus en separat **tribunal-stemme** (se afsnit 6).
 1. Bevægelse (samtidig for alle).
 2. Støj og forfalskning.
 3. Informationsevner.
-4. Sabotage og reparation.
+4. Systemer: arbejde, reparation, sabotage og forfald (samtidigt).
 5. Pågribelse.
 6. Tribunal — ny kryo-ordre.
 7. Sektorkanaler opdateres.
@@ -206,7 +219,7 @@ En spiller i kryo:
 | **Læge** | `medic` | ANALYSE | *Biometri:* Vælg en spiller i din zone. Lær hvilken zone vedkommende stod i ugen før. |
 | **Arkivar** | `archivist` | ANALYSE | *Krydsreference:* Vælg to spillere. Lær om de nogensinde har stået i samme zone ved en rapport (ja/nej). |
 | **Psykolog** *(ny)* | `psychologist` | ANALYSE | *Afhøring:* Vælg en spiller i din zone. Lær hvor mange andre der stod sammen med vedkommende ugen før. |
-| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Står du i zonen fra sidste uges sabotage, får skibet +1 integritet, og du lærer, om sabotøren stadig står i zonen (ja/nej). |
+| **Ingeniør** *(altid i spil)* | `engineer` | URET | *Reparér:* Systemet i din sektion +2. Blev sektionen saboteret sidste uge, lærer du også, om sabotøren stadig står der (ja/nej). |
 | **Kommunikationsofficer** | `comms_officer` | SOCIAL | *Åben linje:* Vælg en spiller. I får en privat kanal i den kommende uge, uanset placering. |
 | **Revisor** *(ny)* | `auditor` | SOCIAL | *Stemmerevision:* Vælg en spiller. Lær hvem vedkommende stemte på ved denne uges tribunal. |
 
@@ -234,12 +247,12 @@ Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 
 | Rolle | Id | Evne | Fra uge | Effekt |
 |---|---|---|---|---|
-| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Integritet −1 i din zone. ORACLE broadcaster zonen — aldrig navnet. |
+| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Systemet i din sektion −2. ORACLE broadcaster sektionen — aldrig navnet. |
 | **Forfalsker** | `forger` | Forfalskning | 2 | Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt. |
 | **Skaktløber** | `crawler` | Skakt | 1 | Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne. |
 | **Støjsender** *(ny)* | `jammer` | Støj | 2 | Vælg en zone. Alle informationsevner brugt i eller på zonen giver *"Signal forstyrret."* |
 
-- **Særordre er altid i spil.** Ved én syntetiker er det den eneste syntetikerrolle. Uden den kan integritetsuret ikke bevæge sig.
+- **Særordre er altid i spil.** Ved én syntetiker er det den eneste syntetikerrolle. Uden den kan systemerne kun falde gennem forfald.
 - **Ved to syntetikere** trækkes den anden rolle tilfældigt blandt Forfalsker, Skaktløber og Støjsender.
 - Besætningen ved, at Særordre er om bord. De ved ikke, hvilken støtterolle der er med.
 
@@ -252,7 +265,7 @@ Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 
 **Sammensætning:**
 
-1. **Ingeniør er altid i spil.** Integritetsuret er afstemt efter, at skaden kan repareres. Uden Ingeniør kan én syntetiker vinde på fire sabotager i uge 2–5, og det er ikke testet.
+1. **Ingeniør er altid i spil.** Systemerne er afstemt efter, at sabotage kan repareres. Uden Ingeniør er det kun arbejde, der kan opveje −2 pr. uge, og det er ikke testet.
 2. Resten af besætningsrollerne trækkes tilfældigt fra kataloget **uden tilbagelægning**.
 3. **Højst 2 aktive roller med samme tag.** Det forhindrer, at fx Sensortekniker, Kvartermester og Radaroperatør tilsammen kortlægger hele skibet hver uge.
 
@@ -263,24 +276,64 @@ Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 - Forslag **må overlappe** mellem syntetikere. De kender hinanden og kan koordinere. ORACLE giver adskilte forslag, når der er nok ubrugte roller — og det er der altid ved 5–8 spillere med det nuværende katalog.
 - Forslag er forslag til påstande, ikke roller. En syntetiker må påstå hvad som helst, også en rolle, der er i spil. Så risikerer den en dobbeltpåstand.
 
-## 8. Integritet
+## 8. Skibssystemer og scenarie
 
-Skibets integritet er syntetikernes ur. Når det når 0, kollapser livsstøtten, og syntetikerne vinder.
+### 8.1 Systemer
 
-Hver sabotage er et spor. Sabotage i en tom zone er sikkert, men lægger et mønster. Sabotage blandt andre er hurtigt, men alle i rummet ved, at én af dem gjorde det.
+Hver sektion har ét system med status fra **0 til 5**. Alle starter på **3**. Rygraden har intet system.
+
+Hver uge, efter informationsevnerne, ændres hvert system samtidigt:
+
+| Kilde | Effekt |
+|---|---|
+| **Arbejde** | +1 pr. spiller, der blev i sektionen og skrev *Arbejde: ja*. |
+| **Reparation** (Ingeniør) | +2. Tæller også som arbejde. |
+| **Sabotage** (Særordre) | −2. |
+| **Forfald** (fra uge 2) | −1, hvis ingen arbejdede eller reparerede i sektionen. |
+
+Status holdes mellem 0 og 5. **Når ét system når 0, vinder syntetikerne med det samme.**
+
+Hver mandag broadcaster ORACLE alle seks systemer med status og ændring:
+
+```
+ORACLE // SYSTEMSTATUS // UGE 3
+Hypersøvn  ██░░░ 2  −1
+Medlab     ████░ 4  +1
+Livsstøtte ██░░░ 2  −1
+Lastrum    ████░ 4  +1
+Broen      █████ 5  +1
+Motorrum   █░░░░ 1  −1
+ANOMALI: Uautoriseret adgang i Livsstøtte.
+```
+
+**Tallene er et spor.** Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Medlab, men Medlab steg kun 1? Én af dem arbejdede ikke. Besætning har ingen grund til at lade være. En syntetiker har.
+
+Sabotage i en tom sektion er sikkert, men giver forfald oven i: −3. Sabotage blandt andre er sværere at se i tallene, men alle i rummet ved, at én af dem gjorde det.
+
+### 8.2 Scenarie
+
+Hver kampagne har **ét scenarie**. ORACLE vælger det ved opsætning og offentliggør det i uge 1. Scenariet tjekkes efter afgørelsen i uge 6.
+
+| Scenarie | Id | Krav efter uge 6 |
+|---|---|---|
+| **Nødsignal** | `distress` | Broen og Motorrum står på 5. |
+| **Karantæne** | `quarantine` | Medlab og Hypersøvn står på 5. |
+| **Hjemrejse** | `homeward` | Alle seks systemer står på mindst 4. |
+
+Scenariet giver besætningen to veje til sejr — og et dilemma hver uge: blive og arbejde, eller rykke og jage.
 
 ---
 
 ## 9. Balance
 
-| Spillere | Besætning | Syntetikere | Start-integritet | Roller i spil | Ubrugte roller | Bluff-forslag |
-|---|---|---|---|---|---|---|
-| 5 | 4 | 1 | 4 | Ingeniør + 3 | 7 | 1 × 2 = 2 |
-| 6 | 5 | 1 | 4 | Ingeniør + 4 | 6 | 1 × 2 = 2 |
-| 7 | 5 | 2 | 7 | Ingeniør + 4 | 6 | 2 × 2 = 4 |
-| 8 | 6 | 2 | 7 | Ingeniør + 5 | 5 | 2 × 2 = 4 |
+| Spillere | Besætning | Syntetikere | Roller i spil | Ubrugte roller | Bluff-forslag |
+|---|---|---|---|---|---|
+| 5 | 4 | 1 | Ingeniør + 3 | 7 | 1 × 2 = 2 |
+| 6 | 5 | 1 | Ingeniør + 4 | 6 | 1 × 2 = 2 |
+| 7 | 5 | 2 | Ingeniør + 4 | 6 | 2 × 2 = 4 |
+| 8 | 6 | 2 | Ingeniør + 5 | 5 | 2 × 2 = 4 |
 
-Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — hvilke roller der er i spil, offentliggøres aldrig. Syntetikerroller: Særordre ved 1 syntetiker; Særordre + 1 af 3 ved 2 syntetikere.
+Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvilke roller der er i spil, offentliggøres aldrig. Syntetikerroller: Særordre ved 1 syntetiker; Særordre + 1 af 3 ved 2 syntetikere.
 
 ### 9.1 Bevist (testet i `tests/roleSetup.test.ts`)
 
@@ -290,13 +343,16 @@ Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — h
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
+- Systemregnskabet (arbejde, reparation, sabotage, forfald, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet
 
-- Spillerfordeling og start-integritet er stadig testværdier. Første test: 6 spillere, 1 syntetiker.
+- Spillerfordeling, systemernes startværdi og forfald er stadig testværdier. Første test: 6 spillere, 1 syntetiker.
 - At højst 2 pr. tag er nok til at undgå for stærke informationskombinationer.
 - At 11 roller giver nok rum til bluffs uden at blive uoverskueligt.
 - At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
+- At forfald ikke er for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer.
+- At de tre scenarier er nogenlunde lige svære.
 - At Særordre alene giver én syntetiker nok at arbejde med ved 5–6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
 - At det er acceptabelt, at Ingeniør er offentligt kendt som aktiv. En syntetiker, der påstår Ingeniør, laver altid en dobbeltpåstand.
 
@@ -331,7 +387,7 @@ Hver uge tilføjer data eller pres, ikke nye regler.
 ## 12. Eksempel — uge 4, Containment Failure
 
 > **ORACLE // SHIPWIDE**
-> *Advarsel. Uautoriseret adgang i Livsstøtte. Integritet 2/4.*
+> *Advarsel. Uautoriseret adgang i Livsstøtte. Livsstøtte 2/5 (−1).*
 > *Pågribelse forsøgt i Livsstøtte. 1 til stede ud over målet. 0 fasthold-point. Mislykket.*
 
 Kryo-ordren fra uge 3 var på **Anna**.
@@ -345,6 +401,7 @@ Hvad ved besætningen?
 - Broadcasten er sand: Der blev saboteret i Livsstøtte, og der var præcis to personer — Anna og Peter.
 - Én af de to er altså syntetikeren. Syntetikeren tog en risiko ved at sabotere i et rum med et vidne.
 - Peter kunne have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig eller sig selv?
+- Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter påstår begge, at de arbejdede. Én af dem lyver.
 - Saras scan bekræfter blot det, alle allerede ved. Er hun ægte, eller bygger hun troværdighed?
 
 Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begge står i en zone ved siden af Rygraden. Begge ved, hvad der kommer.
@@ -355,7 +412,7 @@ Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begg
 
 1. Er to-mands-reglen for svær med 5 spillere?
 2. Er Skaktløber for stærk til flugt? Alternativ: Skakt kun fra uge 3.
-3. Bliver integritetsuret syntetikernes eneste strategi?
+3. Bliver sabotage syntetikernes eneste strategi?
 4. Er én pejling ved udstedelse nok til at starte en jagt?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet?
 6. Er Final Protocol en nødvendig sikkerhedsventil, eller tager den luften ud af jagten?
@@ -375,5 +432,5 @@ Fundet under arbejdet med v0.7. Punkt 1–2 er rettet, fordi unikke roller kræv
 2. **Rettet:** Ved 7 og 8 spillere gav v0.6 kun 2 og 1 ubrugte roller, men 2 syntetikere skulle have 2 bluffs hver.
 3. **Fasthold-point kan bevise Sikkerhedschefen.** Broadcasten nævner antal til stede og antal point. "1 til stede, 2 point" beviser, at den ene var Sikkerhedschef. Det strider mod afsnit 10. Mulig rettelse: Broadcast kun *lykkedes/mislykket* og antal til stede.
 4. **Åben linje beviser Kommunikationsofficeren over for målet.** Målet ser kanalen blive oprettet. Det er et bevis over for én spiller, ikke offentligt.
-5. **Reparation er synlig.** Integritet +1 i broadcasten viser, at Ingeniøren stod i sabotagezonen. Det kan afgøre en dobbeltpåstand om Ingeniør.
+5. **Reparation er synlig.** En stigning på 2 eller mere i systemstatus peger på, at Ingeniøren stod i sektionen. Det kan afgøre en dobbeltpåstand om Ingeniør.
 6. **Afsnit 10 i v0.6 overvurderede forfalskning.** Teksten sagde, at syntetikere kan "have fået et resultat forfalsket mod sig". Syntetikere har ingen informationsevne og får ingen resultater. Et ægte evneresultat beviser altså, at afsenderen er besætning. Det eneste værn er forbuddet mod screenshots og videresendelse.

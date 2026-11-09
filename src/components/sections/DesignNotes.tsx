@@ -1,8 +1,10 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Ét fælles integritetsur", to: "Seks skibssystemer, ét pr. sektion", why: "Status offentliggøres hver uge. Arbejde, forfald og sabotage gør hvert rum til et spor." },
+  { from: "Besætningen kan kun vinde ved jagt", to: "Ét scenarie pr. kampagne", why: "Besætningen har et mål ud over jagten. At blive og arbejde konkurrerer med at rykke og jage." },
   { from: "Alle syntetikere har Særordre med tre tilstande", to: "Én unik syntetikerrolle pr. syntetiker", why: "Samme princip som besætningen: én evne pr. spiller, hver rolle højst én gang." },
-  { from: "Sabotage er en tilstand", to: "Særordre er altid i spil og saboterer", why: "Integritetsuret skal altid have en syntetiker, der kan trække det. Spejler Ingeniøren." },
+  { from: "Sabotage er en tilstand", to: "Særordre er altid i spil og saboterer", why: "Systemerne skal altid have en syntetiker, der kan trække dem ned. Spejler Ingeniøren." },
   { from: "Skakt: op til to zoner", to: "Skaktløber: vilkårlig zone", why: "To zoner via Rygraden nåede allerede alle zoner. Nu siger reglen det ærligt." },
   { from: "Forfalskning fra uge 3", to: "Forfalsker fra uge 2", why: "En rolle med kun én evne må ikke stå stille i to uger." },
   { from: "—", to: "Ny: Støjsender", why: "Blokerer information i én zone. Synligt — besætningen ved, at nogen forstyrrer, men ikke hvem." },
@@ -17,7 +19,9 @@ const questions = [
   "Afslører fasthold-point Sikkerhedschefen? (2 point med 1 til stede beviser rollen.)",
   "Er to-mands-reglen for svær med 5 spillere?",
   "Er Skaktløber for stærk til flugt? Alternativ: først fra uge 3.",
-  "Bliver integritetsuret syntetikernes eneste strategi?",
+  "Er forfald for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer?",
+  "Er scenarierne lige svære? Hjemrejse kræver alle seks systemer.",
+  "Bliver sabotage syntetikernes eneste strategi?",
   "Er én pejling ved udstedelse nok til at starte en jagt?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
   "Er Final Protocol en nødvendig ventil — eller tager den luften ud af jagten?",
@@ -26,8 +30,8 @@ const questions = [
 export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.8</span>
+      <SectionHeader eyebrow="Sektion XII // Designnoter">
+        v0.7 → <span className="text-cp-yellow">v0.9</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

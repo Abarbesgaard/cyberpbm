@@ -27,7 +27,7 @@ export function ShipMap() {
   return (
     <section id="ship" className="hull px-8 py-24 md:px-16">
       <SectionHeader
-        eyebrow="Sektion III // Skibet"
+        eyebrow="Sektion IV // Skibet"
         intro="Syv zoner. Hver uge: bliv, eller ryk én zone. Rygraden når alle sektioner — hurtig, men eksponeret. Klik en zone for at se, hvor du kan nå hen."
       >
         Deck <span className="text-cp-yellow">Layout</span>

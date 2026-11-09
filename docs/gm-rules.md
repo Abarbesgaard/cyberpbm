@@ -24,9 +24,10 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - **Besætning:** rolle, hold og evne.
    - **Syntetiker:** hold, syntetikerrolle og evne, de andre syntetikeres navne og roller, og egne 2 bluff-forslag.
    - Offentliggør aldrig, hvilke roller der er i spil.
-9. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
-10. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
-11. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, fasthold, stemme.
+9. **Vælg scenarie** (Nødsignal, Karantæne eller Hjemrejse). Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
+10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
+11. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
+12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, fasthold, stemme — plus systemstatus.
 
 ### Påstande er frie
 
@@ -34,14 +35,14 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Fasthold: nej, Ingen ændring*.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: nej, Fasthold: nej, Ingen ændring*.
 
 **Weekend — afgør i denne rækkefølge:**
 
 1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: ingen ind eller ud af den forseglede zone, heller ikke via Skakt.
 2. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 3. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 6. Erstat forfalskede med et troværdigt, forkert svar.
-4. **Sabotage og reparation.** Træk integritet. Læg reparationer til (højst startværdien).
+4. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. Fra uge 2: −1, hvis ingen arbejdede eller reparerede der. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Står et system på 0, vinder syntetikerne.
 5. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.
 6. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Flertal af *aktive* spillere udsteder ny kryo-ordre. Notér målets zone til pejling. Offentliggør aldrig, hvem der stemte hvad.
 7. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern spillere i kryo.
@@ -53,7 +54,14 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 ```
 ORACLE // SHIPWIDE // UGE 3
 
-INTEGRITET: 3/4
+SYSTEMER:
+Hypersøvn  ██░░░ 2  −1
+Medlab     ████░ 4  +1
+Livsstøtte ██░░░ 2  −1
+Lastrum    ████░ 4  +1
+Broen      █████ 5  +1
+Motorrum   █░░░░ 1  −1
+SCENARIE: Nødsignal (Broen 5, Motorrum 5)
 
 ANOMALI: Uautoriseret adgang i Lastrum.
 
@@ -92,13 +100,15 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 
 - **Uge 4, Containment Failure:** Forsegl den zone med flest sabotager hidtil (ved lighed: tilfældig). Annoncér den mandag.
 - **Uge 5, Last Transmission:** Offentliggør hele positionsloggen fra uge 1 i mandagsbroadcasten.
-- **Uge 6, Final Protocol:** Tribunalet sender direkte i kryo efter pågribelsen. Afslør derefter alle roller og hold.
+- **Uge 6, Final Protocol:** Tribunalet sender direkte i kryo efter pågribelsen. Tjek scenariet. Afslør derefter alle roller og hold.
 
 ## Afgørelser i tvivl
 
 - Uklar ordre: vælg den mest bogstavelige læsning og notér det.
 - Stemmelighed: ingen ny kryo-ordre.
-- Integritet når 0 midt i afgørelsen: afslut ugen, og annoncér syntetikernes sejr i rapporten.
+- Et system når 0: afslut ugen, og annoncér syntetikernes sejr i rapporten.
+- Arbejde i Rygraden eller efter *Ryk*/Skakt: tæller ikke.
+- Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder, uanset hvem der er i kryo.
 - Spillere i kryo kan ikke pågribes eller vælges som mål for evner. ORACLE svarer: *"Signal ikke fundet."*
 - Afhøring i uge 1: *"Ingen data."* Stemmerevision i uge 1: *"Ingen afstemning."*
 
@@ -106,4 +116,4 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 
 Skriv kort. Ingen udråbstegn. Ingen følelser.
 
-> *"Livsstøtte-integritet kompromitteret. Besætningen anbefales at fortsætte normal drift."*
+> *"Livsstøtte kompromitteret. Besætningen anbefales at fortsætte normal drift."*

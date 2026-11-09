@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const sectionLinks = [
+  { href: "#systems", label: "Systemer" },
   { href: "#ship", label: "Skibet" },
   { href: "#week", label: "Ugen" },
   { href: "#hunt", label: "Jagten" },

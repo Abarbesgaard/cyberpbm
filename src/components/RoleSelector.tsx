@@ -12,7 +12,7 @@ const boot = [
   "> HYPERSØVN ....... AFBRUDT",
   "> BESÆTNING ....... VÅGEN",
   "> LIVSSTØTTE ...... NOMINEL",
-  "> INTEGRITET ...... 4/4",
+  "> SYSTEMER ........ 3/5",
   "> SÆRORDRE ........ ████████",
   "> MENNESKER ....... UKENDT",
   "-------------------------------",

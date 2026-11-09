@@ -30,7 +30,7 @@ export function Roles() {
   const { role } = useRole();
   return (
     <section id="roles" className="hull px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion VII // Manifest" intro={intro[role ?? "default"]}>
+      <SectionHeader eyebrow="Sektion VIII // Manifest" intro={intro[role ?? "default"]}>
         Crew <span className="text-cp-yellow">Manifest</span>
       </SectionHeader>
 
