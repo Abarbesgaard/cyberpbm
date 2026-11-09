@@ -1,5 +1,5 @@
 import {
-  NEGLECT_FROM_WEEK,
+  NEGLECT_WEEKS,
   NEGLECT_LOSS,
   REPAIR_GAIN,
   SABOTAGE_LOSS,
@@ -28,7 +28,9 @@ export interface SystemWeek {
 export interface SystemResult {
   status: SystemStatus;
   delta: SystemStatus;
-  /** Systems at 0. Any entry means the synthetics win. */
+  /** Systems that reached 0 this week: KRITISK, one week to save them. */
+  critical: SectionId[];
+  /** Systems at 0 two resolutions in a row. Any entry means the synthetics win. */
   failed: SectionId[];
 }
 
@@ -36,7 +38,10 @@ export function startStatus(): SystemStatus {
   return Object.fromEntries(sectionIds.map((id) => [id, SYSTEM_START])) as SystemStatus;
 }
 
-/** Work, repair, sabotage and neglect resolve simultaneously; the result is clamped to 0–SYSTEM_MAX. */
+/**
+ * Work, repair, sabotage and neglect resolve simultaneously; the result is clamped to 0–SYSTEM_MAX.
+ * A sabotaged section takes no neglect on top.
+ */
 export function resolveSystems(before: SystemStatus, week: SystemWeek): SystemResult {
   const status = { ...before };
   const delta = {} as SystemStatus;
@@ -45,12 +50,17 @@ export function resolveSystems(before: SystemStatus, week: SystemWeek): SystemRe
     const repaired = week.repairs?.filter((r) => r === id).length ?? 0;
     const sabotaged = week.sabotage?.filter((r) => r === id).length ?? 0;
     const tended = workers > 0 || repaired > 0 || (week.maintained?.includes(id) ?? false);
-    const neglect = !tended && week.week >= NEGLECT_FROM_WEEK ? NEGLECT_LOSS : 0;
+    const neglect = !tended && sabotaged === 0 && NEGLECT_WEEKS.includes(week.week) ? NEGLECT_LOSS : 0;
     const next = before[id] + workers * WORK_GAIN + repaired * REPAIR_GAIN - sabotaged * SABOTAGE_LOSS - neglect;
     status[id] = Math.max(0, Math.min(SYSTEM_MAX, next));
     delta[id] = status[id] - before[id];
   }
-  return { status, delta, failed: sectionIds.filter((id) => status[id] === 0) };
+  return {
+    status,
+    delta,
+    critical: sectionIds.filter((id) => status[id] === 0 && before[id] > 0),
+    failed: sectionIds.filter((id) => status[id] === 0 && before[id] === 0),
+  };
 }
 
 export function scenarioMet(scenario: Scenario, status: SystemStatus): boolean {
