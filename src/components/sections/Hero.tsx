@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Corridor } from "@/components/Corridor";
 
 const readouts = [
   { value: "06", label: "Uger" },
@@ -11,13 +10,9 @@ const readouts = [
 
 export function Hero() {
   return (
-    <section id="hero" className="relative flex min-h-screen flex-col justify-center overflow-hidden px-5 pt-28 pb-16 sm:px-8 md:px-16">
-      <Corridor className="absolute inset-y-0 left-0 h-full w-full xl:w-[130%]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(26,26,22,0.35),transparent_45%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,var(--cp-dark),transparent)]" />
-
-      <div className="relative grid grid-cols-1 items-center gap-10 xl:grid-cols-[560px_1fr]">
-        <div className="bezel bezel-screws max-w-[640px] p-7 shadow-[0_30px_60px_rgba(0,0,0,0.35)] sm:p-10 [--chamfer:22px]">
+    <section id="hero" className="hull wainscot relative flex min-h-screen flex-col justify-center overflow-hidden px-5 pt-28 sm:px-8 md:px-16">
+      <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div className="bezel bezel-screws p-7 sm:p-10 [--chamfer:22px]">
           <div className="flex flex-wrap items-center gap-3">
             <span className="plate">KT // Reg. 247-319-55</span>
             <span className="lamp lamp-green" />
@@ -26,7 +21,7 @@ export function Hero() {
 
           <h1 className="mt-7 font-head uppercase text-cp-white">
             <span className="block text-[clamp(0.85rem,1.6vw,1.15rem)] tracking-[0.6em] text-cp-yellow">USCSS</span>
-            <span className="glow-amber mt-2 block text-[clamp(1.5rem,7.5vw,3rem)] leading-[1.05] tracking-[0.04em] sm:tracking-[0.08em] text-cp-white">
+            <span className="glow-amber mt-2 block text-[clamp(1.5rem,7.5vw,4rem)] lg:text-[min(4.2vw,4.4rem)] leading-[1.05] tracking-[0.04em] sm:tracking-[0.08em] text-cp-white">
               Cassandra
             </span>
           </h1>
@@ -45,15 +40,6 @@ export function Hero() {
             Én af jer bløder hvidt. At vide hvem er ikke nok — I skal finde dem på skibet.
           </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-2">
-            {readouts.map((r) => (
-              <div key={r.label} className="crt m-[10px] px-3 py-3">
-                <div className="font-crt text-[2.2rem] leading-none text-cp-cyan">{r.value}</div>
-                <div className="mt-1 font-mono text-[0.55rem] tracking-[0.12em] uppercase text-cp-mid">{r.label}</div>
-              </div>
-            ))}
-          </div>
-
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               to="/rules"
@@ -70,6 +56,26 @@ export function Hero() {
           </div>
         </div>
 
+        <div className="console p-5 sm:p-6 [--chamfer:22px]">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <span className="plate">Status // Hunt Protocol</span>
+            <span className="flex gap-2" aria-hidden><span className="lamp lamp-green" /><span className="lamp lamp-amber blink-slow" /></span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {readouts.map((r) => (
+              <div key={r.label} className="crt m-[10px] px-4 py-4">
+                <div className="font-crt text-[3rem] leading-none text-cp-cyan">{r.value}</div>
+                <div className="mt-1 font-mono text-[0.55rem] tracking-[0.12em] uppercase text-cp-mid">{r.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-6 gap-2" aria-hidden>
+            {["#C4682C", "#D3D1C9", "#D3D1C9", "#3E3F39", "#D3D1C9", "#A8321E"].map((c, i) => (
+              <span key={i} className="key h-6" style={{ background: c }} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
