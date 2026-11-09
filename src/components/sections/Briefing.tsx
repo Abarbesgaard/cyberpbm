@@ -22,8 +22,10 @@ export function Briefing() {
         eyebrow="Sektion I // Briefing"
         intro={
           <>
-            USCSS Cassandra er på vej hjem med 20 millioner tons malm. Selskabet har
-            vækket besætningen før tid. Én eller to af jer er{" "}
+            USCSS Cassandra er 19 måneder fra Jorden med 20 millioner tons malm i lasten,
+            og skibet falder fra hinanden. Seks systemer svigter, og dør ét af dem, dør I
+            med det. Men det er ikke kun slid. Nogen om bord hjælper det på vej. Én eller to
+            af jer er{" "}
             <strong className="text-cp-red-bright">syntetikere</strong> med en særordre:{" "}
             <em>Lasten og ORACLE skal nå hjem. Besætningen er sekundær.</em>
           </>

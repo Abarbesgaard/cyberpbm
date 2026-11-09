@@ -115,7 +115,7 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 - Stemmelighed eller intet flertal: ingen dom.
 - Et system rammer 0: broadcast *"KRITISK: [sektion]. Én uge til nedbrud."* Står det stadig på 0 efter næste afgørelse: annoncér syntetikernes sejr. KRITISK i uge 6: tjek efter Final Protocol — er det stadig 0, vinder syntetikerne.
 - Arbejde i Rygraden eller efter *Ryk*/Skakt: tæller ikke.
-- Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder, uanset hvem der er i kryo.
+- Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder. Ikke opfyldt = syntetikerne vinder. Hvem der er i kryo, er ligegyldigt.
 - Døde og spillere i kryo kan ikke dræbes, dømmes eller vælges som mål for evner.
 - Stemmer på en spiller, der dør samme weekend, tæller ikke.
 - Afslør aldrig et offers rolle før spillets afslutning. ORACLE svarer: *"Signal ikke fundet."*

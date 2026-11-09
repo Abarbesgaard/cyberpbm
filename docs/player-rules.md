@@ -6,8 +6,8 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
-- **Besætning:** Få alle syntetikere i kryo inden udgangen af uge 6, **eller** opfyld kampagnens scenarie.
-- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
+- **Besætning:** Opfyld kampagnens scenarie inden udgangen af uge 6. Tribunalet er et redskab: en syntetiker i kryo kan ikke længere sabotere.
+- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), eller sørg for, at scenariet ikke er opfyldt efter Final Protocol. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
 
 ## Roller og påstande
 

@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.13
+# USCSS CASSANDRA — Hunt Protocol v0.14
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,17 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.12
+## 0. Hvad er ændret fra v0.13
+
+v0.14 gør scenariet til besætningens eneste vej til sejr.
+
+| v0.13 | v0.14 | Hvorfor |
+|---|---|---|
+| Besætningen vinder, hvis alle syntetikere er i kryo, eller scenariet er opfyldt | **Besætningen vinder kun ved scenariet** | Skibet skal hjem. Tribunalet er et redskab til at stoppe sabotagen, ikke et mål i sig selv. |
+| Syntetikerne vinder, hvis én er aktiv, og scenariet ikke er opfyldt | **Syntetikerne vinder, hvis scenariet ikke er opfyldt** | Følger af ovenstående. En syntetiker i kryo kan stadig vinde. |
+| Præmis: skibet er på vej hjem | **Præmis: skibet falder fra hinanden, og nogen hjælper det på vej** | Gør begge trusler tydelige fra start. |
+
+### Fra v0.12 til v0.13
 
 v0.13 fjerner jagten. Ingen kan fysisk holde en anden fast i Slack, så neutralisering er nu kun en fælles beslutning.
 
@@ -106,7 +116,9 @@ v0.7 indfører én grundregel: **hver faktisk rolle er unik i en kampagne.** Ing
 
 ## 1. Præmis
 
-USCSS *Cassandra* er en kommerciel slæber på vej hjem med 20 millioner tons malm. Kessler-Tanaka Corporation har vækket besætningen før tid. Skibets AI, **ORACLE**, rapporterer uregelmæssigheder.
+USCSS *Cassandra* er en kommerciel slæber, 19 måneder fra Jorden med 20 millioner tons malm i lasten. Kessler-Tanaka Corporation har vækket besætningen før tid, og skibet falder fra hinanden: seks systemer svigter, og dør ét af dem, dør besætningen med det. Skibets AI, **ORACLE**, rapporterer uregelmæssigheder.
+
+Men det er ikke kun slid. Nogen om bord hjælper det på vej.
 
 Én eller to af besætningen er ikke mennesker. De er **syntetikere** med en særordre fra selskabet: *Lasten og ORACLE skal nå hjem. Besætningen er sekundær.*
 
@@ -116,7 +128,9 @@ USCSS *Cassandra* er en kommerciel slæber på vej hjem med 20 millioner tons ma
 
 **Syntetikerne vinder**, hvis et skibssystem står på 0 to afgørelser i træk, eller står på 0 efter Final Protocol (se afsnit 8).
 
-Ellers afgøres spillet efter Final Protocol i uge 6. **Besætningen vinder**, hvis alle syntetikere er i kryo, **eller** hvis kampagnens scenarie er opfyldt. **Syntetikerne vinder**, hvis mindst én syntetiker stadig er aktiv, og scenariet ikke er opfyldt.
+Ellers afgøres spillet efter Final Protocol i uge 6. **Besætningen vinder**, hvis kampagnens scenarie er opfyldt. **Syntetikerne vinder**, hvis det ikke er.
+
+Kryo er ikke en sejrsbetingelse. Tribunalet er besætningens redskab: en syntetiker i kryo kan ikke længere sabotere eller dræbe. Men skibet skal stadig repareres.
 
 En fejlagtig neutralisering fjerner en uskyldig fra spillets aktive handlinger. Roller afsløres først ved spillets afslutning.
 
