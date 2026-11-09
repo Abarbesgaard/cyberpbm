@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.7
+# USCSS CASSANDRA — Hunt Protocol v0.8
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,19 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack. Inspireret af
 
 ---
 
-## 0. Hvad er ændret fra v0.6
+## 0. Hvad er ændret fra v0.7
+
+v0.8 giver syntetikerne roller efter samme princip som besætningen: **én evne pr. spiller, hver rolle højst én gang.**
+
+| v0.7 | v0.8 | Hvorfor |
+|---|---|---|
+| Alle syntetikere har Særordre med tre tilstande | **Én unik syntetikerrolle pr. syntetiker** | Én evne pr. spiller gælder nu også syntetikerne. |
+| Sabotage er en tilstand | **Særordre er altid i spil og saboterer** | Integritetsuret skal altid have en syntetiker, der kan trække det. Spejler Ingeniøren. |
+| Skakt: op til to zoner | **Skaktløber: vilkårlig zone** | To zoner via Rygraden nåede allerede alle zoner. Reglen siger det nu ærligt. |
+| Forfalskning fra uge 3 | **Forfalsker fra uge 2** | En rolle med kun én evne må ikke stå stille i to uger. |
+| — | **Ny: Støjsender** | Blokerer information i én zone. Synligt, men anonymt. |
+
+### Fra v0.6 til v0.7
 
 v0.7 indfører én grundregel: **hver faktisk rolle er unik i en kampagne.** Ingen to spillere kan have samme rolle.
 
@@ -101,7 +113,7 @@ Plus en separat **tribunal-stemme** (se afsnit 6).
 ### Afgørelsesrækkefølge
 
 1. Bevægelse (samtidig for alle).
-2. Forfalskning.
+2. Støj og forfalskning.
 3. Informationsevner.
 4. Sabotage og reparation.
 5. Pågribelse.
@@ -179,8 +191,8 @@ En spiller i kryo:
 - **Undtagelse:** Ingeniør er altid i spil (se 7.4). Det er den eneste rolle, alle ved er aktiv.
 - **Påstande er frie.** Alle må påstå enhver rolle — også en rolle, en anden spiller har.
 - **Dobbeltpåstand:** Påstår to spillere samme rolle, lyver mindst én af dem. Det kan være en syntetiker, men også besætning, der skjuler sig. ORACLE bekræfter eller afkræfter aldrig en påstand.
-- **Syntetikere kan ikke bruge evnen** fra en rolle, de udgiver sig for. De får intet evneresultat og må opfinde det.
-- **Syntetiker er et hold, ikke en katalogrolle.** Syntetikere har ingen besætningsrolle. Ved to syntetikere har begge Særordre. Unikhedsreglen gælder besætningsrollerne.
+- **Syntetikere kan ikke bruge evnen** fra en besætningsrolle, de udgiver sig for. De får intet evneresultat og må opfinde det.
+- **Syntetikere har deres egne roller** (se 7.3). De trækkes også uden tilbagelægning. Ingen to syntetikere har samme rolle.
 
 ### 7.2 Besætningen — rollekataloget
 
@@ -216,15 +228,25 @@ Ingen af de nye evner afslører en spillers hold, ingen kræver ressourcer, og a
 
 ### 7.3 Syntetikerne
 
-Syntetikere kender hinanden, men har ingen privat kanal, medmindre de står samme sted.
+Syntetikere kender hinanden og hinandens roller, men har ingen privat kanal, medmindre de står samme sted.
 
-Hver syntetiker har én evne, **Særordre**, og vælger én af tre tilstande om ugen:
+Hver syntetiker har **én rolle med én evne**. Kataloget er offentligt.
 
-| Tilstand | Fra uge | Effekt |
-|---|---|---|
-| **Sabotage** | 2 | Integritet −1. ORACLE broadcaster zonen. |
-| **Forfalskning** | 3 | Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt. |
-| **Skakt** | 1 | Ryk op til to zoner denne uge gennem vedligeholdelsesskakterne. |
+| Rolle | Id | Evne | Fra uge | Effekt |
+|---|---|---|---|---|
+| **Særordre** *(altid i spil)* | `special_order` | Sabotage | 2 | Integritet −1 i din zone. ORACLE broadcaster zonen — aldrig navnet. |
+| **Forfalsker** | `forger` | Forfalskning | 2 | Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt. |
+| **Skaktløber** | `crawler` | Skakt | 1 | Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne. |
+| **Støjsender** *(ny)* | `jammer` | Støj | 2 | Vælg en zone. Alle informationsevner brugt i eller på zonen giver *"Signal forstyrret."* |
+
+- **Særordre er altid i spil.** Ved én syntetiker er det den eneste syntetikerrolle. Uden den kan integritetsuret ikke bevæge sig.
+- **Ved to syntetikere** trækkes den anden rolle tilfældigt blandt Forfalsker, Skaktløber og Støjsender.
+- Besætningen ved, at Særordre er om bord. De ved ikke, hvilken støtterolle der er med.
+
+**Detaljer:**
+
+- *Støj* rammer evner, hvis mål er zonen, en spiller i zonen efter bevægelse, eller som bruges af en spiller i zonen. Ingeniørens reparation virker stadig, men ja/nej-svaret bliver *"Signal forstyrret."* Støj og forfalskning på samme resultat: Støj vinder.
+- *Skakt* erstatter bevægelsen i ordren. Skaktløberen står stadig i manifestet for den zone, den ender i.
 
 ### 7.4 Rollepulje og bluff-forslag
 
@@ -258,7 +280,7 @@ Hver sabotage er et spor. Sabotage i en tom zone er sikkert, men lægger et møn
 | 7 | 5 | 2 | 7 | Ingeniør + 4 | 6 | 2 × 2 = 4 |
 | 8 | 6 | 2 | 7 | Ingeniør + 5 | 5 | 2 × 2 = 4 |
 
-Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — hvilke roller der er i spil, offentliggøres aldrig.
+Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — hvilke roller der er i spil, offentliggøres aldrig. Syntetikerroller: Særordre ved 1 syntetiker; Særordre + 1 af 3 ved 2 syntetikere.
 
 ### 9.1 Bevist (testet i `tests/roleSetup.test.ts`)
 
@@ -267,6 +289,7 @@ Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — h
 - Der er altid mindst 2 × antal syntetikere ubrugte roller, så bluff-forslag kan være adskilte.
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
+- Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
 
 ### 9.2 Antagelser, der ikke er testet
 
@@ -274,6 +297,7 @@ Integritet kan ikke repareres over startværdien. Tabellen viser kun antal — h
 - At højst 2 pr. tag er nok til at undgå for stærke informationskombinationer.
 - At 11 roller giver nok rum til bluffs uden at blive uoverskueligt.
 - At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
+- At Særordre alene giver én syntetiker nok at arbejde med ved 5–6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
 - At det er acceptabelt, at Ingeniør er offentligt kendt som aktiv. En syntetiker, der påstår Ingeniør, laver altid en dobbeltpåstand.
 
 ## 10. Ingen kan bevise sin rolle direkte
@@ -294,8 +318,8 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | Uge | Navn | Nyt |
 |---|---|---|
 | 1 | **Awakening** | Spillerne vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Ingen sabotage, intet tribunal. |
-| 2 | **First Anomaly** | Sabotage låses op. Første tribunal fredag. |
-| 3 | **Broken Trust** | Forfalskning låses op. Første pågribelse mulig. |
+| 2 | **First Anomaly** | Sabotage, Forfalskning og Støj låses op. Første tribunal fredag. |
+| 3 | **Broken Trust** | Første pågribelse mulig. |
 | 4 | **Containment Failure** | ORACLE forsegler én zone hele ugen. Ingen kan gå ind eller ud. |
 | 5 | **Last Transmission** | ORACLE frigiver hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
 | 6 | **Final Protocol** | Fredagens tribunal er direkte: flertal sender målet i kryo uden pågribelse. Derefter afsløres alle roller. |
@@ -330,7 +354,7 @@ Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begg
 ## 13. Åbne testspørgsmål
 
 1. Er to-mands-reglen for svær med 5 spillere?
-2. Er Skakt for stærk til flugt? Alternativ: Skakt kun fra uge 3.
+2. Er Skaktløber for stærk til flugt? Alternativ: Skakt kun fra uge 3.
 3. Bliver integritetsuret syntetikernes eneste strategi?
 4. Er én pejling ved udstedelse nok til at starte en jagt?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet?
@@ -338,6 +362,8 @@ Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begg
 7. Er 11 roller for mange at holde styr på for nye spillere?
 8. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
 9. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
+10. Er én syntetiker med kun Særordre for svag ved 5–6 spillere?
+11. Afslører *"Signal forstyrret"* for meget, nemlig at Støjsender er i spil?
 
 ---
 

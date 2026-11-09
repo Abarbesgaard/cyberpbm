@@ -1,6 +1,6 @@
 import { useRole } from "@/context/RoleContext";
 import { SectionHeader } from "@/components/SectionHeader";
-import { balance, crewRoles, synthModes } from "@/content/game";
+import { balance, crewRoles, synthRoles } from "@/content/game";
 
 const minCrew = Math.min(...balance.map((b) => b.crew));
 const maxCrew = Math.max(...balance.map((b) => b.crew));
@@ -71,16 +71,20 @@ export function Roles() {
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
           // Klassificeret — Syntetiker
         </div>
-        <h3 className="mb-2 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">Særordre</h3>
+        <h3 className="mb-2 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">Syntetikerroller</h3>
         <p className="mb-6 max-w-[680px] text-[0.9rem] leading-[1.6] text-cp-off">
-          Én evne, tre tilstande. Vælg én om ugen. Syntetikere kender hinanden, men kan kun
-          tale privat, når de står samme sted. Syntetiker er et hold, ikke en katalogrolle —
-          ved to syntetikere har begge Særordre. Hver får to bluff-forslag fra de ubrugte roller.
+          Én evne pr. syntetiker, og hver rolle findes højst én gang. Særordre er altid i spil.
+          Ved to syntetikere trækkes den anden rolle tilfældigt. Syntetikere kender hinanden og
+          hinandens roller, men kan kun tale privat, når de står samme sted. Hver får to
+          bluff-forslag fra de ubrugte besætningsroller.
         </p>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {synthModes.map((m) => (
-            <div key={m.name} className="bezel bezel-screws p-6">
-              <div className="mb-1 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-mid">Fra uge {m.from}</div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {synthRoles.map((m) => (
+            <div key={m.id} className="bezel bezel-screws p-6">
+              <div className="mb-1 flex items-center justify-between font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-mid">
+                <span>{m.ability} · fra uge {m.from}</span>
+                {m.core && <span className="border border-cp-red px-1.5 py-0.5 text-cp-red-bright">Altid</span>}
+              </div>
               <h4 className="mb-2 font-head tracking-[0.08em] text-[0.95rem] uppercase text-cp-red-bright">{m.name}</h4>
               <p className="text-[0.85rem] leading-[1.6] text-cp-off">{m.text}</p>
             </div>

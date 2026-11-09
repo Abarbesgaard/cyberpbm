@@ -9,7 +9,7 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
 1. **Vælg spillerantal** (5–8).
 2. **Find holdstørrelser** i balancetabellen: 5 → 4/1, 6 → 5/1, 7 → 5/2, 8 → 6/2 (besætning/syntetikere).
 3. **Vælg besætningsroller:** Ingeniør plus tilfældigt trukne roller fra kataloget, indtil du har én pr. besætningsspiller. Træk uden tilbagelægning. Højst **2 roller med samme tag** (JAGT, OBSERVATION, ANALYSE, URET, SOCIAL). Trækker du en rolle, hvis tag er fyldt, så læg den til side og træk igen.
-4. **Fordel rollerne uden tilbagelægning.** Vælg tilfældigt, hvem der er syntetikere. Giv hver besætningsspiller én af de valgte roller. Ingen rolle må gives to gange. Syntetikere får ingen besætningsrolle.
+4. **Fordel rollerne uden tilbagelægning.** Vælg tilfældigt, hvem der er syntetikere. Giv hver besætningsspiller én af de valgte roller. Syntetikere får syntetikerroller: Særordre altid, og ved to syntetikere én tilfældig af Forfalsker, Skaktløber og Støjsender. Ingen rolle må gives to gange.
 5. **Find de ubrugte roller:** hele kataloget minus rollerne fra trin 3.
 6. **Vælg bluff-forslag kun fra de ubrugte roller:** 2 forskellige pr. syntetiker. Giv syntetikerne adskilte forslag, når der er nok (det er der altid ved 5–8 spillere). Overlap er tilladt, hvis puljen ikke rækker.
 7. **Validér:**
@@ -17,11 +17,12 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - Ingen rolle er tildelt to gange.
    - Ingeniør er i spil.
    - Højst 2 aktive roller pr. tag.
-   - Ingen syntetiker har en besætningsrolle.
+   - Ingen syntetiker har en besætningsrolle, og ingen besætning har en syntetikerrolle.
+   - Særordre er i spil, og ingen syntetikerrolle er tildelt to gange.
    - Hver syntetiker har præcis 2 forskellige forslag, og intet forslag er i spil.
 8. **Send private beskeder:**
    - **Besætning:** rolle, hold og evne.
-   - **Syntetiker:** hold, Særordre, de andre syntetikeres navne og egne 2 bluff-forslag.
+   - **Syntetiker:** hold, syntetikerrolle og evne, de andre syntetikeres navne og roller, og egne 2 bluff-forslag.
    - Offentliggør aldrig, hvilke roller der er i spil.
 9. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
 10. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
@@ -37,8 +38,8 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 **Weekend — afgør i denne rækkefølge:**
 
-1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Ulovlig bevægelse = Bliv. Uge 4: ingen ind eller ud af den forseglede zone.
-2. **Forfalskning.** Markér hvem der får et falsk resultat.
+1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: ingen ind eller ud af den forseglede zone, heller ikke via Skakt.
+2. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 3. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 6. Erstat forfalskede med et troværdigt, forkert svar.
 4. **Sabotage og reparation.** Træk integritet. Læg reparationer til (højst startværdien).
 5. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.

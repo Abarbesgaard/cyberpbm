@@ -3,9 +3,11 @@ import {
   ROLE_TAG_CAP,
   balance,
   crewRoles,
+  synthRoles,
   type BalanceRow,
   type CrewRoleId,
   type RoleTag,
+  type SynthRoleId,
 } from "./game.ts";
 
 /** Returns a number in [0, 1). */
@@ -16,14 +18,15 @@ export type Team = "crew" | "synth";
 export interface PlayerAssignment {
   name: string;
   team: Team;
-  /** Actual crew role. `null` for synthetics: their only ability is Særordre. */
-  roleId: CrewRoleId | null;
+  /** Actual role: a crew role for crew, a synthetic role for synthetics. */
+  roleId: CrewRoleId | SynthRoleId;
 }
 
 export interface RoleSetup {
   players: PlayerAssignment[];
   activeCrewRoles: CrewRoleId[];
   unusedCrewRoles: CrewRoleId[];
+  activeSynthRoles: SynthRoleId[];
   /** Bluff suggestions keyed by synthetic player name. Claims, not assignments. */
   bluffs: Record<string, CrewRoleId[]>;
 }
@@ -47,6 +50,8 @@ export class RoleSetupError extends Error {
 
 const roleById = new Map(crewRoles.map((r) => [r.id, r]));
 const coreRoleIds = crewRoles.filter((r) => r.core).map((r) => r.id);
+const synthById = new Map(synthRoles.map((r) => [r.id, r]));
+const coreSynthIds = synthRoles.filter((r) => r.core).map((r) => r.id);
 
 /** Deterministic PRNG for reproducible setups and tests. */
 export function seededRng(seed: number): Rng {
@@ -122,6 +127,18 @@ export function selectActiveCrewRoles(count: number, rng: Rng): CrewRoleId[] {
   return chosen;
 }
 
+/** The lead synthetic role first, then support roles drawn without replacement. */
+export function selectSynthRoles(count: number, rng: Rng): SynthRoleId[] {
+  if (count < coreSynthIds.length || count > synthRoles.length) {
+    throw new RoleSetupError([`Kan ikke vælge ${count} syntetikerroller fra et katalog på ${synthRoles.length}.`]);
+  }
+  const support = shuffle(
+    synthRoles.filter((r) => !r.core).map((r) => r.id),
+    rng,
+  );
+  return [...coreSynthIds, ...support].slice(0, count);
+}
+
 /**
  * Two distinct suggestions per synthetic, drawn only from unused roles.
  * Synthetics get disjoint suggestions when the pool allows; otherwise they may overlap.
@@ -163,11 +180,13 @@ export function createRoleSetup(playerNames: readonly string[], rng: Rng = Math.
   const synthNames = order.slice(0, row.synths);
   const crewNames = order.slice(row.synths);
   const roleDeck = shuffle(active, rng);
+  const synthActive = selectSynthRoles(row.synths, rng);
+  const synthDeck = shuffle(synthActive, rng);
 
   const players: PlayerAssignment[] = playerNames.map((name) => {
     const ci = crewNames.indexOf(name);
     return ci === -1
-      ? { name, team: "synth", roleId: null }
+      ? { name, team: "synth", roleId: synthDeck[synthNames.indexOf(name)] }
       : { name, team: "crew", roleId: roleDeck[ci] };
   });
 
@@ -175,6 +194,7 @@ export function createRoleSetup(playerNames: readonly string[], rng: Rng = Math.
     players,
     activeCrewRoles: active,
     unusedCrewRoles: unused,
+    activeSynthRoles: synthActive,
     bluffs: assignBluffs(unused, synthNames, rng),
   };
 
@@ -186,7 +206,7 @@ export function createRoleSetup(playerNames: readonly string[], rng: Rng = Math.
 /** Returns human-readable problems. Empty array means valid. */
 export function validateRoleSetup(setup: RoleSetup): string[] {
   const problems: string[] = [];
-  const name = (id: string) => roleById.get(id as CrewRoleId)?.name ?? id;
+  const name = (id: string) => roleById.get(id as CrewRoleId)?.name ?? synthById.get(id as SynthRoleId)?.name ?? id;
 
   const row = balanceFor(setup.players.length);
   if (!row) return [unsupportedCount(setup.players.length)];
@@ -204,18 +224,32 @@ export function validateRoleSetup(setup: RoleSetup): string[] {
 
   for (const p of crew) {
     if (!p.roleId) problems.push(`${p.name} er besætning, men har ingen rolle.`);
-    else if (!roleById.has(p.roleId)) problems.push(`${p.name} har en ukendt rolle: ${p.roleId}.`);
+    else if (synthById.has(p.roleId as SynthRoleId)) problems.push(`${p.name} er besætning og må ikke have en syntetikerrolle (${name(p.roleId)}).`);
+    else if (!roleById.has(p.roleId as CrewRoleId)) problems.push(`${p.name} har en ukendt rolle: ${p.roleId}.`);
   }
   for (const p of synths) {
-    if (p.roleId) problems.push(`${p.name} er syntetiker og må ikke have en besætningsrolle (${name(p.roleId)}).`);
+    if (!p.roleId) problems.push(`${p.name} er syntetiker, men har ingen rolle.`);
+    else if (roleById.has(p.roleId as CrewRoleId)) problems.push(`${p.name} er syntetiker og må ikke have en besætningsrolle (${name(p.roleId)}).`);
+    else if (!synthById.has(p.roleId as SynthRoleId)) problems.push(`${p.name} har en ukendt rolle: ${p.roleId}.`);
   }
 
   const seen = new Map<CrewRoleId, string>();
-  for (const p of crew) {
+  const seenSynth = new Map<SynthRoleId, string>();
+  for (const p of setup.players) {
     if (!p.roleId) continue;
-    const other = seen.get(p.roleId);
+    const isCrew = roleById.has(p.roleId as CrewRoleId);
+    const map = (isCrew ? seen : seenSynth) as Map<string, string>;
+    if (p.team !== (isCrew ? "crew" : "synth")) continue;
+    const other = map.get(p.roleId);
     if (other) problems.push(`${name(p.roleId)} er tildelt både ${other} og ${p.name}. Hver rolle må kun bruges én gang.`);
-    else seen.set(p.roleId, p.name);
+    else map.set(p.roleId, p.name);
+  }
+
+  if ([...seenSynth.keys()].sort().join() !== [...setup.activeSynthRoles].sort().join()) {
+    problems.push("Listen over aktive syntetikerroller passer ikke med de tildelte roller.");
+  }
+  for (const id of coreSynthIds) {
+    if (synths.length && !seenSynth.has(id)) problems.push(`${name(id)} er syntetikernes kernerolle og skal være i spil.`);
   }
 
   const assigned = [...seen.keys()].sort();
