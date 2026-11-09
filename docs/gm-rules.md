@@ -35,15 +35,15 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: nej, Fasthold: nej, Ingen ændring*. Manglende ekko-ordre = intet vedligehold.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Arbejde: ja, Fasthold: nej, Ingen ændring*. Manglende ekko-ordre = intet vedligehold.
 
 **Weekend — afgør i denne rækkefølge:**
 
-1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: ingen ind eller ud af den forseglede zone, heller ikke via Skakt.
+1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Uge 4: ingen ind i eller ud af Rygraden, heller ikke via Skakt.
 2. **Drab.** Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, drabet ikke brugt, målet er besætning, og drabsmand og mål er alene i zonen. Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne, arbejde eller fasthold). Mislykkes det, sker intet, og drabet er ikke brugt.
 3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
 4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 7. Erstat forfalskede med et troværdigt, forkert svar.
-5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. Fra uge 2: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Står et system på 0, vinder syntetikerne.
+5. **Systemer.** For hver sektion, samtidigt: +1 pr. spiller, der blev og skrev *Arbejde: ja*. +2 for Ingeniørens reparation. −2 for sabotage. I uge 2, 4 og 6: −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) der, og sektionen ikke blev saboteret. Hold status mellem 0 og 5. `src/content/systems.ts` regner det ud. Rammer et system 0, er det KRITISK. Var det allerede 0 før afgørelsen, vinder syntetikerne.
 6. **Pågribelse.** Find målets zone. Tæl fasthold-point fra andre spillere dér. 2+ = kryo.
 7. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Flertal af *aktive* spillere udsteder ny kryo-ordre. Notér målets zone til pejling. Offentliggør aldrig, hvem der stemte hvad.
 8. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
@@ -53,7 +53,7 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 ## Broadcast-skabelon
 
 ```
-ORACLE // SHIPWIDE // UGE 3
+ORACLE // SHIPWIDE // UGE 4
 
 SYSTEMER:
 Hypersøvn  ██░░░ 2  −1
@@ -61,7 +61,8 @@ Medlab     ████░ 4  +1
 Livsstøtte ██░░░ 2  −1
 Lastrum    ████░ 4  +1
 Broen      █████ 5  +1
-Motorrum   █░░░░ 1  −1
+Motorrum   ░░░░░ 0  −1
+KRITISK: Motorrum. Én uge til nedbrud.
 SCENARIE: Nødsignal (Broen 5, Motorrum 5)
 
 ANOMALI: Uautoriseret adgang i Lastrum.
@@ -103,7 +104,7 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 
 ## Hændelser
 
-- **Uge 4, Containment Failure:** Forsegl den zone med flest sabotager hidtil (ved lighed: tilfældig). Annoncér den mandag.
+- **Uge 4, Containment Failure:** Forsegl Rygraden. Annoncér det mandag i uge 4, så spillerne kan planlægge.
 - **Uge 5, Last Transmission:** Offentliggør hele positionsloggen fra uge 1 i mandagsbroadcasten.
 - **Uge 6, Final Protocol:** Tribunalet sender direkte i kryo efter pågribelsen. Tjek scenariet. Afslør derefter alle roller og hold.
 
@@ -111,7 +112,7 @@ Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutn
 
 - Uklar ordre: vælg den mest bogstavelige læsning og notér det.
 - Stemmelighed: ingen ny kryo-ordre.
-- Et system når 0: afslut ugen, og annoncér syntetikernes sejr i rapporten.
+- Et system rammer 0: broadcast *"KRITISK: [sektion]. Én uge til nedbrud."* Står det stadig på 0 efter næste afgørelse: annoncér syntetikernes sejr. KRITISK i uge 6: tjek efter Final Protocol — er det stadig 0, vinder syntetikerne.
 - Arbejde i Rygraden eller efter *Ryk*/Skakt: tæller ikke.
 - Efter uge 6: tjek scenariet efter Final Protocol. Opfyldt = besætningen vinder, uanset hvem der er i kryo.
 - Døde og spillere i kryo kan ikke pågribes, dræbes eller vælges som mål for evner.

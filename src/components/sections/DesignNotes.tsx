@@ -1,6 +1,9 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "System på 0 = syntetikerne vinder straks", to: "0 = KRITISK, én uge til nedbrud", why: "Sabotage i en tom sektion i uge 2 kunne vinde spillet, før nogen kunne reagere." },
+  { from: "Forfald hver uge", to: "Forfald i uge 2, 4 og 6 — aldrig oveni sabotage", why: "Fire besætningsmedlemmer kan ikke dække seks sektioner hver uge, når hver flytning koster arbejde." },
+  { from: "Uge 4 forsegler den mest saboterede zone", to: "Uge 4 forsegler Rygraden", why: "At forsegle et svækket system dømte det. Nu presses bevægelsen i stedet." },
   { from: "Ingen drab", to: "Hver syntetiker kan dræbe én gang", why: "Fra uge 3, kun alene med offeret. Liget broadcastes med zone — et nyt spor, ikke et bevis." },
   { from: "AI-ekko: én besked om dagen", to: "Ekko: frit ord + vedligehold", why: "Døde og frosne spillere har en ugentlig beslutning og en grund til at blive ved skærmen." },
   { from: "Ét fælles integritetsur", to: "Seks skibssystemer, ét pr. sektion", why: "Status offentliggøres hver uge. Arbejde, forfald og sabotage gør hvert rum til et spor." },
@@ -36,7 +39,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XII // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.10</span>
+        v0.7 → <span className="text-cp-yellow">v0.11</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

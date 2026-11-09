@@ -1,6 +1,5 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import {
-  NEGLECT_FROM_WEEK,
   NEGLECT_LOSS,
   REPAIR_GAIN,
   SABOTAGE_LOSS,
@@ -19,7 +18,7 @@ const example: Record<SectionId, [number, number]> = {
   C: [3, 2],
   D: [3, 4],
   E: [4, 5],
-  F: [2, 1],
+  F: [1, 0],
 };
 
 const zoneName = (id: SectionId) => zones.find((z) => z.id === id)!.name;
@@ -27,18 +26,19 @@ const bar = (n: number) => "█".repeat(n) + "░".repeat(SYSTEM_MAX - n);
 const sign = (n: number) => (n > 0 ? `+${n}` : n === 0 ? "±0" : `${n}`);
 
 const board = [
-  "ORACLE // SYSTEMSTATUS // UGE 3",
+  "ORACLE // SYSTEMSTATUS // UGE 4",
   ...sectionIds.map((id) => {
     const [from, to] = example[id];
     return `${zoneName(id).padEnd(11)}${bar(to)} ${to}  ${sign(to - from)}`;
   }),
   "ANOMALI: Uautoriseret adgang i Livsstøtte.",
+  "KRITISK: Motorrum. Én uge til nedbrud.",
 ].join("\n");
 
 const rules = [
   { label: "Arbejde", body: `Bliver du i en sektion, kan du arbejde: systemet +${WORK_GAIN}. Syntetikere kan lade være — i hemmelighed.` },
-  { label: "Forfald", body: `Fra uge ${NEGLECT_FROM_WEEK} mister et system ${NEGLECT_LOSS}, hvis ingen arbejdede eller reparerede der.` },
-  { label: "Sabotage", body: `Særordre: systemet i sektionen −${SABOTAGE_LOSS}. ORACLE oplyser sektionen, aldrig navnet.` },
+  { label: "Forfald", body: `I uge 2, 4 og 6 mister et system ${NEGLECT_LOSS}, hvis ingen arbejdede, reparerede eller vedligeholdt der.` },
+  { label: "Sabotage", body: `Særordre: systemet i sektionen −${SABOTAGE_LOSS}, men intet forfald oveni. ORACLE oplyser sektionen, aldrig navnet.` },
   { label: "Reparation", body: `Ingeniøren: systemet i sektionen +${REPAIR_GAIN}. Rygraden har intet system.` },
 ];
 
@@ -47,7 +47,7 @@ export function Systems() {
     <section id="systems" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion III // Skibssystemer"
-        intro={`Hver sektion har et system fra 0 til ${SYSTEM_MAX}. Alle starter på ${SYSTEM_START}. Hver mandag offentliggør ORACLE status og ændring i #shipwide. Når ét system når 0, vinder syntetikerne.`}
+        intro={`Hver sektion har et system fra 0 til ${SYSTEM_MAX}. Alle starter på ${SYSTEM_START}. Hver mandag offentliggør ORACLE status og ændring i #shipwide. Når et system rammer 0, er det KRITISK. Står det stadig på 0 efter næste uge, vinder syntetikerne.`}
       >
         Ship <span className="text-cp-red-bright">Systems</span>
       </SectionHeader>

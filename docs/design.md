@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.10
+# USCSS CASSANDRA — Hunt Protocol v0.11
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,9 +6,21 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.9
+## 0. Hvad er ændret fra v0.10
 
-v0.10 giver syntetikerne et drab og giver døde spillere en grund til at blive.
+v0.11 lukker huller i systemerne, som kunne afgøre spillet før jagten begyndte.
+
+| v0.10 | v0.11 | Hvorfor |
+|---|---|---|
+| System på 0 = syntetikerne vinder med det samme | **0 = KRITISK.** Står det stadig på 0 efter næste afgørelse, vinder syntetikerne | Sabotage i en tom sektion i uge 2 gav 3 → 0 og en sejr, før nogen kunne reagere. |
+| Sabotage + forfald i samme sektion (−3) | **Sabotage erstatter forfald** (−2) | Samme hul. Én sabotage kan ikke længere tømme et system fra start. |
+| Forfald hver uge fra uge 2 | **Forfald i uge 2, 4 og 6** | Fire besætningsmedlemmer kan ikke dække seks sektioner hver uge, når hver flytning koster en uges arbejde. |
+| Uge 4 forsegler sektionen med flest sabotager | **Uge 4 forsegler Rygraden** | At forsegle et svækket system dømte det til forfald. Nu presses bevægelsen i stedet. |
+| Manglende ordre = Arbejde: nej | **Manglende ordre = Arbejde: ja** | Inaktive spillere skal ikke trække besætningen ned. |
+
+### Fra v0.9 til v0.10
+
+v0.10 gav syntetikerne et drab og giver døde spillere en grund til at blive.
 
 | v0.9 | v0.10 | Hvorfor |
 |---|---|---|
@@ -77,7 +89,7 @@ USCSS *Cassandra* er en kommerciel slæber på vej hjem med 20 millioner tons ma
 
 ## 2. Sejrsbetingelser
 
-**Syntetikerne vinder med det samme**, hvis ét skibssystem når 0 (se afsnit 8).
+**Syntetikerne vinder**, hvis et skibssystem står på 0 to afgørelser i træk, eller står på 0 efter Final Protocol (se afsnit 8).
 
 Ellers afgøres spillet efter Final Protocol i uge 6. **Besætningen vinder**, hvis alle syntetikere er i kryo, **eller** hvis kampagnens scenarie er opfyldt. **Syntetikerne vinder**, hvis mindst én syntetiker stadig er aktiv, og scenariet ikke er opfyldt.
 
@@ -317,27 +329,28 @@ Hver uge, efter informationsevnerne, ændres hvert system samtidigt:
 |---|---|
 | **Arbejde** | +1 pr. spiller, der blev i sektionen og skrev *Arbejde: ja*. |
 | **Reparation** (Ingeniør) | +2. Tæller også som arbejde. |
-| **Sabotage** (Særordre) | −2. |
-| **Forfald** (fra uge 2) | −1, hvis ingen arbejdede eller reparerede i sektionen. |
+| **Sabotage** (Særordre) | −2. Erstatter forfald i den sektion. |
+| **Forfald** (uge 2, 4 og 6) | −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) i sektionen. |
 
-Status holdes mellem 0 og 5. **Når ét system når 0, vinder syntetikerne med det samme.**
+Status holdes mellem 0 og 5. **Et system, der rammer 0, er KRITISK.** ORACLE broadcaster det. Står det stadig på 0 efter næste uges afgørelse, vinder syntetikerne. Besætningen har én uge til at få det over 0.
 
 Hver mandag broadcaster ORACLE alle seks systemer med status og ændring:
 
 ```
-ORACLE // SYSTEMSTATUS // UGE 3
+ORACLE // SYSTEMSTATUS // UGE 4
 Hypersøvn  ██░░░ 2  −1
 Medlab     ████░ 4  +1
 Livsstøtte ██░░░ 2  −1
 Lastrum    ████░ 4  +1
 Broen      █████ 5  +1
-Motorrum   █░░░░ 1  −1
+Motorrum   ░░░░░ 0  −1
 ANOMALI: Uautoriseret adgang i Livsstøtte.
+KRITISK: Motorrum. Én uge til nedbrud.
 ```
 
 **Tallene er et spor.** Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Medlab, men Medlab steg kun 1? Én af dem arbejdede ikke. Besætning har ingen grund til at lade være. En syntetiker har.
 
-Sabotage i en tom sektion er sikkert, men giver forfald oven i: −3. Sabotage blandt andre er sværere at se i tallene, men alle i rummet ved, at én af dem gjorde det.
+Sabotage i en tom sektion er sikkert for sabotøren, men kan ikke alene tømme et system fra start: 3 → 1. Sabotage blandt andre er sværere at se i tallene, men alle i rummet ved, at én af dem gjorde det.
 
 ### 8.2 Scenarie
 
@@ -372,7 +385,7 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
-- Systemregnskabet (arbejde, reparation, sabotage, forfald, vedligehold, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
+- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og nedbrud, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`.
 - Drabsbetingelserne (uge 3+, alene, kun besætning, én pr. syntetiker, mislykket drab er ikke brugt) er testet i `tests/kills.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet
@@ -383,6 +396,8 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
 - At forfald ikke er for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer.
 - At de tre scenarier er nogenlunde lige svære.
+- At KRITISK-ugen ikke gør systemerne for svære at tabe. En Særordre, der bliver stående og saboterer, kan holde et system på 0 — men afslører sig for alle i rummet.
+- At forfald i lige uger giver nok pres til, at besætningen må sprede sig.
 - At ét drab pr. syntetiker ikke knækker besætningen ved 5 spillere (4 → 3 besætning).
 - At ekko-vedligehold ikke gør forfald for let, når flere spillere er døde eller i kryo.
 - At Særordre alene giver én syntetiker nok at arbejde med ved 5–6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
@@ -408,7 +423,7 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | 1 | **Awakening** | Spillerne vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Ingen sabotage, intet tribunal. |
 | 2 | **First Anomaly** | Sabotage, Forfalskning og Støj låses op. Første tribunal fredag. |
 | 3 | **Broken Trust** | Første pågribelse mulig. |
-| 4 | **Containment Failure** | ORACLE forsegler én zone hele ugen. Ingen kan gå ind eller ud. |
+| 4 | **Containment Failure** | ORACLE forsegler Rygraden hele ugen. Kun ringen rundt mellem sektionerne er åben. |
 | 5 | **Last Transmission** | ORACLE frigiver hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
 | 6 | **Final Protocol** | Fredagens tribunal er direkte: flertal sender målet i kryo uden pågribelse. Derefter afsløres alle roller. |
 
@@ -469,3 +484,5 @@ Fundet under arbejdet med v0.7. Punkt 1–2 er rettet, fordi unikke roller kræv
 4. **Åben linje beviser Kommunikationsofficeren over for målet.** Målet ser kanalen blive oprettet. Det er et bevis over for én spiller, ikke offentligt.
 5. **Reparation er synlig.** En stigning på 2 eller mere i systemstatus peger på, at Ingeniøren stod i sektionen. Det kan afgøre en dobbeltpåstand om Ingeniør.
 6. **Afsnit 10 i v0.6 overvurderede forfalskning.** Teksten sagde, at syntetikere kan "have fået et resultat forfalsket mod sig". Syntetikere har ingen informationsevne og får ingen resultater. Et ægte evneresultat beviser altså, at afsenderen er besætning. Det eneste værn er forbuddet mod screenshots og videresendelse.
+7. **Et drab bekræfter offerets hold.** Kun besætning kan dræbes, så et dødt ekko er bevist besætning. Dets ord vejer derfor tungere end andres. Det er accepteret som en del af spillet: offeret ved stadig ikke, hvem der dræbte.
+8. **Få pågribelsesvinduer.** Første kryo-ordre kommer i uge 2, første pågribelse i uge 3. Det giver 3–4 forsøg. Med 2 syntetikere vinder besætningen sandsynligvis oftere via scenariet end via jagten. Ikke ændret; skal testes.

@@ -27,7 +27,7 @@ export function Victory() {
             Overlev — eller sluk lyset
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Ét system når 0 — så vinder I med det samme. Ellers skal mindst én af jer
+            Et system står på 0 to uger i træk — så vinder I. Ellers skal mindst én af jer
             være aktiv efter Final Protocol, og scenariet må ikke være opfyldt. Jeres våben er
             løgn, mistillid og et vel­placeret hul i livsstøtten.
           </p>

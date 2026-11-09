@@ -9,18 +9,31 @@ test("arbejde løfter systemet og stopper ved max", () => {
   assert.equal(r.delta.B, SYSTEM_MAX - 3);
 });
 
-test("forfald rammer kun systemer uden arbejde, og først fra uge 2", () => {
+test("forfald rammer kun systemer uden arbejde, og kun i lige uger", () => {
   assert.deepEqual(resolveSystems(startStatus(), { week: 1 }).status, startStatus());
+  assert.deepEqual(resolveSystems(startStatus(), { week: 3 }).status, startStatus());
   const r = resolveSystems(startStatus(), { week: 2, workers: { A: 1 }, repairs: ["C"] });
   assert.equal(r.status.A, 4);
   assert.equal(r.status.C, 5);
   assert.equal(r.status.B, 2);
 });
 
-test("sabotage og forfald kan nå 0, og det giver et fejlet system", () => {
-  const r = resolveSystems(startStatus(), { week: 3, sabotage: ["C"] });
-  assert.equal(r.status.C, 0);
-  assert.deepEqual(r.failed, ["C"]);
+test("sabotage i en tom sektion giver ikke forfald oveni, så uge 2 ikke kan afgøre spillet", () => {
+  const r = resolveSystems(startStatus(), { week: 2, sabotage: ["C"] });
+  assert.equal(r.status.C, 1);
+  assert.deepEqual(r.critical, []);
+  assert.deepEqual(r.failed, []);
+});
+
+test("0 er KRITISK; først 0 to afgørelser i træk er tabt", () => {
+  const w3 = resolveSystems({ ...startStatus(), C: 1 }, { week: 3, sabotage: ["C"] });
+  assert.deepEqual(w3.critical, ["C"]);
+  assert.deepEqual(w3.failed, []);
+  const saved = resolveSystems(w3.status, { week: 4, workers: { C: 1 } });
+  assert.equal(saved.status.C, 1);
+  assert.deepEqual(saved.failed, []);
+  const lost = resolveSystems(w3.status, { week: 4 });
+  assert.deepEqual(lost.failed, ["C"]);
 });
 
 test("arbejde i samme sektion kan opveje sabotage, og manglende arbejde kan ses", () => {

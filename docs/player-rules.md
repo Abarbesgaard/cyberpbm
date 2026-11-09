@@ -7,7 +7,7 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 - **Besætning:** Få alle syntetikere i kryo inden udgangen af uge 6, **eller** opfyld kampagnens scenarie.
-- **Syntetiker:** Bring ét skibssystem til 0 (så vinder I med det samme), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
+- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), eller overlev Final Protocol uden at scenariet er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
 
 ## Roller og påstande
 
@@ -34,9 +34,9 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 Hver sektion (A–F) har et system fra 0 til 5. Alle starter på 3. Rygraden har intet system.
 
 - **Arbejde:** Bliver du i en sektion og skriver *Arbejde: ja*, får systemet +1.
-- **Forfald:** Fra uge 2 mister et system 1, hvis ingen arbejdede der.
-- **Sabotage:** −2. **Reparation** (Ingeniør): +2.
-- **Når ét system når 0, vinder syntetikerne.**
+- **Forfald:** I uge 2, 4 og 6 mister et system 1, hvis ingen arbejdede der.
+- **Sabotage:** −2 (intet forfald oveni). **Reparation** (Ingeniør): +2.
+- **Et system på 0 er KRITISK.** Står det stadig på 0 efter næste uge, vinder syntetikerne.
 
 ORACLE offentliggør status og ændring for alle systemer hver mandag. Brug tallene: Hvis to blev i Medlab, men Medlab kun steg 1, arbejdede én af dem ikke.
 
@@ -128,6 +128,6 @@ Dør du eller sendes i kryo, bliver du et **ekko**. Du har ingen bevægelse, evn
 | 1 | Awakening | Informationsevner og Skakt er aktive. Intet tribunal. |
 | 2 | First Anomaly | Sabotage, Forfalskning og Støj. Første tribunal. |
 | 3 | Broken Trust | Første pågribelse. |
-| 4 | Containment Failure | Én zone forsegles hele ugen. |
+| 4 | Containment Failure | Rygraden forsegles hele ugen. |
 | 5 | Last Transmission | Positionsloggen fra uge 1 frigives. |
 | 6 | Final Protocol | Tribunalet sender direkte i kryo. Rollerne afsløres. |
