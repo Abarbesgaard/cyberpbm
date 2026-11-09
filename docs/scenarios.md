@@ -9,7 +9,7 @@ Hver kampagne har **ét scenarie**. Det bestemmer, hvad besætningen skal nå, o
 3. **Uge 3, mandag:** Rul d20 på krisetabellen. Skal krisen ramme en sektion, så rul d6 på sektionstabellen. Annoncér krisen, så spillerne har en uge til at planlægge.
 4. **Uge 4:** Krisen gælder hele ugen: kommunikation mandag–fredag, ordrerne og afgørelsen.
 5. **Uge 5, mandag:** Frigiv scenariets arkiv i broadcasten.
-6. **Efter uge 6:** Tjek målet. Opfyldt: besætningen vinder. Ellers vinder syntetikerne.
+6. **Efter uge 6:** Tæl protokolvalget. Har en syntetiker protokollen, vinder syntetikerne. Ellers tjek målet: opfyldt, og besætningen vinder; ikke opfyldt, og syntetikerne vinder.
 
 Kriser og arkiver er broadcasts. De er altid sande og kan ikke forfalskes.
 

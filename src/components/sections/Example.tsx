@@ -7,12 +7,12 @@ const testimony = [
 ];
 
 const facts = [
-  "Broadcasten er sand: sabotagen skete i Livsstøtte, og der stod præcis to — Anna og Peter.",
-  "Én af de to er altså syntetikeren. Den, der saboterede, tog en risiko.",
+  "Broadcasten er sand: Livsstøtte faldt 1. Den siger intet om sabotage.",
+  "Er scannen ægte, stod der præcis to — Anna og Peter.",
   "Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig — eller sig selv?",
-  "Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter siger begge, at de arbejdede. Én af dem lyver.",
+  "Anna og Peter siger begge, at de arbejdede. Så skulle Livsstøtte være steget 2. Et fald på 1 passer kun med sabotage −2 og arbejde +1. Én af dem lyver.",
   "Højttaleren viser aldrig afsender. \"Anna her\" kan være skrevet af hvem som helst — også af Peter.",
-  "Den anonyme scan bekræfter kun, hvad alle ved. Er afsenderen ægte, eller bygger syntetikeren troværdighed?",
+  "Hele regnestykket hviler på den anonyme scan. Er afsenderen ægte — eller stod der en tredje, der saboterede?",
 ];
 
 export function Example() {
@@ -28,7 +28,6 @@ export function Example() {
           <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
 {`ORACLE // SHIPWIDE // UGE 4
 LIVSSTØTTE: ██░░░ 2  −1
-ANOMALI: Uautoriseret adgang i Livsstøtte.
 TRIBUNAL: 3 af 6 stemmer mod Anna.
 Intet flertal. Ingen dom.`}
           </pre>

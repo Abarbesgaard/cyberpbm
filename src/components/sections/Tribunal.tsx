@@ -35,6 +35,16 @@ export function Tribunal() {
         ))}
       </div>
 
+      <div className="bezel bezel-screws mt-4 border-l-[6px] border-cp-red p-8">
+        <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-red-bright">Uge 6 // Final Protocol</div>
+        <h3 className="mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">Protokolvalg</h3>
+        <p className="text-[0.85rem] leading-[1.7] text-cp-off">
+          I stedet for tribunalet stemmer I om, hvem der skal udføre Final Protocol. Får en syntetiker
+          flertallet, vinder syntetikerne — uanset systemerne. Får besætning det, eller er der intet
+          flertal, afgør scenariet.
+        </p>
+      </div>
+
       <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="console p-4 sm:p-5 [--chamfer:16px]">
         <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">#shipwide // Broadcast</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-red blink-slow" /><span className="lamp lamp-off" /></span></div>
