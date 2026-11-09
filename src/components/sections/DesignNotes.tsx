@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Besætningen vinder ved kryo eller scenarie", to: "Besætningen vinder kun ved scenariet", why: "Skibet skal hjem. Tribunalet stopper sabotagen, men er ikke et mål i sig selv." },
   { from: "Kryo-ordre, jagt og fasthold", to: "Tribunalet sender direkte i kryo", why: "Ingen kan fysisk holde en anden fast i Slack. Neutralisering er nu kun en fælles beslutning." },
   { from: "Sikkerhedschef: fasthold tæller 2 point", to: "Sikkerhedschef: Vagt", why: "Vælg en spiller, som ikke kan dræbes denne uge. En evne som de andre: vælg et mål, ORACLE svarer." },
   { from: "Evner beskrevet som regler", to: "Hver evne viser, hvad du vælger, og hvad ORACLE svarer", why: "Spilleren skal kun vælge. ORACLE holder styr på resten og fortæller i mandagsrapporten, hvad du kan." },
@@ -40,7 +41,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XII // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.13</span>
+        v0.7 → <span className="text-cp-yellow">v0.14</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

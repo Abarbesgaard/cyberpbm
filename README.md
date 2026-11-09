@@ -1,8 +1,8 @@
 # USCSS Cassandra — Hunt Protocol
 
-Et seksugers social deduction-spil, der spilles asynkront i Slack. Besætningen skal finde de skjulte syntetikere og stemme dem i kryo, før det er for sent. Hver kampagne har ét scenarie, og skibets seks systemer skal holdes i live.
+Et seksugers social deduction-spil, der spilles asynkront i Slack. Besætningen skal holde skibets seks systemer i live og fuldføre kampagnens scenarie — mens skjulte syntetikere saboterer indefra. Tribunalet kan sende dem i kryo, men kun skibet afgør sejren.
 
-- `docs/design.md` — fuldt design (v0.13)
+- `docs/design.md` — fuldt design (v0.14)
 - `docs/player-rules.md` — spillerregler
 - `docs/gm-rules.md` — ORACLE-håndbog for spillederen
 - `src/content/game.ts` — zoner, rollekatalog (stabile rolle-id'er), uger og balance, der bruges af websitet
