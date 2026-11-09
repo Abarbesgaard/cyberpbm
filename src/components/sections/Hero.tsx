@@ -10,7 +10,7 @@ const readouts = [
 
 export function Hero() {
   return (
-    <section id="hero" className="hull wainscot relative flex min-h-screen flex-col justify-center overflow-hidden px-5 pt-28 sm:px-8 md:px-16">
+    <section id="hero" className="hull relative flex min-h-screen flex-col justify-center overflow-hidden px-5 pt-28 sm:px-8 md:px-16">
       <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div className="bezel bezel-screws p-7 sm:p-10 [--chamfer:22px]">
           <div className="flex flex-wrap items-center gap-3">
