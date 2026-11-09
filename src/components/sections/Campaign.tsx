@@ -8,7 +8,7 @@ export function Campaign() {
         eyebrow="Sektion IX // Kampagne"
         intro="Seks uger. Hver uge tilføjer data eller pres — ikke nye regler."
       >
-        Flight <span className="text-cp-yellow">Log</span>
+        The <span className="text-cp-yellow">Arc</span>
       </SectionHeader>
       <ol className="relative border-l border-cp-border-bright">
         {weeks.map((w) => (
