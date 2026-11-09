@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.12
+# USCSS CASSANDRA — Hunt Protocol v0.13
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,20 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.11
+## 0. Hvad er ændret fra v0.12
+
+v0.13 fjerner jagten. Ingen kan fysisk holde en anden fast i Slack, så neutralisering er nu kun en fælles beslutning.
+
+| v0.12 | v0.13 | Hvorfor |
+|---|---|---|
+| Tribunalet udsteder en kryo-ordre, som skal fuldbyrdes ved pågribelse | **Tribunalet sender direkte i kryo** | Fasthold var en regel uden en handling bag. Det svære er at blive enige, ikke at nå frem. |
+| Ordren har feltet *Fasthold* | **Feltet er fjernet** | Én beslutning mindre om ugen. |
+| ORACLE pejler målet for en kryo-ordre | **Fjernet** | Der er intet mål at finde. |
+| Sikkerhedschef: *Pågrib* | **Sikkerhedschef: Vagt.** Vælg en anden spiller; vedkommende kan ikke dræbes denne uge | Pågrib krævede en kryo-ordre. Vagt giver et modspil til drab. |
+| Tag *JAGT* | **Tag *SIKKERHED*** | Samme roller, nyt navn. |
+| Final Protocol: tribunalet sender direkte i kryo | **Final Protocol: sidste tribunal, derefter afsløring** | Alle tribunaler er nu direkte. |
+
+### Fra v0.11 til v0.12
 
 v0.12 gør alle evner ens at bruge: Vælg et mål, og ORACLE svarer. Ingen spiller skal tælle point eller huske, hvad der er brugt.
 
@@ -153,9 +166,7 @@ Hver aktiv spiller sender én ordre pr. uge med fire felter:
 1. **Bevægelse** — *Bliv* eller *Ryk* til en tilstødende zone.
 2. **Evne** — skriv evnens mål (en spiller, en zone eller *Ingen*). ORACLE svarer i mandagsrapporten. Se afsnit 7.0.
 3. **Arbejde** — *ja/nej*. Tæller kun, hvis du blev i en sektion (ikke Rygraden). Systemet i sektionen +1.
-4. **Fasthold** — *ja/nej*. Kun relevant, hvis du ender i samme zone som den person, der har en aktiv kryo-ordre.
-
-Plus en separat **tribunal-stemme** (se afsnit 6).
+4. **Tribunal** — en spiller eller *Ingen* (se afsnit 6).
 
 ### Afgørelsesrækkefølge
 
@@ -164,9 +175,8 @@ Plus en separat **tribunal-stemme** (se afsnit 6).
 3. Støj og forfalskning.
 4. Informationsevner.
 5. Systemer: arbejde, reparation, sabotage, forfald og vedligehold (samtidigt).
-6. Pågribelse.
-7. Tribunal — ny kryo-ordre.
-8. Sektorkanaler opdateres.
+6. Tribunal — kryo.
+7. Sektorkanaler opdateres.
 
 ---
 
@@ -186,41 +196,33 @@ Information skal være nyttig, men sjældent fuldstændig.
 
 ---
 
-## 6. Neutralisering — The Hunt
+## 6. Neutralisering — The Tribunal
 
-Neutralisering kræver både **beslutning** og **fysisk tilstedeværelse**.
+Neutralisering er en **fælles beslutning**. Ingen kan bevise noget; man kan kun overbevise hinanden.
 
-### 6.1 Tribunal → kryo-ordre
+### 6.1 Tribunalet
 
-- Hver fredag stemmer alle aktive spillere på én spiller eller *Ingen ændring*.
-- Stemmerne er hemmelige. ORACLE broadcaster kun resultatet. Spillerne må selv fortælle (eller lyve om), hvad de stemte.
-- **Simpelt flertal af aktive spillere** udsteder en **kryo-ordre** mod den valgte.
-- Der kan kun være én aktiv kryo-ordre. En ny ordre erstatter den gamle.
-- Ordren gælder, indtil målet er pågrebet eller ordren erstattes.
-- Når ordren udstedes, **pejler ORACLE målet** én gang: mandagens broadcast oplyser, hvilken zone målet står i.
+- Fra uge 2 stemmer alle aktive spillere hver fredag på én spiller eller *Ingen*. Stemmen står i ordren.
+- Stemmerne er hemmelige. Spillerne må selv fortælle (eller lyve om), hvad de stemte.
+- Får ét navn **simpelt flertal af de aktive spillere**, sendes vedkommende **direkte i kryo**. Brugte spøgelsesstemmer tæller med.
+- Stemmelighed eller intet flertal: ingen dom.
+- Tribunalet afgøres sidst i weekenden. Den dømte når at bruge sin evne og sit arbejde den uge.
 
-### 6.2 Pågribelse — to-mands-reglen
+Mandagens broadcast:
 
-Efter bevægelse og evner ser ORACLE på målets zone. Målet sendes i kryo, hvis
+> *"TRIBUNAL: 4 af 6 stemmer mod Anna. Anna er overført til kryo."*
 
-- mindst **to andre spillere** i zonen har *Fasthold: ja*, **eller**
-- Sikkerhedschefen står i zonen og har brugt **Pågrib** på målet.
+eller
 
-Lykkes det, broadcaster ORACLE kun: *"Pågribelse lykkedes i Livsstøtte. [Navn] er overført til kryo."* Ingen tal, så resultatet ikke afslører Sikkerhedschefen.
+> *"TRIBUNAL: 3 af 6 stemmer mod Anna. Intet flertal. Ingen dom."*
 
-Mislykkes det, og har mindst én i zonen valgt *Fasthold: ja*, offentliggør ORACLE:
+Antallet er offentligt, men aldrig hvem der stemte. En dom, der manglede én stemme, rejser spørgsmålet: Hvem stemte nej, og hvorfor?
 
-> *"Pågribelse forsøgt i Livsstøtte. 2 til stede ud over målet. 1 holdt fast. Mislykket."*
+### 6.2 Den dømtes rolle
 
-Ingen navne. Antallet afslører, at nogen i rummet **valgte ikke at holde fast**. Var det tvivl, eller en syntetiker, der beskytter sin egen?
+Den dømtes rolle afsløres ikke. Besætningen ved ikke, om de ramte rigtigt, før spillet slutter — eller før sabotagen stopper.
 
-Hvis ingen forsøger, siger ORACLE kun: *"Målet er ikke pågrebet."*
-
-### 6.3 Flugt
-
-Målet ved, at jagten er gået ind. Det kan blive, flygte eller overgive sig ved at blive stående og bede om at blive hentet. En uskyldig, der bliver stående, sender et stærkt signal. En syntetiker kan gøre det samme.
-
-### 6.4 Ekko — kryo og døde
+### 6.3 Ekko — kryo og døde
 
 Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
@@ -231,15 +233,15 @@ Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
 Et ekko fra syntetikerholdet må også sende vedligehold — eller lade være. Ingen kan se forskel.
 
-### 6.5 Drab
+### 6.4 Drab
 
 Drab er en fælles syntetikerhandling, ikke en rolleevne. Hver syntetiker beholder sin ene evne.
 
 - Hver syntetiker kan dræbe **én gang pr. kampagne**, fra **uge 3**.
 - Drabet skrives i ordren: *Drab → [Navn]*. Den uge bruger syntetikeren ikke sin evne.
-- Drabet lykkes kun, hvis drabsmand og mål er de **eneste aktive spillere i zonen** efter bevægelse. Målet skal være besætning.
-- Mislykkes det (vidner, forkert zone), sker intet, og drabet er ikke brugt. Syntetikeren får kun: *"Drab mislykket."*
-- Drab afgøres lige efter bevægelse. Offeret når ikke at bruge evne, arbejde eller fasthold.
+- Drabet lykkes kun, hvis drabsmand og mål er de **eneste aktive spillere i zonen** efter bevægelse. Målet skal være besætning og må ikke være under Sikkerhedschefens **vagt**.
+- Mislykkes det (vidner, forkert zone, vagt), sker intet, og drabet er ikke brugt. Syntetikeren får kun: *"Drab mislykket."*
+- Drab afgøres lige efter bevægelse. Offeret når ikke at bruge evne eller arbejde.
 - Offeret får privat: *"Du er død. Zone: Lastrum."* — ikke hvem. Bevægelse er samtidig, så offeret så aldrig, hvem der kom ind.
 - Mandagens broadcast: *"LIG FUNDET: Sara, Lastrum."* Navn og zone, aldrig rolle.
 
@@ -275,8 +277,8 @@ Ingen evne har ladninger, point eller tilstande, spilleren skal huske. Er en evn
 
 | Rolle | Id | Tag | Evne | Du vælger | ORACLE svarer fx |
 |---|---|---|---|---|---|
-| **Sikkerhedschef** | `security_chief` | JAGT | *Pågrib:* Har spilleren en kryo-ordre og står i din zone, sendes vedkommende i kryo. Fra uge 3. | En spiller | *"Peter er pågrebet."* |
-| **Navigatør** | `navigator` | JAGT | *Pejling:* Spillerens zone efter bevægelse. | En spiller | *"Peter står i Lastrum."* |
+| **Sikkerhedschef** | `security_chief` | SIKKERHED | *Vagt:* Spilleren kan ikke dræbes denne uge. Ikke dig selv. | En spiller | *"Du vogter Anna denne uge."* |
+| **Navigatør** | `navigator` | SIKKERHED | *Pejling:* Spillerens zone efter bevægelse. | En spiller | *"Peter står i Lastrum."* |
 | **Sensortekniker** | `sensor_tech` | OBSERVATION | *Scan:* Antal i zonen efter bevægelse. Ingen navne. | En zone | *"Medlab: 3 personer."* |
 | **Kvartermester** *(ny)* | `quartermaster` | OBSERVATION | *Adgangslog:* Antal, der gik ind i zonen denne uge. Ingen navne. | En zone | *"Broen: 2 gik ind."* |
 | **Radaroperatør** *(ny)* | `radar_operator` | OBSERVATION | *Afstand:* Samme zone, nabozone eller langt væk efter bevægelse. | En spiller | *"Anna: nabozone."* |
@@ -290,7 +292,7 @@ Ingen evne har ladninger, point eller tilstande, spilleren skal huske. Er en evn
 **Hvorfor de fire nye roller:**
 
 - **Kvartermester** tæller *bevægelse*, ikke tilstedeværelse. Den kan afsløre et alibi som "jeg blev i Lastrum hele ugen" uden at nævne navne.
-- **Radaroperatør** er en grov Pejling: Den siger kun, om nogen er tæt på. Nyttig til at vurdere, om en jagt kan nå frem.
+- **Radaroperatør** er en grov Pejling: Den siger kun, om nogen er tæt på. Nyttig til at tjekke, om en spiller står, hvor vedkommende påstår.
 - **Psykolog** tjekker påstande som "jeg var alene" uden at afsløre, hvor eller med hvem.
 - **Revisor** gør tribunalet til information. Syntetikere, der koordinerer stemmer, risikerer at blive opdaget — men kun af én spiller, der selv kan lyve om resultatet.
 
@@ -385,7 +387,7 @@ Hver kampagne har **ét scenarie**. ORACLE vælger det ved opsætning og offentl
 | **Karantæne** | `quarantine` | Medlab og Hypersøvn står på 5. |
 | **Hjemrejse** | `homeward` | Alle seks systemer står på mindst 4. |
 
-Scenariet giver besætningen to veje til sejr — og et dilemma hver uge: blive og arbejde, eller rykke og jage.
+Scenariet giver besætningen to veje til sejr — og et dilemma hver uge: blive og arbejde, eller rykke og efterforske.
 
 ---
 
@@ -445,10 +447,10 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 |---|---|---|
 | 1 | **Awakening** | Spillerne vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Ingen sabotage, intet tribunal. |
 | 2 | **First Anomaly** | Sabotage, Forfalskning og Støj låses op. Første tribunal fredag. |
-| 3 | **Broken Trust** | Første pågribelse mulig. |
+| 3 | **Broken Trust** | Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning. |
 | 4 | **Containment Failure** | ORACLE forsegler Rygraden hele ugen. Kun ringen rundt mellem sektionerne er åben. |
 | 5 | **Last Transmission** | ORACLE frigiver hele positionsloggen fra uge 1. Gamle alibier kan tjekkes. |
-| 6 | **Final Protocol** | Fredagens tribunal er direkte: flertal sender målet i kryo uden pågribelse. Derefter afsløres alle roller. |
+| 6 | **Final Protocol** | Sidste tribunal. Derefter afsløres alle roller. |
 
 Hver uge tilføjer data eller pres, ikke nye regler.
 
@@ -458,34 +460,34 @@ Hver uge tilføjer data eller pres, ikke nye regler.
 
 > **ORACLE // SHIPWIDE**
 > *Advarsel. Uautoriseret adgang i Livsstøtte. Livsstøtte 2/5 (−1).*
-> *Pågribelse forsøgt i Livsstøtte. 1 til stede ud over målet. 0 holdt fast. Mislykket.*
+> *Tribunal: 3 af 6 stemmer mod Anna. Intet flertal. Ingen dom.*
 
-Kryo-ordren fra uge 3 var på **Anna**.
+Fredagens tribunal stemte om **Anna**.
 
 - **Anna:** "Jeg var i Livsstøtte med Peter. Han sagde, han ville tjekke terminalen."
-- **Peter:** "Jeg er Sikkerhedschef. Jeg brugte ikke Pågrib, fordi jeg ikke tror, Anna er syntetiker."
+- **Peter:** "Jeg er Sikkerhedschef. Jeg stemte ikke på Anna. Jeg tror ikke, hun er syntetiker."
 - **Sara:** "Jeg er Sensortekniker. Min scan viste 2 personer i Livsstøtte."
 
 Hvad ved besætningen?
 
 - Broadcasten er sand: Der blev saboteret i Livsstøtte, og der var præcis to personer — Anna og Peter.
 - Én af de to er altså syntetikeren. Syntetikeren tog en risiko ved at sabotere i et rum med et vidne.
-- Hvis Peter er Sikkerhedschef, kunne han have pågrebet Anna alene. Han lod være. Beskytter han en uskyldig eller sig selv?
+- Anna manglede én stemme. Peter siger, han stemte nej. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig eller sig selv?
 - Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter påstår begge, at de arbejdede. Én af dem lyver.
 - Saras scan bekræfter blot det, alle allerede ved. Er hun ægte, eller bygger hun troværdighed?
 
-Besætningen skal vælge: behold ordren på Anna, eller flyt den til Peter. Begge står i en zone ved siden af Rygraden. Begge ved, hvad der kommer.
+Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forkert, mister de en arbejder — og syntetikeren får en uge mere.
 
 ---
 
 ## 13. Åbne testspørgsmål
 
-1. Er to-mands-reglen for svær med 5 spillere?
-2. Er Skaktløber for stærk til flugt? Alternativ: Skakt kun fra uge 3.
+1. Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?
+2. Har Skaktløber nok at bruge Skakt til, nu hvor ingen jagter den?
 3. Bliver sabotage syntetikernes eneste strategi?
-4. Er én pejling ved udstedelse nok til at starte en jagt?
+4. Er Vagt for stærk mod syntetikere, der kun har ét drab hver?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet?
-6. Er Final Protocol en nødvendig sikkerhedsventil, eller tager den luften ud af jagten?
+6. Giver Final Protocol nok pres, når den kun er det sidste tribunal?
 7. Er 11 roller for mange at holde styr på for nye spillere?
 8. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
 9. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
@@ -503,9 +505,9 @@ Fundet under arbejdet med v0.7. Punkt 1–2 er rettet, fordi unikke roller kræv
 
 1. **Rettet:** v0.6's balancetabel nævnte præcis, hvilke roller der var i spil, men samtidig var "hvilke roller der er i spil" hemmeligt.
 2. **Rettet:** Ved 7 og 8 spillere gav v0.6 kun 2 og 1 ubrugte roller, men 2 syntetikere skulle have 2 bluffs hver.
-3. **Rettet i v0.12:** Fasthold-point kunne bevise Sikkerhedschefen ("1 til stede, 2 point"). Nu er der ingen point, og en lykket pågribelse broadcastes uden tal.
+3. **Rettet i v0.12–v0.13:** Fasthold-point kunne bevise Sikkerhedschefen. Pågribelse og fasthold er nu fjernet helt.
 4. **Åben linje beviser Kommunikationsofficeren over for målet.** Målet ser kanalen blive oprettet. Det er et bevis over for én spiller, ikke offentligt.
 5. **Reparation er synlig.** En stigning på 2 eller mere i systemstatus peger på, at Ingeniøren stod i sektionen. Det kan afgøre en dobbeltpåstand om Ingeniør.
 6. **Afsnit 10 i v0.6 overvurderede forfalskning.** Teksten sagde, at syntetikere kan "have fået et resultat forfalsket mod sig". Syntetikere har ingen informationsevne og får ingen resultater. Et ægte evneresultat beviser altså, at afsenderen er besætning. Det eneste værn er forbuddet mod screenshots og videresendelse.
 7. **Et drab bekræfter offerets hold.** Kun besætning kan dræbes, så et dødt ekko er bevist besætning. Dets ord vejer derfor tungere end andres. Det er accepteret som en del af spillet: offeret ved stadig ikke, hvem der dræbte.
-8. **Få pågribelsesvinduer.** Første kryo-ordre kommer i uge 2, første pågribelse i uge 3. Det giver 3–4 forsøg. Med 2 syntetikere vinder besætningen sandsynligvis oftere via scenariet end via jagten. Ikke ændret; skal testes.
+8. **Ændret i v0.13: mange tribunaler.** Før gav kryo-ordre og pågribelse 3–4 forsøg. Nu er der fem direkte tribunaler (uge 2–6). Det kan være for stærkt for besætningen ved én syntetiker. Skal testes.

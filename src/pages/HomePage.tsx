@@ -5,7 +5,7 @@ import { Victory } from "@/components/sections/Victory";
 import { Systems } from "@/components/sections/Systems";
 import { ShipMap } from "@/components/sections/ShipMap";
 import { WeekCycle } from "@/components/sections/WeekCycle";
-import { Hunt } from "@/components/sections/Hunt";
+import { Tribunal } from "@/components/sections/Tribunal";
 import { Information } from "@/components/sections/Information";
 import { Roles } from "@/components/sections/Roles";
 import { Campaign } from "@/components/sections/Campaign";
@@ -33,7 +33,7 @@ export function HomePage() {
       <Bulkhead frame="103" deck="B-04" />
       <WeekCycle />
       <Bulkhead frame="127" deck="C-05" />
-      <Hunt />
+      <Tribunal />
       <Bulkhead frame="151" deck="C-06" />
       <Information />
       <Bulkhead frame="175" deck="C-07" />

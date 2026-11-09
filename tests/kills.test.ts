@@ -21,6 +21,13 @@ test("drab mislykkes med vidner, i andre zoner og før uge 3", () => {
   assert.equal(resolveKill({ ...base, week: 2 }).ok, false);
 });
 
+test("drab på en spiller under vagt mislykkes og er ikke brugt", () => {
+  const r = resolveKill({ ...base, guarded: ["Anna"] });
+  assert.equal(r.ok, false);
+  assert.match(r.ok ? "" : r.reason, /vagt/);
+  assert.equal(resolveKill({ ...base, guarded: ["Sara"] }).ok, true);
+});
+
 test("hver syntetiker dræber højst én gang og kun besætning", () => {
   const spent = resolveKill({ ...base, used: { Peter: 1 } });
   assert.equal(spent.ok, false);

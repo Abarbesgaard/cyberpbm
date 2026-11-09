@@ -16,7 +16,7 @@ export function Victory() {
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
             Efter uge 6 vinder I, hvis alle syntetikere er i kryo, <strong>eller</strong> hvis
-            kampagnens scenarie er opfyldt. En fejl sender en uskyldig i kryo og koster jer en hånd.
+            kampagnens scenarie er opfyldt. En fejl sender en uskyldig i kryo, og I mister en, der kunne arbejde og bruge en evne.
           </p>
         </div>
         <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">

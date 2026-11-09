@@ -11,6 +11,8 @@ export interface KillAttempt {
   teams: Record<string, Team>;
   /** Kills each synthetic has already made this campaign. */
   used?: Record<string, number>;
+  /** Players the Security Chief guards this week. */
+  guarded?: string[];
 }
 
 export type KillResult =
@@ -32,5 +34,6 @@ export function resolveKill(a: KillAttempt): KillResult {
   if (targetZone !== zone) return { ok: false, reason: "Målet står ikke i samme zone." };
   const others = Object.entries(a.positions).filter(([p, z]) => z === zone && p !== a.killer && p !== a.target);
   if (others.length > 0) return { ok: false, reason: "Der er vidner i zonen." };
+  if (a.guarded?.includes(a.target)) return { ok: false, reason: "Målet er under vagt." };
   return { ok: true, zone };
 }

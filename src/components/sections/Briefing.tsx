@@ -10,8 +10,8 @@ const pillars = [
     body: "Hemmelige roller med én evne. Bluffs. Information, der sjældent er hel. De døde og de frosne taler stadig.",
   },
   {
-    title: "Jagten",
-    body: "Fysisk neutralisering. Man kan være sikker på, hvem det er, og stadig ikke nå frem i tide.",
+    title: "Tribunalet",
+    body: "Hver fredag stemmer I én i kryo. Ingen kan bevise noget. Den, der overbeviser flest, bestemmer.",
   },
 ];
 
