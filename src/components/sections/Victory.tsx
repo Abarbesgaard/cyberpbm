@@ -2,7 +2,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 
 export function Victory() {
   return (
-    <section id="victory" className="hull-alt wainscot px-8 py-24 md:px-16">
+    <section id="victory" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion II // Sejrsbetingelser">
         To hold. <span className="text-cp-red-bright">Ét skib.</span>
       </SectionHeader>

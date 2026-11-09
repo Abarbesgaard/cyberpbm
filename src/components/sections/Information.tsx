@@ -8,7 +8,7 @@ const levels = [
 
 export function Information() {
   return (
-    <section id="information" className="hull-alt wainscot px-8 py-24 md:px-16">
+    <section id="information" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader
         eyebrow="Sektion VI // Information"
         intro="Ingen evne fanger en syntetiker med ét klik. Information er nyttig, men sjældent hel. Du ved kun gratis, hvem der står i dit eget rum — alt andet er vidneudsagn."

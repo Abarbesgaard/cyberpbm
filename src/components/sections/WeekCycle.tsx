@@ -23,7 +23,7 @@ TRIBUNAL:   Anna`;
 export function WeekCycle() {
   const { role } = useRole();
   return (
-    <section id="week" className="hull-alt wainscot px-8 py-24 md:px-16">
+    <section id="week" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion IV // Ugen" intro={intro[role ?? "default"]}>
         The <span className="text-cp-yellow">Cycle</span>
       </SectionHeader>

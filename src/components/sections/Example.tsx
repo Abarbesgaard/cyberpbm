@@ -15,7 +15,7 @@ const facts = [
 
 export function Example() {
   return (
-    <section id="example" className="hull-alt wainscot px-8 py-24 md:px-16">
+    <section id="example" className="hull-alt px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion X // Eksempel">
         Uge 04 — <span className="text-cp-red-bright">Containment Failure</span>
       </SectionHeader>
