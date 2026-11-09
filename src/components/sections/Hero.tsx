@@ -31,7 +31,7 @@ export function Hero() {
           <div className="mt-5 inline-flex items-stretch">
             <span className="hazard-red-sm block w-6" aria-hidden />
             <span className="border border-l-0 border-cp-red px-3 py-1 font-mono text-[0.7rem] tracking-[0.3em] uppercase text-cp-red-bright">
-              Social deduction // v0.19
+              Social deduction // v0.20
             </span>
           </div>
 

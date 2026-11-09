@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Alle ekkoer er ens", to: "Ekkoer får en skæbne: Jorden, Spøgelse eller Afløser", why: "Hver skæbne findes én gang pr. kampagne. Flere døde bliver til forskellige ting, og ingen sidder passivt i fire uger." },
   { from: "Hunt Protocol", to: "USCSS Cassandra", why: "Der er ingen jagt længere. Spillet hedder bare skibets navn." },
   { from: "#shipwide er en åben chatkanal", to: "#shipwide er en anonym højttaler", why: "Spillere skriver til ORACLE, som læser beskeden op uden afsender. Ingen afsløres af at tale, og en underskrift beviser intet." },
   { from: "Fast krise pr. scenarie i uge 4", to: "Krisen rulles på d20", why: "Tyve mulige kriser gør hver kampagne forskellig. Rulles i uge 3, så spillerne kan planlægge." },
@@ -38,6 +39,7 @@ const questions = [
   "Bliver sabotage syntetikernes eneste strategi?",
   "Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
+  "Gør Afløseren drab for svage?",
   "Er Vagt for stærk mod syntetikere, der kun har ét drab hver?",
 ];
 
@@ -45,7 +47,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.19</span>
+        v0.7 → <span className="text-cp-yellow">v0.20</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (
