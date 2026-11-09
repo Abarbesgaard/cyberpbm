@@ -91,15 +91,6 @@ export const synthRoles: SynthRoleDef[] = [
 
 export type RoleId = CrewRoleId | SynthRoleId;
 
-export const weeks = [
-  { n: 1, name: "Awakening", text: "I vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Intet tribunal." },
-  { n: 2, name: "First Anomaly", text: "Sabotage og de øvrige syntetiker-evner låses op. Første tribunal fredag: flertal sender én i kryo." },
-  { n: 3, name: "Broken Trust", text: "Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning." },
-  { n: 4, name: "Containment Failure", text: "ORACLE forsegler Rygraden hele ugen. Kun ringen rundt er åben." },
-  { n: 5, name: "Last Transmission", text: "Positionsloggen fra uge 1 frigives. Gamle alibier kan tjekkes." },
-  { n: 6, name: "Final Protocol", text: "Sidste tribunal. Derefter afsløres alle roller." },
-];
-
 export interface BalanceRow {
   players: number;
   crew: number;

@@ -7,7 +7,6 @@ const sectionLinks = [
   { href: "#week", label: "Ugen" },
   { href: "#tribunal", label: "Tribunal" },
   { href: "#roles", label: "Roller" },
-  { href: "#campaign", label: "Kampagne" },
 ];
 
 export function Nav() {

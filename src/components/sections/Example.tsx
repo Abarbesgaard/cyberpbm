@@ -17,7 +17,7 @@ const facts = [
 export function Example() {
   return (
     <section id="example" className="hull-alt px-8 py-24 md:px-16">
-      <SectionHeader eyebrow="Sektion XI // Eksempel">
+      <SectionHeader eyebrow="Sektion X // Eksempel">
         Uge 04 — <span className="text-cp-red-bright">Containment Failure</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
