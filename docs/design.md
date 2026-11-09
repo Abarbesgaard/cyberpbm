@@ -1,4 +1,4 @@
-# USCSS CASSANDRA — Hunt Protocol v0.16
+# USCSS CASSANDRA — Hunt Protocol v0.17
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,16 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.15
+## 0. Hvad er ændret fra v0.16
+
+v0.17 gør #shipwide til skibets højttaler.
+
+| v0.16 | v0.17 | Hvorfor |
+|---|---|---|
+| Alle kan skrive i #shipwide med eget navn | **Spillere skriver til ORACLE, som læser op i #shipwide uden afsender** | Et højttaleranlæg viser ikke, hvem der taler. Ingen afsløres af at tale, og en underskrift beviser intet. |
+| Beskeder vises, når de skrives | **Oplæsning kl. 12 og 20 i tilfældig rækkefølge** | Tidspunktet må ikke afsløre afsenderen. |
+
+### Fra v0.15 til v0.16
 
 v0.16 flytter scenarierne til en egen *Scenariebog* og gør krisen i uge 4 tilfældig.
 
@@ -187,9 +196,9 @@ Rygraden er hurtig, men eksponeret. Alle kan nå den på én uge.
 
 ### Kommunikation
 
-- **#shipwide** — offentlig kanal. Alle kan læse og skrive.
-- **Sektorkanal** — privat kanal for spillere i samme zone. Opdateres hver mandag.
-- **Ingen DM'er.** Privat tale kræver, at man står samme sted. Det er her, alibier opstår.
+- **#shipwide — højttaleren.** Kun ORACLE skriver her. Spillere sender *HØJTTALER: …* privat til ORACLE, som læser beskeden op ordret og **uden afsender** kl. 12 og 20, i tilfældig rækkefølge. Højst 3 pr. spiller pr. dag. Underskrifter beviser intet.
+- **Sektorkanal** — privat kanal for spillere i samme zone, med navn. Opdateres hver mandag.
+- **Ingen DM'er mellem spillere.** Privat tale med navn kræver, at man står samme sted. Det er her, alibier opstår.
 
 ### Ordren
 
@@ -248,7 +257,7 @@ eller
 
 > *"TRIBUNAL: 3 af 6 stemmer mod Anna. Intet flertal. Ingen dom."*
 
-Antallet er offentligt, men aldrig hvem der stemte. En dom, der manglede én stemme, rejser spørgsmålet: Hvem stemte nej, og hvorfor?
+Antallet er offentligt, men aldrig hvem der stemte. En dom, der manglede én stemme, rejser spørgsmålet: Hvem stemte ikke på vedkommende, og hvorfor?
 
 ### 6.2 Den dømtes rolle
 
@@ -259,7 +268,7 @@ Den dømtes rolle afsløres ikke. Besætningen ved ikke, om de ramte rigtigt, f�
 Døde spillere og spillere i kryo bliver **Ekko**. Et ekko:
 
 - mister bevægelse, evne, arbejde og sektorkanal.
-- må skrive frit i **#shipwide**. Alt, et ekko siger, er vidneudsagn — ORACLE bekræfter aldrig en rolle.
+- må tale via **højttaleren** som alle andre. Alt, et ekko siger, er vidneudsagn — ORACLE bekræfter aldrig en rolle.
 - sender hver fredag en kort ordre: **Vedligehold → én sektion.** Den sektion får intet forfald den uge. Det giver ikke +1, og ORACLE oplyser aldrig, hvem der vedligeholdt hvad.
 - har **én spøgelsesstemme**, der kan bruges i ét tribunal i resten af spillet.
 

@@ -1,9 +1,9 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const testimony = [
-  { who: "Anna", text: "Jeg var i Livsstøtte med Peter. Han sagde, han ville tjekke terminalen." },
-  { who: "Peter", text: "Jeg er Sikkerhedschef. Jeg stemte ikke på Anna. Jeg tror ikke, hun er syntetiker." },
-  { who: "Sara", text: "Jeg er Sensortekniker. Min scan viste 2 personer i Livsstøtte." },
+  { who: "Højttaler", text: "Anna her. Jeg var i Livsstøtte med Peter. Han sagde, han ville tjekke terminalen." },
+  { who: "Højttaler", text: "Peter her. Jeg er Sikkerhedschef. Jeg stemte ikke på Anna. Jeg tror ikke, hun er syntetiker." },
+  { who: "Højttaler", text: "Jeg er Sensortekniker. Min scan viste 2 personer i Livsstøtte." },
 ];
 
 const facts = [
@@ -11,7 +11,8 @@ const facts = [
   "Én af de to er altså syntetikeren. Den, der saboterede, tog en risiko.",
   "Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig — eller sig selv?",
   "Livsstøtte faldt kun 1: sabotage −2, én arbejdede +1. Anna og Peter siger begge, at de arbejdede. Én af dem lyver.",
-  "Saras scan bekræfter kun, hvad alle ved. Er hun ægte, eller bygger hun troværdighed?",
+  "Højttaleren viser aldrig afsender. \"Anna her\" kan være skrevet af hvem som helst — også af Peter.",
+  "Den anonyme scan bekræfter kun, hvad alle ved. Er afsenderen ægte, eller bygger syntetikeren troværdighed?",
 ];
 
 export function Example() {
@@ -37,7 +38,7 @@ Intet flertal. Ingen dom.`}
           </p>
           <div className="space-y-3">
             {testimony.map((t) => (
-              <div key={t.who} className="bezel p-4">
+              <div key={t.text} className="bezel p-4">
                 <span className="font-mono text-[0.7rem] uppercase text-cp-yellow">{t.who}:</span>{" "}
                 <span className="text-[0.9rem] text-cp-off">"{t.text}"</span>
               </div>
@@ -52,7 +53,7 @@ Intet flertal. Ingen dom.`}
             ))}
           </ul>
           <p className="mt-6 text-[0.95rem] leading-[1.6] text-cp-white">
-            Behold ordren på Anna — eller flyt den til Peter? Begge ved, hvad der kommer.
+            Stem på Anna igen — eller på Peter? Begge ved, hvad der kommer.
           </p>
         </div>
       </div>

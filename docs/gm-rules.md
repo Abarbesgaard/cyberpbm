@@ -26,7 +26,7 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - Offentliggør aldrig, hvilke roller der er i spil.
 9. **Vælg scenarie** i *Scenariebogen* (Nødsignal, Karantæne eller Hjemrejse), eller rul d6. Sæt alle seks systemer til 3. Annoncér scenariet i den første broadcast.
 10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
-11. **Opret Slack-kanaler:** **#shipwide** og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
+11. **Opret Slack-kanaler:** **#shipwide**, hvor kun ORACLE må skrive (Slack: *Posting permissions*), og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
 12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, arbejde, drab, vedligehold, stemme — plus systemstatus og brugte drab.
 
 ### Påstande er frie
@@ -48,6 +48,14 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 7. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
 
 **Mandag 09:00 — rapport.**
+
+**Mandag–fredag kl. 12 og 20 — højttaleren.** Saml alle beskeder, der starter med *HØJTTALER:*, siden sidst. Post dem i #shipwide i tilfældig rækkefølge, ordret og uden afsender:
+
+```
+HØJTTALER: "Anna her. Jeg var i Livsstøtte med Peter."
+```
+
+Højst 3 pr. spiller pr. dag. Afvis kun beskeder, der citerer eller indsætter dine private beskeder. Ekkoer bruger højttaleren som alle andre. Ingen oplæsning i weekenden.
 
 ## Broadcast-skabelon
 

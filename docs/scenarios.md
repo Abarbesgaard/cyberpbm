@@ -48,8 +48,8 @@ Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen.
 |---|---|---|
 | 1 | **Strømudfald** | Rygraden forsegles. Ingen kan rykke ind eller ud, heller ikke via Skakt. |
 | 2 | **Karantænezone** *(d6)* | Ingen kan rykke ind i sektionen, heller ikke via Skakt. Ud er tilladt. |
-| 3 | **Kommunikationsnedbrud** | Sektorkanalerne er lukket. Kun #shipwide virker. |
-| 4 | **Radiotavshed** | #shipwide er lukket. Kun sektorkanalerne virker. Ekkoer er tavse. |
+| 3 | **Kommunikationsnedbrud** | Sektorkanalerne er lukket. Kun højttaleren i #shipwide virker. |
+| 4 | **Radiotavshed** | Højttaleren er slukket. ORACLE læser ingen beskeder op. Kun sektorkanalerne virker. Ekkoer er tavse. |
 | 5 | **Sensorblackout** | Alle informationsevner giver *"Signal forstyrret."* |
 | 6 | **Trykfald** *(d6)* | Sektionen mister 1 ekstra ved afgørelsen. |
 | 7 | **Brand** *(d6)* | Arbejde i sektionen tæller ikke. Reparation og vedligehold virker. |
