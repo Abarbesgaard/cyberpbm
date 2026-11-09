@@ -1,8 +1,8 @@
-# USCSS Cassandra — Damage Control
+# USCSS Cassandra
 
 Et seksugers social deduction-spil, der spilles asynkront i Slack. Besætningen skal holde skibets seks systemer i live og fuldføre kampagnens scenarie — mens skjulte syntetikere saboterer indefra. Tribunalet kan sende dem i kryo, men kun skibet afgør sejren.
 
-- `docs/design.md` — fuldt design (v0.18)
+- `docs/design.md` — fuldt design (v0.19)
 - `docs/player-rules.md` — spillerregler
 - `docs/gm-rules.md` — ORACLE-håndbog for spillederen
 - `docs/scenarios.md` — scenariebog: scenarier, arkiver, krisetabel (d20) og sektionstabel (d6)
