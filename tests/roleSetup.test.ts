@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BLUFFS_PER_SYNTH, ROLE_TAG_CAP, crewRoles } from "../src/content/game.ts";
+import { BLUFFS_PER_SYNTH, ROLE_TAG_CAP, crewRoles, synthRoles } from "../src/content/game.ts";
 import {
   RoleSetupError,
   assignBluffs,
@@ -28,7 +28,10 @@ for (const n of [5, 6, 7, 8]) {
       const roles = crew.map((p) => p.roleId);
       assert.equal(new Set(roles).size, roles.length, "dubleret rolle");
       assert.ok(roles.includes("engineer"), "kernerollen mangler");
-      assert.ok(synths.every((p) => p.roleId === null));
+      const synthIds = synths.map((p) => p.roleId);
+      assert.equal(new Set(synthIds).size, synthIds.length, "dubleret syntetikerrolle");
+      assert.ok(synthIds.includes("special_order"), "Særordre mangler");
+      assert.ok(synthIds.every((id) => synthRoles.some((r) => r.id === id)));
       assert.equal(s.activeCrewRoles.length + s.unusedCrewRoles.length, crewRoles.length);
 
       for (const p of synths) {
@@ -156,4 +159,32 @@ test("validering fanger syntetiker med besætningsrolle og forkert antal bluffs"
   const problems = validateRoleSetup(s);
   assert.ok(problems.some((p) => /må ikke have en besætningsrolle/.test(p)));
   assert.ok(problems.some((p) => /skal have præcis 2 bluff-forslag, fik 1/.test(p)));
+});
+
+test("syntetikerroller: Særordre altid, anden rolle varierer ved to syntetikere", () => {
+  const second = new Set<string>();
+  for (let seed = 1; seed <= 200; seed++) {
+    const s = createRoleSetup(names(8), seededRng(seed));
+    assert.equal(s.activeSynthRoles[0], "special_order");
+    second.add(s.activeSynthRoles[1]);
+  }
+  assert.deepEqual([...second].sort(), synthRoles.filter((r) => !r.core).map((r) => r.id).sort());
+});
+
+test("validering fanger dublerede syntetikerroller og syntetikerrolle hos besætning", () => {
+  const s = base();
+  const [a, b] = s.players.filter((p) => p.team === "synth");
+  b.roleId = a.roleId;
+  s.players.find((p) => p.team === "crew")!.roleId = "jammer";
+  const problems = validateRoleSetup(s);
+  assert.ok(problems.some((p) => /er tildelt både .+ og .+\. Hver rolle må kun bruges én gang/.test(p)), problems.join("\n"));
+  assert.ok(problems.some((p) => /må ikke have en syntetikerrolle \(Støjsender\)/.test(p)), problems.join("\n"));
+});
+
+test("validering fanger manglende Særordre", () => {
+  const s = createRoleSetup(names(6), seededRng(3));
+  const synth = s.players.find((p) => p.team === "synth")!;
+  synth.roleId = "forger";
+  s.activeSynthRoles = ["forger"];
+  assert.ok(validateRoleSetup(s).some((p) => /Særordre er syntetikernes kernerolle/.test(p)));
 });

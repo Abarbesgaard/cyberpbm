@@ -7,7 +7,7 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
 - **Besætning:** Find syntetikerne og få dem i kryo inden udgangen af uge 6.
-- **Syntetiker:** Overlev Final Protocol, eller bring skibets integritet til 0. Du kender de andre syntetikere og får to bluff-forslag.
+- **Syntetiker:** Overlev Final Protocol, eller bring skibets integritet til 0. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag.
 
 ## Roller og påstande
 
@@ -16,8 +16,18 @@ Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 - **Ingeniør er altid i spil.** Det er den eneste rolle, alle ved er aktiv.
 - **Du må påstå enhver rolle**, også en, en anden har påstået.
 - **Dobbeltpåstand:** Påstår to spillere samme rolle, lyver mindst én af dem. ORACLE bekræfter eller afkræfter aldrig en påstand.
-- **Syntetikere har ingen besætningsrolle.** De kan ikke bruge evnen fra en rolle, de udgiver sig for, og får intet evneresultat.
+- **Syntetikere har deres egne roller**, også unikke. Særordre (sabotage) er altid i spil. Ved to syntetikere har den anden Forfalsker, Skaktløber eller Støjsender.
+- Syntetikere kan ikke bruge evnen fra en besætningsrolle, de udgiver sig for, og får intet evneresultat.
 - **Bluff-forslag:** Hver syntetiker får to roller, der garanteret *ikke* er i spil. Det er forslag til påstande, ikke roller.
+
+## Syntetikerroller
+
+| Rolle | Fra uge | Evne |
+|---|---|---|
+| Særordre *(altid i spil)* | 2 | **Sabotage:** Integritet −1 i din zone. ORACLE broadcaster zonen. |
+| Forfalsker | 2 | **Forfalskning:** En spillers private resultat denne uge er falsk, men troværdigt. |
+| Skaktløber | 1 | **Skakt:** Ryk til en vilkårlig zone. |
+| Støjsender | 2 | **Støj:** Informationsevner i eller på en zone giver *"Signal forstyrret."* |
 
 ## Hver uge
 
@@ -86,8 +96,8 @@ Bliver du sendt i kryo, er du ude af de aktive handlinger. Du må stadig:
 | Uge | Navn | Nyt |
 |---|---|---|
 | 1 | Awakening | Informationsevner og Skakt er aktive. Intet tribunal. |
-| 2 | First Anomaly | Sabotage. Første tribunal. |
-| 3 | Broken Trust | Forfalskning. Første pågribelse. |
+| 2 | First Anomaly | Sabotage, Forfalskning og Støj. Første tribunal. |
+| 3 | Broken Trust | Første pågribelse. |
 | 4 | Containment Failure | Én zone forsegles hele ugen. |
 | 5 | Last Transmission | Positionsloggen fra uge 1 frigives. |
 | 6 | Final Protocol | Tribunalet sender direkte i kryo. Rollerne afsløres. |

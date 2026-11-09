@@ -91,7 +91,7 @@ export function ShipMap() {
               {current.neighbours.map((n) => (
                 <div key={n}>&nbsp;&nbsp;- {zones.find((z) => z.id === n)?.name}</div>
               ))}
-              <div className="mt-2 opacity-60">&gt; Syntetiker m. Skakt: op til to zoner.</div>
+              <div className="mt-2 opacity-60">&gt; Skaktløber: vilkårlig zone.</div>
             </>
           ) : (
             <div>&gt; VÆLG EN ZONE<span className="blink">_</span></div>

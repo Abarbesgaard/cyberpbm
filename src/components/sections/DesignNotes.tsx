@@ -1,20 +1,22 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
-  { from: "Samme rolle kunne i princippet deles", to: "Hver rolle findes højst én gang", why: "En dobbeltpåstand betyder altid, at mindst én lyver. Det gør påstande til spillets valuta." },
-  { from: "Fast rolleliste pr. spillerantal", to: "Ingeniør + hemmelig trækning", why: "v0.6 offentliggjorde, hvilke roller der var i spil. Nu er kun kataloget og trækningsreglerne offentlige." },
-  { from: "7 roller i kataloget", to: "11 roller i kataloget", why: "Ved 8 spillere var der kun 1 ubrugt rolle til 4 bluffs. Nu er der mindst 5." },
-  { from: "To bluff-roller", to: "To bluff-forslag fra ubrugte roller", why: "Forslag, ikke roller. Syntetikere kan påstå hvad som helst, men aldrig bruge evnen." },
-  { from: "Ingen grænse for informationsroller", to: "Højst to roller pr. tag", why: "Forhindrer, at tre positionsroller kortlægger hele skibet." },
+  { from: "Alle syntetikere har Særordre med tre tilstande", to: "Én unik syntetikerrolle pr. syntetiker", why: "Samme princip som besætningen: én evne pr. spiller, hver rolle højst én gang." },
+  { from: "Sabotage er en tilstand", to: "Særordre er altid i spil og saboterer", why: "Integritetsuret skal altid have en syntetiker, der kan trække det. Spejler Ingeniøren." },
+  { from: "Skakt: op til to zoner", to: "Skaktløber: vilkårlig zone", why: "To zoner via Rygraden nåede allerede alle zoner. Nu siger reglen det ærligt." },
+  { from: "Forfalskning fra uge 3", to: "Forfalsker fra uge 2", why: "En rolle med kun én evne må ikke stå stille i to uger." },
+  { from: "—", to: "Ny: Støjsender", why: "Blokerer information i én zone. Synligt — besætningen ved, at nogen forstyrrer, men ikke hvem." },
 ];
 
 const questions = [
+  "Er Særordre alene for svag ved 5–6 spillere, hvor der kun er én syntetiker?",
+  "Afslører \"Signal forstyrret\", at Støjsender er i spil, og er det et problem?",
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
   "Afslører fasthold-point Sikkerhedschefen? (2 point med 1 til stede beviser rollen.)",
   "Er to-mands-reglen for svær med 5 spillere?",
-  "Er Skakt for stærk til flugt? Alternativ: først fra uge 3.",
+  "Er Skaktløber for stærk til flugt? Alternativ: først fra uge 3.",
   "Bliver integritetsuret syntetikernes eneste strategi?",
   "Er én pejling ved udstedelse nok til at starte en jagt?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
@@ -25,7 +27,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.6 → <span className="text-cp-yellow">v0.7</span>
+        v0.7 → <span className="text-cp-yellow">v0.8</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

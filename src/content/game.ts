@@ -63,16 +63,32 @@ export const ROLE_TAG_CAP = 2;
 /** Bluff suggestions each synthetic receives. */
 export const BLUFFS_PER_SYNTH = 2;
 
-export const synthModes = [
-  { name: "Skakt", from: 1, text: "Ryk op til to zoner gennem vedligeholdelsesskakterne." },
-  { name: "Sabotage", from: 2, text: "Integritet −1. ORACLE broadcaster zonen — aldrig navnet." },
-  { name: "Forfalskning", from: 3, text: "Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt." },
+export type SynthRoleId = "special_order" | "forger" | "crawler" | "jammer";
+
+export interface SynthRoleDef {
+  id: SynthRoleId;
+  name: string;
+  ability: string;
+  from: number;
+  text: string;
+  /** Always in play: the lead synthetic. */
+  core?: boolean;
+}
+
+/** One ability per synthetic. Drawn without replacement, like crew roles. */
+export const synthRoles: SynthRoleDef[] = [
+  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Integritet −1 i din zone. ORACLE broadcaster zonen — aldrig navnet." },
+  { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. Vedkommendes private resultat denne uge er falsk, men troværdigt." },
+  { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Ryk til en vilkårlig zone gennem vedligeholdelsesskakterne." },
+  { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner brugt i eller på zonen giver: \"Signal forstyrret.\"" },
 ];
+
+export type RoleId = CrewRoleId | SynthRoleId;
 
 export const weeks = [
   { n: 1, name: "Awakening", text: "I vågner i tilfældige zoner. Informationsevner og Skakt er aktive. Intet tribunal." },
-  { n: 2, name: "First Anomaly", text: "Sabotage låses op. Første tribunal fredag." },
-  { n: 3, name: "Broken Trust", text: "Forfalskning låses op. Første pågribelse er mulig." },
+  { n: 2, name: "First Anomaly", text: "Sabotage og de øvrige syntetiker-evner låses op. Første tribunal fredag." },
+  { n: 3, name: "Broken Trust", text: "Første pågribelse er mulig." },
   { n: 4, name: "Containment Failure", text: "ORACLE forsegler én zone hele ugen. Ingen ind, ingen ud." },
   { n: 5, name: "Last Transmission", text: "Positionsloggen fra uge 1 frigives. Gamle alibier kan tjekkes." },
   { n: 6, name: "Final Protocol", text: "Tribunalet sender direkte i kryo. Derefter afsløres alle roller." },

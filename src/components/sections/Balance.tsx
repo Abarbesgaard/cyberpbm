@@ -12,6 +12,7 @@ const setupSteps = [
   `${core} er altid i spil (integritetsuret afhænger af reparation).`,
   `Resten trækkes uden tilbagelægning fra kataloget — højst ${ROLE_TAG_CAP} roller med samme tag.`,
   "Rollerne fordeles hemmeligt. Ingen rolle må optræde to gange.",
+  "Syntetikere: Særordre er altid i spil. En eventuel anden syntetiker trækker én af de øvrige syntetikerroller.",
   `Hver syntetiker får ${BLUFFS_PER_SYNTH} forskellige bluff-forslag, kun fra de ubrugte roller. Overlap mellem syntetikere er tilladt, men undgås, når puljen rækker.`,
 ];
 
