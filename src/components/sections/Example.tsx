@@ -21,7 +21,7 @@ export function Example() {
       </SectionHeader>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <div>
-          <pre className="mb-6 whitespace-pre-wrap border border-cp-red bg-cp-dark p-6 font-mono text-[0.8rem] leading-[1.8] text-cp-off">
+          <pre className="crt crt-red mb-6 whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
 {`ORACLE // SHIPWIDE // UGE 4
 INTEGRITET: 2/4
 ANOMALI: Uautoriseret adgang i Livsstøtte.
@@ -42,7 +42,7 @@ PÅGRIBELSE: Forsøgt i Livsstøtte.
           </div>
         </div>
         <div>
-          <h3 className="mb-4 font-head text-[1.6rem] font-extrabold uppercase">Hvad ved besætningen?</h3>
+          <h3 className="mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase">Hvad ved besætningen?</h3>
           <ul className="space-y-3">
             {facts.map((f) => (
               <li key={f} className="border-l-2 border-cp-yellow-dim pl-4 text-[0.95rem] leading-[1.6] text-cp-off">{f}</li>

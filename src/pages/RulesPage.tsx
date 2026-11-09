@@ -37,7 +37,7 @@ export function RulesPage() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-cp-panel pt-[52px]">
+    <section className="relative min-h-screen bg-cp-panel pt-[56px]">
       <div className="px-8 pt-16 pb-8 md:px-16">
         <div className="mb-2 flex items-center gap-3 font-mono text-[0.65rem] tracking-[0.3em] uppercase text-cp-red">
           <Link
@@ -48,7 +48,7 @@ export function RulesPage() {
           </Link>
           <span className="h-px flex-1 bg-gradient-to-r from-cp-border-bright to-transparent" />
         </div>
-        <h2 className="font-head text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold uppercase leading-[0.95] tracking-tight">
+        <h2 className="font-head text-[clamp(1.5rem,3.2vw,2.6rem)] uppercase leading-[1.15] tracking-[0.08em]">
           Regler <span className="text-cp-yellow">&amp; Design</span>
         </h2>
         <p className="mt-4 max-w-[680px] text-[1.05rem] leading-relaxed text-cp-off">
@@ -78,7 +78,7 @@ export function RulesPage() {
 
         {tabs.map(({ key }) => (
           <TabsContent key={key} value={key}>
-            <div className="mx-auto max-w-[900px] rounded-none border border-cp-border bg-cp-dark p-8 md:p-12">
+            <div className="mx-auto max-w-[900px] bezel rounded-none p-8 md:p-12">
               <div className="prose-cyber">
                 {content[key] ? (
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>

@@ -37,7 +37,7 @@ export function Briefing() {
             <div className="mb-2 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">
               Inspiration
             </div>
-            <h3 className="mb-3 font-head text-[1.6rem] font-extrabold uppercase leading-none">
+            <h3 className="mb-3 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">
               {p.title}
             </h3>
             <p className="text-[0.9rem] leading-[1.7] text-cp-off">{p.body}</p>

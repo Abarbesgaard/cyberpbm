@@ -19,7 +19,7 @@ export function Campaign() {
               }`}
             />
             <div className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-mid">Uge 0{w.n}</div>
-            <h3 className="font-head text-[1.6rem] font-extrabold uppercase leading-tight">{w.name}</h3>
+            <h3 className="font-head tracking-[0.08em] text-[1.05rem] uppercase leading-tight">{w.name}</h3>
             <p className="max-w-[640px] text-[0.95rem] leading-[1.6] text-cp-off">{w.text}</p>
           </li>
         ))}

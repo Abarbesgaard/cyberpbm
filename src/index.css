@@ -6,28 +6,29 @@
 
 /* ═══════════════════════════════════════════
    USCSS CASSANDRA THEME TOKENS (single source of truth)
-   cp-yellow = phosphor green (crew), cp-red = alarm (synthetics), cp-cyan = amber.
+   Retro-futurist CRT palette: cp-yellow = amber (primary), cp-cyan = green phosphor
+   (terminals), cp-red = alarm (synthetics). Warm off-white for text.
    Mapped to shadcn semantic variables.
    inspiration.html palette applied to the :root (always dark).
    ═══════════════════════════════════════════ */
 :root {
   /* Terminal raw palette */
-  --cp-red: #C8281E;
-  --cp-red-bright: #FF3B30;
-  --cp-red-dim: #5A120D;
-  --cp-yellow: #7DFFA0;
-  --cp-yellow-dim: #2E6B40;
-  --cp-cyan: #FFB347;
-  --cp-cyan-dim: #7A5420;
-  --cp-green: #7DFFA0;
-  --cp-white: #DDE8E1;
-  --cp-off: #A7B5AD;
-  --cp-mid: #55665C;
-  --cp-dark: #050807;
-  --cp-panel: #0A0F0D;
-  --cp-panel2: #0F1613;
-  --cp-border: #1C2A24;
-  --cp-border-bright: #2B3F35;
+  --cp-red: #D9472B;
+  --cp-red-bright: #FF5A3C;
+  --cp-red-dim: #4A1A12;
+  --cp-yellow: #F2A93B;
+  --cp-yellow-dim: #6E4A16;
+  --cp-cyan: #7CF29A;
+  --cp-cyan-dim: #2C5A38;
+  --cp-green: #7CF29A;
+  --cp-white: #E9E4D4;
+  --cp-off: #B9B29E;
+  --cp-mid: #6B6656;
+  --cp-dark: #0B0C09;
+  --cp-panel: #11120E;
+  --cp-panel2: #181A14;
+  --cp-border: #2A2B22;
+  --cp-border-bright: #3D3E31;
 
   /* shadcn semantic mapping */
   --background: var(--cp-dark);
@@ -70,9 +71,10 @@
 }
 
 @theme inline {
-  --font-sans: "Rajdhani", sans-serif;
-  --font-head: "Barlow Condensed", sans-serif;
-  --font-mono: "Share Tech Mono", monospace;
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-head: "Michroma", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-crt: "VT323", monospace;
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -106,7 +108,7 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
 
-  /* Extra cyberpunk palette exposed for Tailwind utilities */
+  /* Extra palette exposed for Tailwind utilities */
   --color-cp-red: var(--cp-red);
   --color-cp-red-bright: var(--cp-red-bright);
   --color-cp-red-dim: var(--cp-red-dim);
@@ -163,8 +165,8 @@ body::before {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.15) 2px,
-    rgba(0, 0, 0, 0.15) 4px
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
   );
   pointer-events: none;
   z-index: 9999;
@@ -174,10 +176,19 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.4;
+  animation: flicker 6s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.85; }
+  94% { opacity: 1; }
 }
 
 @keyframes gridScroll {
@@ -198,14 +209,95 @@ body::after {
   animation: blink 1s steps(1) infinite;
 }
 
-.scanlines {
+/* ═══════════════════════════════════════════
+   RETRO-FUTURIST PRIMITIVES
+   ═══════════════════════════════════════════ */
+
+/* CRT monitor: rounded bezel, phosphor glow, scanlines */
+.crt {
+  position: relative;
+  font-family: var(--font-crt);
+  color: var(--cp-cyan);
+  background: radial-gradient(ellipse at center, #0E1A11 0%, #060A07 100%);
+  border: 2px solid var(--cp-border-bright);
+  border-radius: 18px;
+  box-shadow:
+    inset 0 0 40px rgba(124, 242, 154, 0.08),
+    inset 0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 0 6px var(--cp-panel2),
+    0 0 0 7px var(--cp-border);
+  text-shadow: 0 0 6px rgba(124, 242, 154, 0.55);
+  overflow: hidden;
+}
+
+.crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
     transparent 2px,
-    rgba(0, 0, 0, 0.35) 3px
+    rgba(0, 0, 0, 0.3) 3px
+  );
+  pointer-events: none;
+}
+
+.crt-amber {
+  color: var(--cp-yellow);
+  background: radial-gradient(ellipse at center, #1C140A 0%, #0A0704 100%);
+  box-shadow:
+    inset 0 0 40px rgba(242, 169, 59, 0.08),
+    inset 0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 0 6px var(--cp-panel2),
+    0 0 0 7px var(--cp-border);
+  text-shadow: 0 0 6px rgba(242, 169, 59, 0.55);
+}
+
+.crt-red {
+  color: var(--cp-red-bright);
+  background: radial-gradient(ellipse at center, #1E0B07 0%, #0A0403 100%);
+  box-shadow:
+    inset 0 0 40px rgba(255, 90, 60, 0.08),
+    inset 0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 0 6px var(--cp-panel2),
+    0 0 0 7px var(--cp-border);
+  text-shadow: 0 0 6px rgba(255, 90, 60, 0.55);
+}
+
+/* Industrial panel with inset rule, like a moulded console */
+.bezel {
+  background: var(--cp-panel);
+  border: 1px solid var(--cp-border-bright);
+  box-shadow: inset 0 0 0 4px var(--cp-panel), inset 0 0 0 5px var(--cp-border);
+}
+
+.hazard {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--cp-yellow) 0 14px,
+    #0B0C09 14px 28px
   );
 }
+
+.hazard-sm {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--cp-yellow) 0 4px,
+    #0B0C09 4px 8px
+  );
+}
+
+.hazard-red {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--cp-red) 0 14px,
+    #0B0C09 14px 28px
+  );
+}
+
+.glow-amber { text-shadow: 0 0 18px rgba(242, 169, 59, 0.45); }
+.glow-red { text-shadow: 0 0 18px rgba(255, 90, 60, 0.45); }
 
 
 /* ═══════════════════════════════════════════
@@ -215,15 +307,31 @@ body::after {
 .prose-cyber h2,
 .prose-cyber h3 {
   font-family: var(--font-head);
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
   color: var(--cp-white);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
 }
 
-.prose-cyber h1 { font-size: 2.5rem; line-height: 0.95; margin-bottom: 1rem; }
-.prose-cyber h2 { font-size: 1.8rem; line-height: 1; margin-top: 2rem; margin-bottom: 0.75rem; }
-.prose-cyber h3 { font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose-cyber h1 { font-size: 1.7rem; line-height: 1.2; margin-bottom: 1rem; color: var(--cp-yellow); }
+.prose-cyber h2 { font-size: 1.15rem; line-height: 1.3; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--cp-border-bright); }
+.prose-cyber h3 { font-size: 0.95rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--cp-yellow); }
+
+.prose-cyber pre {
+  font-family: var(--font-crt);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: var(--cp-cyan);
+  background: #060A07;
+  border: 1px solid var(--cp-border-bright);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  text-shadow: 0 0 6px rgba(124, 242, 154, 0.45);
+}
+
+.prose-cyber pre code { background: none; padding: 0; color: inherit; font-family: inherit; font-size: inherit; }
 
 .prose-cyber p {
   color: var(--cp-off);
@@ -237,10 +345,13 @@ body::after {
   margin-bottom: 1rem;
 }
 
+.prose-cyber ul { list-style: square; }
+.prose-cyber ol { list-style: decimal; }
 .prose-cyber li { margin-bottom: 0.4rem; }
+.prose-cyber li::marker { color: var(--cp-yellow); }
 
 .prose-cyber blockquote {
-  border-left: 3px solid var(--cp-red);
+  border-left: 3px solid var(--cp-yellow);
   padding-left: 1.25rem;
   color: var(--cp-off);
   font-style: italic;
@@ -263,15 +374,15 @@ body::after {
 }
 
 .prose-cyber th {
-  background: var(--cp-red-dim);
-  color: var(--cp-white);
+  background: var(--cp-panel2);
+  color: var(--cp-yellow);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 0.75rem 1rem;
   text-align: left;
-  border-bottom: 2px solid var(--cp-red);
+  border-bottom: 2px solid var(--cp-yellow-dim);
 }
 
 .prose-cyber td {
@@ -302,4 +413,15 @@ body::after {
   .nav-links-hide {
     display: none;
   }
+}
+
+/* Terminal boot sequence */
+@keyframes bootIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.boot-line {
+  opacity: 0;
+  animation: bootIn 0.05s steps(1) forwards;
 }

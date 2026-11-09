@@ -30,18 +30,18 @@ export function WeekCycle() {
       <div className="grid grid-cols-1 gap-px border border-cp-border-bright bg-cp-border md:grid-cols-4">
         {steps.map((s) => (
           <div key={s.num} className="relative bg-cp-dark p-8">
-            <div className="pointer-events-none absolute top-5 right-5 font-head text-[3.5rem] font-black leading-none text-cp-border-bright">
+            <div className="pointer-events-none absolute top-5 right-5 font-crt text-[3.5rem] leading-none text-cp-border-bright">
               {s.num}
             </div>
             <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-yellow">{s.when}</div>
-            <h3 className="mb-4 font-head text-[1.8rem] font-extrabold uppercase leading-none">{s.title}</h3>
+            <h3 className="mb-4 font-head tracking-[0.08em] text-[1.1rem] uppercase leading-snug">{s.title}</h3>
             <p className="text-[0.85rem] leading-[1.7] text-cp-off">{s.body}</p>
           </div>
         ))}
       </div>
       <div className="mt-10 max-w-[480px]">
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-mid">// Ordreark</div>
-        <pre className="border border-cp-border-bright bg-cp-dark p-6 font-mono text-[0.8rem] leading-[1.8] text-cp-yellow">{orderSheet}</pre>
+        <pre className="crt crt-amber p-6 text-[1.25rem] leading-[1.4]">{orderSheet}</pre>
       </div>
     </section>
   );

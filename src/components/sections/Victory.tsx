@@ -11,7 +11,7 @@ export function Victory() {
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-yellow">
             Besætningen
           </div>
-          <h3 className="mb-4 font-head text-[2rem] font-extrabold uppercase leading-none">
+          <h3 className="mb-4 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">
             Alle syntetikere i kryo
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
@@ -23,7 +23,7 @@ export function Victory() {
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
             Syntetikerne
           </div>
-          <h3 className="mb-4 font-head text-[2rem] font-extrabold uppercase leading-none">
+          <h3 className="mb-4 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">
             Overlev — eller sluk lyset
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">

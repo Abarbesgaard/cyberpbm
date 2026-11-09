@@ -27,12 +27,12 @@ export function DesignNotes() {
         {changes.map((c) => (
           <div key={c.to} className="grid grid-cols-1 gap-2 bg-cp-dark p-5 md:grid-cols-[1fr_1fr_1.4fr] md:gap-6">
             <span className="font-mono text-[0.75rem] text-cp-mid line-through">{c.from}</span>
-            <span className="font-head text-[1.1rem] font-bold uppercase text-cp-yellow">{c.to}</span>
+            <span className="font-head tracking-[0.08em] text-[0.85rem] uppercase text-cp-yellow">{c.to}</span>
             <span className="text-[0.9rem] text-cp-off">{c.why}</span>
           </div>
         ))}
       </div>
-      <h3 className="mt-12 mb-4 font-head text-[1.6rem] font-extrabold uppercase">Åbne testspørgsmål</h3>
+      <h3 className="mt-12 mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase">Åbne testspørgsmål</h3>
       <ol className="list-decimal space-y-2 pl-6 text-[0.95rem] text-cp-off">
         {questions.map((q) => <li key={q}>{q}</li>)}
       </ol>

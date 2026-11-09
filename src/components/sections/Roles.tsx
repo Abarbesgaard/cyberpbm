@@ -23,7 +23,7 @@ export function Roles() {
               <span className="text-cp-yellow">{r.ability}</span>
               <span className="border border-cp-border-bright px-1.5 py-0.5 text-cp-mid">{r.tag}</span>
             </div>
-            <h3 className="mb-3 font-head text-[1.4rem] font-extrabold uppercase leading-none">{r.name}</h3>
+            <h3 className="mb-3 break-words font-head text-[0.8rem] tracking-[0.06em] uppercase leading-snug text-cp-white">{r.name}</h3>
             <p className="text-[0.85rem] leading-[1.6] text-cp-off">{r.text}</p>
           </div>
         ))}
@@ -37,7 +37,7 @@ export function Roles() {
         <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">
           // Klassificeret — Syntetiker
         </div>
-        <h3 className="mb-2 font-head text-[2rem] font-extrabold uppercase leading-none">Særordre</h3>
+        <h3 className="mb-2 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">Særordre</h3>
         <p className="mb-6 max-w-[680px] text-[0.9rem] leading-[1.6] text-cp-off">
           Én evne, tre tilstande. Vælg én om ugen. Syntetikere kender hinanden, men kan kun
           tale privat, når de står samme sted. Hver får to bluff-roller.
@@ -46,7 +46,7 @@ export function Roles() {
           {synthModes.map((m) => (
             <div key={m.name} className="bg-cp-panel p-6">
               <div className="mb-1 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-mid">Fra uge {m.from}</div>
-              <h4 className="mb-2 font-head text-[1.3rem] font-extrabold uppercase text-cp-red-bright">{m.name}</h4>
+              <h4 className="mb-2 font-head tracking-[0.08em] text-[0.95rem] uppercase text-cp-red-bright">{m.name}</h4>
               <p className="text-[0.85rem] leading-[1.6] text-cp-off">{m.text}</p>
             </div>
           ))}
