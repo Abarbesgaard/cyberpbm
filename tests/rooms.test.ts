@@ -15,13 +15,13 @@ test("rumevner virker fra 3, nedbrud rammer ved 1 og derunder", () => {
 });
 
 test("Omdirigér flytter 1 fra Motorrum, Værktøj giver +1 ekstra", () => {
-  const r = resolveSystems(startStatus(), { week: 3, rerouted: ["E"], tools: ["B"], workers: { B: 1 } });
+  const r = resolveSystems(startStatus(), { week: 1, rerouted: ["E"], tools: ["B"], workers: { B: 1 } });
   assert.equal(r.delta.F, -1);
   assert.equal(r.delta.E, 1);
   assert.equal(r.delta.B, 2);
 });
 
 test("reparation giver kun +1, mens Lastrum er nede", () => {
-  assert.equal(resolveSystems(startStatus(), { week: 3, repairs: ["A"] }).delta.A, 2);
-  assert.equal(resolveSystems({ ...startStatus(), D: 1 }, { week: 3, repairs: ["A"] }).delta.A, 1);
+  assert.equal(resolveSystems(startStatus(), { week: 1, repairs: ["A"] }).delta.A, 2);
+  assert.equal(resolveSystems({ ...startStatus(), D: 1 }, { week: 1, repairs: ["A"] }).delta.A, 1);
 });

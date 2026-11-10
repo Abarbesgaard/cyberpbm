@@ -1,4 +1,4 @@
-import { KILL_FROM_WEEK, KILLS_PER_SYNTH, type ZoneId } from "./game.ts";
+import { KILL_FROM_WEEK, type ZoneId } from "./game.ts";
 
 export type Team = "crew" | "synth";
 
@@ -9,8 +9,8 @@ export interface KillAttempt {
   /** Zones of all active players after movement. */
   positions: Record<string, ZoneId>;
   teams: Record<string, Team>;
-  /** Kills each synthetic has already made this campaign. */
-  used?: Record<string, number>;
+  /** The synthetic team already killed this week. At most one kill per week for the whole team. */
+  killedThisWeek?: boolean;
   /** Players the Security Chief guards this week. */
   guarded?: string[];
 }
@@ -21,12 +21,12 @@ export type KillResult =
 
 /**
  * A kill succeeds only when killer and target are the only active players in the zone.
- * A failed attempt is not spent. The victim is never told who the killer was.
+ * The team kills at most once a week. ORACLE broadcasts only "[Navn] er død." — never where, who or the role.
  */
 export function resolveKill(a: KillAttempt): KillResult {
   if (a.teams[a.killer] !== "synth") return { ok: false, reason: `${a.killer} er ikke syntetiker.` };
   if (a.week < KILL_FROM_WEEK) return { ok: false, reason: `Drab er først muligt fra uge ${KILL_FROM_WEEK}.` };
-  if ((a.used?.[a.killer] ?? 0) >= KILLS_PER_SYNTH) return { ok: false, reason: `${a.killer} har allerede brugt sit drab.` };
+  if (a.killedThisWeek) return { ok: false, reason: "Syntetikerne har allerede dræbt denne uge." };
   const zone = a.positions[a.killer];
   const targetZone = a.positions[a.target];
   if (zone === undefined || targetZone === undefined) return { ok: false, reason: "Drabsmand og mål skal være aktive." };

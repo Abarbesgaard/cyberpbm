@@ -1,4 +1,4 @@
-# USCSS CASSANDRA v0.27
+# USCSS CASSANDRA v0.28
 
 > *"Cassandra så sandheden. Ingen troede på hende."*
 
@@ -6,7 +6,24 @@ Et seksugers social deduction-spil, der spilles asynkront i Slack.
 
 ---
 
-## 0. Hvad er ændret fra v0.26
+## 0. Hvad er ændret fra v0.27
+
+v0.28 gør social deduction til kernen. Systemerne er uret og sporene, ikke målet.
+
+| v0.27 | v0.28 | Hvorfor |
+|---|---|---|
+| Besætningen vinder kun ved scenariet | **Besætningen vinder, når alle syntetikere er i kryo** | Deduktionen er spillet. Før var det to spil, og besætningen vandt kun på logistik. |
+| Syntetikerne vinder ved systemsvigt, protokol eller uopfyldt scenarie | **Syntetikerne vinder, hvis én er aktiv efter tribunalet i uge 6, eller et system rammer 0** | Overlevelse er målet; systemerne er deres genvej. |
+| Uge 6: protokolvalg | **Tribunal hver uge fra uge 2 til 6** | Uden scenariesejr afgør tribunalet spillet. |
+| Scenariet har krav efter uge 6 | **Scenariet er historie og arkiv** | Det afgør ikke længere, hvem der vinder. |
+| *Arbejde: ja* i ordren, kun ved Bliv | **Alle i en sektion arbejder automatisk** | Hvor du står, er din handling. Ordren har tre felter. |
+| Rumevnen koster ugens arbejde | **Én aktivering: rolleevne, rumevne eller Bekæmp** | Arbejdet er automatisk, så rumevnen koster din rolleevne. |
+| Forfald i uge 2, 4 og 6 i tomme sektioner | **Alle systemer −1 hver uge fra uge 2** | Når det er nok at stå der, skal skibet falde hurtigere. Én holder et system, to løfter det. |
+| 0 = KRITISK, én uge til systemsvigt | **0 = syntetikerne vinder** | Uret skal kunne løbe ud. |
+| Ét drab pr. syntetiker; *"LIG FUNDET: Sara, Lastrum."* | **Ét drab om ugen for holdet; *"Sara er død."*** | Som i Among Us: et drab er en nyhed, ikke et bevis. Hvor og hvordan er kun påstande. |
+| 5–8 spillere | **6–8 spillere** | Med drab hver uge er fire besætningsmedlemmer for få. |
+
+### Fra v0.26 til v0.27
 
 v0.27 binder deduktion og systemer sammen. Før var det to spil: besætningen vandt kun på systempoint, og sabotage blev broadcastet, så tallene sagde *hvor*, men aldrig gav et spor til *hvem*.
 
@@ -233,11 +250,11 @@ Men det er ikke kun slid. Nogen om bord hjælper det på vej.
 
 ## 2. Sejrsbetingelser
 
-**Syntetikerne vinder**, hvis et skibssystem står på 0 to afgørelser i træk, eller står på 0 efter Final Protocol (se afsnit 8).
+**Besætningen vinder**, så snart alle syntetikere er i kryo. En alien er ikke syntetiker og skal ikke fryses.
 
-Ellers afgøres spillet efter Final Protocol i uge 6. I stedet for et tribunal vælger flertallet, hvem der udfører protokollen (se 6.1b). **Syntetikerne vinder**, hvis en syntetiker får den. Ellers **vinder besætningen**, hvis kampagnens scenarie er opfyldt, og **syntetikerne**, hvis det ikke er.
+**Syntetikerne vinder**, hvis et skibssystem rammer 0 (se afsnit 8), eller hvis mindst én syntetiker er aktiv efter tribunalet i uge 6. Systemerne afgøres før tribunalet, så et svigt vinder, selv om den sidste syntetiker dømmes samme weekend.
 
-Kryo er ikke en sejrsbetingelse. Tribunalet er besætningens redskab: en syntetiker i kryo kan ikke længere sabotere eller dræbe. Men skibet skal stadig repareres.
+Systemerne er ikke besætningens mål, men dens ur og dens spor. Forfaldet tvinger spillerne til at sprede sig, og hvert tal kan afsløre en sabotage.
 
 En fejlagtig neutralisering fjerner en uskyldig fra spillets aktive handlinger. Roller afsløres først ved spillets afslutning.
 
@@ -275,12 +292,13 @@ Planerne ændrer, hvor man mødes, og hvor langt der er mellem målene. Data og 
 
 ### Ordren
 
-Hver aktiv spiller sender én ordre pr. uge med fire felter:
+Hver aktiv spiller sender én ordre pr. uge med tre felter:
 
 1. **Bevægelse** — *Bliv* eller *Ryk* til en tilstødende zone.
-2. **Evne** — skriv evnens mål (en spiller, en zone eller *Ingen*). ORACLE svarer i mandagsrapporten. Se afsnit 7.0.
-3. **Arbejde** — *ja/nej*. Tæller kun, hvis du blev i en sektion (ikke Rygraden). Systemet i sektionen +1.
-4. **Tribunal** — en spiller eller *Ingen* (se afsnit 6).
+2. **Evne** — én aktivering: rolleevnen med mål, sektionens rumevne (*Rum → mål*), *Bekæmp* eller *Ingen*. ORACLE svarer i mandagsrapporten. Se afsnit 7.0.
+3. **Tribunal** — en spiller eller *Ingen* (se afsnit 6).
+
+Arbejde er ikke et felt. Alle aktive spillere, der står i en sektion, arbejder automatisk.
 
 ### Afgørelsesrækkefølge
 
@@ -290,7 +308,7 @@ Hver aktiv spiller sender én ordre pr. uge med fire felter:
 3. Støj og forfalskning.
 4. Informationsevner.
 5. Systemer: arbejde, reparation, sabotage, forfald og vedligehold (samtidigt).
-6. Tribunal — kryo (uge 6: protokolvalg).
+6. Tribunal — kryo. Tjek sejr.
 7. Sektorkanaler opdateres.
 
 ---
@@ -317,7 +335,7 @@ Neutralisering er en **fælles beslutning**. Ingen kan bevise noget; man kan kun
 
 ### 6.1 Tribunalet
 
-- Fra uge 2 til 5 stemmer alle aktive spillere hver fredag på én spiller eller *Ingen*. Stemmen står i ordren.
+- Fra uge 2 til 6 stemmer alle aktive spillere hver fredag på én spiller eller *Ingen*. Stemmen står i ordren.
 - Stemmerne er hemmelige. Spillerne må selv fortælle (eller lyve om), hvad de stemte.
 - Får ét navn **simpelt flertal af de aktive spillere**, sendes vedkommende **direkte i kryo**. Brugte spøgelsesstemmer tæller med.
 - Stemmelighed eller intet flertal: ingen dom.
@@ -333,17 +351,9 @@ eller
 
 Antallet er offentligt, men aldrig hvem der stemte. En dom, der manglede én stemme, rejser spørgsmålet: Hvem stemte ikke på vedkommende, og hvorfor?
 
-### 6.1b Final Protocol — protokolvalg
+### 6.1b Final Protocol — sidste tribunal
 
-I uge 6 erstattes tribunalet af et **protokolvalg**. Alle stemmer på én aktiv spiller (*PROTOKOL → navn*) eller *Ingen*, med samme flertalsregel og spøgelsesstemmer som tribunalet.
-
-- **Flertal for en syntetiker:** Syntetikerne vinder, uanset systemerne. Protokollen overdrages til ORACLE og selskabet.
-- **Flertal for besætning, eller intet flertal:** Scenariet afgør.
-- Et system, der svigter (0 to afgørelser i træk), afgør stadig først.
-
-Logik: `finalOutcome` i `src/content/protocol.ts`, testet i `tests/protocol.test.ts`.
-
-Broadcast: *"PROTOKOL: 4 af 6 stemmer. Anna udfører Final Protocol."*
+Uge 6 har et almindeligt tribunal. Er mindst én syntetiker aktiv efter dommen, vinder syntetikerne. Derefter afsløres alle roller. Protokolvalget fra v0.27 er fjernet.
 
 ### 6.2 Den dømtes rolle
 
@@ -383,17 +393,17 @@ Når en spiller bliver ekko, ruller ORACLE hemmeligt en d6 for **skæbnen**: 1 J
 
 Drab er en fælles syntetikerhandling, ikke en rolleevne. Hver syntetiker beholder sin ene evne.
 
-- Hver syntetiker kan dræbe **én gang pr. kampagne**, fra **uge 3**.
+- Syntetikerne kan dræbe **én gang om ugen** for hele holdet, fra **uge 3**. Sender to syntetikere et drab, gælder kun det første, ORACLE modtog.
 - Drabet skrives i ordren: *Drab → [Navn]*. Den uge bruger syntetikeren ikke sin evne.
 - Drabet lykkes kun, hvis drabsmand og mål er de **eneste aktive spillere i zonen** efter bevægelse. Målet skal være besætning og må ikke være under Sikkerhedschefens **vagt**.
-- Mislykkes det (vidner, forkert zone, vagt), sker intet, og drabet er ikke brugt. Syntetikeren får kun: *"Drab mislykket."*
+- Mislykkes det (vidner, forkert zone, vagt), sker intet. Syntetikeren får kun: *"Drab mislykket."*
 - Drab afgøres lige efter bevægelse. Offeret når ikke at bruge evne eller arbejde.
-- Offeret får privat: *"Du er død. Zone: Lastrum."* — ikke hvem. Bevægelse er samtidig, så offeret så aldrig, hvem der kom ind.
-- Mandagens broadcast: *"LIG FUNDET: Sara, Lastrum."* Navn og zone, aldrig rolle.
+- Offeret får privat: *"Du er død."* — ikke hvem. Bevægelse er samtidig, så offeret så aldrig, hvem der kom ind.
+- Mandagens broadcast: *"Sara er død."* Aldrig hvor, hvem eller rollen.
 
-**Liget er et spor, ikke et bevis.** Hvem kunne nå Lastrum? Hvem påstår at have stået et andet sted? Adgangslog, Biometri og Pejling kan alle pege på drabsmanden — hvis de ikke bliver forfalsket eller forstyrret.
+**Drabet er en nyhed, ikke et spor.** Hvor Sara stod, ved kun dem, hun talte med — og de kan lyve. Pejling, Biometri og Adgangslog kan pege på drabsmanden, men kun som påstande fra den, der har rollen.
 
-Drab gør det farligt at stå alene. Men arbejde i en tom sektion holder systemerne i live. Det er dilemmaet.
+Drab gør det farligt at stå alene. Men en tom sektion forfalder. Det er dilemmaet.
 
 ---
 
@@ -498,12 +508,12 @@ Hver uge, efter informationsevnerne, ændres hvert system samtidigt:
 
 | Kilde | Effekt |
 |---|---|
-| **Arbejde** | +1 pr. spiller, der blev i sektionen og skrev *Arbejde: ja*. |
-| **Reparation** (Ingeniør) | +2. Tæller også som arbejde. |
-| **Sabotage** (Særordre) | −2. Erstatter forfald i den sektion. |
-| **Forfald** (uge 2, 4 og 6) | −1, hvis ingen arbejdede, reparerede eller vedligeholdt (ekko) i sektionen. |
+| **Arbejde** | +1 pr. aktiv spiller, der står i sektionen. Automatisk, også for syntetikere. |
+| **Reparation** (Ingeniør) | +2. |
+| **Sabotage** (Særordre) | −2. |
+| **Forfald** (fra uge 2) | −1 for alle systemer hver uge, medmindre et ekko vedligeholdt sektionen. |
 
-Status holdes mellem 0 og 5. **Et system, der rammer 0, er KRITISK.** ORACLE broadcaster det. Står det stadig på 0 efter næste uges afgørelse, vinder syntetikerne. Besætningen har én uge til at få det over 0.
+Status holdes mellem 0 og 5. **Rammer et system 0, vinder syntetikerne med det samme.** Logik: `resolveSystems` i `src/content/systems.ts`.
 
 Hver mandag broadcaster ORACLE alle seks systemer med status og ændring:
 
@@ -514,19 +524,19 @@ Medlab     ████░ 4  +1
 Livsstøtte ██░░░ 2  −1
 Lastrum    ████░ 4  +1
 Broen      █████ 5  +1
-Motorrum   ░░░░░ 0  −1
-KRITISK: Motorrum. Én uge til systemsvigt.
+Motorrum   █░░░░ 1  −2
+NEDBRUD: Skakter lukket.
 ```
 
-**Tallene er sporet.** Sabotage broadcastes aldrig. Sammenhold ændringen med, hvem der påstår at have stået og arbejdet i sektionen. To blev i Livsstøtte og siger begge, at de arbejdede, men Livsstøtte faldt 1? Så er det sabotage −2 og arbejde +1: Én af dem lyver.
+**Tallene er sporet.** Sabotage broadcastes aldrig. Sammenhold ændringen med, hvem der påstår at have stået i sektionen. To stod i Livsstøtte, så den skulle stige 1 (+2 arbejde, −1 forfald). Faldt den 1, er det sabotage −2: Én af dem lyver.
 
-Det er her, de to halvdele af spillet mødes. Systemerne kræver, at man arbejder sammen, og drab gør det farligt at stå alene. Men jo flere der står i et rum, jo bedre kan en syntetiker gemme sig. Forfald, reparation, vedligehold, Omdirigér og rumevner gør regnestykket uklart og giver alibier: *"Jeg brugte Sensorfeje og arbejdede ikke."*
+Det er her, de to halvdele af spillet mødes. Systemerne kræver, at man arbejder sammen, og drab gør det farligt at stå alene. Men jo flere der står i et rum, jo bedre kan en syntetiker gemme sig. Reparation, vedligehold, Omdirigér og Værktøj gør regnestykket uklart og giver alibier: *"Ingeniøren reparerede her, det var derfor."*
 
-Sabotage i en tom sektion er sikkert for sabotøren, men −2 i en sektion, ingen påstår at have stået i, kan kun være sabotage.
+Sabotage kræver, at syntetikeren står i sektionen. Alene giver det −2 netto (+1 arbejde, −1 forfald, −2 sabotage) — synligt, men kun som påstand mod påstand om, hvem der stod der.
 
 ### 8.1b Rumevner og nedbrud
 
-Hver sektion har en rumevne og et nedbrud. **Mandagens status gælder hele ugen.** Rumevnen virker ved **≥ 3** for den, der bliver i sektionen, og koster ugens arbejde (*ARBEJDE: Rum → mål*). Nedbruddet rammer hele skibet ved **≤ 1**. Data og logik: `src/content/rooms.ts`.
+Hver sektion har en rumevne og et nedbrud. **Mandagens status gælder hele ugen.** Rumevnen virker ved **≥ 3** for den, der står i sektionen, og koster ugens aktivering (*EVNE: Rum → mål*) i stedet for rolleevnen. Nedbruddet rammer hele skibet ved **≤ 1**. Data og logik: `src/content/rooms.ts`.
 
 | Sektion | Rumevne (status ≥ 3) | Nedbrud (status ≤ 1) |
 |---|---|---|
@@ -538,20 +548,12 @@ Hver sektion har en rumevne og et nedbrud. **Mandagens status gælder hele ugen.
 | **Hypersøvn** | **Kapsel:** Du kan ikke dræbes eller angribes denne uge. | **Kryo svigter:** Tribunalet kan ikke fryse nogen. |
 
 - Rumevner er bevidst svagere end rolleevner. De giver alle en grund til at stå et bestemt sted — og en ny påstand, der ikke kan bevises.
-- Prisen er arbejdet. Bruger alle rumevnerne, falder systemerne, og nedbruddene kommer.
+- Prisen er rolleevnen. Bruger du rummets evne, får du intet fra din rolle den uge.
 - Nedbrud giver syntetikerne delmål før 0. Kryo svigter stopper tribunalet; Skakter lukket fanger besætningen; Iltmangel gør det farligt at stå alene.
 
 ### 8.2 Scenarie
 
-Hver kampagne har **ét scenarie**. ORACLE vælger det ved opsætning og offentliggør det i uge 1. Scenariet tjekkes efter afgørelsen i uge 6.
-
-| Scenarie | Id | Krav efter uge 6 |
-|---|---|---|
-| **Nødsignal** | `distress` | Broen og Motorrum står på 5. |
-| **Karantæne** | `quarantine` | Medlab og Hypersøvn står på 5. |
-| **Hjemrejse** | `homeward` | Alle seks systemer står på mindst 4. |
-
-Scenariet giver besætningen et dilemma hver uge: blive og arbejde, eller rykke og efterforske.
+Hver kampagne har **ét scenarie**: Nødsignal (`distress`), Karantæne (`quarantine`) eller Hjemrejse (`homeward`). ORACLE vælger det ved opsætning og offentliggør det i uge 1. Scenariet er historien om rejsen og bestemmer arkivet i uge 5. Det afgør ikke, hvem der vinder.
 
 ### 8.3 Krise og arkiv
 
@@ -567,7 +569,6 @@ Se *Scenariebogen* (`docs/scenarios.md`) for scenarier, arkiver, krisetabellen o
 
 | Spillere | Besætning | Syntetikere | Roller i spil | Ubrugte roller | Bluff-forslag |
 |---|---|---|---|---|---|
-| 5 | 4 | 1 | Ingeniør + 3 | 7 | 1 × 2 = 2 |
 | 6 | 5 | 1 | Ingeniør + 4 | 6 | 1 × 2 = 2 |
 | 7 | 5 | 2 | Ingeniør + 4 | 6 | 2 × 2 = 4 |
 | 8 | 6 | 2 | Ingeniør + 5 | 5 | 2 × 2 = 4 |
@@ -576,14 +577,14 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 
 ### 9.1 Bevist (testet i `tests/roleSetup.test.ts`)
 
-- Ved 5–8 spillere er holdfordelingen korrekt, og ingen besætningsrolle optræder to gange.
-- Alle sammensætninger, der overholder tag-grænsen, er mulige for 5–8 spillere (udtømmende gennemgang).
+- Ved 6–8 spillere er holdfordelingen korrekt, og ingen besætningsrolle optræder to gange.
+- Alle sammensætninger, der overholder tag-grænsen, er mulige for 6–8 spillere (udtømmende gennemgang).
 - Der er altid mindst 2 × antal syntetikere ubrugte roller, så bluff-forslag kan være adskilte.
 - Bluff-forslag peger aldrig på en rolle i spil.
 - Ugyldige opsætninger giver forståelige fejl.
 - Særordre er altid i spil, og ingen syntetikerrolle optræder to gange.
-- Systemregnskabet (arbejde, reparation, sabotage, forfald i lige uger, vedligehold, KRITISK og systemsvigt, grænser 0–5) og scenarietjek er testet i `tests/systems.test.ts`. Rumevner, nedbrud, Omdirigér og Værktøj i `tests/rooms.test.ts`. Protokolvalget (flertal, syntetiker vinder, intet flertal = scenariet) i `tests/protocol.test.ts`.
-- Drabsbetingelserne (uge 3+, alene, kun besætning, én pr. syntetiker, mislykket drab er ikke brugt) er testet i `tests/kills.test.ts`.
+- Systemregnskabet (automatisk arbejde, reparation, sabotage, forfald hver uge fra uge 2, vedligehold, systemsvigt ved 0, grænser 0–5) er testet i `tests/systems.test.ts`. Rumevner, nedbrud, Omdirigér og Værktøj i `tests/rooms.test.ts`.
+- Drabsbetingelserne (uge 3+, alene, kun besætning, vagt, højst ét drab om ugen for holdet) er testet i `tests/kills.test.ts`.
 
 ### 9.2 Antagelser, der ikke er testet
 
@@ -591,13 +592,12 @@ Systemerne starter på 3 ved alle spillerantal. Tabellen viser kun antal — hvi
 - At højst 2 pr. tag er nok til at undgå for stærke informationskombinationer.
 - At 11 roller giver nok rum til bluffs uden at blive uoverskueligt.
 - At Revisor ikke gør stemmekoordinering umulig for syntetikerne.
-- At forfald ikke er for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer.
-- At de tre scenarier er nogenlunde lige svære.
-- At KRITISK-ugen ikke gør systemerne for svære at tabe. En Særordre, der bliver stående og saboterer, kan holde et system på 0 — men afslører sig for alle i rummet.
-- At forfald i lige uger giver nok pres til, at besætningen må sprede sig.
-- At ét drab pr. syntetiker ikke knækker besætningen ved 5 spillere (4 → 3 besætning).
+- At forfald hver uge ikke er for hårdt, når drab og kryo tynder ud i besætningen.
+- At systemsvigt ved 0 ikke afgør spillet for tidligt. En syntetiker, der saboterer alene to uger i træk, tager et system fra 3 til 0 (−2, −2) — hvis ingen kommer til.
+- At besætningen ikke bare kan stå alene i hver sin sektion. Så kan ingen dræbes, og sabotage peger på den, der påstår at stå dér.
+- At ét drab om ugen ikke knækker besætningen ved 6 spillere (5 → 2 besætning efter tre drab).
 - At ekko-vedligehold ikke gør forfald for let, når flere spillere er døde eller i kryo.
-- At Særordre alene giver én syntetiker nok at arbejde med ved 5–6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
+- At Særordre alene giver én syntetiker nok at arbejde med ved 6 spillere. Forfalskning og Støj findes kun ved 7–8 spillere.
 - At det er acceptabelt, at Ingeniør er offentligt kendt som aktiv. En syntetiker, der påstår Ingeniør, laver altid en dobbeltpåstand.
 
 ## 10. Ingen kan bevise sin rolle direkte
@@ -622,7 +622,7 @@ Screenshots kan ikke forhindres i Slack. Derfor er screenshots og videresendelse
 | 3 | **Broken Trust** | Syntetikerne kan dræbe. Sikkerhedschefens vagt får betydning. |
 | 4 | **Containment Failure** | Krisen, rullet på d20 i uge 3 (se 8.3). |
 | 5 | **Last Transmission** | Scenariets arkiv (se 8.3). |
-| 6 | **Final Protocol** | Protokolvalg i stedet for tribunal (se 6.1b). Derefter afsløres alle roller. |
+| 6 | **Final Protocol** | Sidste tribunal (se 6.1b). Derefter afsløres alle roller. |
 
 Hver uge tilføjer data eller pres, ikke nye regler.
 
@@ -645,29 +645,29 @@ Hvad ved besætningen?
 - Broadcasten er sand: Livsstøtte faldt 1. Den siger intet om sabotage.
 - Er Saras scan ægte, stod der præcis to — Anna og Peter.
 - Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig eller sig selv?
-- Anna og Peter påstår begge, at de arbejdede. Så skulle Livsstøtte være steget 2. Et fald på 1 passer kun med sabotage −2 og arbejde +1: Én af dem lyver.
+- To i Livsstøtte giver +2, forfaldet −1, så Livsstøtte skulle være steget 1. Et fald på 1 passer kun med sabotage −2: Én af dem lyver.
 - Hele regnestykket hviler på Saras scan. Er den ægte — eller stod der en tredje, der saboterede?
 
-Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forkert, mister de en arbejder — og syntetikeren får en uge mere.
+Besætningen skal vælge: stem på Anna igen, eller på Peter. Vælger de forkert, mister de en arbejder — og syntetikeren får en uge og et drab mere.
 
 ---
 
 ## 13. Åbne testspørgsmål
 
-1. Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?
+1. Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 6 spillere?
 2. Har Skaktløber nok at bruge Skakt til?
 3. Bliver sabotage syntetikernes eneste strategi?
-4. Er Vagt for stærk mod syntetikere, der kun har ét drab hver?
+4. Er Vagt for stærk eller for svag mod ét drab om ugen?
 5. Er spøgelsesstemmen sjov, eller bare en formalitet? Og er skæbnerne nok til at holde døde spillere engagerede?
 6. Gør Afløseren drab for svage? Den vender kun tilbage uden evne, men tribunalet får en bevist besætning mere.
-7. Bruger besætningen protokolvalget, eller stemmer alle *Ingen* for at undgå risikoen? Intet flertal lader scenariet afgøre alene.
+7. Kan besætningen stå alene i hver sin sektion, så ingen kan dræbes, og sabotage straks ses? Skal arbejde kræve mindst to?
 8. Er 11 roller for mange at holde styr på for nye spillere?
 9. Er Revisor for stærk mod syntetikere, der koordinerer stemmer?
 10. Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?
-11. Er én syntetiker med kun Særordre for svag ved 5–6 spillere?
+11. Er én syntetiker med kun Særordre for svag ved 6 spillere?
 12. Afslører *"Signal forstyrret"* for meget, nemlig at Støjsender er i spil?
-13. Er ét drab pr. syntetiker for meget ved 5 spillere?
-14. Bliver spillere så bange for at stå alene, at ingen arbejder i tomme sektioner?
+13. Er ét drab om ugen for meget ved 6 spillere?
+14. Bliver spillere så bange for at stå alene, at tomme sektioner forfalder?
 15. Afslører et ekkos frie ord for meget? Et dødt offer *er* besætning — men ved ikke, hvem der dræbte.
 
 ---

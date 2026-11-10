@@ -1,6 +1,14 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "Besætningen vinder kun ved scenariet", to: "Besætningen vinder, når alle syntetikere er i kryo", why: "Deduktionen er spillet. Systemerne er uret og sporene, ikke målet. Scenariet er historie og arkiv." },
+  { from: "Uge 6: protokolvalg", to: "Tribunal hver uge fra uge 2 til 6", why: "Uden scenariesejr afgør tribunalet spillet. Er en syntetiker aktiv efter uge 6, vinder syntetikerne." },
+  { from: "Arbejde: ja i ordren", to: "Alle i en sektion arbejder automatisk", why: "Én beslutning mindre. Hvor du står, er din handling." },
+  { from: "Rumevnen koster ugens arbejde", to: "Én aktivering: rolleevne eller rumevne", why: "Arbejdet er automatisk, så rumevnen må koste noget andet: din rolleevne den uge." },
+  { from: "Forfald i uge 2, 4 og 6", to: "Alle systemer forfalder hver uge fra uge 2", why: "Når det er nok at stå der, skal skibet falde hurtigere. Én spiller holder et system, to løfter det." },
+  { from: "0 = KRITISK, én uge til systemsvigt", to: "System på 0 = syntetikerne vinder", why: "Uret skal kunne løbe ud. En ekstra uge gjorde 0 til en formalitet." },
+  { from: "Ét drab pr. syntetiker, lig med zone", to: "Ét drab om ugen for holdet: \"Anna er død.\"", why: "Som i Among Us: et drab er en nyhed, ikke et bevis. Hvor og hvordan er kun påstande." },
+  { from: "5–8 spillere", to: "6–8 spillere", why: "Med drab hver uge er fire besætningsmedlemmer for få." },
   { from: "ORACLE broadcaster sabotage", to: "Sabotage skjules i regnestykket", why: "Kun status og ændring broadcastes. Blev to i et rum og siger begge, at de arbejdede, men systemet faldt? Så lyver én af dem." },
   { from: "Uge 6: sidste tribunal", to: "Uge 6: protokolvalg", why: "Tribunalet i uge 6 ændrede intet. Nu vælger flertallet, hvem der udfører protokollen — er det en syntetiker, vinder syntetikerne." },
   { from: "Ingeniør: \"Sabotøren her: ja/nej\"", to: "Ingeniør: \"Saboteret: ja/nej\"", why: "Med skjult sabotage pegede svaret direkte på syntetikeren." },
@@ -34,29 +42,29 @@ const changes = [
 ];
 
 const questions = [
-  "Er ét drab pr. syntetiker for meget ved 5 spillere, hvor besætningen kun er fire?",
+  "Er ét drab om ugen for meget ved 6 spillere, hvor besætningen kun er fem?",
+  "Kan besætningen bare stå alene i hver sin sektion, så ingen kan dræbes, og sabotage straks ses?",
   "Bliver spillere bange for at stå alene — og er det dårligt for arbejdet?",
   "Gør ekko-vedligehold forfald for let, når flere er døde?",
-  "Er Særordre alene for svag ved 5–6 spillere, hvor der kun er én syntetiker?",
+  "Er Særordre alene for svag ved 6 spillere, hvor der kun er én syntetiker?",
   "Afslører \"Signal forstyrret\", at Støjsender er i spil, og er det et problem?",
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
   "Har Skaktløber nok at bruge Skakt til?",
-  "Er forfald for hårdt ved 5 spillere, hvor fire besætningsmedlemmer skal dække seks systemer?",
-  "Er scenarierne lige svære? Hjemrejse kræver alle seks systemer.",
+  "Er forfald hver uge for hårdt, når drab og kryo tynder ud i besætningen?",
   "Bliver sabotage syntetikernes eneste strategi?",
-  "Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 5–6 spillere?",
+  "Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 6 spillere?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
   "Gør Afløseren drab for svage?",
-  "Er Vagt for stærk mod syntetikere, der kun har ét drab hver?",
+  "Er Vagt for stærk eller for svag mod ét drab om ugen?",
 ];
 
 export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.27</span>
+        v0.7 → <span className="text-cp-yellow">v0.28</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

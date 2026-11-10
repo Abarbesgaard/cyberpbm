@@ -10,7 +10,7 @@ const facts = [
   "Broadcasten er sand: Livsstøtte faldt 1. Den siger intet om sabotage.",
   "Er scannen ægte, stod der præcis to — Anna og Peter.",
   "Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig — eller sig selv?",
-  "Anna og Peter siger begge, at de arbejdede. Så skulle Livsstøtte være steget 2. Et fald på 1 passer kun med sabotage −2 og arbejde +1. Én af dem lyver.",
+  "Alle i en sektion arbejder automatisk. To i Livsstøtte giver +2, forfaldet −1, så Livsstøtte skulle være steget 1. Et fald på 1 passer kun med sabotage −2. Én af dem lyver.",
   "Højttaleren viser aldrig afsender. \"Anna her\" kan være skrevet af hvem som helst — også af Peter.",
   "Hele regnestykket hviler på den anonyme scan. Er afsenderen ægte — eller stod der en tredje, der saboterede?",
 ];

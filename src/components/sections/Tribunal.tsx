@@ -37,11 +37,11 @@ export function Tribunal() {
 
       <div className="bezel bezel-screws mt-4 border-l-[6px] border-cp-red p-8">
         <div className="mb-1.5 font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cp-red-bright">Uge 6 // Final Protocol</div>
-        <h3 className="mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">Protokolvalg</h3>
+        <h3 className="mb-4 font-head tracking-[0.08em] text-[1.05rem] uppercase leading-snug">Sidste tribunal</h3>
         <p className="text-[0.85rem] leading-[1.7] text-cp-off">
-          I stedet for tribunalet stemmer I om, hvem der skal udføre Final Protocol. Får en syntetiker
-          flertallet, vinder syntetikerne — uanset systemerne. Får besætning det, eller er der intet
-          flertal, afgør scenariet.
+          Tribunalet kører fra uge 2 til og med uge 6. Er alle syntetikere i kryo, vinder besætningen —
+          også før uge 6. Er mindst én stadig aktiv efter dommen i uge 6, vinder syntetikerne. Derefter
+          afsløres alle roller.
         </p>
       </div>
 
@@ -53,15 +53,15 @@ export function Tribunal() {
 TRIBUNAL: 4 af 6 stemmer mod Anna.
 Anna er overført til kryo.
 
-LIG FUNDET: Sara, Lastrum.`}
+Sara er død.`}
         </pre>
         </div>
         <div className="bezel bezel-screws p-6">
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">// Drab</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
-            <li>Hver syntetiker kan dræbe <strong className="text-cp-red-bright">én gang</strong> pr. kampagne, fra uge 3 — i stedet for sin evne den uge.</li>
-            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse, og målet ikke er under vagt. Ellers sker intet, og drabet er ikke brugt.</li>
-            <li>Offeret dør på vej ind og ser aldrig, hvem der kom. ORACLE broadcaster navn og zone — aldrig rolle.</li>
+            <li>Syntetikerne kan dræbe <strong className="text-cp-red-bright">én gang om ugen</strong> for hele holdet, fra uge 3. Drabet erstatter drabsmandens evne den uge.</li>
+            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse, og målet ikke er under vagt. Ellers sker intet.</li>
+            <li>ORACLE broadcaster kun <strong className="text-cp-red-bright">"Sara er død."</strong> Aldrig hvor, hvem eller rollen.</li>
           </ul>
         </div>
         <div className="bezel bezel-screws p-6">

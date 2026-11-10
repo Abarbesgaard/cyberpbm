@@ -12,12 +12,12 @@ export function Victory() {
             Besætningen
           </div>
           <h3 className="mb-4 font-head tracking-[0.08em] text-[1.25rem] uppercase leading-snug">
-            Fuldfør scenariet
+            Frys dem alle
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Efter uge 6 vinder I, hvis kampagnens scenarie er opfyldt — og protokollen ikke
-            er givet til en syntetiker. En syntetiker i kryo kan ikke længere sabotere. En fejl
-            sender en uskyldig i kryo, og I mister en, der kunne arbejde og bruge en evne.
+            I vinder, så snart alle syntetikere er sendt i kryo af tribunalet. Systemerne er
+            ikke målet, men uret: rammer ét 0, har I tabt. En forkert dom sender en uskyldig i
+            kryo, og I mister en, der kunne arbejde og bruge en evne.
           </p>
         </div>
         <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">
@@ -28,9 +28,8 @@ export function Victory() {
             Overlev — eller sluk lyset
           </h3>
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
-            Et system står på 0 to uger i træk — så vinder I. Bliver én af jer valgt til at
-            udføre Final Protocol i uge 6, vinder I. Ellers vinder I, hvis scenariet ikke er
-            opfyldt. Jeres våben er
+            Er mindst én af jer stadig aktiv efter tribunalet i uge 6, vinder I. Rammer et
+            system 0, vinder I med det samme. Jeres våben er
             løgn, mistillid og et vel­placeret hul i livsstøtten.
           </p>
         </div>

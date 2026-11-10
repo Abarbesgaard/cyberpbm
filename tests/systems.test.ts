@@ -1,54 +1,31 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { SYSTEM_MAX, scenarios } from "../src/content/game.ts";
-import { resolveSystems, scenarioMet, startStatus } from "../src/content/systems.ts";
+import { SYSTEM_MAX } from "../src/content/game.ts";
+import { resolveSystems, startStatus } from "../src/content/systems.ts";
 
-test("arbejde løfter systemet og stopper ved max", () => {
+test("alle i en sektion arbejder, og systemet stopper ved max", () => {
   const r = resolveSystems(startStatus(), { week: 1, workers: { B: 4 } });
   assert.equal(r.status.B, SYSTEM_MAX);
   assert.equal(r.delta.B, SYSTEM_MAX - 3);
 });
 
-test("forfald rammer kun systemer uden arbejde, og kun i lige uger", () => {
+test("forfald rammer alle systemer hver uge fra uge 2", () => {
   assert.deepEqual(resolveSystems(startStatus(), { week: 1 }).status, startStatus());
-  assert.deepEqual(resolveSystems(startStatus(), { week: 3 }).status, startStatus());
-  const r = resolveSystems(startStatus(), { week: 2, workers: { A: 1 }, repairs: ["C"] });
-  assert.equal(r.status.A, 4);
-  assert.equal(r.status.C, 5);
-  assert.equal(r.status.B, 2);
+  const r = resolveSystems(startStatus(), { week: 3, workers: { A: 1, B: 2 }, repairs: ["C"] });
+  assert.equal(r.status.A, 3);
+  assert.equal(r.status.B, 4);
+  assert.equal(r.status.C, 4);
+  assert.equal(r.status.D, 2);
 });
 
-test("sabotage i en tom sektion giver ikke forfald oveni, så uge 2 ikke kan afgøre spillet", () => {
-  const r = resolveSystems(startStatus(), { week: 2, sabotage: ["C"] });
-  assert.equal(r.status.C, 1);
-  assert.deepEqual(r.critical, []);
-  assert.deepEqual(r.failed, []);
+test("et system på 0 svigter med det samme", () => {
+  const r = resolveSystems({ ...startStatus(), C: 1 }, { week: 3, workers: { C: 1 }, sabotage: ["C"] });
+  assert.equal(r.status.C, 0);
+  assert.deepEqual(r.failed, ["C"]);
+  assert.deepEqual(resolveSystems(startStatus(), { week: 2 }).failed, []);
 });
 
-test("0 er KRITISK; først 0 to afgørelser i træk er tabt", () => {
-  const w3 = resolveSystems({ ...startStatus(), C: 1 }, { week: 3, sabotage: ["C"] });
-  assert.deepEqual(w3.critical, ["C"]);
-  assert.deepEqual(w3.failed, []);
-  const saved = resolveSystems(w3.status, { week: 4, workers: { C: 1 } });
-  assert.equal(saved.status.C, 1);
-  assert.deepEqual(saved.failed, []);
-  const lost = resolveSystems(w3.status, { week: 4 });
-  assert.deepEqual(lost.failed, ["C"]);
-});
-
-test("arbejde i samme sektion kan opveje sabotage, og manglende arbejde kan ses", () => {
-  const r = resolveSystems(startStatus(), { week: 2, workers: { D: 2 }, sabotage: ["D"] });
-  assert.equal(r.delta.D, 0);
-});
-
-test("scenarier tjekkes mod minimumsværdier", () => {
-  const distress = scenarios.find((s) => s.id === "distress")!;
-  const s = startStatus();
-  assert.equal(scenarioMet(distress, s), false);
-  assert.equal(scenarioMet(distress, { ...s, E: 5, F: 5 }), true);
-  const homeward = scenarios.find((s) => s.id === "homeward")!;
-  const all4 = { A: 4, B: 4, C: 4, D: 4, E: 4, F: 4 };
-  assert.equal(scenarioMet(homeward, s), false);
-  assert.equal(scenarioMet(homeward, all4), true);
-  assert.equal(scenarioMet(homeward, { ...all4, D: 3 }), false);
+test("en syntetiker, der saboterer alene, sænker systemet 2", () => {
+  const r = resolveSystems(startStatus(), { week: 2, workers: { D: 1 }, sabotage: ["D"] });
+  assert.equal(r.delta.D, -2);
 });

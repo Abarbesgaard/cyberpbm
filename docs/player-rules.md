@@ -6,8 +6,8 @@ Du er vågnet for tidligt fra hypersøvn. Skibet er ikke, som det skal være. É
 
 Du får en privat besked fra ORACLE med din **rolle** og dit **hold**.
 
-- **Besætning:** Opfyld kampagnens scenarie inden udgangen af uge 6, og giv ikke protokollen til en syntetiker (se *Tribunalet*). En syntetiker i kryo kan ikke længere sabotere.
-- **Syntetiker:** Hold et skibssystem på 0 i to afgørelser i træk (eller på 0 efter uge 6), bliv valgt til protokollen i uge 6, eller sørg for, at scenariet ikke er opfyldt. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Hver syntetiker kan dræbe én gang (se *Drab*).
+- **Besætning:** Send alle syntetikere i kryo (se *Tribunalet*). Så snart den sidste er frosset, vinder I. Systemerne er jeres ur: Rammer ét af dem 0, har I tabt.
+- **Syntetiker:** Er mindst én af jer stadig aktiv efter tribunalet i uge 6, vinder I. Rammer et skibssystem 0, vinder I med det samme. Du får en syntetikerrolle, kender de andre syntetikere og deres roller og får to bluff-forslag. Holdet kan dræbe én gang om ugen (se *Drab*).
 - **Alien:** En død eller frossen spiller kan blive en alien (se *Skæbne*). Den spiller for syntetikerne, uanset hvilket hold den kom fra.
 
 ## Roller og påstande
@@ -42,16 +42,16 @@ Ingen evne har point, ladninger eller tilstande, du skal huske. Hver rolle på w
 
 Hver sektion (A–F) har et system fra 0 til 5. Alle starter på 3. Rygraden har intet system.
 
-- **Arbejde:** Bliver du i en sektion og skriver *Arbejde: ja*, får systemet +1.
-- **Forfald:** I uge 2, 4 og 6 mister et system 1, hvis ingen arbejdede der.
-- **Sabotage:** −2 (intet forfald oveni). Sabotage broadcastes aldrig. Alle ser kun systemets ændring. **Reparation** (Ingeniør): +2.
-- **Et system på 0 er KRITISK.** Står det stadig på 0 efter næste uge, vinder syntetikerne.
+- **Arbejde:** Alle aktive spillere, der står i en sektion, arbejder automatisk: systemet +1 pr. spiller. Også syntetikere. Du skriver intet i ordren.
+- **Forfald:** Fra uge 2 mister alle systemer 1 hver uge. Et system, som et ekko vedligeholder, slipper.
+- **Sabotage:** −2. Sabotage broadcastes aldrig. Alle ser kun systemets ændring. **Reparation** (Ingeniør): +2.
+- **Rammer et system 0, vinder syntetikerne med det samme.**
 
 ### Rumevner og nedbrud
 
 Hver sektion har en **rumevne** og et **nedbrud**. **Mandagens status gælder hele ugen.**
 
-- **Rumevne:** Står systemet på **3 eller mere**, kan du bruge rummets evne, hvis du bliver i sektionen. Skriv *ARBEJDE: Rum → mål* i stedet for at arbejde. Alle i rummet kan bruge den, også syntetikere. Obduktion og Sensorfeje er informationsevner: de kan forstyrres og forfalskes.
+- **Rumevne:** Står systemet på **3 eller mere**, kan du bruge rummets evne, hvis du står i sektionen. Skriv *EVNE: Rum → mål* i stedet for din rolleevne. Alle i rummet kan bruge den, også syntetikere. Obduktion og Sensorfeje er informationsevner: de kan forstyrres og forfalskes.
 - **Nedbrud:** Står systemet på **1 eller mindre**, rammer nedbruddet hele skibet, indtil det er oppe igen.
 
 | Sektion | Rumevne (status ≥ 3) | Nedbrud (status ≤ 1) |
@@ -63,15 +63,9 @@ Hver sektion har en **rumevne** og et **nedbrud**. **Mandagens status gælder he
 | **Lastrum** | **Værktøj:** Næste uge giver dit arbejde +2. | **Ingen reservedele:** Reparation giver +1. |
 | **Hypersøvn** | **Kapsel:** Du kan ikke dræbes eller angribes denne uge. | **Kryo svigter:** Tribunalet kan ikke fryse nogen. |
 
-ORACLE offentliggør status og ændring for alle systemer hver mandag. **Tallene er jeres spor.** Blev to i Livsstøtte, og siger begge, at de arbejdede, men Livsstøtte faldt 1, så saboterede én af dem. Forfald, reparation, vedligehold og rumevner gør regnestykket uklart — og giver alibier.
+ORACLE offentliggør status og ændring for alle systemer hver mandag. **Tallene er jeres spor.** Stod to i Livsstøtte, skulle den stige 1 (+2 arbejde, −1 forfald). Faldt den 1, saboterede én af dem. Forfald, reparation, vedligehold og rumevner gør regnestykket uklart — og giver alibier.
 
-Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Er det opfyldt efter uge 6, vinder besætningen.
-
-| Scenarie | Krav efter uge 6 |
-|---|---|
-| Nødsignal | Broen og Motorrum står på 5. |
-| Karantæne | Medlab og Hypersøvn står på 5. |
-| Hjemrejse | Alle seks systemer står på mindst 4. |
+Kampagnen har **ét scenarie**, som ORACLE annoncerer i uge 1. Det er historien om rejsen og bestemmer, hvilket arkiv der frigives i uge 5. Det afgør ikke, hvem der vinder.
 
 Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge 3 ruller ORACLE en **krise** på d20, som gælder hele uge 4. Se *Scenariebogen* for alle scenarier, arkiver og kriser.
 
@@ -79,7 +73,7 @@ Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge
 |---|---|
 | Nødsignal | **Sortboks:** Hele positionsloggen fra uge 1. |
 | Karantæne | **Dørlog:** De 10 seneste bevægelser (navn, fra, til), uden uge. Skakt logges ikke. |
-| Hjemrejse | **Arbejdslog:** Hvem der arbejdede i hvilken sektion i uge 3. |
+| Hjemrejse | **Arbejdslog:** Hvem der stod i hvilken sektion i uge 3. |
 
 ## Hver uge
 
@@ -99,14 +93,13 @@ Hvert scenarie har sit eget **arkiv**, som ORACLE frigiver i uge 5. Mandag i uge
 ```
 UGE:        3
 BEVÆGELSE:  Ryk → Livsstøtte        (eller: Bliv)
-EVNE:       Pejling → Peter         (eller: Ingen)
-ARBEJDE:    Nej                     (kun ved Bliv i en sektion; eller: Bekæmp, Rum → mål)
-TRIBUNAL:   Anna                    (eller: Ingen; uge 6: PROTOKOL → navn)
+EVNE:       Pejling → Peter         (eller: Rum → mål, Bekæmp, Ingen)
+TRIBUNAL:   Anna                    (eller: Ingen)
 ```
 
 - **Bevægelse:** Bliv, eller ryk til en nabozone på kampagnens skibsplan (se *Skibet*).
-- **Evne:** Evnens navn og mål, eller *Ingen*. Se rollekataloget.
-- **Arbejde:** Ja/nej. Tæller kun, hvis du bliver i en sektion. Systemet +1. Eller **Bekæmp**: er en alien i din zone efter bevægelse, kæmper du mod den i stedet. To, der bekæmper den samme uge, smider den ud. Er der ingen alien, sker intet. Eller **Rum → mål**: brug sektionens rumevne (se *Rumevner og nedbrud*).
+- **Evne:** Én aktivering om ugen. Vælg din rolleevne med mål (se rollekataloget), **Rum → mål** (sektionens rumevne, se *Rumevner og nedbrud*), **Bekæmp** eller *Ingen*. Bekæmp: Er en alien i din zone efter bevægelse, kæmper du mod den. To, der bekæmper den samme uge, smider den ud. Er der ingen alien, sker intet.
+- **Arbejde** skriver du ikke. Står du i en sektion, arbejder du automatisk.
 Som ekko sender du i stedet:
 
 ```
@@ -132,30 +125,30 @@ Skibet har syv zoner: seks sektioner (A Hypersøvn, B Medlab, C Livsstøtte, D L
 
 ## Tribunalet
 
-1. **Stemme:** Fra uge 2 til 5 stemmer du hver fredag i ordren på en spiller eller *Ingen*. Stemmerne er hemmelige.
+1. **Stemme:** Fra uge 2 til 6 stemmer du hver fredag i ordren på en spiller eller *Ingen*. Stemmerne er hemmelige.
 2. **Dom:** Får ét navn flertal af de **aktive** spillere, sendes vedkommende direkte i kryo. Stemmelighed eller intet flertal: ingen dom.
 3. **Broadcast:** ORACLE oplyser navn og antal stemmer. Aldrig hvem der stemte, og aldrig rollen.
-4. **Uge 6 — protokolvalg:** I stedet for tribunalet stemmer du om, hvem der skal udføre Final Protocol. Får ét navn flertal af de aktive spillere, får vedkommende protokollen. Er det en syntetiker, vinder syntetikerne — uanset systemerne. Er det besætning, eller er der intet flertal, afgør scenariet.
+4. **Sejr:** Er alle syntetikere i kryo, vinder besætningen med det samme. Er mindst én syntetiker aktiv efter dommen i uge 6, vinder syntetikerne. Derefter afsløres alle roller.
 
 Ingen kan bevise noget. I kan kun overbevise hinanden.
 
 ## Drab
 
-- Hver syntetiker kan dræbe **én gang** i kampagnen, fra uge 3. ORACLE fortæller dig hver mandag, om drabet er brugt. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge.
-- Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse, og offeret ikke er under Sikkerhedschefens **vagt**. Ellers sker intet, og drabet kan bruges igen.
-- Offeret får kun at vide, at det er dødt, og hvor. Ikke hvem.
-- ORACLE broadcaster: *"LIG FUNDET: [Navn], [zone]."* Aldrig rollen.
+- Syntetikerne kan dræbe **én gang om ugen** for hele holdet, fra uge 3. Det skrives i ordren som *Drab → [Navn]* og erstatter evnen den uge. Er I to, aftaler I, hvem der dræber. Sender begge et drab, gælder kun det første, ORACLE modtog.
+- Drabet lykkes kun, hvis drabsmand og offer er **alene** i zonen efter bevægelse, og offeret ikke er under Sikkerhedschefens **vagt**. Ellers sker intet.
+- Offeret får kun at vide, at det er dødt. Ikke hvem.
+- ORACLE broadcaster kun: *"[Navn] er død."* Aldrig hvor, hvem eller rollen.
 
-At stå alene er farligt. At ingen arbejder, er også farligt.
+At stå alene er farligt. En tom sektion er også farlig.
 
 ### Alien
 
 En død eller frossen spiller kan blive en **alien** (se *Skæbne*). Den skifter side til syntetikerne og lever i skakterne. Dens zone er hemmelig.
 
-- **Angreb:** Står præcis én spiller i alienens zone efter bevægelse, ruller ORACLE d6. Besætning dør på 4–6. Syntetikere ignoreres. Sikkerhedschefens vagt beskytter. Et offer broadcastes som ethvert andet lig: *"LIG FUNDET: [Navn], [zone]."*
+- **Angreb:** Står præcis én spiller i alienens zone efter bevægelse, ruller ORACLE d6. Besætning dør på 4–6. Syntetikere ignoreres. Sikkerhedschefens vagt beskytter. Et offer broadcastes som ethvert andet drab: *"[Navn] er død."*
 - **Uro → zone:** Den, der rykker ind i zonen, farer vild og ender i en tilfældig nabozone. ORACLE fortæller dig privat, hvor du endte. Skakt ind og ud af zonen virker ikke.
 - **Tegn:** Står du i samme zone som alienen efter bevægelse, får du privat: *"Noget bevæger sig i ventilationen."*
-- **Bekæmp:** To spillere med *ARBEJDE: Bekæmp* i alienens zone smider den ud. Den bliver et almindeligt ekko, men spiller stadig for syntetikerne.
+- **Bekæmp:** To spillere med *EVNE: Bekæmp* i alienens zone smider den ud. Den bliver et almindeligt ekko, men spiller stadig for syntetikerne.
 - Alienen kender ikke syntetikerne, og de kender ikke den. Et mislykket angreb kan være en syntetiker — eller bare et dårligt slag.
 
 ## Ekko — død eller i kryo
@@ -172,7 +165,7 @@ Når du bliver ekko, **ruller ORACLE en d6** i hemmelighed og fortæller dig pri
 
 | d6 | Skæbne | Hvem | Hver fredag | ORACLE svarer fx |
 |---|---|---|---|---|
-| 1 | **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), hvem der arbejdede, og systemets ændring med sabotage, reparation og drab. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Arbejde: Sara. Lastrum 3 → 2 (sabotage −2, arbejde +1)."* |
+| 1 | **Jorden** | Døde og frosne | **Rumlog → zone.** ORACLE sender ugens fulde log for zonen: hvem der stod der efter bevægelse, hvem der gik ind og ud (fra/til), og systemets ændring. Aldrig hvem der saboterede, reparerede eller dræbte. Skakt går uden om dørene og logges ikke. | *"Lastrum: Peter (fra Rygraden), Sara (blev). Ud: Anna → Broen. Lastrum 3 → 2."* |
 | 2 | **Spøgelse** | Døde og frosne | **Hjemsøg → spiller.** ORACLE fortæller, hvor vedkommende står efter bevægelse. | *"Sara står i Lastrum."* |
 | 3–4 | **Alien** | Døde og frosne | Skifter side: du spiller nu for **syntetikerne** og vinder, hvis de vinder. Du lever i skakterne, og din zone er hemmelig. Vælg en startzone; derefter hver fredag: *ALIEN: Ryk → nabozone* (eller Bliv; kriser stopper dig ikke) og én af: **Angreb** — står præcis én spiller i din zone, dør besætning på d6 4–6; syntetikere ignoreres. **Uro → zone** — den, der rykker ind i zonen, farer vild og ender i en tilfældig nabozone; Skakt ind og ud virker ikke. To spillere med *Bekæmp* i din zone smider dig ud, og du bliver Ekko. | *"Angreb: Anna var alene. Intet sker."* |
 | 5 | **Afløser** | Kun dræbte | Du vågner i Hypersøvn som **aktiv spiller uden evne**: bevægelse, arbejde og stemme. Du er ikke længere ekko. | *"KAPSEL ÅBNET: Sara er vågen."* (broadcast) |
@@ -202,4 +195,4 @@ Rumlog og Hjemsøg er informationsevner: de kan forfalskes og forstyrres. Et fro
 | 3 | Broken Trust | Syntetikerne kan dræbe. |
 | 4 | Containment Failure | Krisen, rullet på d20 i uge 3. |
 | 5 | Last Transmission | Scenariets arkiv frigives. |
-| 6 | Final Protocol | Protokolvalg i stedet for tribunal. Rollerne afsløres. |
+| 6 | Final Protocol | Sidste tribunal. Rollerne afsløres. |
