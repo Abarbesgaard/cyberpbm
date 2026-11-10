@@ -1,6 +1,13 @@
 import { SectionHeader } from "@/components/SectionHeader";
 
 const changes = [
+  { from: "+1 pr. spiller, −1 forfald for alle", to: "Mindst ét levende menneske: +1. Ellers −1.", why: "Flere giver intet ekstra, og syntetikere er neutrale. En sektion, der faldt, havde intet menneske." },
+  { from: "Seks systemer, Rygraden uden", to: "Syv sektioner med integritet, startværdier fra scenariet", why: "Alle zoner betyder noget, og skibet starter delvist nedbrudt." },
+  { from: "Særordre: sabotage −2", to: "Alle syntetikere saboterer sektionens evne i én uge", why: "Sabotage rammer ikke integriteten. Den opdages kun af den, der prøver evnen: \"Systemet er saboteret.\"" },
+  { from: "Rumevne ved ≥3, nedbrud ved ≤1", to: "Syv sektionsevner uden grænser", why: "Kamera, Transport, Personlig beskyttelse, Arkiv, Ekstra reparation, Nødstrøm og Bevægelsessensorer. Prisen er ugens aktivering." },
+  { from: "Mandag: status og ændring", to: "Mandag: kun integritetens værdier", why: "Spillerne sammenligner selv ugerne. ORACLE forklarer intet." },
+  { from: "Bevægelse først, så alt andet", to: "Alt afgøres ud fra ugens zone; bevægelsen sker mandag", why: "Én regel for drab, evner og vedligehold." },
+  { from: "Ekko: Vedligehold → sektion", to: "Ekkoer vedligeholder ikke", why: "Kun levende mennesker holder skibet oppe." },
   { from: "Besætningen vinder kun ved scenariet", to: "Besætningen vinder, når alle syntetikere er i kryo", why: "Deduktionen er spillet. Systemerne er uret og sporene, ikke målet. Scenariet er historie og arkiv." },
   { from: "Uge 6: protokolvalg", to: "Tribunal hver uge fra uge 2 til 6", why: "Uden scenariesejr afgør tribunalet spillet. Er en syntetiker aktiv efter uge 6, vinder syntetikerne." },
   { from: "Arbejde: ja i ordren", to: "Alle i en sektion arbejder automatisk", why: "Én beslutning mindre. Hvor du står, er din handling." },
@@ -43,16 +50,21 @@ const changes = [
 
 const questions = [
   "Er ét drab om ugen for meget ved 6 spillere, hvor besætningen kun er fem?",
-  "Kan besætningen bare stå alene i hver sin sektion, så ingen kan dræbes, og sabotage straks ses?",
-  "Bliver spillere bange for at stå alene — og er det dårligt for arbejdet?",
-  "Gør ekko-vedligehold forfald for let, når flere er døde?",
-  "Er Særordre alene for svag ved 6 spillere, hvor der kun er én syntetiker?",
+  "Står besætningen alene i hver sin sektion for at holde flest oppe — og gør det drab for lette?",
+  "Bliver spillere så bange for at stå alene, at sektioner uden mennesker falder?",
+  "Er Særordre uden rolleevne for svag ved 6 spillere, hvor der kun er én syntetiker?",
+  "Er Kamera (navne) for stærkt i forhold til Scan og Pejling?",
+  "Overlapper Bevægelsessensorer for meget med Adgangslog?",
+  "Gør neutrale syntetikere en faldende sektion for sigende?",
+  "Drab bruger ugens zone: ved offeret nu for meget om, hvem det stod med?",
+  "Holder scenariernes startværdier (to sektioner på 2)? De er testværdier.",
+  "Er Brand og Overbelastning, tilpasset vedligehold, stadig gode kriser?",
   "Afslører \"Signal forstyrret\", at Støjsender er i spil, og er det et problem?",
   "Er 11 roller for mange at holde styr på for nye spillere?",
   "Er Revisor (stemmerevision) for stærk mod syntetikere, der koordinerer stemmer?",
   "Gør det, at Ingeniør altid er i spil, rollen for let at bekræfte via reparationer?",
   "Har Skaktløber nok at bruge Skakt til?",
-  "Er forfald hver uge for hårdt, når drab og kryo tynder ud i besætningen?",
+  "Er syv sektioner for mange at dække, når drab og kryo tynder ud i besætningen?",
   "Bliver sabotage syntetikernes eneste strategi?",
   "Er et tribunal hver uge fra uge 2 for stærkt for besætningen ved 6 spillere?",
   "Er spøgelsesstemmen sjov, eller en formalitet?",
@@ -64,7 +76,7 @@ export function DesignNotes() {
   return (
     <section id="notes" className="hull px-8 py-24 md:px-16">
       <SectionHeader eyebrow="Sektion XI // Designnoter">
-        v0.7 → <span className="text-cp-yellow">v0.28</span>
+        v0.7 → <span className="text-cp-yellow">v0.29</span>
       </SectionHeader>
       <div className="grid grid-cols-1 gap-4">
         {changes.map((c) => (

@@ -1,7 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { resolveKill, type KillAttempt } from "../src/content/kills.ts";
-import { resolveSystems, startStatus } from "../src/content/systems.ts";
 
 const base: KillAttempt = {
   week: 3,
@@ -37,8 +36,9 @@ test("holdet dræber højst én gang om ugen og kun besætning", () => {
   assert.equal(resolveKill({ ...base, killer: "Sara" }).ok, false);
 });
 
-test("ekko-vedligehold stopper forfald men giver intet", () => {
-  const r = resolveSystems(startStatus(), { week: 3, maintained: ["E"] });
-  assert.equal(r.delta.E, 0);
-  assert.equal(r.delta.F, -1);
+test("Personlig beskyttelse stopper drab på den, der bruger den", () => {
+  const r = resolveKill({ ...base, shielded: ["Anna"] });
+  assert.equal(r.ok, false);
+  assert.match(r.ok ? "" : r.reason, /beskyttet/);
+  assert.equal(resolveKill({ ...base, shielded: ["Peter"] }).ok, true);
 });

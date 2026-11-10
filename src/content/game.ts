@@ -102,14 +102,14 @@ export interface RoleDef {
 
 export const crewRoles: RoleDef[] = [
   { id: "security_chief", name: "Sikkerhedschef", ability: "Vagt", text: "Vælg en anden spiller. Vedkommende kan ikke dræbes denne uge.", pick: "En spiller", reply: "Du vogter Anna denne uge.", tag: "SIKKERHED" },
-  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. ORACLE fortæller, hvor vedkommende står efter bevægelse.", pick: "En spiller", reply: "Peter står i Lastrum.", tag: "SIKKERHED" },
+  { id: "navigator", name: "Navigatør", ability: "Pejling", text: "Vælg en spiller. ORACLE fortæller, hvor vedkommende står denne uge.", pick: "En spiller", reply: "Peter står i Lastrum.", tag: "SIKKERHED" },
   { id: "sensor_tech", name: "Sensortekniker", ability: "Scan", text: "Vælg en zone. ORACLE fortæller, hvor mange der står der. Ingen navne.", pick: "En zone", reply: "Medlab: 3 personer.", tag: "OBSERVATION" },
-  { id: "quartermaster", name: "Kvartermester", ability: "Adgangslog", text: "Vælg en zone. ORACLE fortæller, hvor mange der gik ind i den denne uge. Ingen navne.", pick: "En zone", reply: "Broen: 2 gik ind.", tag: "OBSERVATION", isNew: true },
+  { id: "quartermaster", name: "Kvartermester", ability: "Adgangslog", text: "Vælg en zone. ORACLE fortæller, hvor mange der gik ind i den ved seneste mandags bevægelse. Ingen navne.", pick: "En zone", reply: "Broen: 2 gik ind.", tag: "OBSERVATION", isNew: true },
   { id: "radar_operator", name: "Radaroperatør", ability: "Afstand", text: "Vælg en spiller. ORACLE fortæller, hvor tæt på vedkommende står: samme zone, nabozone eller langt væk.", pick: "En spiller", reply: "Anna: nabozone.", tag: "OBSERVATION", isNew: true },
   { id: "medic", name: "Læge", ability: "Biometri", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor vedkommende stod ugen før.", pick: "En spiller", reply: "Peter stod i Motorrum.", tag: "ANALYSE" },
   { id: "archivist", name: "Arkivar", ability: "Krydsreference", text: "Vælg to spillere. ORACLE fortæller, om de nogensinde har stået i samme zone.", pick: "To spillere", reply: "Anna og Peter: ja.", tag: "ANALYSE" },
   { id: "psychologist", name: "Psykolog", ability: "Afhøring", text: "Vælg en spiller i din zone. ORACLE fortæller, hvor mange andre der stod sammen med vedkommende ugen før.", pick: "En spiller", reply: "Sara stod med 2 andre.", tag: "ANALYSE", isNew: true },
-  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Systemet i din sektion får +2. ORACLE fortæller også, om sektionen blev saboteret sidste uge.", pick: "Ingen — din sektion", reply: "Livsstøtte 1 → 3. Saboteret: ja.", tag: "URET", core: true },
+  { id: "engineer", name: "Ingeniør", ability: "Reparér", text: "Din sektion får +2 integritet. ORACLE fortæller også, om en syntetiker saboterede sektionen denne uge.", pick: "Ingen — din sektion", reply: "Livsstøtte 1 → 3. Saboteret: ja.", tag: "URET", core: true },
   { id: "comms_officer", name: "Kommunikationsofficer", ability: "Åben linje", text: "Vælg en spiller. ORACLE åbner en privat kanal mellem jer i en uge, uanset placering.", pick: "En spiller", reply: "Kanal åben: #linje-sara.", tag: "SOCIAL" },
   { id: "auditor", name: "Revisor", ability: "Stemmerevision", text: "Vælg en spiller. ORACLE fortæller, hvem vedkommende stemte på ved denne uges tribunal.", pick: "En spiller", reply: "Peter stemte på Anna.", tag: "SOCIAL", isNew: true },
 ];
@@ -136,7 +136,7 @@ export interface SynthRoleDef {
 
 /** One ability per synthetic. Drawn without replacement, like crew roles. */
 export const synthRoles: SynthRoleDef[] = [
-  { id: "special_order", name: "Særordre", ability: "Sabotage", from: 2, core: true, text: "Systemet i din sektion får −2. Ingen broadcast: alle ser kun ændringen i systemstatus.", pick: "Ingen — din sektion", reply: "Sabotage udført. Livsstøtte 3 → 1." },
+  { id: "special_order", name: "Særordre", ability: "Ingen", from: 2, core: true, text: "Ingen rolleevne. Du har den basale sabotage og drabet, som alle syntetikere har.", pick: "—", reply: "—" },
   { id: "forger", name: "Forfalsker", ability: "Forfalskning", from: 2, text: "Vælg en spiller. ORACLE sender vedkommende et falsk, men troværdigt resultat og viser dig, hvad der blev sendt.", pick: "En spiller", reply: "Sendt til Sara: \"Medlab: 1 person.\"" },
   { id: "crawler", name: "Skaktløber", ability: "Skakt", from: 1, text: "Vælg en zone. Du kravler derhen gennem vedligeholdelsesskakterne i stedet for at gå.", pick: "En zone", reply: "Du står i Lastrum." },
   { id: "jammer", name: "Støjsender", ability: "Støj", from: 2, text: "Vælg en zone. Alle informationsevner i eller på zonen giver: \"Signal forstyrret.\"", pick: "En zone", reply: "Støj aktiv i Broen." },
@@ -156,19 +156,26 @@ export const balance: BalanceRow[] = [
   { players: 8, crew: 6, synths: 2 },
 ];
 
-export type SectionId = Exclude<ZoneId, "R">;
-export const sectionIds: SectionId[] = ["A", "B", "C", "D", "E", "F"];
+/** All seven zones are sections with integrity, Rygraden included. */
+export type SectionId = ZoneId;
+export const sectionIds: SectionId[] = ["A", "B", "C", "D", "E", "F", "R"];
 
-/** Ship systems: one per section, public status 0–SYSTEM_MAX. */
+/** Integrity: one value per section, public every Monday, 0–SYSTEM_MAX. */
 export const SYSTEM_MAX = 5;
+/** Start value for sections the scenario does not set. */
 export const SYSTEM_START = 3;
-/** Every active player in a section works automatically. No order needed. */
-export const WORK_GAIN = 1;
+/** From this week, integrity changes automatically every Friday. */
+export const INTEGRITY_FROM_WEEK = 2;
+/** At least one living human in the section. More humans give nothing extra. */
+export const PRESENCE_GAIN = 1;
+/** No living human in the section. Synthetics are neutral. */
+export const NEGLECT_LOSS = 1;
+/** Engineer's Reparér. */
 export const REPAIR_GAIN = 2;
-export const SABOTAGE_LOSS = 2;
-/** Every system decays by this each week from DECAY_FROM_WEEK, unless an Ekko maintained it. */
-export const DECAY_LOSS = 1;
-export const DECAY_FROM_WEEK = 2;
+/** Motorrum's Ekstra reparation. */
+export const EXTRA_REPAIR_GAIN = 1;
+/** Basic synthetic sabotage is possible from this week. */
+export const SABOTAGE_FROM_WEEK = 2;
 
 /** Kills: a shared synthetic action, not a role ability. At most one per week for the whole team. */
 export const KILL_FROM_WEEK = 3;
@@ -177,13 +184,15 @@ export interface Scenario {
   id: string;
   name: string;
   text: string;
+  /** Start integrity. Sections not listed start at SYSTEM_START. Test values. */
+  start: Partial<Record<SectionId, number>>;
   /** Week 5 archive release. Public with the scenario. The week 4 crisis is rolled (see crises.ts). */
   archive: { name: string; text: string };
 }
 
 /** One scenario per campaign. Public from week 1. Story and archive only: it does not decide the game. */
 export const scenarios: Scenario[] = [
-  { id: "distress", name: "Nødsignal", text: "Cassandra skal sende et nødsignal hjem fra Broen. Nogen om bord vil ikke have, at det når frem.", archive: { name: "Sortboks", text: "ORACLE frigiver hele positionsloggen fra uge 1." } },
-  { id: "quarantine", name: "Karantæne", text: "En smitte er brudt ud. Besætningen venter i karantæne på en redning, der måske aldrig kommer.", archive: { name: "Dørlog", text: "ORACLE frigiver de 10 seneste bevægelser: navn, fra og til, uden uge. Skakter har ingen døre og logges ikke." } },
-  { id: "homeward", name: "Hjemrejse", text: "Cassandra er på vej hjem med en last, firmaet vil have for enhver pris.", archive: { name: "Arbejdslog", text: "ORACLE frigiver, hvem der stod i hvilken sektion i uge 3." } },
+  { id: "distress", name: "Nødsignal", text: "Cassandra skal sende et nødsignal hjem fra Broen. Nogen om bord vil ikke have, at det når frem.", start: { E: 2, F: 2 }, archive: { name: "Sortboks", text: "ORACLE frigiver hele positionsloggen fra uge 1." } },
+  { id: "quarantine", name: "Karantæne", text: "En smitte er brudt ud. Besætningen venter i karantæne på en redning, der måske aldrig kommer.", start: { B: 2, A: 2 }, archive: { name: "Dørlog", text: "ORACLE frigiver de 10 seneste bevægelser: navn, fra og til, uden uge. Skakter har ingen døre og logges ikke." } },
+  { id: "homeward", name: "Hjemrejse", text: "Cassandra er på vej hjem med en last, firmaet vil have for enhver pris.", start: { D: 2, R: 2 }, archive: { name: "Arbejdslog", text: "ORACLE frigiver, hvem der stod i hvilken sektion i uge 3." } },
 ];

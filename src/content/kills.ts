@@ -6,13 +6,15 @@ export interface KillAttempt {
   week: number;
   killer: string;
   target: string;
-  /** Zones of all active players after movement. */
+  /** Zones of all active players this week, before Monday's movement. */
   positions: Record<string, ZoneId>;
   teams: Record<string, Team>;
   /** The synthetic team already killed this week. At most one kill per week for the whole team. */
   killedThisWeek?: boolean;
   /** Players the Security Chief guards this week. */
   guarded?: string[];
+  /** Players who used Hypersøvn's Personlig beskyttelse this week. */
+  shielded?: string[];
 }
 
 export type KillResult =
@@ -35,5 +37,6 @@ export function resolveKill(a: KillAttempt): KillResult {
   const others = Object.entries(a.positions).filter(([p, z]) => z === zone && p !== a.killer && p !== a.target);
   if (others.length > 0) return { ok: false, reason: "Der er vidner i zonen." };
   if (a.guarded?.includes(a.target)) return { ok: false, reason: "Målet er under vagt." };
+  if (a.shielded?.includes(a.target)) return { ok: false, reason: "Målet er beskyttet." };
   return { ok: true, zone };
 }

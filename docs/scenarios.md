@@ -4,7 +4,7 @@ Hver kampagne har **ét scenarie**. Det er historien om rejsen og bestemmer, hva
 
 ## Sådan bruges bogen
 
-1. **Opsætning:** Vælg et scenarie, eller rul d6: 1–2 Nødsignal, 3–4 Karantæne, 5–6 Hjemrejse. Vælg en skibsplan, eller rul d4. Sæt alle systemer til 3.
+1. **Opsætning:** Vælg et scenarie, eller rul d6: 1–2 Nødsignal, 3–4 Karantæne, 5–6 Hjemrejse. Vælg en skibsplan, eller rul d4. Sæt integriteten efter scenariets startværdier: de nævnte sektioner starter på 2, resten på 3.
 2. **Uge 1, mandag:** Annoncér scenariet, arkivet og skibsplanen i den første broadcast.
 3. **Uge 3, mandag:** Rul d20 på krisetabellen. Skal krisen ramme en sektion, så rul d6 på sektionstabellen. Annoncér krisen, så spillerne har en uge til at planlægge.
 4. **Uge 4:** Krisen gælder hele ugen: kommunikation mandag–fredag, ordrerne og afgørelsen.
@@ -22,18 +22,23 @@ Kriser og arkiver er broadcasts. De er altid sande og kan ikke forfalskes.
 > *"Langdistancesenderen er offline. Ingen ved, at I er her."*
 
 - **Arkiv i uge 5 — Sortboks:** Hele positionsloggen fra uge 1. Gamle alibier kan tjekkes.
+- **Start:** Broen 2, Motorrum 2, resten 3.
 
 ### Karantæne
 
 > *"Biologisk kontaminering registreret. Redningsskibet ankommer om seks uger."*
 
 - **Arkiv i uge 5 — Dørlog:** De 10 seneste bevægelser, nyeste først: *"Anna: Lastrum → Broen."* Ingen uge. *Bliv* tæller ikke. Skakter har ingen døre og logges ikke — en spiller, der dukker op uden spor, har brugt en skakt.
+- **Start:** Medlab 2, Hypersøvn 2, resten 3.
 
 ### Hjemrejse
 
 > *"Kursen holder. Skroget holder ikke."*
 
 - **Arkiv i uge 5 — Arbejdslog:** Hvem der stod i hvilken sektion i uge 3. Døde i uge 3 er ikke med.
+- **Start:** Lastrum 2, Rygraden 2, resten 3.
+
+Startværdierne er testværdier. Justér dem efter playtest.
 
 ---
 
@@ -62,10 +67,10 @@ Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen. P
 | 4 | **Radiotavshed** | Højttaleren er slukket. ORACLE læser ingen beskeder op. Kun sektorkanalerne virker. Ekkoer er tavse. |
 | 5 | **Sensorblackout** | Alle informationsevner giver *"Signal forstyrret."* |
 | 6 | **Trykfald** *(d6)* | Sektionen mister 1 ekstra ved afgørelsen. |
-| 7 | **Brand** *(d6)* | Arbejde i sektionen tæller ikke. Reparation og vedligehold virker. |
+| 7 | **Brand** *(d6)* | Ingen kan vedligeholde sektionen: den mister 1, uanset hvem der står der. Reparation virker. |
 | 8 | **Skotter låst** | Alle fuldt optrukne gange er låst. Man kan kun rykke ad de stiplede gange til og fra Rygraden. Skakt virker. |
 | 9 | **Skakter oversvømmet** | Skakt virker ikke. Skaktløberen rykker som alle andre. |
-| 10 | **Overbelastning** | Arbejde giver +2 i stedet for +1. Sabotage giver −3 i stedet for −2. |
+| 10 | **Overbelastning** | Vedligehold giver +2 i stedet for +1. En sektion uden mennesker mister 2 i stedet for 1. |
 | 11 | **Optælling** | ORACLE oplyser i mandagsbroadcasten, hvor mange syntetikere der stadig er aktive. |
 | 12 | **Tribunal suspenderet** | Intet tribunal i uge 4. |
 | 13 | **Åben afstemning** | ORACLE offentliggør, hvem der stemte på hvem i uge 4's tribunal. |
@@ -80,7 +85,7 @@ Rul i uge 3. Krisen gælder i uge 4. *(d6)* betyder: rul på sektionstabellen. P
 **Støj på linjen i praksis.** Tæl ordene i hver besked fra ORACLE, og erstat hvert tredje med *brzzz*. Navne og zoner er ikke fredet.
 
 ```
-ORACLE: To personer brzzz gennem Medlab. Én af brzzz arbejdede. Livsstøtte brzzz 2.
+ORACLE: To personer brzzz gennem Medlab. Én af brzzz blev. Livsstøtte brzzz 2.
 ```
 
 ## Sektionstabel (d6)
@@ -99,7 +104,7 @@ ORACLE: To personer brzzz gennem Medlab. Én af brzzz arbejdede. Livsstøtte brz
 ```
 ORACLE // SHIPWIDE // UGE 3
 ...
-KRISE I UGE 4: Brand i Lastrum. Arbejde i Lastrum tæller ikke.
+KRISE I UGE 4: Brand i Lastrum. Lastrum mister 1, uanset hvem der står der.
 ```
 
 Skriv krisen kort, uden forklaring. Gentag den mandag i uge 4.

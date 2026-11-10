@@ -10,12 +10,12 @@ const intro = {
 type Entry = { time: string; channel: string; title: string; body: string; actor: "oracle" | "crew" };
 
 const log: Entry[] = [
-  { time: "Man 09:00", channel: "#shipwide", actor: "oracle", title: "Broadcast", body: "ORACLE poster status og ændring for alle seks systemer, hvem der er død, og tribunalets dom. Sabotage nævnes aldrig." },
+  { time: "Man 09:00", channel: "#shipwide", actor: "oracle", title: "Broadcast", body: "ORACLE poster integriteten for alle syv sektioner — kun tallene, ingen ændringer —, hvem der er død, og tribunalets dom. Sabotage nævnes aldrig." },
   { time: "Man 09:00", channel: "Privat", actor: "oracle", title: "Din rapport", body: "Din zone, hvem der står der med dig, og svaret på din evne. Sidste linje fortæller, hvad du kan i den kommende uge." },
-  { time: "Man 09:00", channel: "Sektorkanal", actor: "oracle", title: "Nye rum", body: "Du flyttes til kanalen for din zone. Dem, du møder dér, er de eneste, du kan tale privat med denne uge." },
+  { time: "Man 09:00", channel: "Sektorkanal", actor: "oracle", title: "Nye rum", body: "Din bevægelse sker nu. Du flyttes til kanalen for din nye zone. Dem, du møder dér, er de eneste, du kan tale privat med denne uge." },
   { time: "Man–Fre", channel: "Højttaler + sektor", actor: "crew", title: "Samtale", body: "Skriv privat til ORACLE, og den læser beskeden op i #shipwide via højttaleren — uden afsender. I sektorkanalen taler du med navn til dem i samme zone. Ingen DM'er mellem spillere." },
-  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, én aktivering (rolleevne eller rumevne) og din tribunal-stemme. Du arbejder automatisk, der hvor du står. Ekkoer sender vedligehold og evt. Rumlog eller Hjemsøg. Ingen ordre = bliv." },
-  { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge: bevægelse, drab, støj og forfalskning, evner, systemer, tribunal. Ingen spiller gør noget. Mandag begynder det forfra." },
+  { time: "Fre 18:00", channel: "Ordre", actor: "crew", title: "Ordre og stemme", body: "Én besked til ORACLE: bevægelse, én aktivering (rolleevne, sektionens evne, Bekæmp — eller sabotage, hvis du er syntetiker) og din tribunal-stemme. Du vedligeholder automatisk, der hvor du står. Ekkoer sender evt. Rumlog eller Hjemsøg. Ingen ordre = bliv." },
+  { time: "Weekend", channel: "Radiotavshed", actor: "oracle", title: "Afgørelse", body: "ORACLE afgør i fast rækkefølge ud fra, hvor alle stod i ugen: drab, støj og forfalskning, evner, integritet, tribunal. Rammer en sektion 0, slutter spillet straks. Bevægelsen sker mandag." },
 ];
 
 const orderSheet = `UGE:        3
