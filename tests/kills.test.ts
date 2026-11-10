@@ -28,16 +28,17 @@ test("drab på en spiller under vagt mislykkes og er ikke brugt", () => {
   assert.equal(resolveKill({ ...base, guarded: ["Sara"] }).ok, true);
 });
 
-test("hver syntetiker dræber højst én gang og kun besætning", () => {
-  const spent = resolveKill({ ...base, used: { Peter: 1 } });
+test("holdet dræber højst én gang om ugen og kun besætning", () => {
+  const spent = resolveKill({ ...base, killedThisWeek: true });
   assert.equal(spent.ok, false);
   assert.match(spent.ok ? "" : spent.reason, /allerede/);
+  assert.equal(resolveKill({ ...base, week: 4 }).ok, true);
   assert.equal(resolveKill({ ...base, teams: { ...base.teams, Anna: "synth" } }).ok, false);
   assert.equal(resolveKill({ ...base, killer: "Sara" }).ok, false);
 });
 
 test("ekko-vedligehold stopper forfald men giver intet", () => {
-  const r = resolveSystems(startStatus(), { week: 4, maintained: ["E"] });
+  const r = resolveSystems(startStatus(), { week: 3, maintained: ["E"] });
   assert.equal(r.delta.E, 0);
   assert.equal(r.delta.F, -1);
 });

@@ -1,15 +1,15 @@
 # Scenariebog — USCSS Cassandra
 
-Hver kampagne har **ét scenarie**. Det bestemmer, hvad besætningen skal nå, og hvad ORACLE frigiver i uge 5. Krisen i uge 4 slås på **krisetabellen (d20)**, så ingen kampagne bliver ens.
+Hver kampagne har **ét scenarie**. Det er historien om rejsen og bestemmer, hvad ORACLE frigiver i uge 5. Det afgør ikke, hvem der vinder. Krisen i uge 4 slås på **krisetabellen (d20)**, så ingen kampagne bliver ens.
 
 ## Sådan bruges bogen
 
 1. **Opsætning:** Vælg et scenarie, eller rul d6: 1–2 Nødsignal, 3–4 Karantæne, 5–6 Hjemrejse. Vælg en skibsplan, eller rul d4. Sæt alle systemer til 3.
-2. **Uge 1, mandag:** Annoncér scenariets mål, arkiv og skibsplan i den første broadcast.
+2. **Uge 1, mandag:** Annoncér scenariet, arkivet og skibsplanen i den første broadcast.
 3. **Uge 3, mandag:** Rul d20 på krisetabellen. Skal krisen ramme en sektion, så rul d6 på sektionstabellen. Annoncér krisen, så spillerne har en uge til at planlægge.
 4. **Uge 4:** Krisen gælder hele ugen: kommunikation mandag–fredag, ordrerne og afgørelsen.
 5. **Uge 5, mandag:** Frigiv scenariets arkiv i broadcasten.
-6. **Efter uge 6:** Tæl protokolvalget. Har en syntetiker protokollen, vinder syntetikerne. Ellers tjek målet: opfyldt, og besætningen vinder; ikke opfyldt, og syntetikerne vinder.
+6. **Uge 6:** Sidste tribunal. Afslør derefter alle roller.
 
 Kriser og arkiver er broadcasts. De er altid sande og kan ikke forfalskes.
 
@@ -21,22 +21,19 @@ Kriser og arkiver er broadcasts. De er altid sande og kan ikke forfalskes.
 
 > *"Langdistancesenderen er offline. Ingen ved, at I er her."*
 
-- **Mål efter uge 6:** Broen og Motorrum står på 5.
 - **Arkiv i uge 5 — Sortboks:** Hele positionsloggen fra uge 1. Gamle alibier kan tjekkes.
 
 ### Karantæne
 
 > *"Biologisk kontaminering registreret. Redningsskibet ankommer om seks uger."*
 
-- **Mål efter uge 6:** Medlab og Hypersøvn står på 5.
 - **Arkiv i uge 5 — Dørlog:** De 10 seneste bevægelser, nyeste først: *"Anna: Lastrum → Broen."* Ingen uge. *Bliv* tæller ikke. Skakter har ingen døre og logges ikke — en spiller, der dukker op uden spor, har brugt en skakt.
 
 ### Hjemrejse
 
 > *"Kursen holder. Skroget holder ikke."*
 
-- **Mål efter uge 6:** Alle seks systemer står på mindst 4.
-- **Arkiv i uge 5 — Arbejdslog:** Hvem der stod i en sektion med *Arbejde: ja* i uge 3. Døde i uge 3 er ikke med.
+- **Arkiv i uge 5 — Arbejdslog:** Hvem der stod i hvilken sektion i uge 3. Døde i uge 3 er ikke med.
 
 ---
 

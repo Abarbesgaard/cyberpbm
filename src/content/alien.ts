@@ -11,7 +11,7 @@ export interface AlienEncounter {
   /** Zones of all active players after movement. */
   positions: Record<string, string>;
   teams: Record<string, Team>;
-  /** Players who wrote ARBEJDE: Bekæmp. */
+  /** Players who wrote EVNE: Bekæmp. */
   fighters?: string[];
   /** Players the Security Chief guards this week. */
   guarded?: string[];

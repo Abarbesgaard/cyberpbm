@@ -151,7 +151,6 @@ export interface BalanceRow {
 }
 
 export const balance: BalanceRow[] = [
-  { players: 5, crew: 4, synths: 1 },
   { players: 6, crew: 5, synths: 1 },
   { players: 7, crew: 5, synths: 2 },
   { players: 8, crew: 6, synths: 2 },
@@ -163,30 +162,28 @@ export const sectionIds: SectionId[] = ["A", "B", "C", "D", "E", "F"];
 /** Ship systems: one per section, public status 0–SYSTEM_MAX. */
 export const SYSTEM_MAX = 5;
 export const SYSTEM_START = 3;
+/** Every active player in a section works automatically. No order needed. */
 export const WORK_GAIN = 1;
 export const REPAIR_GAIN = 2;
 export const SABOTAGE_LOSS = 2;
-export const NEGLECT_LOSS = 1;
-/** Neglect hits untended sections in even weeks only. */
-export const NEGLECT_WEEKS = [2, 4, 6];
+/** Every system decays by this each week from DECAY_FROM_WEEK, unless an Ekko maintained it. */
+export const DECAY_LOSS = 1;
+export const DECAY_FROM_WEEK = 2;
 
-/** Kills: a shared synthetic action, not a role ability. */
+/** Kills: a shared synthetic action, not a role ability. At most one per week for the whole team. */
 export const KILL_FROM_WEEK = 3;
-export const KILLS_PER_SYNTH = 1;
 
 export interface Scenario {
   id: string;
   name: string;
   text: string;
-  /** Minimum status per system after week 6. */
-  targets: Partial<Record<SectionId, number>>;
   /** Week 5 archive release. Public with the scenario. The week 4 crisis is rolled (see crises.ts). */
   archive: { name: string; text: string };
 }
 
-/** One scenario per campaign. Public from week 1. */
+/** One scenario per campaign. Public from week 1. Story and archive only: it does not decide the game. */
 export const scenarios: Scenario[] = [
-  { id: "distress", name: "Nødsignal", text: "Send et nødsignal hjem. Broen og Motorrum skal stå på 5.", targets: { E: 5, F: 5 }, archive: { name: "Sortboks", text: "ORACLE frigiver hele positionsloggen fra uge 1." } },
-  { id: "quarantine", name: "Karantæne", text: "Hold besætningen i live til redningen. Medlab og Hypersøvn skal stå på 5.", targets: { B: 5, A: 5 }, archive: { name: "Dørlog", text: "ORACLE frigiver de 10 seneste bevægelser: navn, fra og til, uden uge. Skakter har ingen døre og logges ikke." } },
-  { id: "homeward", name: "Hjemrejse", text: "Få skibet hjem i ét stykke. Alle seks systemer skal stå på mindst 4.", targets: { A: 4, B: 4, C: 4, D: 4, E: 4, F: 4 }, archive: { name: "Arbejdslog", text: "ORACLE frigiver, hvem der arbejdede i hvilken sektion i uge 3." } },
+  { id: "distress", name: "Nødsignal", text: "Cassandra skal sende et nødsignal hjem fra Broen. Nogen om bord vil ikke have, at det når frem.", archive: { name: "Sortboks", text: "ORACLE frigiver hele positionsloggen fra uge 1." } },
+  { id: "quarantine", name: "Karantæne", text: "En smitte er brudt ud. Besætningen venter i karantæne på en redning, der måske aldrig kommer.", archive: { name: "Dørlog", text: "ORACLE frigiver de 10 seneste bevægelser: navn, fra og til, uden uge. Skakter har ingen døre og logges ikke." } },
+  { id: "homeward", name: "Hjemrejse", text: "Cassandra er på vej hjem med en last, firmaet vil have for enhver pris.", archive: { name: "Arbejdslog", text: "ORACLE frigiver, hvem der stod i hvilken sektion i uge 3." } },
 ];

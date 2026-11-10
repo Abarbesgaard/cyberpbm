@@ -13,9 +13,9 @@ import {
 } from "../src/content/roleSetup.ts";
 
 const names = (n: number) => ["Anna", "Peter", "Sara", "Jonas", "Mia", "Ole", "Ida", "Emil", "Liv"].slice(0, n);
-const expected: Record<number, [number, number]> = { 5: [4, 1], 6: [5, 1], 7: [5, 2], 8: [6, 2] };
+const expected: Record<number, [number, number]> = { 6: [5, 1], 7: [5, 2], 8: [6, 2] };
 
-for (const n of [5, 6, 7, 8]) {
+for (const n of [6, 7, 8]) {
   test(`${n} spillere: korrekte hold, unikke roller og gyldige bluffs over 200 seeds`, () => {
     const [crewCount, synthCount] = expected[n];
     for (let seed = 1; seed <= 200; seed++) {
@@ -74,10 +74,10 @@ test("for få ubrugte roller giver en forståelig fejl", () => {
   assert.throws(() => assignBluffs(["archivist"], ["A"], seededRng(1)), /Kun 1 ubrugte roller/);
 });
 
-test("alle tilladte rollekombinationer ved 5–8 spillere efterlader nok bluffs", () => {
+test("alle tilladte rollekombinationer ved 6–8 spillere efterlader nok bluffs", () => {
   const optional = crewRoles.filter((r) => !r.core);
   const core = crewRoles.filter((r) => r.core);
-  for (const n of [5, 6, 7, 8]) {
+  for (const n of [6, 7, 8]) {
     const pool = rolePool(n);
     const need = pool.crew - core.length;
     let valid = 0;
@@ -115,11 +115,11 @@ test("rolle-id'er og navne er unikke", () => {
 
 test("ugyldigt spillerantal og navne giver forståelige fejl", () => {
   assert.throws(
-    () => createRoleSetup(names(4)),
-    (e: unknown) => e instanceof RoleSetupError && /4 spillere understøttes ikke\. Vælg 5–8/.test(e.message),
+    () => createRoleSetup(names(5)),
+    (e: unknown) => e instanceof RoleSetupError && /5 spillere understøttes ikke\. Vælg 6–8/.test(e.message),
   );
   assert.throws(() => createRoleSetup(names(9)), /9 spillere understøttes ikke/);
-  assert.throws(() => createRoleSetup(["A", "A", "B", "C", "D"]), /Spillernavne skal være unikke/);
+  assert.throws(() => createRoleSetup(["A", "A", "B", "C", "D", "E"]), /Spillernavne skal være unikke/);
 });
 
 const base = (): RoleSetup => createRoleSetup(names(7), seededRng(7));
