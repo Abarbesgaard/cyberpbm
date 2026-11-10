@@ -60,7 +60,7 @@ Sara er død.`}
           <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cp-red-bright">// Drab</div>
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
             <li>Syntetikerne kan dræbe <strong className="text-cp-red-bright">én gang om ugen</strong> for hele holdet, fra uge 3. Drabet erstatter drabsmandens evne den uge.</li>
-            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen efter bevægelse, og målet ikke er under vagt. Ellers sker intet.</li>
+            <li>Kun når drabsmand og mål står <strong className="text-cp-red-bright">alene</strong> i zonen i ugen, og målet ikke er under vagt eller beskyttet. Ellers sker intet.</li>
             <li>ORACLE broadcaster kun <strong className="text-cp-red-bright">"Sara er død."</strong> Aldrig hvor, hvem eller rollen.</li>
           </ul>
         </div>
@@ -69,7 +69,6 @@ Sara er død.`}
           <ul className="space-y-2 text-[0.9rem] leading-[1.6] text-cp-off">
             <li>Ingen bevægelse, evne eller sektorkanal. Rollen afsløres først ved spillets afslutning.</li>
             <li>Taler <strong className="text-cp-yellow">kun gennem ORACLE</strong> — via højttaleren, som alle andre. Alt, et ekko siger, er vidneudsagn.</li>
-            <li><strong className="text-cp-yellow">Vedligehold:</strong> vælg hver uge én sektion. Den får intet forfald.</li>
             <li>Én <strong className="text-cp-yellow">spøgelsesstemme</strong> til ét tribunal resten af spillet.</li>
           </ul>
         </div>

@@ -7,12 +7,11 @@ const testimony = [
 ];
 
 const facts = [
-  "Broadcasten er sand: Livsstøtte faldt 1. Den siger intet om sabotage.",
-  "Er scannen ægte, stod der præcis to — Anna og Peter.",
+  "Broadcasten viser kun tal. Livsstøtte stod på 3 sidste mandag og står nu på 2. Ingen fortæller hvorfor.",
+  "En sektion falder kun, når intet levende menneske stod der. Anna og Peter siger begge, at de stod i Livsstøtte. Så lyver mindst én af dem om, hvor de var.",
   "Anna manglede én stemme. Peter siger, han stemte på Ingen. Stemmerne er hemmelige, så ingen kan tjekke det. Beskytter han en uskyldig — eller sig selv?",
-  "Alle i en sektion arbejder automatisk. To i Livsstøtte giver +2, forfaldet −1, så Livsstøtte skulle være steget 1. Et fald på 1 passer kun med sabotage −2. Én af dem lyver.",
+  "Er scannen ægte, stod der to i Livsstøtte uden et eneste menneske. Det kræver to syntetikere. Ved én syntetiker er scannen forfalsket, eller afsenderen lyver.",
   "Højttaleren viser aldrig afsender. \"Anna her\" kan være skrevet af hvem som helst — også af Peter.",
-  "Hele regnestykket hviler på den anonyme scan. Er afsenderen ægte — eller stod der en tredje, der saboterede?",
 ];
 
 export function Example() {
@@ -27,13 +26,13 @@ export function Example() {
           <div className="mb-3 flex items-center justify-between gap-3"><span className="plate">#shipwide // Uge 04</span><span className="flex gap-2" aria-hidden><span className="lamp lamp-red blink-slow" /><span className="lamp lamp-off" /></span></div>
           <pre className="crt crt-red m-[10px] whitespace-pre-wrap p-6 text-[1.25rem] leading-[1.4]">
 {`ORACLE // SHIPWIDE // UGE 4
-LIVSSTØTTE: ██░░░ 2  −1
+LIVSSTØTTE ██░░░ 2
 TRIBUNAL: 3 af 6 stemmer mod Anna.
 Intet flertal. Ingen dom.`}
           </pre>
           </div>
           <p className="mb-4 font-mono text-[0.65rem] tracking-[0.15em] uppercase text-cp-mid">
-            Fredagens tribunal stemte om Anna.
+            Sidste mandag: Livsstøtte 3. Fredagens tribunal stemte om Anna.
           </p>
           <div className="space-y-3">
             {testimony.map((t) => (

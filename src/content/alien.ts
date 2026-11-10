@@ -6,15 +6,17 @@ export const ALIEN_KILL_ROLL = 4;
 export const FIGHTERS_TO_EXPEL = 2;
 
 export interface AlienEncounter {
-  /** The alien's zone after movement. */
+  /** The alien's zone this week. */
   zone: string;
-  /** Zones of all active players after movement. */
+  /** Zones of all active players this week, before Monday's movement. */
   positions: Record<string, string>;
   teams: Record<string, Team>;
   /** Players who wrote EVNE: Bekæmp. */
   fighters?: string[];
   /** Players the Security Chief guards this week. */
   guarded?: string[];
+  /** Players who used Personlig beskyttelse this week. */
+  shielded?: string[];
   /** ORACLE's d6 for the attack. */
   roll: number;
 }
@@ -26,7 +28,7 @@ export type AlienResult =
 
 /**
  * Two or more fighters in the zone expel the alien. A lone player is attacked:
- * crew dies on 4–6, synthetics are ignored, and guarded players are safe.
+ * crew dies on 4–6, synthetics are ignored, and guarded or shielded players are safe.
  */
 export function resolveAlien(e: AlienEncounter): AlienResult {
   const here = Object.keys(e.positions).filter((p) => e.positions[p] === e.zone);
@@ -34,6 +36,6 @@ export function resolveAlien(e: AlienEncounter): AlienResult {
   if (fighting.length >= FIGHTERS_TO_EXPEL) return { kind: "expelled" };
   if (here.length !== 1) return { kind: "none" };
   const [lone] = here;
-  if (e.teams[lone] !== "crew" || e.guarded?.includes(lone) || e.roll < ALIEN_KILL_ROLL) return { kind: "none" };
+  if (e.teams[lone] !== "crew" || e.guarded?.includes(lone) || e.shielded?.includes(lone) || e.roll < ALIEN_KILL_ROLL) return { kind: "none" };
   return { kind: "killed", victim: lone };
 }

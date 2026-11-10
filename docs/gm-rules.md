@@ -24,10 +24,10 @@ Hver faktisk besætningsrolle må kun bruges én gang. Følg trinnene i rækkef�
    - **Besætning:** rolle, hold og evne.
    - **Syntetiker:** hold, syntetikerrolle og evne, de andre syntetikeres navne og roller, og egne 2 bluff-forslag.
    - Offentliggør aldrig, hvilke roller der er i spil.
-9. **Vælg scenarie og skibsplan** i *Scenariebogen*: scenarie på d6, skibsplan (Ringen, Knudepunktet, Langskibet eller Tvillingeskroget) på d4. Sæt alle seks systemer til 3. Annoncér begge i den første broadcast. Scenariet er historie og arkiv; det afgør ikke spillet.
+9. **Vælg scenarie og skibsplan** i *Scenariebogen*: scenarie på d6, skibsplan (Ringen, Knudepunktet, Langskibet eller Tvillingeskroget) på d4. Sæt integriteten for alle syv sektioner efter scenariet (`startStatus(scenario)` i `src/content/systems.ts`): de sektioner, scenariet nævner, starter lavere, resten på 3. Annoncér begge i den første broadcast. Scenariet er historie og arkiv; det afgør ikke spillet.
 10. **Placér spillerne** i tilfældige zoner. Højst to spillere pr. zone i uge 1. Ingen starter i Rygraden.
 11. **Opret Slack-kanaler:** **#shipwide**, hvor kun ORACLE må skrive (Slack: *Posting permissions*), og én privat kanal pr. zone (#hypersøvn, #medlab, #livsstøtte, #lastrum, #broen, #motorrum, #rygraden).
-12. **Opret et regneark** med en fane pr. uge: spiller, zone, evne, mål, drab, vedligehold, stemme — plus systemstatus og om holdet har dræbt.
+12. **Opret et regneark** med en fane pr. uge: spiller, zone i ugen, ny zone mandag, aktivering, mål, stemme — plus integritet, sabotage (sektion og uge) og om holdet har dræbt.
 
 ### Påstande er frie
 
@@ -35,19 +35,19 @@ Rolletildelingen er unik, men påstande er det ikke. Alle må påstå enhver rol
 
 ## Ugentlig tjekliste
 
-**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen evne, Tribunal: Ingen*. Manglende ekko-ordre = intet vedligehold.
+**Fredag 18:00 — luk ordrer.** Manglende ordre = *Bliv, ingen aktivering, Tribunal: Ingen*. Har en spiller sendt flere aktiveringer, gælder kun den første (`oneActivationEach`).
 
-**Weekend — afgør i denne rækkefølge.** Tjek først mandagens status med `activeAbilities` og `activeBreakdowns` i `src/content/rooms.ts`: rumevner virker ved ≥3, nedbrud gælder ved ≤1. *EVNE: Rum* i en sektion under 3 = ingen effekt.
+**Weekend — afgør i denne rækkefølge.** Alt afgøres ud fra, hvor spillerne **stod i ugen**. Bevægelsen sker til sidst og gælder fra mandag. Find først ugens saboterede sektioner med `sabotagedIn(uge, log)` i `src/content/rooms.ts`, og tjek hver aktivering med `checkActivation`: en sektionsevne kun fra sektionen selv, sabotage kun for syntetikere fra uge 2 i egen sektion. En sektionsevne i en saboteret sektion giver privat *"Systemet er saboteret."* og er brugt.
 
-1. **Bevægelse.** Flyt alle samtidig. Tjek nabozoner. Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Alien: ryk den én zone (eller bliv); kriser stopper den ikke. Uro → zone: hver, der rykker ind i zonen, ender i en tilfældig nabozone til den; Skakt ind og ud fejler. Uge 4: tjek krisen, fx Strømudfald, Karantænezone, Skotter låst eller Gang kollapset.
-2. **Drab.** Kapsel (Hypersøvn) beskytter mod drab og alien. Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, holdet har ikke dræbt denne uge (`killedThisWeek`), målet er besætning, og drabsmand og mål er alene i zonen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Sender to syntetikere et drab, gælder kun det første, du modtog. Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne, intet arbejde). Mislykkes det, sker intet.
-2b. **Alien.** Tjek `resolveAlien` i `src/content/alien.ts`: to eller flere med *Bekæmp* i alienens zone smider den ud (den bliver Ekko, stadig syntetikerhold). Ellers, ved Angreb og præcis én spiller i zonen: rul d6; besætning dør på 4–6, syntetikere og bevogtede overlever. Offeret broadcastes som et normalt drab: kun navnet. Alle i alienens zone får privat: *"Noget bevæger sig i ventilationen."*
-2c. **Skæbner.** Rul d6 for hvert nyt ekko: 1 Jorden, 2 Spøgelse, 3–4 Alien, 5 Afløser, 6 Ekko. Hver findes én gang. Taget, eller Afløser til en frossen = Ekko. Ingen omrul. Flere nye ekkoer samme uge: rul i tilfældig rækkefølge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 4 som informationsevner — Hjemsøg bruger positionen efter bevægelse.
-3. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
-4. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 6. Erstat forfalskede med et troværdigt, forkert svar. Obduktion og Sensorfeje afgøres her.
-5. **Systemer.** For hver sektion, samtidigt: +1 pr. aktiv spiller, der står i sektionen efter bevægelse. +2 for Ingeniørens reparation. −2 for sabotage. Fra uge 2: −1 for forfald, medmindre et ekko vedligeholdt sektionen. Hold status mellem 0 og 5. Omdirigér: Motorrum −1, målet +1 (`rerouted`). Værktøj fra sidste uge: +1 ekstra (`tools`). Iltmangel: tæl kun spillere, hvor mindst to står. Ingen reservedele: reparation +1. `src/content/systems.ts` regner det ud. Rammer et system 0, vinder syntetikerne med det samme (`failed`). Stop afgørelsen, og afslør alle roller. Sabotage broadcastes aldrig: kun status og ændring.
-6. **Tribunal.** Ved Kryo svigter: tæl og broadcast, men ingen fryses. Tæl stemmer, inkl. brugte spøgelsesstemmer. Har ét navn flertal af de *aktive* spillere, sendes vedkommende i kryo og bliver et ekko. Broadcast navn og antal stemmer. Offentliggør aldrig, hvem der stemte hvad. Er alle syntetikere nu i kryo, vinder besætningen. Er det uge 6, og er mindst én syntetiker aktiv, vinder syntetikerne.
-7. **Kanaler.** Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
+1. **Drab.** Personlig beskyttelse (Hypersøvn) beskytter mod drab og alien (`shielded`). Tjek hver *Drab → [Navn]* med `resolveKill` i `src/content/kills.ts`: uge 3+, holdet har ikke dræbt denne uge (`killedThisWeek`), målet er besætning, og drabsmand og mål er alene i zonen i ugen, og målet er ikke under Sikkerhedschefens vagt (`guarded`). Sender to syntetikere et drab, gælder kun det første, du modtog. Lykkes det, er offeret død og ude af resten af afgørelsen (ingen evne, intet vedligehold). Mislykkes det, sker intet.
+1b. **Alien.** Tjek `resolveAlien` i `src/content/alien.ts`: to eller flere med *Bekæmp* i alienens zone smider den ud (den bliver Ekko, stadig syntetikerhold). Ellers, ved Angreb og præcis én spiller i zonen: rul d6; besætning dør på 4–6, syntetikere, bevogtede og beskyttede overlever. Offeret broadcastes som et normalt drab: kun navnet. Alle i alienens zone får privat: *"Noget bevæger sig i ventilationen."*
+1c. **Skæbner.** Rul d6 for hvert nyt ekko: 1 Jorden, 2 Spøgelse, 3–4 Alien, 5 Afløser, 6 Ekko. Hver findes én gang. Taget, eller Afløser til en frossen = Ekko. Ingen omrul. Flere nye ekkoer samme uge: rul i tilfældig rækkefølge. Afløser (kun dræbte) vågner i Hypersøvn nu, uden evne, og handler fra næste ordre. Rumlog og Hjemsøg afgøres i trin 3 som informationsevner — Hjemsøg bruger positionen i ugen.
+2. **Støj og forfalskning.** Markér hvilke resultater der bliver *"Signal forstyrret."* og hvem der får et falsk resultat. Støj vinder over forfalskning.
+3. **Informationsevner.** Beregn sande resultater. Stemmerevision bruger stemmen fra ugens ordre, selv om tribunalet først afgøres i trin 5. Erstat forfalskede med et troværdigt, forkert svar. Kamera (`camera`), Arkiv (`archive`) og Bevægelsessensorer (`motionSensors`) afgøres her. Sabotage, Transport, Personlig beskyttelse, Ekstra reparation og Nødstrøm svarer kun med en kvittering.
+4. **Integritet.** Kun automatisk fra uge 2. Tæl levende mennesker pr. sektion med `humansBySection` (fjern weekendens ofre først). Kør `resolveSystems` i `src/content/systems.ts` med `humans`, Ingeniørens `repairs` (+2), Motorrums `extraRepairs` (+1) og Livsstøttes `stabilized` (Nødstrøm). Mindst ét menneske: +1, ellers −1; flere giver ikke mere; syntetikere er neutrale. Alt samtidigt, holdt mellem 0 og 5. Nødstrøm stopper ethvert nettotab. Rammer en sektion 0 (`failed`), vinder syntetikerne straks: stop afgørelsen, og afslør alle roller. Kriser i uge 4 justerer beregningen (se *Scenariebogen*).
+5. **Tribunal.** Tæl stemmer, inkl. brugte spøgelsesstemmer. Har ét navn flertal af de *aktive* spillere, sendes vedkommende i kryo og bliver et ekko. Broadcast navn og antal stemmer. Offentliggør aldrig, hvem der stemte hvad. Er alle syntetikere nu i kryo, vinder besætningen. Er det uge 6, og er mindst én syntetiker aktiv, vinder syntetikerne.
+6. **Bevægelse — gælder fra mandag.** Flyt alle samtidig. Tjek nabozoner. Transport fra sidste uge: op til to zoner ad gangene (`reachable(layout, zone, 2)`). Skaktløber med Skakt må ende i enhver zone. Ulovlig bevægelse = Bliv. Alien: ryk den én zone (eller bliv); kriser stopper den ikke. Uro → zone: hver, der rykker ind i zonen, ender i en tilfældig nabozone til den; Skakt ind og ud fejler. Uge 4: tjek krisen, fx Strømudfald, Karantænezone, Skotter låst eller Gang kollapset.
+7. **Sabotage og kanaler.** Notér ugens sabotage (sektion og uge): den virker næste uge og udløber derefter selv. Flyt medlemmer mellem sektorkanaler. Fjern døde og spillere i kryo.
 
 **Mandag 09:00 — rapport.**
 
@@ -64,14 +64,14 @@ Højst 3 pr. spiller pr. dag. Afvis kun beskeder, der citerer eller indsætter d
 ```
 ORACLE // SHIPWIDE // UGE 4
 
-SYSTEMER:
-Hypersøvn  ██░░░ 2  −1
-Medlab     ████░ 4  +1
-Livsstøtte ██░░░ 2  −1
-Lastrum    ████░ 4  +1
-Broen      █████ 5  +1
-Motorrum   █░░░░ 1  −2
-NEDBRUD: Skakter lukket.
+INTEGRITET:
+Hypersøvn  ██░░░ 2
+Medlab     ████░ 4
+Livsstøtte ██░░░ 2
+Lastrum    ████░ 4
+Broen      █████ 5
+Motorrum   █░░░░ 1
+Rygraden   ███░░ 3
 SCENARIE: Nødsignal
 
 TRIBUNAL: 4 af 6 stemmer mod [Navn]. [Navn] er overført til kryo.
@@ -86,7 +86,7 @@ Til offeret, privat: *"Du er død. Du er nu et ekko. Skæbne (d6: 2): Spøgelse.
 ```
 ORACLE // [NAVN] // UGE 3
 
-ZONE: Livsstøtte
+ZONE: Livsstøtte (fra mandag)
 MANIFEST: Anna, Peter
 RESULTAT: Pejling → Sara står i Rygraden.
 NÆSTE UGE: Pejling er aktiv.
@@ -94,7 +94,7 @@ NÆSTE UGE: Pejling er aktiv.
 
 Spilleren skal aldrig holde regnskab. Skriv altid *NÆSTE UGE* med, hvad spilleren kan: om evnen er aktiv eller låst, og for syntetikere, at holdet kan dræbe igen (*DRAB: klar*). Ekkoer får, om spøgelsesstemmen er brugt, og deres skæbne. En låst, brugt eller ugyldig evne giver *"Ingen effekt."*
 
-*Vagt*, *Åben linje* og *Skakt* er handlinger, ikke information. De kan ikke forfalskes eller forstyrres.
+*Vagt*, *Åben linje*, *Skakt*, *Transport*, *Personlig beskyttelse*, *Ekstra reparation*, *Nødstrøm* og *Sabotage* er handlinger, ikke information. De kan ikke forfalskes eller forstyrres.
 
 ## Forfalskning
 
@@ -107,8 +107,10 @@ Et falsk resultat skal være **troværdigt**. Det må gerne være forkert på en
 - Adgangslog: et antal fra 0 til antal aktive spillere.
 - Afstand: en anden værdi af 0, 1 eller 2.
 - Afhøring: et antal fra 0 til antal aktive spillere minus 1.
-- Rumlog: flyt én person ind eller ud. Systemændringen er offentlig og må ikke ændres.
+- Rumlog: flyt én person ind eller ud. Integritetens ændring må ikke ændres.
 - Hjemsøg: en zone, spilleren kunne have nået.
+- Kamera: tilføj eller fjern ét navn.
+- Arkiv og Bevægelsessensorer: et andet muligt antal.
 - Stemmerevision: en anden stemme, spilleren kunne have afgivet.
 
 Afslør aldrig, at et resultat var forfalsket — heller ikke ved spillets slutning, medmindre gruppen ønsker en gennemgang.
@@ -126,9 +128,9 @@ Alle scenarier, arkiver, krisetabellen (d20) og sektionstabellen (d6) står i *S
 
 - Uklar ordre: vælg den mest bogstavelige læsning og notér det.
 - Stemmelighed eller intet flertal: ingen dom.
-- Et system rammer 0: broadcast *"SYSTEMSVIGT: [sektion]."* og annoncér syntetikernes sejr. Systemerne afgøres før tribunalet, så et svigt vinder, selv om den sidste syntetiker dømmes samme weekend.
-- Rygraden har intet system. Spillere dér arbejder ikke.
-- Besætningen vinder, så snart alle syntetikere er i kryo. En alien er ikke syntetiker og skal ikke fryses. Syntetikerne vinder, hvis et system rammer 0, eller hvis mindst én er aktiv efter tribunalet i uge 6.
+- En sektion rammer 0: broadcast *"SYSTEMSVIGT: [sektion]."* straks — vent ikke til mandag — og annoncér syntetikernes sejr. Integriteten afgøres før tribunalet, så et svigt vinder, selv om den sidste syntetiker dømmes samme weekend.
+- Mandagens rapport viser kun værdierne (`integrityReport`). Aldrig ændringer, årsager eller navne.
+- Besætningen vinder, så snart alle syntetikere er i kryo. En alien er ikke syntetiker og skal ikke fryses. Syntetikerne vinder, hvis en sektion rammer 0, eller hvis mindst én er aktiv efter tribunalet i uge 6.
 - Døde og spillere i kryo kan ikke dræbes, dømmes eller vælges som mål for evner. En Afløser er aktiv igen og kan dræbes, dømmes og vælges.
 - Stemmer på en spiller, der dør samme weekend, tæller ikke.
 - Afslør aldrig et offers rolle før spillets afslutning. ORACLE svarer: *"Signal ikke fundet."*

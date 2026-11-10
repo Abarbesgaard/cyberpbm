@@ -17,7 +17,7 @@ export function Victory() {
           <p className="text-[0.95rem] leading-[1.7] text-cp-off">
             I vinder, så snart alle syntetikere er sendt i kryo af tribunalet. Systemerne er
             ikke målet, men uret: rammer ét 0, har I tabt. En forkert dom sender en uskyldig i
-            kryo, og I mister en, der kunne arbejde og bruge en evne.
+            kryo, og I mister en, der kunne vedligeholde og bruge en evne.
           </p>
         </div>
         <div className="bezel bezel-screws border-t-[6px] border-cp-red p-8">
